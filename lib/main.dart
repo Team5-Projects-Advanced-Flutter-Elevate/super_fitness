@@ -15,6 +15,7 @@ import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 
+/// Testing workflows
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

@@ -30,5 +30,6 @@
   "namesLengthRule": "Names must be at least three characters long.",
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
-  "pleaseEnterValidAddress": "Please enter a valid address"
+  "pleaseEnterValidAddress": "Please enter a valid address",
+  "skip": "Skip"
 }

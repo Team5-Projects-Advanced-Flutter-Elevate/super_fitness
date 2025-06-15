@@ -30,5 +30,6 @@
   "namesLengthRule": "يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.",
   "noMatch": "لا يوجد تطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
-  "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح"
+  "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
+  "skip": "تخطي"
 }

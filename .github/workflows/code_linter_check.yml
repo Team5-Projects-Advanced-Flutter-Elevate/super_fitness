@@ -1,0 +1,64 @@
+name: Code Check By Dart Linter (on Push or PR)
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    types: [ opened, edited ]
+    branches:
+      - '**'
+jobs:
+  analyze:
+    name: Dart Linter Analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Print Dart and Flutter versions
+        run: |
+          dart --version
+          flutter --version
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Format code
+        run: dart format .
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if git diff --quiet; then
+            echo "No changes detected."
+            echo "commit_changes=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected."
+            echo "commit_changes=true" >> $GITHUB_ENV
+          fi
+
+      - name: Get current branch name
+        id: get_branch
+        run: |
+          echo "GITHUB_REF=${GITHUB_REF}"
+          echo "branch_name=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+          echo "Branch name: $(echo ${GITHUB_REF#refs/heads/})"
+
+      - name: Commit changes
+        if: env.commit_changes == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+        run: |
+          git config --global user.email "bot@example.com"
+          git config --global user.name "GitHub Bot"
+          git add .
+          git commit -m "Automated code formatting"
+          git push origin ${GITHUB_REF#refs/heads/}

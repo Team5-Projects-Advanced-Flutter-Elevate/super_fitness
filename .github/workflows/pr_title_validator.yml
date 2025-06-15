@@ -1,0 +1,23 @@
+name: Check PR Title
+on:
+  pull_request:
+    types: [ opened, edited ]
+    branches:
+      - '**'
+jobs:
+  check-pr-title:
+    name: Check PR Title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR title format
+        run: |
+          PR_NAME="${{ github.event.pull_request.title }}"
+          echo "PR_NAME: $PR_NAME"
+          if [[ ! "$PR_NAME" =~ ^(fix|release|feat|hotfix|build|test)(\([a-z]+\))?:\ [A-Z]+-[0-9]+-[a-z]+([ _-][a-z]+)*$ ]]; then
+            echo "❌ **Invalid PR name format:** $PR_NAME"
+            echo "Please use the format: type(scope): {TicketNum}-task name (e.g., feat: ABC-123-task-name, fix(ui): XYZ-456-another_task, test: DEF-789-yet another name)"
+            exit 1
+          else
+            echo "✅ **Valid PR name format:** $PR_NAME"
+          fi
+        shell: bash

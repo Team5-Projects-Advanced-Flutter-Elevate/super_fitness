@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "super-fitness-app-2ac08",
+          "appId": "1:711027980590:android:336185b68ee848a89da2bf",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "super-fitness-app-2ac08",
+          "configurations": {
+            "android": "1:711027980590:android:336185b68ee848a89da2bf",
+            "ios": "1:711027980590:ios:78c61741fdb6a5ae9da2bf"
+          }
+        }
+      }
+    }
+  }
+}

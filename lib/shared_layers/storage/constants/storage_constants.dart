@@ -4,8 +4,6 @@ abstract class StorageConstants {
   static const String successMessage = "success";
   static const String loginModelKey = "loginModelKey";
   static const String localeKey = "AppLocal";
-  static const String isGuestKey = "IsGuestKey";
-  static const String currentAcceptedOrderId = "currentAcceptedOrderId";
 
   static String errorStoringMessage(String error) {
     return "Error Storing Value: $error";

@@ -1,8 +1,5 @@
 name: Android Firebase App Distribution
 on:
-  push:
-    branches:
-      - master
   merge_group:
     branches:
       - develop

@@ -22,9 +22,6 @@ jobs:
         with:
           flutter-version: '3.29.3'
 
-      - name: Install dependencies
-        run: flutter pub get # action
-
       - name: Build
         run: |
           flutter pub get

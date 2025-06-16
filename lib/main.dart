@@ -14,6 +14,7 @@ import 'firebase_options.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
+// just sonarQube workflow to run again
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 

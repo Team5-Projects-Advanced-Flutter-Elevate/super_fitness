@@ -31,5 +31,16 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-  "skip": "Skip"
+  "skip": "Skip",
+  "back": "Back",
+  "next": "Next",
+  "doIt": "Do It",
+  "priceOfExcellence": "The Price Of Excellence",
+  "isDiscipline": "Is Discipline",
+  "fitnessHasNeverBeen": "Fitness Has Never Been",
+  "soMuchFun": "So Much Fun",
+  "noMoreExecuses": "NO MORE EXCUSES",
+  "doItNow": "Do It Now",
+  "loremIpsumDolorSitAmetConsectetureuUrna": "Lorem ipsum dolor sit amet consectetur. Eu urna",
+  "utGravidaQuisIdPretiumPurusMaurisMassa": "ut gravida quis id pretium purus. Mauris massa"
 }

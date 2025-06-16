@@ -31,5 +31,17 @@
   "noMatch": "لا يوجد تطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
-  "skip": "تخطي"
+  "skip": "تخطي",
+  "back": "السابق",
+  "next": "التالي",
+  "doIt": "افعلها",
+  "priceOfExcellence": "ثمن التميز",
+  "isDiscipline": "هو الانضباط",
+  "fitnessHasNeverBeen": "اللياقة البدنية لم تكن أبدا",
+  "soMuchFun": "الكثير من المرح",
+  "noMoreExecuses": "لا مزيد من الأعذار",
+  "doItNow": "افعلها الآن",
+  "loremIpsumDolorSitAmetConsectetureuUrna": "لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو",
+  "utGravidaQuisIdPretiumPurusMaurisMassa": "اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا"
+
 }

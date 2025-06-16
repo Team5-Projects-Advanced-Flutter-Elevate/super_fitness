@@ -3,20 +3,32 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    types: [ opened, synchronize, reopened ]
-    branches:
-      - develop
+
 jobs:
   sonarqube:
     name: SonarQube
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       # The analysis requires to retrieve dependencies and build successfully
 
+      - name: Check for open PRs targeting develop
+        id: check_prs
+        run: |
+          prs=$(gh pr list --state open --base develop --json number --jq 'length')
+          echo "Open PRs targeting develop: $prs"
+          if [ "$prs" -gt 0 ]; then
+            echo "There are still open PRs targeting develop. Exiting..."
+            exit 0
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      # Only runs if no open PRs
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:

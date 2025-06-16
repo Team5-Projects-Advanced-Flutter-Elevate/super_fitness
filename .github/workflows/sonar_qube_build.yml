@@ -22,12 +22,24 @@ jobs:
         with:
           flutter-version: '3.29.3'
 
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Generate files with build_runner
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Run tests with coverage
+        run: flutter test --coverage
+
+      - name: Check if coverage file exists
+        id: coverage_check
+        run: echo "exists=$(if [ -f coverage/lcov.info ]; then echo true; else echo false; fi)" >> $GITHUB_OUTPUT
+
       - name: Build
-        run: |
-          flutter pub get
-          flutter build apk --debug
+        run: flutter build apk --debug
 
       - name: SonarQube Scan
+        if: steps.coverage_check.outputs.exists == 'true'
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

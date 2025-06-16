@@ -135,7 +135,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                           minWidth: screenWidth * 0.9,
                           height: 44,
                           onPressed: _handleNextPress,
-                          child: Text(
+                          child: const Text(
                             'Next',
                             style: TextStyle(
                               color: Colors.white,

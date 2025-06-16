@@ -43,15 +43,10 @@ jobs:
         if: env.run_tests == 'true'
         run: flutter test --coverage
 
-      - name: Check if coverage file exists
-        id: coverage_check
-        run: echo "exists=$(if [ -f coverage/lcov.info ]; then echo true; else echo false; fi)" >> $GITHUB_OUTPUT
-
       - name: Build
         run: flutter build apk --debug
 
       - name: SonarQube Scan
-        if: steps.coverage_check.outputs.exists == 'true'
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

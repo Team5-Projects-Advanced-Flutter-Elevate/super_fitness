@@ -136,7 +136,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                           height: 44,
                           onPressed: _handleNextPress,
                           child: Text(
-                            appLocalizations.next,
+                            'Next',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -161,7 +161,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                               height: 44,
                               onPressed: _handleBackPress,
                               child: Text(
-                                appLocalizations.back,
+                                'Back',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: MediaQuery.of(
@@ -184,8 +184,8 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                               onPressed: _handleNextPress,
                               child: Text(
                                 _currentPage == onboardingPages.length - 1
-                                    ? appLocalizations.doIt
-                                    : appLocalizations.next,
+                                    ? 'Do It'
+                                    : 'Next',
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: MediaQuery.of(

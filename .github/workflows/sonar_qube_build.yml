@@ -20,27 +20,28 @@ jobs:
         run: |
           prs=$(gh pr list --state open --base develop --json number --jq 'length')
           echo "Open PRs targeting develop: $prs"
-          if [ "$prs" -gt 0 ]; then
-            echo "There are still open PRs targeting develop. Exiting..."
-            exit 0
-          fi
+          echo "prs_count=$prs" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      # Only runs if no open PRs
+      # Only runs if no open PRs targets develop branch after a push
       - name: Set up Flutter
+        if: steps.check_prs.outputs.prs_count == '0'
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.3'
 
       - name: Install dependencies
+        if: steps.check_prs.outputs.prs_count == '0'
         run: flutter pub get
 
       - name: Generate files with build_runner
+        if: steps.check_prs.outputs.prs_count == '0'
         run: flutter pub run build_runner build --delete-conflicting-outputs
 
       - name: Check for test files
+        if: steps.check_prs.outputs.prs_count == '0'
         id: check_tests
         run: |
           if [ -z "$(find test -name '*_test.dart')" ]; then
@@ -52,13 +53,15 @@ jobs:
           fi
 
       - name: Run tests with coverage
-        if: env.run_tests == 'true'
+        if: steps.check_prs.outputs.prs_count == '0' && env.run_tests == 'true'
         run: flutter test --coverage
 
       - name: Build
+        if: steps.check_prs.outputs.prs_count == '0'
         run: flutter build apk --debug
 
       - name: SonarQube Scan
+        if: steps.check_prs.outputs.prs_count == '0'
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

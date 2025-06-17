@@ -10,67 +10,57 @@ abstract class AppThemes {
       backgroundColor: AppColors.transparent,
       surfaceTintColor: AppColors.transparent,
       titleSpacing: 0,
-      titleTextStyle: TextStyle(
+      titleTextStyle: GoogleFonts.balooThambi2(
         fontSize: 20,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
     ),
     textTheme: TextTheme(
-      titleLarge: TextStyle(
+      titleLarge: GoogleFonts.balooThambi2(
         fontSize: 22,
         color: AppColors.white,
         fontWeight: FontWeight.w600,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      titleMedium: TextStyle(
+      titleMedium: GoogleFonts.balooThambi2(
         fontSize: 16,
         color: AppColors.white,
         fontWeight: FontWeight.w500,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      titleSmall: TextStyle(
+      titleSmall: GoogleFonts.balooThambi2(
         fontSize: 14,
         color: AppColors.white,
         fontWeight: FontWeight.w400,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      labelLarge: TextStyle(
+      labelLarge: GoogleFonts.balooThambi2(
         fontSize: 14,
         color: AppColors.white,
         fontWeight: FontWeight.w500,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      labelMedium: TextStyle(
+      labelMedium: GoogleFonts.balooThambi2(
         fontSize: 12,
         color: AppColors.white,
         fontWeight: FontWeight.w500,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      labelSmall: TextStyle(
+      labelSmall: GoogleFonts.balooThambi2(
         fontSize: 11,
         color: AppColors.white,
         fontWeight: FontWeight.w500,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      bodyLarge: TextStyle(
+      bodyLarge: GoogleFonts.balooThambi2(
         fontSize: 16,
         color: AppColors.white,
         fontWeight: FontWeight.w400,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      bodyMedium: TextStyle(
+      bodyMedium: GoogleFonts.balooThambi2(
         fontSize: 14,
         color: AppColors.white,
         fontWeight: FontWeight.w400,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
-      bodySmall: TextStyle(
+      bodySmall: GoogleFonts.balooThambi2(
         fontSize: 12,
         color: AppColors.white,
         fontWeight: FontWeight.w400,
-        fontFamily: GoogleFonts.balooThambi2().fontFamily,
       ),
     ),
     colorScheme: ColorScheme(
@@ -169,11 +159,10 @@ abstract class AppThemes {
           EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         ),
         textStyle: WidgetStatePropertyAll(
-          TextStyle(
+          GoogleFonts.balooThambi2(
             fontSize: 16,
             color: AppColors.white,
             fontWeight: FontWeight.w800,
-            fontFamily: GoogleFonts.balooThambi2().fontFamily,
           ),
         ),
       ),
@@ -182,11 +171,10 @@ abstract class AppThemes {
       style: ElevatedButton.styleFrom(
         foregroundColor: AppColors.white,
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
-        textStyle: TextStyle(
+        textStyle: GoogleFonts.balooThambi2(
           fontSize: 16,
           color: AppColors.white,
           fontWeight: FontWeight.w800,
-          fontFamily: GoogleFonts.balooThambi2().fontFamily,
         ),
       ),
     ),
@@ -197,10 +185,9 @@ abstract class AppThemes {
           vertical: 12,
           horizontal: 24,
         ),
-        textStyle: TextStyle(
+        textStyle: GoogleFonts.balooThambi2(
           fontSize: 16,
           fontWeight: FontWeight.w800,
-          fontFamily: GoogleFonts.balooThambi2().fontFamily,
         ),
       ),
     ),

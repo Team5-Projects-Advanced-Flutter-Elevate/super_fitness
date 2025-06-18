@@ -139,6 +139,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get utGravidaQuisIdPretiumPurusMaurisMassa => 'اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا';
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';

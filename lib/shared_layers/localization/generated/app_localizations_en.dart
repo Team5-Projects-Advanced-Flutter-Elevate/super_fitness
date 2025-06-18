@@ -139,6 +139,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get utGravidaQuisIdPretiumPurusMaurisMassa => 'ut gravida quis id pretium purus. Mauris massa';
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';

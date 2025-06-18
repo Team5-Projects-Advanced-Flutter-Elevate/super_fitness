@@ -1,9 +1,16 @@
+import 'dart:ui';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
-import 'package:super_fitness/shared_layers/localization/enums/languages_enum.dart';
+import 'package:super_fitness/modules/authentication/ui/login/state.dart';
+
+import '../../../../core/colors/app_colors.dart';
+import '../../../../core/di/injectable_initializer.dart';
+import '../../../../core/widgets/error_state_widget.dart';
+import '../cubit/login/view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,7 +21,9 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
   GlobalKey<FormState> formKey = GlobalKey();
-  TextEditingController textEditingController = TextEditingController();
+  final email = TextEditingController();
+  final password = TextEditingController();
+  LoginViewModel loginViewModel = getIt.get<LoginViewModel>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,130 +38,296 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: Scaffold(
-          appBar: AppBar(
-            forceMaterialTransparency: true,
-            title: const Text("Hello"),
-            centerTitle: true,
-          ),
-          bottomNavigationBar: NavigationBar(
-            destinations: [
-              const NavigationDestination(
-                icon: Icon(Icons.home),
-                label: "Home",
-              ),
-              const NavigationDestination(
-                icon: Icon(Icons.person),
-                label: "Profile",
-              ),
-            ],
-          ),
-          body: SingleChildScrollView(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  spacing: 10,
-                  children: [
-                    SizedBox(height: screenHeight * 0.03),
-                    Form(
-                      key: formKey,
-                      child: TextFormField(
-                        controller: textEditingController,
-                        validator: (value) {
-                          return validateFunctions.validationOfEmail(value);
-                        },
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
-                        decoration: const InputDecoration(
-                          prefixIcon: Padding(
-                            padding: EdgeInsets.only(left: 15.0, right: 5),
-                            child: Icon(Icons.mail_outline),
-                          ),
-                          hintText: "Email",
-                        ),
-                      ),
-                    ),
-                    Text(
-                      validateFunctions.validationOfEmail("ljklsdkfjldskfj")!,
-                      style: theme.textTheme.bodyLarge,
-                    ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        localizationManager.isEnglish
-                            ? await localizationManager.changeLocal(
-                              LanguagesEnum.ar.getLanguageCode(),
-                            )
-                            : await localizationManager.changeLocal(
-                              LanguagesEnum.en.getLanguageCode(),
-                            );
-                        formKey.currentState!.validate();
-                      },
-                      child: Text(appLocalizations.login),
-                    ),
-                    FilledButton(onPressed: () {}, child: const Text("Test")),
-                    OutlinedButton(
-                      onPressed: () {
-                        displaySnackBar(
-                          contentType: ContentType.success,
-                          title: "Displayed Successfully",
-                          message: "SnackBar Displayed Successfully",
-                        );
-                      },
-                      child: const Text("Display Snack Bar"),
-                    ),
-                    const LoadingStateWidget(),
-                    Radio<String>(
-                      value: "value1",
-                      groupValue: "value1",
+        child: BlocProvider(
+          create: (context) => loginViewModel,
+          child: BlocListener<LoginViewModel, LoginState>(
+            listener: (context, state) {
+              switch (state.loginStatus) {
+                case Status.idle:
+                  break;
+                case Status.loading:
+                  const LoadingStateWidget();
 
-                      onChanged: (value) {},
-                    ),
-                    Radio<String>(
-                      value: "value1",
-                      groupValue: "value2",
-                      onChanged: (value) {},
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            fixedSize: const Size(32, 32),
-                          ),
-                          child: Transform.scale(
-                            scale: 1.3,
-                            child: Image.asset(AssetsPaths.facebookIcon),
+                case Status.success:
+                  displaySnackBar(
+                    contentType: ContentType.success,
+                    title: 'Success',
+                    message: 'Login Successfully',
+                  );
+
+                case Status.error:
+                  ErrorStateWidget(error: state.error.toString());
+              }
+            },
+            child: SafeArea(
+              child: Scaffold(
+                body: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image(
+                              image: AssetImage('assets/images/fitLogo.png'),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 0.1 * screenHeight),
+
+                        Text(
+                          'Hey There',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontSize: 15,
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            fixedSize: const Size(32, 32),
-                          ),
-                          child: Transform.scale(
-                            scale: 1.3,
-                            child: Image.asset(AssetsPaths.googleIcon),
+                        SizedBox(height: 0.01 * screenHeight),
+
+                        Text(
+                          'Welcome Back',
+                          style: theme.textTheme.titleLarge?.copyWith(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w900,
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            shape: const CircleBorder(),
-                            fixedSize: const Size(32, 32),
-                          ),
-                          child: Transform.scale(
-                            scale: 1.3,
-                            child: Image.asset(AssetsPaths.appleIcon),
+                        SizedBox(height: 0.03 * screenHeight),
+
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25.0),
+                            child: BackdropFilter(
+                              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: AppColors.white.withAlpha(
+                                    (0.1 * 255).toInt(),
+                                  ),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                  border: Border.all(
+                                    color: AppColors.white.withAlpha(
+                                      (0.2 * 255).toInt(),
+                                    ),
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Text(
+                                          "Login",
+                                          style: theme.textTheme.titleLarge
+                                              ?.copyWith(
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.w900,
+                                              ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 0.02 * screenHeight),
+                                    TextFormField(
+                                      controller: email,
+                                      validator: (value) {
+                                        return validateFunctions
+                                            .validationOfEmail(value);
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      decoration: const InputDecoration(
+                                        prefixIcon: Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 15.0,
+                                            right: 5,
+                                          ),
+                                          child: Icon(Icons.mail_outline),
+                                        ),
+                                        hintText: "Email",
+                                      ),
+                                    ),
+                                    SizedBox(height: 0.02 * screenHeight),
+                                    TextFormField(
+                                      controller: password,
+                                      validator: (value) {
+                                        return validateFunctions
+                                            .validationOfPassword(value);
+                                      },
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      decoration: const InputDecoration(
+                                        prefixIcon: Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 15.0,
+                                            right: 5,
+                                          ),
+                                          child: Icon(Icons.lock_outlined),
+                                        ),
+                                        hintText: "Password",
+                                      ),
+                                    ),
+
+                                    SizedBox(height: 0.02 * screenHeight),
+
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Text(
+                                        "Forget Password ?",
+                                        style: theme.textTheme.titleLarge
+                                            ?.copyWith(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w900,
+                                              color: AppColors.mainColorLight,
+                                            ),
+                                      ),
+                                    ),
+
+                                    SizedBox(height: 0.02 * screenHeight),
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 30,
+                                        right: 30,
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: Divider(
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10,
+                                            ),
+                                            child: Text(
+                                              "Or",
+                                              style: TextStyle(
+                                                color: AppColors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Divider(
+                                              color: AppColors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(height: 0.02 * screenHeight),
+
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            shape: const CircleBorder(),
+                                            backgroundColor: AppColors.black,
+
+                                            fixedSize: const Size(32, 32),
+                                          ),
+                                          child: Transform.scale(
+                                            scale: 1.3,
+                                            child: Image.asset(
+                                              AssetsPaths.facebookIcon,
+                                            ),
+                                          ),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: AppColors.black,
+
+                                            shape: const CircleBorder(),
+                                            fixedSize: const Size(32, 32),
+                                          ),
+                                          child: Transform.scale(
+                                            scale: 1.3,
+                                            child: Image.asset(
+                                              AssetsPaths.googleIcon,
+                                            ),
+                                          ),
+                                        ),
+                                        ElevatedButton(
+                                          onPressed: () {},
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: AppColors.black,
+                                            shape: const CircleBorder(),
+                                            fixedSize: const Size(32, 32),
+                                          ),
+                                          child: Transform.scale(
+                                            scale: 1.3,
+                                            child: Image.asset(
+                                              AssetsPaths.appleIcon,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 0.02 * screenHeight),
+
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        loginViewModel.doIntent(
+                                          Login(email.text, password.text),
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        // backgroundColor: Colors.orange,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            50,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        "Login",
+                                        style: theme.textTheme.titleLarge
+                                            ?.copyWith(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                      ),
+                                    ),
+
+                                    SizedBox(height: 0.02 * screenWidth),
+
+                                    Text.rich(
+                                      textAlign: TextAlign.center,
+                                      TextSpan(
+                                        text: "Don't Have An Account Yet ? ",
+                                        style: TextStyle(
+                                          color: AppColors.white,
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text: "Register",
+                                            style: TextStyle(
+                                              color: AppColors.mainColorLight,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),

@@ -21,7 +21,7 @@ abstract class GenerateRoute {
 
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
-    LoginDataResponseEntity? loginInfo,
+    LoginEntity? loginInfo,
   }) {
     return [
       if (loginInfo != null)

@@ -39,6 +39,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get validationFunctions____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
+  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
   String get pleaseEnterName => 'الرجاء إدخال الاسم.';
 
   @override
@@ -48,8 +51,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -70,15 +72,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
 
   @override
-  String get passwordLength =>
-      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
+  String get passwordLength => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
   String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
@@ -90,15 +90,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
   String get noMatch => 'لا يوجد تطابق!';
@@ -107,11 +105,98 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterAddress => 'الرجاء إدخال العنوان';
 
   @override
-  String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
+  String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
-  String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+  String get emailHint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get passwordHint => 'أدخل كلمة المرور';
+
+  @override
+  String get confirmPassword => 'تأكيد كلمة المرور';
+
+  @override
+  String get confirmPasswordHint => 'أعد إدخال كلمة المرور';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'أنثى';
+
+  @override
+  String get removedImage => 'تمت إزالة الصورة';
+
+  @override
+  String get forgetPasswordDescription => 'الرجاء إدخال البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get confirm => 'تاكيد';
+
+  @override
+  String get success => 'تمت بنجاح';
+
+  @override
+  String get codeSendTitle => 'تم ارسال الكود الي الحسابٍ';
+
+  @override
+  String get otpScreenTitle => 'تفعيل البريد الالكتروني';
+
+  @override
+  String get otpScreenDescription => 'الرجاء إدخال الرمز الذي سيتم إرساله إلى عنوان بريدك الإلكتروني';
+
+  @override
+  String get didnotReciveOtp => 'لم تستلم الرمز؟';
+
+  @override
+  String get resend => 'اعاده ارسال';
+
+  @override
+  String get codeValid => 'الكود صحيح';
+
+  @override
+  String get codeNotvalid => 'الكود ليس صحيح';
+
+  @override
+  String get resetPasswordScreenDescription => 'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف بحرف كبير ورقم واحد على الأقل';
+
+  @override
+  String get resetPasswordScreenTitle => 'اعاده تعيين الرقم السري';
+
+  @override
+  String get newPassword => 'رقم سري جديد';
+
+  @override
+  String get confirmNewPassword => 'تاكيد الرقم السري';
+
+  @override
+  String get yourPasswordChanged => 'تم تغير الرقم السري بنجاح';
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get forgetPassword => 'Forget password?';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 }

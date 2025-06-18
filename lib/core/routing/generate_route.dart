@@ -3,6 +3,9 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 
+import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
+import '../../modules/authentication/ui/forget_password/view/reset_password_screen.dart';
+
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     //var args = routeSettings.arguments;
@@ -11,6 +14,15 @@ abstract class GenerateRoute {
       switch (name) {
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
+        case DefinedRoutes.forgetPasswordScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordScreen(),
+          );
+        case DefinedRoutes.resetPasswordRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ResetPasswordScreen(),
+          );
+
         default:
           return _errorRoute();
       }

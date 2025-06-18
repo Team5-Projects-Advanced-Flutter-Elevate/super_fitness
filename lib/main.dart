@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
-import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
+import 'modules/authentication/ui/login/login_screen.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             home: const LoginScreen(),
+            // initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(

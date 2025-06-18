@@ -62,8 +62,7 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +70,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +82,17 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// No description provided for @errorMessages________.
@@ -157,6 +154,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'\$\$\$ Comment \$\$\$'**
   String get validationFunctions____________;
+
+  /// No description provided for @pleaseEnterValidRecipient.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid recipient'**
+  String get pleaseEnterValidRecipient;
 
   /// No description provided for @pleaseEnterName.
   ///
@@ -284,27 +287,200 @@ abstract class AppLocalizations {
   /// **'Please enter the address'**
   String get pleaseEnterAddress;
 
-  /// No description provided for @pleaseEnterValidAddress.
+  /// No description provided for @forgetPassword____________.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a valid address'**
-  String get pleaseEnterValidAddress;
+  /// **'\$\$\$ تعليق \$\$\$'**
+  String get forgetPassword____________;
 
-  /// No description provided for @pleaseEnterValidRecipient.
+  /// No description provided for @emailHint.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a valid recipient'**
-  String get pleaseEnterValidRecipient;
+  /// **'Enter your email'**
+  String get emailHint;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPassword;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
+
+  /// No description provided for @forgetPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email associated to your account'**
+  String get forgetPasswordDescription;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Successfully'**
+  String get success;
+
+  /// No description provided for @codeSendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code send To Email'**
+  String get codeSendTitle;
+
+  /// No description provided for @otpScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verification'**
+  String get otpScreenTitle;
+
+  /// No description provided for @otpScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your code that send to your email address'**
+  String get otpScreenDescription;
+
+  /// No description provided for @didnotReciveOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Did not receive code?'**
+  String get didnotReciveOtp;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend'**
+  String get resend;
+
+  /// No description provided for @codeValid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code is valid'**
+  String get codeValid;
+
+  /// No description provided for @codeNotvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code not valid'**
+  String get codeNotvalid;
+
+  /// No description provided for @resetPasswordScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
+  String get resetPasswordScreenDescription;
+
+  /// No description provided for @resetPasswordScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPasswordScreenTitle;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPassword;
+
+  /// No description provided for @yourPasswordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed Successfully'**
+  String get yourPasswordChanged;
 
   /// No description provided for @login.
   ///
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterPassword;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password?'**
+  String get forgetPassword;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get error;
+
+  /// No description provided for @pleaseEnterValidAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid address'**
+  String get pleaseEnterValidAddress;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -313,26 +489,25 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar':
-      return AppLocalizationsAr();
-    case 'en':
-      return AppLocalizationsEn();
+    case 'ar': return AppLocalizationsAr();
+    case 'en': return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+    'that was used.'
   );
 }

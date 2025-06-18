@@ -22,11 +22,19 @@ class RegisterViewModel extends Cubit<RegisterState> {
   FocusNode firstNameNode = FocusNode(),
       lastNameNode = FocusNode(),
       emailNode = FocusNode(),
-      passwordNode = FocusNode();
+      passwordNode = FocusNode(),
+      confirmPasswordNode = FocusNode();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  void _register() async {
+  void doIntent(RegisterIntent intent) {
+    switch (intent) {
+      case RegisterUser():
+        _register(restOfRegisterRequest: intent.restOfRegisterRequest);
+    }
+  }
+
+  void _register({required RestOfRegisterRequest restOfRegisterRequest}) async {
     FocusManager.instance.primaryFocus?.unfocus();
     if (formKey.currentState!.validate()) {
       emit(const RegisterState(registerStatus: Status.loading));
@@ -36,6 +44,12 @@ class RegisterViewModel extends Cubit<RegisterState> {
           lastName: lastNameController.text,
           email: emailController.text,
           password: passwordController.text,
+          rePassword: confirmController.text,
+          age: restOfRegisterRequest.age,
+          weight: restOfRegisterRequest.weight,
+          height: restOfRegisterRequest.height,
+          goal: restOfRegisterRequest.goal,
+          activityLevel: restOfRegisterRequest.activityLevel,
         ),
       );
       switch (useCaseResult) {
@@ -55,4 +69,26 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
 sealed class RegisterIntent {}
 
-class RegisterUser extends RegisterIntent {}
+class RegisterUser extends RegisterIntent {
+  final RestOfRegisterRequest restOfRegisterRequest;
+
+  RegisterUser({required this.restOfRegisterRequest});
+}
+
+class RestOfRegisterRequest {
+  String gender;
+  num age;
+  num weight;
+  num height;
+  String goal;
+  String activityLevel;
+
+  RestOfRegisterRequest({
+    required this.gender,
+    required this.age,
+    required this.weight,
+    required this.height,
+    required this.goal,
+    required this.activityLevel,
+  });
+}

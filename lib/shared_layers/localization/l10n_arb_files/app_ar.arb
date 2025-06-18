@@ -40,6 +40,7 @@
   "lastName": "الاسم الأخير",
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
+  "confirmPassword": "تأكيد كلمة المرور",
   "or": "أو",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "login": "تسجيل الدخول"

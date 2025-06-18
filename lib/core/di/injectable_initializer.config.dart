@@ -18,6 +18,16 @@ import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
     as _i343;
 import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i1019;
+import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
+    as _i735;
+import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
+    as _i132;
+import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
+    as _i193;
+import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
+    as _i496;
+import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
+    as _i782;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
 import '../../shared_layers/localization/generated/app_localizations.dart'
@@ -54,7 +64,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => dioService.provideDio(),
       preResolve: true,
     );
-    gh.factory<_i610.RegisterViewModel>(() => _i610.RegisterViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
@@ -72,6 +81,9 @@ extension GetItInjectableX on _i174.GetIt {
       instanceName: 'initCurrentLocal',
       preResolve: true,
     );
+    gh.factory<_i735.RegisterRemoteDataSource>(
+      () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
+    );
     gh.singleton<_i273.LocalizationManager>(
       () => _i273.LocalizationManager(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -84,11 +96,20 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i496.RegisterRepo>(
+      () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
+    );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.factory<_i782.RegisterUserCase>(
+      () => _i782.RegisterUserCase(gh<_i496.RegisterRepo>()),
+    );
+    gh.factory<_i610.RegisterViewModel>(
+      () => _i610.RegisterViewModel(gh<_i782.RegisterUserCase>()),
     );
     return this;
   }

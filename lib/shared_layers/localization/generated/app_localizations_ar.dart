@@ -138,6 +138,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'كلمة المرور';
 
   @override
+  String get confirmPassword => 'تأكيد كلمة المرور';
+
+  @override
   String get or => 'أو';
 
   @override

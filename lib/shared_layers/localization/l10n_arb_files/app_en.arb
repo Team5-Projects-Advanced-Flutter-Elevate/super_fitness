@@ -40,6 +40,7 @@
   "lastName": "Last Name",
   "email": "Email",
   "password": "Password",
+  "confirmPassword": "Confirm Password",
   "or": "Or",
   "alreadyHaveAccount": "Already Have an account ?",
   "login": "Login"

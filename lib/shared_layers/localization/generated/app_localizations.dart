@@ -206,7 +206,7 @@ abstract class AppLocalizations {
   /// No description provided for @pleaseEnterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your E-mail.'**
+  /// **'Enter your Email.'**
   String get pleaseEnterEmail;
 
   /// No description provided for @pleaseEnterValidEmail.
@@ -464,7 +464,7 @@ abstract class AppLocalizations {
   /// No description provided for @forgetPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forget password?'**
+  /// **'Forget password'**
   String get forgetPassword;
 
   /// No description provided for @error.
@@ -478,6 +478,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
+
+  /// No description provided for @sendOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP'**
+  String get sendOtp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

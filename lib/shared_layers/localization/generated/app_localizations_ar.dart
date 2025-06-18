@@ -192,11 +192,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enterPassword => 'أدخل كلمة المرور';
 
   @override
-  String get forgetPassword => 'Forget password?';
+  String get forgetPassword => 'Forget password';
 
   @override
   String get error => 'خطأ';
 
   @override
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
+
+  @override
+  String get sendOtp => 'أرسل الرمز';
 }

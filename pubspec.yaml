@@ -97,6 +97,7 @@ dependencies:
   firebase_core: ^3.14.0
   firebase_crashlytics: ^4.3.7
   firebase_analytics: ^11.5.0
+  glassmorphism: ^3.0.0
 
 
 

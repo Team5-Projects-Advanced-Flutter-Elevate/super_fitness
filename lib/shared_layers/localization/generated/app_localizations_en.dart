@@ -63,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get namesRules => 'Names can only have alphabetic characters.';
 
   @override
-  String get pleaseEnterEmail => 'Please enter your E-mail.';
+  String get pleaseEnterEmail => 'Enter your Email.';
 
   @override
   String get pleaseEnterValidEmail => 'Please enter a valid email address.';
@@ -192,11 +192,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterPassword => 'Enter your password';
 
   @override
-  String get forgetPassword => 'Forget password?';
+  String get forgetPassword => 'Forget password';
 
   @override
   String get error => 'Error';
 
   @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
+
+  @override
+  String get sendOtp => 'Send OTP';
 }

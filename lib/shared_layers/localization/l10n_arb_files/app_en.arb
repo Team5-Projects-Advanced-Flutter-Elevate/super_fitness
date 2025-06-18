@@ -17,7 +17,7 @@
   "pleaseEnterFirstName": "Please enter first name.",
   "pleaseEnterLastName": "Please enter last name.",
   "namesRules": "Names can only have alphabetic characters.",
-  "pleaseEnterEmail": "Please enter your E-mail.",
+  "pleaseEnterEmail": "Enter your Email.",
   "pleaseEnterValidEmail": "Please enter a valid email address.",
   "pleaseEnterPhoneNumber": "Please enter your phone number.",
   "phoneNumberRules": "Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.",
@@ -60,8 +60,9 @@
   "enterEmail": "Enter your email",
   "password": "Password",
   "enterPassword": "Enter your password",
-  "forgetPassword": "Forget password?",
+  "forgetPassword": "Forget password",
   "error": "Error",
-  "pleaseEnterValidAddress": "Please enter a valid address"
+  "pleaseEnterValidAddress": "Please enter a valid address",
+  "sendOtp": "Send OTP"
 
 }

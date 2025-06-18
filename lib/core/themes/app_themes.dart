@@ -6,7 +6,7 @@ abstract class AppThemes {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
 
-    // scaffoldBackgroundColor: AppColors.transparent,
+    scaffoldBackgroundColor: AppColors.transparent,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.transparent,
       surfaceTintColor: AppColors.transparent,

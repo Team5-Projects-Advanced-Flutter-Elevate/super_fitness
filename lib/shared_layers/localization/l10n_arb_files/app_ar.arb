@@ -61,5 +61,6 @@
   "enterPassword": "أدخل كلمة المرور",
   "error": "خطأ",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
-  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح"
+  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+  "sendOtp": "أرسل الرمز"
 }

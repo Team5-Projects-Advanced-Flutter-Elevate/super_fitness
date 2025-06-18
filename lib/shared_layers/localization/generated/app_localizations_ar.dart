@@ -111,357 +111,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 
   @override
-  String get onboardingScreen____________ => '\$\$\$ تعليق \$\$\$';
-
-  @override
-  String get onboardingWelcomeMessage => 'مرحبًا بك في\nتطبيق Flowery Rider';
-
-  @override
-  String get applyNow => 'قدم الآن';
-
-  @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
-  String get loginScreen___________ => '\$\$ تعليق \$\$';
+  String get registerScreen________ => '\$\$\$ تعليق \$\$\$';
 
   @override
-  String get login => 'تسجيل الدخول';
+  String get heyThere => 'مرحباً';
+
+  @override
+  String get createAnAccount => 'إنشىء حساب';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get firstName => 'الاسم الأول';
+
+  @override
+  String get lastName => 'الاسم الأخير';
 
   @override
   String get email => 'البريد الإلكتروني';
 
   @override
-  String get enterEmail => 'أدخل بريدك الإلكتروني';
-
-  @override
   String get password => 'كلمة المرور';
 
   @override
-  String get enterPassword => 'أدخل كلمة المرور';
+  String get or => 'أو';
 
   @override
-  String get rememberMe => 'تذكرني';
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
 
   @override
-  String get forgetPassword => 'نسيت كلمة المرور؟';
-
-  @override
-  String get continueWord => 'متابعة';
-
-  @override
-  String get loggedSuccessfully => 'تم تسجيل الدخول بنجاح!';
-
-  @override
-  String get applyScreen____________ => '\$\$ تعليق \$\$';
-
-  @override
-  String get apply => 'تقديم';
-
-  @override
-  String get error => 'خطأ';
-
-  @override
-  String get imagePickedSuccess => 'تم اختيار الصورة بنجاح';
-
-  @override
-  String get imagePickFailed => 'فشل في اختيار الصورة';
-
-  @override
-  String get removedIdImage => 'تمت إزالة صورة الهوية';
-
-  @override
-  String get removedLicenseImage => 'تمت إزالة صورة الرخصة';
-
-  @override
-  String get welcome => 'مرحبًا !!';
-
-  @override
-  String get joinQuestion => 'هل ترغب في أن تصبح رجل توصيل؟';
-
-  @override
-  String get joinOurTeam => 'انضم إلى فريقنا';
-
-  @override
-  String get country => 'البلد';
-
-  @override
-  String get firstName => 'الاسم القانوني الأول';
-
-  @override
-  String get firstNameHint => 'أدخل الاسم القانوني الأول';
-
-  @override
-  String get secondName => 'الاسم القانوني الثاني';
-
-  @override
-  String get secondNameHint => 'أدخل الاسم القانوني الثاني';
-
-  @override
-  String get vehicleType => 'نوع المركبة';
-
-  @override
-  String get vehicleNumberPrompt => 'الرجاء إدخال رقم المركبة';
-
-  @override
-  String get vehicleNumber => 'رقم المركبة';
-
-  @override
-  String get vehicleNumberHint => 'أدخل رقم المركبة';
-
-  @override
-  String get vehicleLicensePrompt => 'الرجاء رفع رخصة المركبة';
-
-  @override
-  String get vehicleLicense => 'رخصة المركبة';
-
-  @override
-  String get vehicleLicenseHint => 'ارفع صورة الرخصة';
-
-  @override
-  String get idNumberPrompt => 'الرجاء إدخال رقم الهوية';
-
-  @override
-  String get idNumberLength => 'يجب أن يكون رقم الهوية مكونًا من 14 حرفًا';
-
-  @override
-  String get idNumber => 'رقم الهوية';
-
-  @override
-  String get idNumberHint => 'أدخل رقم الهوية الوطنية';
-
-  @override
-  String get idImagePrompt => 'الرجاء رفع صورة الهوية';
-
-  @override
-  String get idImage => 'صورة الهوية';
-
-  @override
-  String get idImageHint => 'ارفع صورة الهوية';
-
-  @override
-  String get selectGender => 'الرجاء تحديد الجنس';
-
-  @override
-  String get continueButton => 'متابعة';
-
-  @override
-  String get emailHint => 'أدخل بريدك الإلكتروني';
-
-  @override
-  String get phoneNumber => 'رقم الجوال';
-
-  @override
-  String get phoneNumberHint => 'ادخل رقم الجوال';
-
-  @override
-  String get passwordHint => 'أدخل كلمة المرور';
-
-  @override
-  String get confirmPassword => 'تأكيد كلمة المرور';
-
-  @override
-  String get confirmPasswordHint => 'أكد كلمة المرور';
-
-  @override
-  String get gender => 'الجنس';
-
-  @override
-  String get male => 'ذكر';
-
-  @override
-  String get female => 'أنثى';
-
-  @override
-  String get removedImage => 'تمت إزالة الصورة';
-
-  @override
-  String get thankYou => 'شكرًا لك!!';
-
-  @override
-  String get applicationSubmitted => 'تم تقديم طلبك!';
-
-  @override
-  String get thanksForProvidingApplication =>
-      'شكرًا لتقديم طلبك، سنراجع طلبك وسنعاود الاتصال بك قريبًا.';
-
-  @override
-  String get successScreenDescription => 'تم توصيل الطلب بنجاح';
-
-  @override
-  String get done => 'تم';
-
-  @override
-  String get home => 'الرئيسية';
-
-  @override
-  String get orders => 'الطلبات';
-
-  @override
-  String get profile => 'الملف الشخصي';
-
-  @override
-  String get floweryRider => 'سائق فلاوري';
-
-  @override
-  String get readyForDelivery => 'جاهز للتسليم';
-
-  @override
-  String get accept => 'موافق';
-
-  @override
-  String get reject => 'رافض';
-
-  @override
-  String get noOrdersFound => 'لا يوجد طلبات';
-
-  @override
-  String get unKnownProduct => 'منتج غير معروف';
-
-  @override
-  String get unKnownAddress => 'عنوان غير معروف';
-
-  @override
-  String get unKnownStore => 'متجر غير معروف';
-
-  @override
-  String get unKnown => 'غير معروف';
-
-  @override
-  String get eGP => 'ج م';
-
-  @override
-  String get pickUpAddress => 'عنوان الالتقاط';
-
-  @override
-  String get userAddress => 'عنوان المستخدم';
-
-  @override
-  String get orderDetailsScreen_________ => '\$\$\$ تعليق \$\$\$';
-
-  @override
-  String get orderDetails => 'تفاصيل الطلب';
-
-  @override
-  String get status => 'الحالة';
-
-  @override
-  String get accepted => 'مقبول';
-
-  @override
-  String get orderId => 'معرف الطلب';
-
-  @override
-  String get pickupAddress => 'عنوان الاستلام';
-
-  @override
-  String get floweryStore => 'متجر Flowery';
-
-  @override
-  String get egp => 'جنيه مصري';
-
-  @override
-  String get total => 'الإجمالي';
-
-  @override
-  String get paymentMethod => 'طريقة الدفع';
-
-  @override
-  String get cashOnDelivery => 'الدفع عند الاستلام';
-
-  @override
-  String get arrivedAtPickupPoint => 'وصلت إلى نقطة الاستلام';
-
-  @override
-  String get orderStatusAccepted => 'مقبول';
-
-  @override
-  String get orderStatusPicked => 'تم الاستلام';
-
-  @override
-  String get orderStatusOutForDelivery => 'في الطريق للتوصيل';
-
-  @override
-  String get orderStatusArrived => 'وصل';
-
-  @override
-  String get orderStatusDelivered => 'تم التوصيل';
-
-  @override
-  String get buttonArrivedAtPickup => 'وصلت إلى نقطة الاستلام';
-
-  @override
-  String get buttonStartDelivery => 'بدء التوصيل';
-
-  @override
-  String get buttonArrivedDestination => 'وصلت إلى الوجهة';
-
-  @override
-  String get language => 'اللغة';
-
-  @override
-  String get english => 'العربية';
-
-  @override
-  String get logout => 'تسجيل الخروج';
-
-  @override
-  String get vehicleInfo => 'معلومات المركبة';
-
-  @override
-  String get buttonOrderDelivered => 'تم توصيل الطلب';
-
-  @override
-  String get loading => 'جاري التحميل.....';
-
-  @override
-  String get acceptedSuccessfully => 'تم القبول بنجاح!';
-
-  @override
-  String get updatedSuccessfully => 'تم التحديث بنجاح!';
-
-  @override
-  String get myOrders => 'طلباتي';
-
-  @override
-  String get cancelled => 'ملغي';
-
-  @override
-  String get completed => 'مكتمل';
-
-  @override
-  String get logoutTitle => 'تسجيل الخروج';
-
-  @override
-  String get logoutMessage => 'هل أنت متأكد أنك تريد تسجيل الخروج؟';
-
-  @override
-  String get cancelButton => 'إلغاء';
-
-  @override
-  String get confirmButton => 'تأكيد';
-
-  @override
-  String get orderFinishedSuccessfully => 'تم إنهاء الطلب بنجاح!';
-
-  @override
-  String get editProfile => 'تعديل الملف الشخصي';
-
-  @override
-  String get update => 'تحديث';
-
-  @override
-  String get pickUpLocation________ => '\$\$\$ تعليق \$\$\$';
-
-  @override
-  String get errorLoadingTheMap => 'حدث خطأ أثناء تحميل الخريطة';
-
-  @override
-  String get user => 'مستخدم';
-
-  @override
-  String get flowery => 'فلوري';
-
-  @override
-  String get yourLocation => 'موقعك';
+  String get login => 'تسجيل الدخول';
 }

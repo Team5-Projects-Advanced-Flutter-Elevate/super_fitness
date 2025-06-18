@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:super_fitness/modules/authentication/ui/forget_password/view/res
 
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
+import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../../../../../core/widgets/timer.dart';
@@ -16,9 +19,9 @@ import '../view_model/forget_password_state.dart';
 import '../view_model/reset_code_view_model.dart';
 
 class ResetCodeScreen extends StatefulWidget {
-  const ResetCodeScreen({super.key, required this.email});
+  const ResetCodeScreen({super.key, this.email});
 
-  final String email;
+  final String? email;
 
   @override
   State<ResetCodeScreen> createState() => _ResetCodeScreenState();
@@ -32,124 +35,182 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
   final _formKey = GlobalKey<FormState>();
   ResetCodeViewModel resetCodeViewModel = getIt.get<ResetCodeViewModel>();
   EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
-
+  OtpFieldController otpController = OtpFieldController();
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => resetCodeViewModel,
       child: BlocConsumer<ResetCodeViewModel, OtpState>(
         builder:
-            (context, state) => Scaffold(
-              appBar: AppBar(
-                forceMaterialTransparency: true,
-                automaticallyImplyLeading: false,
-                titleSpacing: 0.0,
-                leading: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
-                ),
-                title: Text(
-                  appLocalizations.password,
-                  style: Theme.of(context).textTheme.headlineMedium,
+            (context, state) => Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(AssetsPaths.authBg),
+                  fit: BoxFit.cover,
                 ),
               ),
-              body: Padding(
-                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
-                child: Form(
+              child: Scaffold(
+                appBar: AppBar(
+                  forceMaterialTransparency: true,
+                  automaticallyImplyLeading: false,
+                  titleSpacing: 0.0,
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
+                  ),
+                ),
+                body: Form(
                   key: _formKey,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: screenHeight * 0.05),
-                      Text(
-                        appLocalizations.otpScreenTitle,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.titleLarge,
-                      ),
-                      SizedBox(height: screenHeight * 0.02),
-                      Text(
-                        appLocalizations.otpScreenDescription,
-                        textAlign: TextAlign.center,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      SizedBox(height: screenHeight * 0.04),
-                      Center(
-                        child:
-                            state is OtpLoadingState
-                                ? loadingDialog()
-                                : OTPTextField(
-                                  length: 6,
-                                  width: screenWidth * 0.75,
-                                  otpFieldStyle: OtpFieldStyle(
-                                    errorBorderColor: Colors.red,
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: screenWidth * 0.0425,
-                                  ),
-                                  textFieldAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  fieldStyle: FieldStyle.box,
-                                  hasError: _hasError,
-                                  onChanged: (value) {
-                                    if (_hasError) {
-                                      setState(() {
-                                        _hasError =
-                                            false; // Reset error once user starts editing
-                                      });
-                                    }
-                                  },
-                                  onCompleted: (code) {
-                                    resetCodeViewModel.onIntent(
-                                      ResetCodeIntent(code),
-                                    );
-                                  },
-                                ),
-                      ),
-                      SizedBox(height: screenHeight * 0.04),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            appLocalizations.didnotReciveOtp,
-                            style: theme.textTheme.bodyLarge,
-                          ),
-                          resend == false
-                              ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Timer(
-                                    isLessThan5Minutes: _isLessThan5Minutes,
-                                    examDuration: 30,
-                                    onTimeEnd: () {
-                                      setState(() {
-                                        resend = true;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              )
-                              : InkWell(
-                                onTap: () {
-                                  emailViewModel.onIntent(
-                                    ForgotPasswordIntent(widget.email),
-                                  );
-                                },
-                                child: Text(
-                                  appLocalizations.resend,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodyLarge?.copyWith(
-                                    color: AppColors.mainColorDark,
-                                    decoration: TextDecoration.underline,
-                                    decorationColor: AppColors.mainColorDark,
-                                  ),
+                        children: [Image.asset(AssetsPaths.appIcon)],
+                      ),
+                      SizedBox(height: screenHeight * 0.05),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.04,
+                        ),
+
+                        child: Text(
+                          appLocalizations.forgetPassword,
+                          style: theme.textTheme.titleLarge,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: screenWidth * 0.04,
+                        ),
+
+                        child: Text(
+                          appLocalizations.pleaseEnterEmail,
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                      ),
+
+                      SizedBox(height: screenHeight * 0.04),
+
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            padding: const EdgeInsets.all(30),
+                            decoration: BoxDecoration(
+                              color: AppColors.black.withValues(alpha: .5),
+
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child:
+                                      state is OtpLoadingState
+                                          ? const LoadingStateWidget()
+                                          : OTPTextField(
+                                            controller: otpController,
+                                            length: 6,
+                                            width: screenWidth,
+                                            fieldWidth: screenWidth * 0.12,
+                                            otpFieldStyle: OtpFieldStyle(
+                                              disabledBorderColor:
+                                                  AppColors.mainColorDark,
+                                              errorBorderColor: Colors.red,
+                                              enabledBorderColor:
+                                                  AppColors.mainColorDark,
+                                              focusBorderColor: AppColors.white
+                                                  .withValues(alpha: .4),
+                                              borderColor: AppColors.black[90]!,
+                                            ),
+                                            style: TextStyle(
+                                              color: AppColors.mainColorDark,
+                                              fontSize: screenWidth * 0.042,
+                                            ),
+                                            textFieldAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            fieldStyle: FieldStyle.underline,
+                                            hasError: _hasError,
+                                            onChanged: (value) {
+                                              if (_hasError) {
+                                                setState(() {
+                                                  _hasError =
+                                                      false; // Reset error once user starts editing
+                                                });
+                                              }
+                                            },
+                                            onCompleted: (code) {
+                                              // print(otpController.);
+                                              resetCodeViewModel.onIntent(
+                                                ResetCodeIntent(code),
+                                              );
+                                            },
+                                          ),
                                 ),
-                              ),
-                        ],
+                                SizedBox(height: screenHeight * 0.04),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Text(
+                                          appLocalizations.didnotReciveOtp,
+                                          style: theme.textTheme.bodyLarge,
+                                        ),
+                                        resend == false
+                                            ? Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Timer(
+                                                  isLessThan5Minutes:
+                                                      _isLessThan5Minutes,
+                                                  examDuration: 30,
+                                                  onTimeEnd: () {
+                                                    setState(() {
+                                                      resend = true;
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            )
+                                            : InkWell(
+                                              onTap: () {
+                                                emailViewModel.onIntent(
+                                                  ForgotPasswordIntent(
+                                                    widget.email!,
+                                                  ),
+                                                );
+                                              },
+                                              child: Text(
+                                                appLocalizations.resend,
+                                                style: Theme.of(
+                                                  context,
+                                                ).textTheme.bodyLarge?.copyWith(
+                                                  color:
+                                                      AppColors.mainColorDark,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  decorationColor:
+                                                      AppColors.mainColorDark,
+
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -171,7 +232,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
             });
             alert('failed', state.toString());
           } else if (state is OtpLoadingState) {
-            loadingDialog();
+            const LoadingStateWidget();
           } else if (state is EmailSuccessState) {
             setState(() {
               resend = false;
@@ -205,9 +266,5 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
         message: msg,
       );
     }
-  }
-
-  Widget loadingDialog() {
-    return const LoadingStateWidget();
   }
 }

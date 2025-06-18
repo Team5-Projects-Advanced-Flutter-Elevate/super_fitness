@@ -6,14 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/modules/authentication/ui/forget_password/view/reset_code_screen.dart';
 
-import '../../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
-import '../view_model/email_view_model.dart';
 import '../view_model/forget_password_state.dart';
+import '../view_model/forget_password_view_model.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -26,7 +25,7 @@ late TextEditingController emailController;
 class _ForgetPasswordScreenState
     extends BaseStatefulWidgetState<ForgetPasswordScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
+  ForgetPasswordViewModel emailViewModel = getIt.get<ForgetPasswordViewModel>();
 
   @override
   void initState() {
@@ -137,9 +136,13 @@ class _ForgetPasswordScreenState
                               ),
                             ),
                             SizedBox(height: screenHeight * 0.025),
-                            BlocConsumer<EmailViewModel, EmailState>(
+                            BlocConsumer<
+                              ForgetPasswordViewModel,
+                              ForgetPasswordState
+                            >(
                               builder: (context, state) {
-                                if (state is EmailLoadingState) {
+                                if (state.sendEmailStatus ==
+                                    SendEmailStatus.loading) {
                                   return const LoadingStateWidget();
                                 }
                                 return Row(
@@ -163,7 +166,8 @@ class _ForgetPasswordScreenState
                                 );
                               },
                               listener: (context, state) {
-                                if (state is EmailSuccessState) {
+                                if (state.sendEmailStatus ==
+                                    SendEmailStatus.loading) {
                                   displaySnackBar(
                                     contentType: ContentType.success,
                                     title: appLocalizations.success,
@@ -182,9 +186,7 @@ class _ForgetPasswordScreenState
                                   displaySnackBar(
                                     contentType: ContentType.failure,
                                     title: appLocalizations.error,
-                                    message: getIt
-                                        .get<ApiErrorHandler>()
-                                        .handle(state.error),
+                                    message: state.error,
                                   );
                                 }
                               },

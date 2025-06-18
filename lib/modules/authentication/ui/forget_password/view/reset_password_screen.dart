@@ -5,14 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 
-import '../../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../view_model/forget_password_state.dart';
-import '../view_model/reset_password_screen_view_model.dart';
+import '../view_model/forget_password_view_model.dart';
 import 'forget_password_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
@@ -28,8 +27,8 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 class _ResetPasswordScreenState
     extends BaseStatefulWidgetState<ResetPasswordScreen> {
-  final ResetPasswordViewModel resetPasswordViewModel =
-      getIt.get<ResetPasswordViewModel>();
+  final ForgetPasswordViewModel resetPasswordViewModel =
+      getIt.get<ForgetPasswordViewModel>();
   bool isNewPasswordObscure = true, isConfirmPasswordObscure = true;
 
   @override
@@ -61,7 +60,7 @@ class _ResetPasswordScreenState
         },
         child: BlocProvider(
           create: (context) => resetPasswordViewModel,
-          child: BlocConsumer<ResetPasswordViewModel, PasswordState>(
+          child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
             builder:
                 (context, state) => Scaffold(
                   appBar: AppBar(
@@ -246,19 +245,19 @@ class _ResetPasswordScreenState
                   ),
                 ),
             listener: (context, state) {
-              if (state is PasswordSuccessState) {
+              if (state.resetPasswordStatus == ResetPasswordStatus.success) {
                 displaySnackBar(
                   contentType: ContentType.success,
                   title: appLocalizations.success,
                   message: appLocalizations.yourPasswordChanged,
                 );
-              } else if (state is PasswordErrorState) {
+                //Navigator.pushNamedAndRemoveUntil(context, DefinedRoutes.loginScreenRoute, (_) => false);
+              } else if (state.resetPasswordStatus ==
+                  ResetPasswordStatus.error) {
                 displaySnackBar(
                   contentType: ContentType.failure,
                   title: appLocalizations.error,
-                  message: getIt
-                      .get<ApiErrorHandler>()
-                      .handle(state.error),
+                  message: state.error,
                 );
               }
             },
@@ -267,6 +266,4 @@ class _ResetPasswordScreenState
       ),
     );
   }
-
-
 }

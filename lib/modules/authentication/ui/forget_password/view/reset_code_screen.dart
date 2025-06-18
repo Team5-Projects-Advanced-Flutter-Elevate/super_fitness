@@ -14,9 +14,8 @@ import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../../../../../core/widgets/timer.dart';
-import '../view_model/email_view_model.dart';
 import '../view_model/forget_password_state.dart';
-import '../view_model/reset_code_view_model.dart';
+import '../view_model/forget_password_view_model.dart';
 
 class ResetCodeScreen extends StatefulWidget {
   const ResetCodeScreen({super.key, this.email});
@@ -33,14 +32,14 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
   bool _hasError = false;
   final ValueNotifier<bool> _isLessThan5Minutes = ValueNotifier<bool>(false);
   final _formKey = GlobalKey<FormState>();
-  ResetCodeViewModel resetCodeViewModel = getIt.get<ResetCodeViewModel>();
-  EmailViewModel emailViewModel = getIt.get<EmailViewModel>();
-  OtpFieldController otpController = OtpFieldController();
+
+  ForgetPasswordViewModel viewModel = getIt.get<ForgetPasswordViewModel>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => resetCodeViewModel,
-      child: BlocConsumer<ResetCodeViewModel, OtpState>(
+      create: (context) => viewModel,
+      child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
         builder:
             (context, state) => Container(
               decoration: const BoxDecoration(
@@ -111,10 +110,10 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                               children: [
                                 Center(
                                   child:
-                                      state is OtpLoadingState
+                                      state.sendOtpStatus ==
+                                              SendOtpStatus.loading
                                           ? const LoadingStateWidget()
                                           : OTPTextField(
-                                            controller: otpController,
                                             length: 6,
                                             width: screenWidth,
                                             fieldWidth: screenWidth * 0.12,
@@ -146,7 +145,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                             },
                                             onCompleted: (code) {
                                               // print(otpController.);
-                                              resetCodeViewModel.onIntent(
+                                              viewModel.onIntent(
                                                 ResetCodeIntent(code),
                                               );
                                             },
@@ -181,7 +180,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                             )
                                             : InkWell(
                                               onTap: () {
-                                                emailViewModel.onIntent(
+                                                viewModel.onIntent(
                                                   ForgotPasswordIntent(
                                                     widget.email!,
                                                   ),
@@ -218,53 +217,34 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
               ),
             ),
         listener: (context, state) {
-          if (state is OtpSuccessState) {
-            alert('otpSuccess', '');
+          if (state.sendOtpStatus == SendOtpStatus.success) {
+            displaySnackBar(
+              contentType: ContentType.success,
+              title: appLocalizations.success,
+              message: appLocalizations.codeSendTitle,
+            );
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const ResetPasswordScreen(),
               ),
             );
-          } else if (state is OtpErrorState) {
-            setState(() {
-              _hasError = true;
-            });
-            alert('failed', state.toString());
-          } else if (state is OtpLoadingState) {
-            const LoadingStateWidget();
-          } else if (state is EmailSuccessState) {
-            setState(() {
-              resend = false;
-            });
-            alert('success', '');
-          } else if (state is EmailErrorState) {
-            alert('failed', state.toString());
+          } else if (state.sendOtpStatus == SendOtpStatus.error ||
+              state.sendEmailStatus == SendEmailStatus.error) {
+            displaySnackBar(
+              contentType: ContentType.failure,
+              title: appLocalizations.error,
+              message: state.error,
+            );
+          } else if (state.sendEmailStatus == SendEmailStatus.success) {
+            displaySnackBar(
+              contentType: ContentType.success,
+              title: appLocalizations.success,
+              message: appLocalizations.codeSendTitle,
+            );
           }
         },
       ),
     );
-  }
-
-  Future<void> alert(final String type, final String msg) {
-    if (type == 'success') {
-      return displaySnackBar(
-        contentType: ContentType.success,
-        title: appLocalizations.success,
-        message: appLocalizations.codeSendTitle,
-      );
-    } else if (type == 'otpSuccess') {
-      return displaySnackBar(
-        contentType: ContentType.success,
-        title: appLocalizations.success,
-        message: appLocalizations.codeValid,
-      );
-    } else {
-      return displaySnackBar(
-        contentType: ContentType.failure,
-        title: appLocalizations.error,
-        message: msg,
-      );
-    }
   }
 }

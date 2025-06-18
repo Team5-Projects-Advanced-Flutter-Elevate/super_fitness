@@ -48,12 +48,8 @@ import '../../modules/authentication/domain/use_cases/forget_password/reset_code
     as _i9;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
     as _i110;
-import '../../modules/authentication/ui/forget_password/view_model/email_view_model.dart'
-    as _i405;
-import '../../modules/authentication/ui/forget_password/view_model/reset_code_view_model.dart'
-    as _i835;
-import '../../modules/authentication/ui/forget_password/view_model/reset_password_screen_view_model.dart'
-    as _i943;
+import '../../modules/authentication/ui/forget_password/view_model/forget_password_view_model.dart'
+    as _i494;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -145,23 +141,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
-    gh.factory<_i835.ResetCodeViewModel>(
-      () => _i835.ResetCodeViewModel(gh<_i9.ResetCodeUseCase>()),
-    );
     gh.factory<_i110.ResetPasswordUseCase>(
       () => _i110.ResetPasswordUseCase(gh<_i731.ResetPasswordRepo>()),
-    );
-    gh.factory<_i943.ResetPasswordViewModel>(
-      () => _i943.ResetPasswordViewModel(gh<_i110.ResetPasswordUseCase>()),
-    );
-    gh.factory<_i405.EmailViewModel>(
-      () => _i405.EmailViewModel(gh<_i823.ForgetPasswordUseCase>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.factory<_i494.ForgetPasswordViewModel>(
+      () => _i494.ForgetPasswordViewModel(
+        gh<_i110.ResetPasswordUseCase>(),
+        gh<_i823.ForgetPasswordUseCase>(),
+        gh<_i9.ResetCodeUseCase>(),
+      ),
     );
     return this;
   }

@@ -14,6 +14,10 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
+    as _i343;
+import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i1019;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
 import '../../shared_layers/localization/generated/app_localizations.dart'
@@ -43,6 +47,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
+    final authApiClientProvider = _$AuthApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -53,6 +58,9 @@ extension GetItInjectableX on _i174.GetIt {
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
+    );
+    gh.lazySingleton<_i343.AuthApiClient>(
+      () => authApiClientProvider.provide(gh<_i361.Dio>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
@@ -89,6 +97,8 @@ extension GetItInjectableX on _i174.GetIt {
 class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
+
+class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

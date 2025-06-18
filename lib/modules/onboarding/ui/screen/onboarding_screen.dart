@@ -35,7 +35,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
   }
 
   void _handleNextPress() {
-    if (_currentPage < onboardingPages.length - 1) {
+    if (_currentPage < onboardingPages(context).length - 1) {
       _pageController.animateToPage(
         _currentPage + 1,
         duration: Durations.long1,
@@ -57,29 +57,28 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
     }
   }
 
-  final List<Widget> onboardingPages = [
-    const OnboardingCard(
-      image: 'assets/images/onboarding_first.png',
-      title: 'The Price Of Excellence\n Is Discipline',
-      description:
-          'Lorem ipsum dolor sit amet consectetur. Eu urna\n ut gravida quis id pretium purus. Mauris massa ',
-      buttonText: 'Next',
-    ),
-    const OnboardingCard(
-      image: 'assets/images/onboarding_second.png',
-      title: 'Fitness Has Never Been\n So Much Fun',
-      description:
-          'Lorem ipsum dolor sit amet consectetur. Eu urna\n ut gravida quis id pretium purus. Mauris massa ',
-      buttonText: 'Next',
-    ),
-    const OnboardingCard(
-      image: 'assets/images/onboarding_third.png',
-      title: 'NO MORE EXCUSES\nDo It Now',
-      description:
-          'Lorem ipsum dolor sit amet consectetur. Eu urna\n ut gravida quis id pretium purus. Mauris massa ',
-      buttonText: 'Done',
-    ),
-  ];
+  List<Widget> onboardingPages(BuildContext context) {
+    return [
+      OnboardingCard(
+        image: 'assets/images/onboarding_first.png',
+        title: appLocalizations.priceOfExcellence,
+        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        buttonText: appLocalizations.next,
+      ),
+      OnboardingCard(
+        image: 'assets/images/onboarding_second.png',
+        title: appLocalizations.fitnessHasNeverBeen,
+        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        buttonText: appLocalizations.next,
+      ),
+      OnboardingCard(
+        image: 'assets/images/onboarding_third.png',
+        title: appLocalizations.noMoreExecuses,
+        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        buttonText: appLocalizations.doIt,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +100,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
               Expanded(
                 child: PageView(
                   controller: _pageController,
-                  children: onboardingPages,
+                  children: onboardingPages(context),
                 ),
               ),
               SmoothPageIndicator(
@@ -112,7 +111,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                   dotColor: Color(0xffD9D9D9),
                   activeDotColor: Colors.deepOrange,
                 ),
-                count: onboardingPages.length,
+                count: onboardingPages(context).length,
                 onDotClicked: (index) {
                   _pageController.animateToPage(
                     index,
@@ -183,7 +182,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                               height: 44,
                               onPressed: _handleNextPress,
                               child: Text(
-                                _currentPage == onboardingPages.length - 1
+                                _currentPage == onboardingPages(context).length - 1
                                     ? 'Do It'
                                     : 'Next',
                                 style: TextStyle(

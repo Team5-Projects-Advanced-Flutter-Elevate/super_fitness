@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -49,8 +48,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'الرجاء إدخال الاسم الأول.';
@@ -71,15 +69,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'الرجاء إدخال رقم الهاتف.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nيتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'الرجاء إدخال كلمة المرور.';
 
   @override
-  String get passwordLength =>
-      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
+  String get passwordLength => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
   String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
@@ -91,15 +87,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب إدراج حرف خاص واحد على الأقل (مثل #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'الرجاء تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
   String get noMatch => 'لا يوجد تطابق!';
@@ -109,6 +103,42 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get back => 'السابق';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get doIt => 'افعلها';
+
+  @override
+  String get priceOfExcellence => 'ثمن التميز';
+
+  @override
+  String get isDiscipline => 'هو الانضباط';
+
+  @override
+  String get fitnessHasNeverBeen => 'اللياقة البدنية لم تكن أبدا';
+
+  @override
+  String get soMuchFun => 'الكثير من المرح';
+
+  @override
+  String get noMoreExecuses => 'لا مزيد من الأعذار';
+
+  @override
+  String get doItNow => 'افعلها الآن';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna => 'لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa => 'اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';

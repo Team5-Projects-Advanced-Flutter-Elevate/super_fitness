@@ -48,7 +48,7 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
                 child: GestureDetector(
                   onTap: _navigateToLogin,
                   child: Text(
-                    'Skip',
+                    appLocalizations.skip,
                     style: TextStyle(
                       color: const Color(0xffD9D9D9),
                       fontSize: MediaQuery.of(context).textScaler.scale(14),

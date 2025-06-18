@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -31,8 +30,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknownError => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate =>
-      'The certificate provided by the server is not valid 📑';
+  String get badCertificate => 'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -47,12 +45,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength =>
-      'Username must be between 3 and 16 characters long.';
+  String get userNameLength => 'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules =>
-      'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -73,8 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules =>
-      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -92,8 +87,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -109,6 +103,42 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get doIt => 'Do It';
+
+  @override
+  String get priceOfExcellence => 'The Price Of Excellence';
+
+  @override
+  String get isDiscipline => 'Is Discipline';
+
+  @override
+  String get fitnessHasNeverBeen => 'Fitness Has Never Been';
+
+  @override
+  String get soMuchFun => 'So Much Fun';
+
+  @override
+  String get noMoreExecuses => 'NO MORE EXCUSES';
+
+  @override
+  String get doItNow => 'Do It Now';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna => 'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa => 'ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';

@@ -62,19 +62,22 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
       OnboardingCard(
         image: 'assets/images/onboarding_first.png',
         title: appLocalizations.priceOfExcellence,
-        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        description:
+            '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
         buttonText: appLocalizations.next,
       ),
       OnboardingCard(
         image: 'assets/images/onboarding_second.png',
         title: appLocalizations.fitnessHasNeverBeen,
-        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        description:
+            '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
         buttonText: appLocalizations.next,
       ),
       OnboardingCard(
         image: 'assets/images/onboarding_third.png',
         title: appLocalizations.noMoreExecuses,
-        description: '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
+        description:
+            '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna} + "\n" + ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
         buttonText: appLocalizations.doIt,
       ),
     ];
@@ -182,7 +185,8 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                               height: 44,
                               onPressed: _handleNextPress,
                               child: Text(
-                                _currentPage == onboardingPages(context).length - 1
+                                _currentPage ==
+                                        onboardingPages(context).length - 1
                                     ? 'Do It'
                                     : 'Next',
                                 style: TextStyle(

@@ -30,6 +30,8 @@
   "namesLengthRule": "Names must be at least three characters long.",
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
+  "pleaseEnterValidAddress": "Please enter a valid address",
+  "pleaseEnterValidRecipient": "Please enter a valid recipient",
   "registerScreen________": "$$$ Comment $$$",
   "heyThere": "Hey There",
   "createAnAccount": "create an account",

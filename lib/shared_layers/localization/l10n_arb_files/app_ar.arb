@@ -30,6 +30,8 @@
   "namesLengthRule": "يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.",
   "noMatch": "لا يوجد تطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
+  "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
+  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
   "registerScreen________": "$$$ تعليق $$$",
   "heyThere": "مرحباً",
   "createAnAccount": "إنشىء حساب",

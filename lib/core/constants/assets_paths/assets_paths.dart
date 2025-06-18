@@ -8,4 +8,7 @@ abstract class AssetsPaths {
   static const String personIcon = "assets/icons/person_icon.png";
   static const String mailIcon = "assets/icons/main_icon.png";
   static const String passwordIcon = "assets/icons/password_icon.png";
+  static const String maleIcon = "assets/icons/male_icon.png";
+  static const String femaleIcon = "assets/icons/female_icon.png";
+  static const String backIcon = "assets/icons/back_icon.png";
 }

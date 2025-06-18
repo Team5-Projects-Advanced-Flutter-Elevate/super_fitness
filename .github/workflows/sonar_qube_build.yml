@@ -1,0 +1,67 @@
+name: SonarQube Build
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  sonarqube:
+    name: SonarQube
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      # The analysis requires to retrieve dependencies and build successfully
+
+      - name: Check for open PRs targeting develop
+        id: check_prs
+        run: |
+          prs=$(gh pr list --state open --base develop --json number --jq 'length')
+          echo "Open PRs targeting develop: $prs"
+          echo "prs_count=$prs" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+      # Only runs if no open PRs targets develop branch after a push
+      - name: Set up Flutter
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Install dependencies
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter pub get
+
+      - name: Generate files with build_runner
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+
+      - name: Check for test files
+        if: steps.check_prs.outputs.prs_count == '0'
+        id: check_tests
+        run: |
+          if [ -z "$(find test -name '*_test.dart')" ]; then
+            echo "No test files found."
+            echo "run_tests=false" >> $GITHUB_ENV
+          else
+            echo "Test files found."
+            echo "run_tests=true" >> $GITHUB_ENV
+          fi
+
+      - name: Run tests with coverage
+        if: steps.check_prs.outputs.prs_count == '0' && env.run_tests == 'true'
+        run: flutter test --coverage
+
+      - name: Build
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter build apk --debug
+
+      - name: SonarQube Scan
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

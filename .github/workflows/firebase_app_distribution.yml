@@ -1,0 +1,54 @@
+name: Android Firebase App Distribution
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  distribute_to_firebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check for open PRs targeting develop
+        id: check_prs
+        run: |
+          prs=$(gh pr list --state open --base develop --json number --jq 'length')
+          echo "Open PRs targeting develop: $prs"
+          echo "prs_count=$prs" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Only runs if no open PRs targets develop branch after a push
+      - name: Set up JDK 17
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Set up Flutter
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+
+      - name: Install dependencies
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter pub get # action
+
+      - name: Build android apk
+        if: steps.check_prs.outputs.prs_count == '0'
+        run: flutter build apk --release
+
+
+      - name: Upload to Firebase App Distribution
+        if: steps.check_prs.outputs.prs_count == '0'
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_ANDROID_APP_ID }}
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_PROJECT_CREDENTIALS_JSON }}
+          groups: testers
+          file: build/app/outputs/flutter-apk/app-release.apk
+

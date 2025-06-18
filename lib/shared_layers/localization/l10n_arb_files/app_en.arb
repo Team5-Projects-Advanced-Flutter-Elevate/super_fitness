@@ -42,5 +42,7 @@
   "noMoreExecuses": "NO MORE EXCUSES",
   "doItNow": "Do It Now",
   "loremIpsumDolorSitAmetConsectetureuUrna": "Lorem ipsum dolor sit amet consectetur. Eu urna",
-  "utGravidaQuisIdPretiumPurusMaurisMassa": "ut gravida quis id pretium purus. Mauris massa"
+  "utGravidaQuisIdPretiumPurusMaurisMassa": "ut gravida quis id pretium purus. Mauris massa",
+  "pleaseEnterValidRecipient": "Please enter a valid recipient",
+  "login": "Login"
 }

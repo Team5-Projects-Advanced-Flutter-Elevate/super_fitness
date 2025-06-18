@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -109,6 +108,44 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get doIt => 'Do It';
+
+  @override
+  String get priceOfExcellence => 'The Price Of Excellence';
+
+  @override
+  String get isDiscipline => 'Is Discipline';
+
+  @override
+  String get fitnessHasNeverBeen => 'Fitness Has Never Been';
+
+  @override
+  String get soMuchFun => 'So Much Fun';
+
+  @override
+  String get noMoreExecuses => 'NO MORE EXCUSES';
+
+  @override
+  String get doItNow => 'Do It Now';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'ut gravida quis id pretium purus. Mauris massa';
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';

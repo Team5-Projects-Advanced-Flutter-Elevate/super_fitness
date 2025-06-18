@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -109,6 +108,44 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get back => 'السابق';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get doIt => 'افعلها';
+
+  @override
+  String get priceOfExcellence => 'ثمن التميز';
+
+  @override
+  String get isDiscipline => 'هو الانضباط';
+
+  @override
+  String get fitnessHasNeverBeen => 'اللياقة البدنية لم تكن أبدا';
+
+  @override
+  String get soMuchFun => 'الكثير من المرح';
+
+  @override
+  String get noMoreExecuses => 'لا مزيد من الأعذار';
+
+  @override
+  String get doItNow => 'افعلها الآن';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';

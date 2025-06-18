@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -112,6 +111,36 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get registerScreen________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get heyThere => 'مرحباً';
+
+  @override
+  String get createAnAccount => 'إنشىء حساب';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get firstName => 'الاسم الأول';
+
+  @override
+  String get lastName => 'الاسم الأخير';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get or => 'أو';
+
+  @override
+  String get alreadyHaveAccount => 'هل لديك حساب بالفعل؟';
 
   @override
   String get login => 'تسجيل الدخول';

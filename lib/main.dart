@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
-import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
+import 'package:super_fitness/modules/authentication/ui/register/register_screen.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
-            home: const LoginScreen(),
+            home: const RegisterScreen(),
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(

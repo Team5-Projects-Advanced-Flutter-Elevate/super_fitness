@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
@@ -56,6 +58,30 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   spacing: 10,
                   children: [
+                    Center(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 34.0, sigmaY: 34.0),
+                          child: Container(
+                            width: double.infinity,
+                            height: 200.0,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF2424241A).withOpacity(0.1),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Frosted',
+                                style: Theme.of(context).textTheme.displayMedium,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Divider(color: Colors.white, thickness: 1.5),
+                    SizedBox(height: screenHeight * 0.03),
                     SizedBox(height: screenHeight * 0.03),
                     Form(
                       key: formKey,

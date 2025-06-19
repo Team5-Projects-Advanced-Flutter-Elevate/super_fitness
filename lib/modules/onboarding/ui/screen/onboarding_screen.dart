@@ -106,7 +106,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: screenHeight * 0.04,),
+                  SizedBox(height: screenHeight * 0.04),
                   Expanded(
                     child: PageView(
                       controller: _pageController,

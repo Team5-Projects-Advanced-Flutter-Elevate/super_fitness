@@ -139,4 +139,79 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get tellUsAboutYourself => 'Tell us about yourself !';
+
+  @override
+  String get weNeedToKnowYourGender => 'We need to know your gender';
+
+  @override
+  String get howOldAreYou => 'How old are you ?';
+
+  @override
+  String get whatIsYourWeight => 'What is your weight ?';
+
+  @override
+  String get thisHelpsUsCreateYourPersonalizedPlan => 'This helps us create your personalized plan';
+
+  @override
+  String get whatIsYourHeight => 'What is your height ?';
+
+  @override
+  String get whatIsYourGoal => 'What is your goal?';
+
+  @override
+  String get yourPhysicalActivityLevel => 'Your physical activity level';
+
+  @override
+  String get activityLevel => 'Activity Level ?';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get kg => 'KG';
+
+  @override
+  String get cm => 'CM';
+
+  @override
+  String get gainWeight => 'Gain Weight';
+
+  @override
+  String get loseWeight => 'Lose Weight';
+
+  @override
+  String get getFitter => 'Get Fitter';
+
+  @override
+  String get gainMoreFlexible => 'Gain More Flexible';
+
+  @override
+  String get learnTheBasic => 'Learn The Basic';
+
+  @override
+  String get rookie => 'Rookie';
+
+  @override
+  String get beginner => 'Beginner';
+
+  @override
+  String get intermediate => 'Intermediate';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get trueBeast => 'True Beast';
 }

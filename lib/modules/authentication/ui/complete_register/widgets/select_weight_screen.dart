@@ -21,7 +21,6 @@ class _SelectWeightScreenState
   int currentValue = 35;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentValue = BlocProvider.of<CompleteRegisterCubit>(context).state.weight;
   }
@@ -37,13 +36,13 @@ class _SelectWeightScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "What is your weight \n",
+                  text: "${appLocalizations.whatIsYourWeight.toUpperCase()}\n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'this Helps us create your personalized plan',
+                  text:appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -64,7 +63,7 @@ class _SelectWeightScreenState
                 children: [
                   Center(
                     child: Text(
-                      'KG',
+                      appLocalizations.kg,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: AppColors.mainColorLight,
                       ),
@@ -113,7 +112,7 @@ class _SelectWeightScreenState
                         weight: currentValue,
                       );
                     },
-                    child: Text('Next'),
+                    child: Text(appLocalizations.next),
                   ),
                 ],
               ),

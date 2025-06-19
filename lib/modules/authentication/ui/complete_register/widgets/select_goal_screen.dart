@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
@@ -17,12 +19,13 @@ class SelectGoalScreen extends StatefulWidget {
 
 class _SelectGoalScreenState extends BaseStatefulWidgetState<SelectGoalScreen> {
   List<String> goals = [
-    "Gain Weight",
-    "Lose Weight",
-    "Get Fitter",
-    "Gain More Flexible",
-    "Learn The Basic",
+    getIt<AppLocalizations>().gainWeight,
+    getIt<AppLocalizations>().loseWeight,
+    getIt<AppLocalizations>().getFitter,
+    getIt<AppLocalizations>().gainMoreFlexible,
+    getIt<AppLocalizations>().learnTheBasic,
   ];
+
 
   String? selectedGoal;
 
@@ -43,13 +46,13 @@ class _SelectGoalScreenState extends BaseStatefulWidgetState<SelectGoalScreen> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "What is your Goal \n",
+                  text: "${appLocalizations.whatIsYourGoal.toUpperCase()}\n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'this Helps us create your personalized plan',
+                  text: appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -120,7 +123,7 @@ class _SelectGoalScreenState extends BaseStatefulWidgetState<SelectGoalScreen> {
                                 goal: selectedGoal,
                               );
                             },
-                    child: Text('Next'),
+                    child: Text(appLocalizations.next),
                   ),
                 ],
               ),

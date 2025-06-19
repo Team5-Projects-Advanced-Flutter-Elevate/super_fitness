@@ -74,8 +74,7 @@ class CompleteRegisterCubit extends Cubit<CompleteRegisterState> {
   }) {
     switch (status) {
       case CompleteRegisterStatus.selectGender:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        emit(state.copyWith(navigateToRegister: true));
       case CompleteRegisterStatus.selectAage:
         emit(
           state.copyWith(

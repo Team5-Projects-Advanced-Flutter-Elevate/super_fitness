@@ -18,6 +18,7 @@ class CompleteRegisterState extends Equatable {
   final int height;
   final String? goal;
   final String? activity;
+  final bool? navigateToRegister;
 
   const CompleteRegisterState({
     this.status = CompleteRegisterStatus.selectGender,
@@ -28,6 +29,7 @@ class CompleteRegisterState extends Equatable {
     this.height = 100,
     this.activity,
     this.goal,
+    this.navigateToRegister = false,
   });
 
   CompleteRegisterState copyWith({
@@ -39,6 +41,7 @@ class CompleteRegisterState extends Equatable {
     int? height,
     String? goal,
     String? activity,
+    bool? navigateToRegister,
   }) {
     return CompleteRegisterState(
       status: status ?? this.status,
@@ -49,6 +52,7 @@ class CompleteRegisterState extends Equatable {
       height: height ?? this.height,
       goal: goal ?? this.goal,
       activity: activity ?? this.activity,
+      navigateToRegister: navigateToRegister ?? this.navigateToRegister,
     );
   }
 
@@ -62,5 +66,6 @@ class CompleteRegisterState extends Equatable {
     height,
     goal,
     activity,
+    navigateToRegister,
   ];
 }

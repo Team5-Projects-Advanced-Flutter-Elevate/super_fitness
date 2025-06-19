@@ -1,12 +1,11 @@
 import 'dart:developer';
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
+import '../../../../../core/di/injectable_initializer.dart';
+import '../../../../../shared_layers/localization/generated/app_localizations.dart';
 import '../view_model/complete_register_cubit.dart';
 
 class SelectedActivityScreen extends StatefulWidget {
@@ -19,11 +18,11 @@ class SelectedActivityScreen extends StatefulWidget {
 class _SelectedActivityScreenState
     extends BaseStatefulWidgetState<SelectedActivityScreen> {
   List<String> goals = [
-    "Rookie",
-    "Beginner",
-    "Intermediate",
-    "Advanced",
-    "True Beast",
+    getIt<AppLocalizations>().rookie,
+    getIt<AppLocalizations>().beginner,
+    getIt<AppLocalizations>().intermediate,
+    getIt<AppLocalizations>().advanced,
+    getIt<AppLocalizations>().trueBeast,
   ];
 
   String? selectedActivity;
@@ -46,13 +45,13 @@ class _SelectedActivityScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Your Regular Physical \n",
+                  text: "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'Activity Level ?',
+                  text: appLocalizations.activityLevel,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -129,7 +128,7 @@ class _SelectedActivityScreenState
                                 ).state.toString(),
                               );
                             },
-                    child: Text('Next'),
+                    child: Text(appLocalizations.next),
                   ),
                 ],
               ),

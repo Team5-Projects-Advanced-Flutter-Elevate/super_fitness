@@ -151,5 +151,114 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
+  String get registerScreen________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get heyThere => 'Hey There';
+
+  @override
+  String get createAnAccount => 'create an account';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get firstName => 'First Name';
+
+  @override
+  String get lastName => 'Last Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get alreadyHaveAccount => 'Already Have an account ?';
+
+  @override
   String get login => 'Login';
+
+  @override
+  String get tellUsAboutYourself => 'Tell us about yourself !';
+
+  @override
+  String get weNeedToKnowYourGender => 'We need to know your gender';
+
+  @override
+  String get howOldAreYou => 'How old are you ?';
+
+  @override
+  String get whatIsYourWeight => 'What is your weight ?';
+
+  @override
+  String get thisHelpsUsCreateYourPersonalizedPlan =>
+      'This helps us create your personalized plan';
+
+  @override
+  String get whatIsYourHeight => 'What is your height ?';
+
+  @override
+  String get whatIsYourGoal => 'What is your goal?';
+
+  @override
+  String get yourPhysicalActivityLevel => 'Your physical activity level';
+
+  @override
+  String get activityLevel => 'Activity Level ?';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get kg => 'KG';
+
+  @override
+  String get cm => 'CM';
+
+  @override
+  String get gainWeight => 'Gain Weight';
+
+  @override
+  String get loseWeight => 'Lose Weight';
+
+  @override
+  String get getFitter => 'Get Fitter';
+
+  @override
+  String get gainMoreFlexible => 'Gain More Flexible';
+
+  @override
+  String get learnTheBasic => 'Learn The Basic';
+
+  @override
+  String get rookie => 'Rookie';
+
+  @override
+  String get beginner => 'Beginner';
+
+  @override
+  String get intermediate => 'Intermediate';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get trueBeast => 'True Beast';
 }

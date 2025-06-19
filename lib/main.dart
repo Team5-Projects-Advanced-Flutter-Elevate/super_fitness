@@ -9,6 +9,7 @@ import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'core/di/injectable_initializer.dart';
+import 'core/routing/generate_route.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
@@ -72,6 +73,14 @@ class MyApp extends StatelessWidget {
                 loginInfo: null,
               );
             },
+            initialRoute: DefinedRoutes.allRegisterFeature,
+            onGenerateRoute: GenerateRoute.onGenerateRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: initialRoute,
+            //     loginInfo: null,
+            //   );
+            // },
           ),
         );
       },

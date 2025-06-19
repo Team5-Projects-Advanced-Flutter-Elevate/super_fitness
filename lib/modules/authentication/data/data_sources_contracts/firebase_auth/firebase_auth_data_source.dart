@@ -5,9 +5,11 @@ import 'package:super_fitness/modules/authentication/data/models/user/user_dto.d
 
 abstract interface class FirebaseAuthDataSource {
   Future<ApiResult<UserCredential>> signInWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,);
+    GoogleSignInAccount googleUserAccount,
+  );
 
   Future<ApiResult<UserCredential>> signUpWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,
-      UserDto userDto,);
+    GoogleSignInAccount googleUserAccount,
+    UserDto userDto,
+  );
 }

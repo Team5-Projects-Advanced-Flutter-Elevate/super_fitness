@@ -18,7 +18,7 @@ abstract class GenerateRoute {
             builder: (context) => const AllRegisterFeature(),
           );
         case DefinedRoutes.homeScreenRoute:
-          return MaterialPageRoute(builder: (context) => const HomeScreen(),);
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
         default:
           return _errorRoute();
       }

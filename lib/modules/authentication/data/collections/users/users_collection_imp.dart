@@ -11,13 +11,13 @@ class UsersCollectionImp implements UsersCollection {
     return firestore
         .collection(FirebaseConstants.usersCollection)
         .withConverter(
-      fromFirestore: (snapshot, options) {
-        return UserDto.fromJson(snapshot.data());
-      },
-      toFirestore: (userDto, options) {
-        return userDto.toJson();
-      },
-    );
+          fromFirestore: (snapshot, options) {
+            return UserDto.fromJson(snapshot.data());
+          },
+          toFirestore: (userDto, options) {
+            return userDto.toJson();
+          },
+        );
   }
 
   @override

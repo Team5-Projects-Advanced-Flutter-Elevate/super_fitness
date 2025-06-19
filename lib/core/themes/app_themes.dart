@@ -133,7 +133,7 @@ abstract class AppThemes {
         borderSide: const BorderSide(color: Colors.red),
       ),
 
-      hintStyle: TextStyle(
+      hintStyle: GoogleFonts.balooThambi2(
         fontSize: 16,
         fontWeight: FontWeight.w400,
         color: AppColors.black[20],
@@ -191,6 +191,15 @@ abstract class AppThemes {
         ),
       ),
     ),
+    radioTheme: RadioThemeData(
+      fillColor: MaterialStateColor.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.mainColorLight;
+        } else {
+          return AppColors.white;
+        }
+      }),
+    )
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

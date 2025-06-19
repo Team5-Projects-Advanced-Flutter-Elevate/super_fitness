@@ -39,7 +39,7 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: screenHeight * 0.02),
+          //SizedBox(height: screenHeight * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -59,6 +59,7 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
               ),
             ],
           ),
+          SizedBox(height: screenHeight * 0.01),
           ConstrainedBox(
             constraints: BoxConstraints(maxHeight: screenHeight * 0.55),
             child: Image.asset(widget.image, fit: BoxFit.contain),
@@ -75,8 +76,8 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: MediaQuery.of(context).textScaler.scale(24),
-                      fontWeight: FontWeight.w800,
+                      fontSize: MediaQuery.of(context).textScaler.scale(25),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: screenHeight * 0.01),

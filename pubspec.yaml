@@ -97,7 +97,6 @@ dependencies:
   firebase_core: ^3.14.0
   firebase_crashlytics: ^4.3.7
   firebase_analytics: ^11.5.0
-  crystal_navigation_bar: ^1.0.4
 
 
 

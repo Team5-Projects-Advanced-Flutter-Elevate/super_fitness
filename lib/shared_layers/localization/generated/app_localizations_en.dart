@@ -109,4 +109,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get chatAI => 'Chat';
+
+  @override
+  String get workouts => 'Workouts';
+
+  @override
+  String get profile => 'Profile';
 }

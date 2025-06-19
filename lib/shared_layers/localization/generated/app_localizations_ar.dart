@@ -109,4 +109,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get chatAI => 'دردشة';
+
+  @override
+  String get workouts => 'التمرينات';
+
+  @override
+  String get profile => 'الشخصية';
 }

@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -11,6 +11,6 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends BaseStatefulWidgetState<ChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold();
   }
 }

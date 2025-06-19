@@ -6,7 +6,6 @@ import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
 import 'package:super_fitness/modules/layout/home/home_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
 import 'package:super_fitness/modules/layout/workout/workout_screen.dart';
-import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 
 class LayoutScreen extends StatefulWidget {
   const LayoutScreen({super.key});
@@ -36,78 +35,68 @@ class _LayoutScreenState extends BaseStatefulWidgetState<LayoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage(AssetsPaths.appSectionIcon),
-            fit: BoxFit.cover,
-          ),
-       ),
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AssetsPaths.appSectionIcon),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Scaffold(
         extendBody: true,
-        body: PageView(
-          controller: controller,
-          physics: const NeverScrollableScrollPhysics(),
-          children: screens,
-        ),
-        backgroundColor: Colors.white,
-        bottomNavigationBar: 
-          CrystalNavigationBar(
-            currentIndex: currentScreen,
-            backgroundColor: AppColors.black,
-            onTap: (value) {
-              setState(() {
-                currentScreen = value;
-              });
-              controller.jumpToPage(currentScreen);
-            },
-            items: [
-              CrystalNavigationBarItem(
-                unselectedColor: AppColors.white,
-                icon: Icons.home_outlined,
-                selectedColor: Colors.deepOrange,
-                badge: Badge(
-                  label: Text(
-                    "Home",
-                    style: TextStyle(color: currentScreen == 0 ? Colors.deepOrange : AppColors.white,),
-                  ),
+        body: screens[currentScreen],
+        bottomNavigationBar: Container(
+          height: screenHeight * 0.080,
+          padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.of(context).padding.horizontal * 0.016,
+            vertical: MediaQuery.of(context).padding.vertical * 0.004,
+          ),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(AssetsPaths.appSectionIcon),
+            ),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: BottomNavigationBar(
+              currentIndex: currentScreen,
+              onTap: (index) {
+                setState(() {
+                  currentScreen = index;
+                });
+              },
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: Colors.deepOrange,
+              unselectedItemColor: AppColors.white,
+              backgroundColor: AppColors.black,
+              showSelectedLabels: true,
+              showUnselectedLabels: false,
+              elevation: 0,
+              items: [
+                BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsPaths.homeIcon)),
+                  label: appLocalizations.home,
                 ),
-              ),
-              CrystalNavigationBarItem(
-                unselectedColor: AppColors.white,
-                icon: Icons.chat,
-                selectedColor: Colors.deepOrange,
-                badge: Badge(
-                  label: Text(
-                    "Chat",
-                    style: TextStyle(color: currentScreen == 1 ? Colors.deepOrange : AppColors.white,),
-                  ),
+                BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsPaths.chatIcon)),
+                  label: appLocalizations.chatAI,
                 ),
-              ),
-              CrystalNavigationBarItem(
-                unselectedColor: AppColors.white,
-                icon: Icons.sports_gymnastics,
-                selectedColor: Colors.deepOrange,
-                badge: Badge(
-                  label: Text(
-                    "Workouts",
-                    style: TextStyle(color: currentScreen == 2 ? Colors.deepOrange : AppColors.white,),
-                  ),
+                BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsPaths.workoutIcon)),
+                  label: appLocalizations.workouts,
                 ),
-              ),
-              CrystalNavigationBarItem(
-                unselectedColor: AppColors.white,
-                icon: Icons.person_outline,
-                selectedColor: Colors.deepOrange,
-                badge: Badge(
-                  label: Text(
-                    "Profile",
-                    style: TextStyle(color: currentScreen == 3 ? Colors.deepOrange : AppColors.white,),
-                  ),
+                BottomNavigationBarItem(
+                  icon: const ImageIcon(AssetImage(AssetsPaths.profileIcon)),
+                  label: appLocalizations.profile,
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
+      ),
     );
   }
 }

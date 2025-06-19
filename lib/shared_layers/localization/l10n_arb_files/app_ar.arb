@@ -32,5 +32,9 @@
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
-  "login": "تسجيل الدخول"
+  "login": "تسجيل الدخول",
+  "home": "الرئيسية",
+  "chatAI": "دردشة",
+  "workouts": "التمرينات",
+  "profile": "الشخصية"
 }

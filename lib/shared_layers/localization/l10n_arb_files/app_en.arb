@@ -32,5 +32,9 @@
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
   "pleaseEnterValidRecipient": "Please enter a valid recipient",
-  "login": "Login"
+  "login": "Login",
+  "home": "Home",
+  "chatAI": "Chat",
+  "workouts": "Workouts",
+  "profile": "Profile"
 }

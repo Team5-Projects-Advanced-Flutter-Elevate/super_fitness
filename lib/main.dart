@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
-            initialRoute: DefinedRoutes.allRegisterFeature,
+            initialRoute: DefinedRoutes.loginScreenRoute,
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(

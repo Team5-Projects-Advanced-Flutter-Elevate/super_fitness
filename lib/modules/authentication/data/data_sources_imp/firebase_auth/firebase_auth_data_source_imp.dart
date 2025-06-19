@@ -42,7 +42,6 @@ class FirebaseAuthDataSourceImp implements FirebaseAuthDataSource {
     var firestoreResult = await _usersCollection.searchForUserWithId(
       googleUserAccount.id,
     );
-    print("====== $firestoreResult");
     if (firestoreResult.isNotEmpty) {
       return Error(error: FirebaseAuthSignInException());
     } else {

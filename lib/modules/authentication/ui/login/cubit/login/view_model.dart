@@ -56,7 +56,6 @@ class LoginViewModel extends Cubit<LoginState> {
     var googleLogin = await _signInWithGoogleAccountUseCase.call(
       googleUserAccount,
     );
-    print("=========== After googleLoging ${googleLogin.toString()}");
     switch (googleLogin) {
       case Success<UserCredential>():
         emit(const LoginState(loginStatus: Status.success));

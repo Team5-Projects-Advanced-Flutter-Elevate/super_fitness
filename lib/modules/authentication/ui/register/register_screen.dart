@@ -1,10 +1,10 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
-import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_view_model.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -49,6 +49,17 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
             width: screenWidth * 0.2,
           ),
           centerTitle: true,
+          leading: IconButton(
+            color: AppColors.white,
+            constraints: const BoxConstraints(maxHeight: 25, maxWidth: 25),
+            style: IconButton.styleFrom(
+              backgroundColor: AppColors.mainColorLight,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+          ),
         ),
         body: GestureDetector(
           onTap: () {
@@ -372,7 +383,7 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                                     alignment: PlaceholderAlignment.baseline,
                                     child: InkWell(
                                       onTap: () {
-                                        Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                                        Navigator.pop(context);
                                       },
                                       child: Text(
                                         appLocalizations.login,

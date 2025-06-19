@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/ui/login/state.dart';
 
@@ -56,70 +57,69 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                     title: 'Success',
                     message: 'Login Successfully',
                   );
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    DefinedRoutes.homeScreenRoute,
+                    (route) => false,
+                  );
 
                 case Status.error:
                   displaySnackBar(
-                      contentType: ContentType.success,
-                      title: 'Error',
-                      message: getIt.get<ApiErrorHandler>().handle(
-                          state.error!),
-                      durationInSeconds: 6
+                    contentType: ContentType.success,
+                    title: 'Error',
+                    message: getIt.get<ApiErrorHandler>().handle(state.error!),
+                    durationInSeconds: 6,
                   );
               }
             },
             child: SafeArea(
               child: Scaffold(
+                appBar: AppBar(
+                  title: Image.asset(
+                    AssetsPaths.fitnessAppIcon,
+                    width: screenWidth * 0.2,
+                  ),
+                  centerTitle: true,
+                ),
                 body: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Image(
-                              image: AssetImage('assets/images/fitLogo.png'),
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                TextSpan(
+                                  text: "${appLocalizations.heyThere}\n",
+                                  style: theme.textTheme.titleMedium,
+                                ),
+                                TextSpan(
+                                  text:
+                                      appLocalizations.welcomeBack
+                                          .toUpperCase(),
+                                  style: theme.textTheme.titleLarge!.copyWith(
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        SizedBox(height: 0.1 * screenHeight),
-
-                        Text(
-                          appLocalizations.heyThere,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontSize: 15,
-                            fontWeight: FontWeight.normal,
                           ),
                         ),
-                        SizedBox(height: 0.01 * screenHeight),
-
-                        Text(
-                          appLocalizations.welcomeBack,
-                          style: theme.textTheme.titleLarge?.copyWith(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        SizedBox(height: 0.03 * screenHeight),
-
                         Center(
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(25.0),
+                            borderRadius: BorderRadius.circular(50.0),
                             child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
                               child: Container(
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
-                                  color: AppColors.white.withAlpha(
-                                    (0.1 * 255).toInt(),
+                                  color: AppColors.black.withAlpha(
+                                    (30).toInt(),
                                   ),
                                   borderRadius: BorderRadius.circular(25.0),
-                                  border: Border.all(
-                                    color: AppColors.white.withAlpha(
-                                      (0.2 * 255).toInt(),
-                                    ),
-                                  ),
                                 ),
                                 child: Column(
                                   crossAxisAlignment:
@@ -305,7 +305,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
 
                                     SizedBox(height: 0.02 * screenHeight),
 
-                                    ElevatedButton(
+                                    FilledButton(
                                       onPressed: () {
                                         loginViewModel.doIntent(
                                           Login(email.text, password.text),
@@ -339,10 +339,24 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                           color: AppColors.white,
                                         ),
                                         children: [
-                                          TextSpan(
-                                            text: appLocalizations.register,
-                                            style: TextStyle(
-                                              color: AppColors.mainColorLight,
+                                          WidgetSpan(
+                                            child: InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  DefinedRoutes
+                                                      .allRegisterFeature,
+                                                );
+                                              },
+                                              child: Text(
+                                                appLocalizations.register,
+                                                style: TextStyle(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  color:
+                                                      AppColors.mainColorLight,
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ],

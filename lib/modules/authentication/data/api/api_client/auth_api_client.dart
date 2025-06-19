@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:super_fitness/modules/authentication/data/models/login/login.dart';
-import '../../../../../core/apis/apis_endpoints/apis_endpoints.dart';
-import 'package:super_fitness/core/apis/apis_endpoints/apis_endpoints.dart';
 import 'package:super_fitness/modules/authentication/data/models/register/response/register_response_dto.dart';
+
+import '../../../../../core/apis/apis_endpoints/apis_endpoints.dart';
 
 part 'auth_api_client.g.dart';
 

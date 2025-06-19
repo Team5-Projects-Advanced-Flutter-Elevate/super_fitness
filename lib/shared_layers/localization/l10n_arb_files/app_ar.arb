@@ -31,8 +31,7 @@
   "noMatch": "لا يوجد تطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
-  "heyThere": "مرحباً",
-  "welcomeBack": "أهلاً بعودتك",
+  "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
   "login": "تسجيل الدخول",
   "email": "البريد الإلكتروني",
   "password": "كلمة المرور",
@@ -41,5 +40,7 @@
   "noAccount": "ليس لديك حساب بعد؟ ",
   "register": "سجّل الآن",
   "success": "نجاح",
-  "loginSuccessfully": "تم تسجيل الدخول بنجاح"
+  "loginSuccessfully": "تم تسجيل الدخول بنجاح",
+  "heyThere": "اهلا",
+  "welcomeBack": "مرحبا بعودتك"
 }

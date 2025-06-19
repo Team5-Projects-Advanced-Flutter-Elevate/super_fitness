@@ -31,8 +31,7 @@
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
   "pleaseEnterValidAddress": "Please enter a valid address",
-  "heyThere": "Hey There",
-  "welcomeBack": "Welcome Back",
+  "pleaseEnterValidRecipient": "Please enter a valid recipient",
   "login": "Login",
   "email": "Email",
   "password": "Password",
@@ -41,6 +40,8 @@
   "noAccount": "Don't Have An Account Yet? ",
   "register": "Register",
   "success": "Success",
-  "loginSuccessfully": "Login Successfully"
+  "loginSuccessfully": "Login Successfully",
+  "heyThere": "Hey There",
+  "welcomeBack": "Welcome Back"
 
 }

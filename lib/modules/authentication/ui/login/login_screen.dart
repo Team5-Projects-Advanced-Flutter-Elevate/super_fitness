@@ -23,6 +23,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
   GlobalKey<FormState> formKey = GlobalKey();
   final email = TextEditingController();
   final password = TextEditingController();
+  bool isPasswordObscure = true;
   LoginViewModel loginViewModel = getIt.get<LoginViewModel>();
 
   @override
@@ -78,7 +79,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         SizedBox(height: 0.1 * screenHeight),
 
                         Text(
-                          'Hey There',
+                          appLocalizations.heyThere,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontSize: 15,
                             fontWeight: FontWeight.normal,
@@ -87,7 +88,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                         SizedBox(height: 0.01 * screenHeight),
 
                         Text(
-                          'Welcome Back',
+                          appLocalizations.welcomeBack,
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontSize: 24,
                             fontWeight: FontWeight.w900,
@@ -122,7 +123,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                           MainAxisAlignment.center,
                                       children: <Widget>[
                                         Text(
-                                          "Login",
+                                          appLocalizations.login,
                                           style: theme.textTheme.titleLarge
                                               ?.copyWith(
                                                 fontSize: 24,
@@ -141,35 +142,51 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                       },
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
-                                      decoration: const InputDecoration(
-                                        prefixIcon: Padding(
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Padding(
                                           padding: EdgeInsets.only(
                                             left: 15.0,
                                             right: 5,
                                           ),
                                           child: Icon(Icons.mail_outline),
                                         ),
-                                        hintText: "Email",
+                                        hintText: appLocalizations.email,
                                       ),
                                     ),
                                     SizedBox(height: 0.02 * screenHeight),
                                     TextFormField(
                                       controller: password,
+                                      obscuringCharacter: "*",
+                                      obscureText: isPasswordObscure,
                                       validator: (value) {
                                         return validateFunctions
                                             .validationOfPassword(value);
                                       },
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
-                                      decoration: const InputDecoration(
-                                        prefixIcon: Padding(
+                                      decoration: InputDecoration(
+                                        prefixIcon: const Padding(
                                           padding: EdgeInsets.only(
                                             left: 15.0,
                                             right: 5,
                                           ),
                                           child: Icon(Icons.lock_outlined),
                                         ),
-                                        hintText: "Password",
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              isPasswordObscure = !isPasswordObscure;
+                                            });
+                                          },
+                                          icon: Icon(
+                                            isPasswordObscure
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+
+                                        hintText: appLocalizations.password,
                                       ),
                                     ),
 
@@ -178,7 +195,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                     Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
-                                        "Forget Password ?",
+                                        appLocalizations.forgotPassword,
                                         style: theme.textTheme.titleLarge
                                             ?.copyWith(
                                               fontSize: 12,
@@ -207,7 +224,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                               horizontal: 10,
                                             ),
                                             child: Text(
-                                              "Or",
+                                              appLocalizations.or,
                                               style: TextStyle(
                                                 color: AppColors.white,
                                               ),
@@ -291,7 +308,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                         ),
                                       ),
                                       child: Text(
-                                        "Login",
+                                        appLocalizations.login,
                                         style: theme.textTheme.titleLarge
                                             ?.copyWith(
                                               fontSize: 14,
@@ -305,13 +322,13 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                     Text.rich(
                                       textAlign: TextAlign.center,
                                       TextSpan(
-                                        text: "Don't Have An Account Yet ? ",
+                                        text: appLocalizations.noAccount,
                                         style: TextStyle(
                                           color: AppColors.white,
                                         ),
                                         children: [
                                           TextSpan(
-                                            text: "Register",
+                                            text: appLocalizations.register,
                                             style: TextStyle(
                                               color: AppColors.mainColorLight,
                                             ),

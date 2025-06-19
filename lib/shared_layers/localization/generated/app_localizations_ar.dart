@@ -147,4 +147,79 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
+
+  @override
+  String get tellUsAboutYourself => 'أخبرنا عن نفسك';
+
+  @override
+  String get weNeedToKnowYourGender => 'نحتاج إلى معرفة جنسك';
+
+  @override
+  String get howOldAreYou => 'كم عمرك؟';
+
+  @override
+  String get whatIsYourWeight => 'ما هو وزنك؟';
+
+  @override
+  String get thisHelpsUsCreateYourPersonalizedPlan => 'سيساعدنا هذا في إعداد خطة مخصصة لك';
+
+  @override
+  String get whatIsYourHeight => 'ما هو طولك؟';
+
+  @override
+  String get whatIsYourGoal => 'ما هو هدفك؟';
+
+  @override
+  String get yourPhysicalActivityLevel => 'ما هو مستوى نشاطك البدني؟';
+
+  @override
+  String get activityLevel => 'مستوى النشاط؟';
+
+  @override
+  String get male => 'ذكر';
+
+  @override
+  String get female => 'انثى';
+
+  @override
+  String get next => 'التالى';
+
+  @override
+  String get year => 'سنة';
+
+  @override
+  String get kg => 'كجم';
+
+  @override
+  String get cm => 'سم';
+
+  @override
+  String get gainWeight => 'زيادة الوزن';
+
+  @override
+  String get loseWeight => 'فقدان الوزن';
+
+  @override
+  String get getFitter => 'تحسين اللياقة';
+
+  @override
+  String get gainMoreFlexible => 'زيادة المرونة';
+
+  @override
+  String get learnTheBasic => 'تعلم الأساسيات';
+
+  @override
+  String get rookie => 'مبتدئ جداً';
+
+  @override
+  String get beginner => 'مبتدئ';
+
+  @override
+  String get intermediate => 'متوسط';
+
+  @override
+  String get advanced => 'متقدم';
+
+  @override
+  String get trueBeast => 'وحش حقيقي';
 }

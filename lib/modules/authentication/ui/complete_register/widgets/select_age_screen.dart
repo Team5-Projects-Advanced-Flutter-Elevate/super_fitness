@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -20,7 +21,6 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     currentValue = BlocProvider.of<CompleteRegisterCubit>(context).state.age;
   }
@@ -36,13 +36,13 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "How old are you \n",
+                  text: "${appLocalizations.howOldAreYou.toUpperCase()}\n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'this Helps us create your personalized plan',
+                  text: appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -63,7 +63,7 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
                 children: [
                   Center(
                     child: Text(
-                      'Year',
+                      appLocalizations.year,
                       style: theme.textTheme.labelSmall?.copyWith(
                         color: AppColors.mainColorLight,
                       ),
@@ -112,7 +112,7 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
                         age: currentValue,
                       );
                     },
-                    child: const Text('Next'),
+                    child: Text(appLocalizations.next),
                   ),
                 ],
               ),

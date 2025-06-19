@@ -36,13 +36,13 @@ class _SelectGenderScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Tell us about your self ! \n",
+                  text: "${appLocalizations.tellUsAboutYourself.toUpperCase()}\n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'We need to know your gender',
+                  text: appLocalizations.weNeedToKnowYourGender,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -96,7 +96,7 @@ class _SelectGenderScreenState
 
                           const SizedBox(height: 6),
                           Text(
-                            'Male',
+                            appLocalizations.male,
                             style: Theme.of(context).textTheme.labelSmall
                                 ?.copyWith(fontSize: 9 * (screenWidth / 375)),
                           ),
@@ -143,7 +143,7 @@ class _SelectGenderScreenState
                               ),
                               const SizedBox(height: 6),
                               Text(
-                                'Female',
+                                appLocalizations.female,
                                 style: Theme.of(
                                   context,
                                 ).textTheme.labelSmall?.copyWith(
@@ -171,7 +171,7 @@ class _SelectGenderScreenState
                                 isMale: isMale,
                               );
                             },
-                    child: const Text("Next"),
+                    child: Text(appLocalizations.next),
                   ),
                 ],
               ),

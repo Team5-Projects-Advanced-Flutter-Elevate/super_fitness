@@ -202,4 +202,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sendOtp => 'أرسل الرمز';
+
+  @override
+  String get resetPassDesc => 'تأكد من أن تكون 8 أحرف أو أكثر';
+
+  @override
+  String get createNewPassword => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get oTpCode => 'رمز التحقق';
+
+  @override
+  String get enterOtpCode => 'أدخل رمز التحقق الخاص بك، تحقق من بريدك الإلكتروني';
 }

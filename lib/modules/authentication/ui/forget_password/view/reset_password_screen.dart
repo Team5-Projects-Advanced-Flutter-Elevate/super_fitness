@@ -94,8 +94,8 @@ class _ResetPasswordScreenState
                             ),
 
                             child: Text(
-                              appLocalizations.pleaseEnterEmail,
-                              style: theme.textTheme.bodyLarge,
+                              appLocalizations.resetPassDesc,
+                              style: theme.textTheme.titleMedium,
                             ),
                           ),
                           Padding(
@@ -104,7 +104,7 @@ class _ResetPasswordScreenState
                             ),
 
                             child: Text(
-                              appLocalizations.forgetPassword,
+                              appLocalizations.createNewPassword,
                               style: theme.textTheme.titleLarge,
                             ),
                           ),
@@ -227,9 +227,17 @@ class _ResetPasswordScreenState
                                                   }
                                                 },
 
-                                                child: Text(
-                                                  appLocalizations.confirm,
-                                                ),
+                                                child:
+                                                    state.resetPasswordStatus ==
+                                                            ResetPasswordStatus
+                                                                .loading
+                                                        ? CircularProgressIndicator(
+                                                          color:
+                                                              AppColors.white,
+                                                        )
+                                                        : Text(
+                                                          appLocalizations.done,
+                                                        ),
                                               ),
                                             ),
                                           ],

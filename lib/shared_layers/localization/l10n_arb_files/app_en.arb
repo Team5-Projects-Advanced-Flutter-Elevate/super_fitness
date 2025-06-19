@@ -63,6 +63,11 @@
   "forgetPassword": "Forget password",
   "error": "Error",
   "pleaseEnterValidAddress": "Please enter a valid address",
-  "sendOtp": "Send OTP"
+  "sendOtp": "Send OTP",
+  "resetPassDesc":"Make Sure its 8 characters Or More " ,
+  "createNewPassword":"Create New Password",
+  "done":"Done",
+  "oTpCode":"Otp Code",
+  "enterOtpCode":"Enter Your Otp Code , check your email"
 
 }

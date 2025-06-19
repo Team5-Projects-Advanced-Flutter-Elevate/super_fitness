@@ -62,5 +62,10 @@
   "error": "خطأ",
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
-  "sendOtp": "أرسل الرمز"
+  "sendOtp": "أرسل الرمز",
+  "resetPassDesc": "تأكد من أن تكون 8 أحرف أو أكثر",
+  "createNewPassword": "إنشاء كلمة مرور جديدة",
+  "done": "تم",
+  "oTpCode": "رمز التحقق",
+  "enterOtpCode": "أدخل رمز التحقق الخاص بك، تحقق من بريدك الإلكتروني"
 }

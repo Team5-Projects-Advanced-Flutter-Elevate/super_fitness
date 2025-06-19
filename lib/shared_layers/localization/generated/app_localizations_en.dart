@@ -202,4 +202,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sendOtp => 'Send OTP';
+
+  @override
+  String get resetPassDesc => 'Make Sure its 8 characters Or More ';
+
+  @override
+  String get createNewPassword => 'Create New Password';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get oTpCode => 'Otp Code';
+
+  @override
+  String get enterOtpCode => 'Enter Your Otp Code , check your email';
 }

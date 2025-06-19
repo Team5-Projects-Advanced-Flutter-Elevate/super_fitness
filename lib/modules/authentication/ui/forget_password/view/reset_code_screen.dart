@@ -18,9 +18,7 @@ import '../view_model/forget_password_state.dart';
 import '../view_model/forget_password_view_model.dart';
 
 class ResetCodeScreen extends StatefulWidget {
-  const ResetCodeScreen({super.key, this.email});
-
-  final String? email;
+  const ResetCodeScreen({super.key});
 
   @override
   State<ResetCodeScreen> createState() => _ResetCodeScreenState();
@@ -145,9 +143,6 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                             },
                                             onCompleted: (code) {
                                               // print(otpController.);
-                                              viewModel.onIntent(
-                                                ResetCodeIntent(code),
-                                              );
                                             },
                                           ),
                                 ),
@@ -182,7 +177,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                               onTap: () {
                                                 viewModel.onIntent(
                                                   ForgotPasswordIntent(
-                                                    widget.email!,
+                                                    state.email!,
                                                   ),
                                                 );
                                               },

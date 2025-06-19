@@ -484,6 +484,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Send OTP'**
   String get sendOtp;
+
+  /// No description provided for @resetPassDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Make Sure its 8 characters Or More '**
+  String get resetPassDesc;
+
+  /// No description provided for @createNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Password'**
+  String get createNewPassword;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @oTpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Otp Code'**
+  String get oTpCode;
+
+  /// No description provided for @enterOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Otp Code , check your email'**
+  String get enterOtpCode;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

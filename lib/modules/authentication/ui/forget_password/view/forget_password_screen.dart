@@ -177,9 +177,7 @@ class _ForgetPasswordScreenState
                                     context,
                                     MaterialPageRoute(
                                       builder:
-                                          (context) => ResetCodeScreen(
-                                            email: emailController.text.trim(),
-                                          ),
+                                          (context) => const ResetCodeScreen(),
                                     ),
                                   );
                                 } else if (state is EmailErrorState) {

@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +8,9 @@ import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/ui/login/state.dart';
 
+import '../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/di/injectable_initializer.dart';
-import '../../../../core/widgets/error_state_widget.dart';
 import 'cubit/login/view_model.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -57,7 +58,13 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                   );
 
                 case Status.error:
-                  ErrorStateWidget(error: state.error.toString());
+                  displaySnackBar(
+                      contentType: ContentType.success,
+                      title: 'Error',
+                      message: getIt.get<ApiErrorHandler>().handle(
+                          state.error!),
+                      durationInSeconds: 6
+                  );
               }
             },
             child: SafeArea(
@@ -262,8 +269,9 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                         ),
                                         ElevatedButton(
                                           onPressed: () {
-                                            loginViewModel.doIntent(GoogleLogin());
-
+                                            loginViewModel.doIntent(
+                                              GoogleLogin(),
+                                            );
                                           },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: AppColors.black,

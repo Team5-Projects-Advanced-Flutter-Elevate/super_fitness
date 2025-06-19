@@ -23,7 +23,7 @@ class UsersCollectionImp implements UsersCollection {
   @override
   Future<List<UserDto>> searchForUserWithId(String id) async {
     var querySnapshot =
-    await _getUsersCollection().where("id", isEqualTo: id).get();
+        await _getUsersCollection().where("_id", isEqualTo: id).get();
 
     return querySnapshot.docs.map((e) => e.data()).toList();
   }

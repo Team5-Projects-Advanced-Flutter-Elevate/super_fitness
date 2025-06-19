@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../../../../core/apis/api_result/api_result.dart';
 import '../../../../../../core/utilities/google_sign_in/google_sign_in_handler.dart';
 import '../../../../domain/entities/login/login_data_response_entity.dart';
@@ -52,15 +53,15 @@ class LoginViewModel extends Cubit<LoginState> {
       emit(const LoginState(loginStatus: Status.idle));
       return;
     }
-    var googleLogin = _signInWithGoogleAccountUseCase.call(googleUserAccount);
-
+    var googleLogin = await _signInWithGoogleAccountUseCase.call(
+      googleUserAccount,
+    );
+    print("=========== After googleLoging ${googleLogin.toString()}");
     switch (googleLogin) {
       case Success<UserCredential>():
         emit(const LoginState(loginStatus: Status.success));
       case Error<UserCredential>():
-        emit(
-          LoginState(loginStatus: Status.error, error: googleLogin.toString()),
-        );
+        emit(LoginState(loginStatus: Status.error, error: googleLogin.error));
     }
   }
 }

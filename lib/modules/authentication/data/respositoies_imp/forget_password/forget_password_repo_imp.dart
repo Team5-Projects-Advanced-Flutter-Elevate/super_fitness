@@ -15,11 +15,21 @@ class ForgetPasswordRepoImpl extends ForgetPasswordRepo {
     String email,
   ) async {
     var result = await apiDataSource.forgetPassword(email);
-    switch (result) {
-      case Success<ForgetPasswordResponse?>():
-        return Success(data: result.data);
-      case Error<ForgetPasswordResponse?>():
-        return Error(error: result.error);
-    }
+    return result;
+  }
+
+  @override
+  Future<ApiResult<ForgetPasswordResponse?>> resetPassword(
+    String email,
+    String newPassword,
+  ) async {
+    var result = await apiDataSource.resetPassword(email, newPassword);
+    return result;
+  }
+
+  @override
+  Future<ApiResult<ForgetPasswordResponse?>> resetCode(String code) async {
+    var result = await apiDataSource.resetCode(code);
+    return result;
   }
 }

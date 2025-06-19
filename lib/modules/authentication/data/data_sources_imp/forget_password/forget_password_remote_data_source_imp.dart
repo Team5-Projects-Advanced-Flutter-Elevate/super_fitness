@@ -30,4 +30,37 @@ class ForgetPasswordRemoteDataSourceImpl
         return Error(error: result.error);
     }
   }
+
+  @override
+  Future<ApiResult<ForgetPasswordResponse?>> resetPassword(
+    String email,
+    String newPassword,
+  ) async {
+    var result = await ApiExecutor.executeApi(() async {
+      var response = await apiClient.resetPassword(
+        User(email: email, newPassword: newPassword).toJson(),
+      );
+      return response;
+    });
+    switch (result) {
+      case Success<ForgetPasswordResponse?>():
+        return Success(data: result.data);
+      case Error<ForgetPasswordResponse?>():
+        return Error(error: result.error);
+    }
+  }
+
+  @override
+  Future<ApiResult<ForgetPasswordResponse?>> resetCode(String code) async {
+    var result = await ApiExecutor.executeApi(() async {
+      var response = await apiClient.resetCode(User(resetCode: code).toJson());
+      return response;
+    });
+    switch (result) {
+      case Success<ForgetPasswordResponse?>():
+        return Success(data: result.data);
+      case Error<ForgetPasswordResponse?>():
+        return Error(error: result.error);
+    }
+  }
 }

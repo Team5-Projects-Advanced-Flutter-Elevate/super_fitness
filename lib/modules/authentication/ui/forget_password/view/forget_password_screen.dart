@@ -167,7 +167,7 @@ class _ForgetPasswordScreenState
                               },
                               listener: (context, state) {
                                 if (state.sendEmailStatus ==
-                                    SendEmailStatus.loading) {
+                                    SendEmailStatus.success) {
                                   displaySnackBar(
                                     contentType: ContentType.success,
                                     title: appLocalizations.success,
@@ -180,7 +180,8 @@ class _ForgetPasswordScreenState
                                           (context) => const ResetCodeScreen(),
                                     ),
                                   );
-                                } else if (state is EmailErrorState) {
+                                } else if (state.sendEmailStatus ==
+                                    SendEmailStatus.error) {
                                   displaySnackBar(
                                     contentType: ContentType.failure,
                                     title: appLocalizations.error,

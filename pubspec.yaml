@@ -97,6 +97,12 @@ dependencies:
   firebase_core: ^3.14.0
   firebase_crashlytics: ^4.3.7
   firebase_analytics: ^11.5.0
+  step_progress_indicator: ^1.0.2
+  percent_indicator: ^4.2.5
+  numberpicker: ^2.1.2
+  firebase_auth: ^5.6.0
+  google_sign_in: ^6.3.0
+  cloud_firestore: ^5.6.9
 
 
 

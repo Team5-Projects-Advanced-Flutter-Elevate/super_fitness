@@ -4,8 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
+import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
-import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
@@ -64,14 +65,14 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
-            home: const LayoutScreen(),
-            // onGenerateRoute: GenerateRoute.onGenerateRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: initialRoute,
-            //     loginInfo: null,
-            //   );
-            // },
+            //home: const LayoutScreen(),
+            onGenerateRoute: GenerateRoute.onGenerateRoute,
+            onGenerateInitialRoutes: (initialRoute) {
+              return GenerateRoute.onGenerateInitialRoutes(
+                initialRoute: DefinedRoutes.layoutScreenRoute,
+                loginInfo: null,
+              );
+            },
           ),
         );
       },

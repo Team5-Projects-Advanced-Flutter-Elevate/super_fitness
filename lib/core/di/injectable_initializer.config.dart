@@ -28,6 +28,8 @@ import '../../modules/authentication/domain/repositories_contracts/register/regi
     as _i496;
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
+import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
+    as _i778;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
 import '../../shared_layers/localization/generated/app_localizations.dart'
@@ -63,6 +65,9 @@ extension GetItInjectableX on _i174.GetIt {
     await gh.factoryAsync<_i361.Dio>(
       () => dioService.provideDio(),
       preResolve: true,
+    );
+    gh.factory<_i778.CompleteRegisterCubit>(
+      () => _i778.CompleteRegisterCubit(),
     );
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),

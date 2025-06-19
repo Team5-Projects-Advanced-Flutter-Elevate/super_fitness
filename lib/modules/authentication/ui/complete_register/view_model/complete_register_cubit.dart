@@ -1,8 +1,11 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
 part 'complete_register_state.dart';
 
+@injectable
 class CompleteRegisterCubit extends Cubit<CompleteRegisterState> {
   CompleteRegisterCubit() : super(const CompleteRegisterState());
 
@@ -71,11 +74,11 @@ class CompleteRegisterCubit extends Cubit<CompleteRegisterState> {
     int? height,
     String? goal,
     String? activity,
+    required PageController pageViewController,
   }) {
     switch (status) {
       case CompleteRegisterStatus.selectGender:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        pageViewController.jumpToPage(0);
       case CompleteRegisterStatus.selectAage:
         emit(
           state.copyWith(

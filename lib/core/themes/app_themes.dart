@@ -192,7 +192,7 @@ abstract class AppThemes {
       ),
     ),
     radioTheme: RadioThemeData(
-      fillColor: MaterialStateColor.resolveWith((states) {
+      fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return AppColors.mainColorLight;
         } else {

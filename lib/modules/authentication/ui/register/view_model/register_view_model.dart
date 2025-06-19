@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
+import 'package:super_fitness/core/utilities/activities/activities.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/request/register_request_entity.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/response/register_response_entity.dart';
 import 'package:super_fitness/modules/authentication/domain/use_cases/register/register_use_case.dart';
@@ -27,44 +28,56 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  int currentScreenIndex = 0;
+  PageController pageViewController = PageController(initialPage: 0);
 
   void doIntent(RegisterIntent intent) {
     switch (intent) {
       case RegisterUser():
         _register(restOfRegisterRequest: intent.restOfRegisterRequest);
+        break;
+      case OnRegisterButtonClick():
+        _onRegisterButtonClick();
+        break;
     }
   }
 
   void _register({required RestOfRegisterRequest restOfRegisterRequest}) async {
     FocusManager.instance.primaryFocus?.unfocus();
-    if (formKey.currentState!.validate()) {
-      emit(const RegisterState(registerStatus: Status.loading));
-      var useCaseResult = await _registerUserCase.call(
-        registerRequestEntity: RegisterRequestEntity(
-          firstName: firstNameController.text,
-          lastName: lastNameController.text,
-          email: emailController.text,
-          password: passwordController.text,
-          rePassword: confirmController.text,
-          age: restOfRegisterRequest.age,
-          weight: restOfRegisterRequest.weight,
-          height: restOfRegisterRequest.height,
-          goal: restOfRegisterRequest.goal,
-          activityLevel: restOfRegisterRequest.activityLevel,
+    emit(const RegisterState(registerStatus: Status.loading));
+    var useCaseResult = await _registerUserCase.call(
+      registerRequestEntity: RegisterRequestEntity(
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+        rePassword: confirmController.text,
+        gender: restOfRegisterRequest.gender,
+        age: restOfRegisterRequest.age,
+        weight: restOfRegisterRequest.weight,
+        height: restOfRegisterRequest.height,
+        goal: restOfRegisterRequest.goal,
+        activityLevel: Activities.getActivityLevel(
+          restOfRegisterRequest.activityLevel,
         ),
-      );
-      switch (useCaseResult) {
-        case Success<RegisterResponseEntity>():
-          emit(state.copyWith(registerStatus: Status.success));
-        case Error<RegisterResponseEntity>():
-          emit(
-            state.copyWith(
-              registerStatus: Status.error,
-              error: useCaseResult.error,
-            ),
-          );
-      }
+      ),
+    );
+    switch (useCaseResult) {
+      case Success<RegisterResponseEntity>():
+        emit(state.copyWith(registerStatus: Status.success));
+      case Error<RegisterResponseEntity>():
+        emit(
+          state.copyWith(
+            registerStatus: Status.error,
+            error: useCaseResult.error,
+          ),
+        );
+    }
+  }
+
+  void _onRegisterButtonClick() {
+    FocusManager.instance.primaryFocus?.unfocus();
+    if (formKey.currentState!.validate()) {
+      pageViewController.jumpToPage(1);
     }
   }
 }
@@ -76,6 +89,8 @@ class RegisterUser extends RegisterIntent {
 
   RegisterUser({required this.restOfRegisterRequest});
 }
+
+class OnRegisterButtonClick extends RegisterIntent {}
 
 class RestOfRegisterRequest {
   String gender;

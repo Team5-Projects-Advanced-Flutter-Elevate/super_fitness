@@ -171,7 +171,7 @@ class _SelectGenderScreenState
                                 isMale: isMale,
                               );
                             },
-                    child: Text("Next"),
+                    child: const Text("Next"),
                   ),
                 ],
               ),

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -114,7 +113,7 @@ class _SelectHeightScreenState
                         height: currentValue,
                       );
                     },
-                    child: Text('Next'),
+                    child: const Text('Next'),
                   ),
                 ],
               ),

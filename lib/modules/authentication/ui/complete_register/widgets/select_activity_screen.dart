@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_fitness/core/utilities/extensions/gender_ex.dart';
+import 'package:super_fitness/core/widgets/loading_state_widget.dart';
+import 'package:super_fitness/modules/authentication/ui/register/view_model/register_state.dart';
+import 'package:super_fitness/modules/authentication/ui/register/view_model/register_view_model.dart';
 
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
@@ -18,7 +21,7 @@ class SelectedActivityScreen extends StatefulWidget {
 
 class _SelectedActivityScreenState
     extends BaseStatefulWidgetState<SelectedActivityScreen> {
-  List<String> goals = [
+  List<String> activities = [
     "Rookie",
     "Beginner",
     "Intermediate",
@@ -27,6 +30,8 @@ class _SelectedActivityScreenState
   ];
 
   String? selectedActivity;
+
+  late CompleteRegisterCubit cubit;
 
   @override
   void initState() {
@@ -37,6 +42,7 @@ class _SelectedActivityScreenState
 
   @override
   Widget build(BuildContext context) {
+    cubit = BlocProvider.of<CompleteRegisterCubit>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -88,14 +94,14 @@ class _SelectedActivityScreenState
                           child: Row(
                             children: [
                               Text(
-                                goals[index],
+                                activities[index],
                                 style: theme.textTheme.labelMedium?.copyWith(
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
                               const Spacer(),
                               Radio<String>(
-                                value: goals[index],
+                                value: activities[index],
                                 groupValue: selectedActivity,
                                 onChanged: (val) {
                                   setState(() {
@@ -109,27 +115,48 @@ class _SelectedActivityScreenState
                     itemCount: 5,
                   ),
                   SizedBox(height: screenHeight * 0.03),
-                  FilledButton(
-                    onPressed:
-                        selectedActivity == null
-                            ? null
-                            : () {
-                              BlocProvider.of<CompleteRegisterCubit>(
-                                context,
-                              ).updateStatus(
-                                BlocProvider.of<CompleteRegisterCubit>(
-                                  context,
-                                ).state.status,
-                                activity: selectedActivity,
-                              );
+                  BlocBuilder<RegisterViewModel, RegisterState>(
+                    builder: (context, state) {
+                      return FilledButton(
+                        onPressed:
+                            selectedActivity == null
+                                ? null
+                                : () {
+                                  cubit.updateStatus(
+                                    cubit.state.status,
+                                    activity: selectedActivity,
+                                  );
 
-                              log(
-                                BlocProvider.of<CompleteRegisterCubit>(
-                                  context,
-                                ).state.toString(),
-                              );
-                            },
-                    child: Text('Next'),
+                                  log(cubit.state.toString());
+
+                          BlocProvider.of<RegisterViewModel>(
+                            context,
+                          ).doIntent(
+                            RegisterUser(
+                              restOfRegisterRequest:
+                              RestOfRegisterRequest(
+                                gender:
+                                cubit.state.isMale!
+                                    ? Gender.male.getValue()
+                                    : Gender.female.getValue(),
+                                age: cubit.state.age,
+                                weight: cubit.state.weight,
+                                height: cubit.state.height,
+                                goal: cubit.state.goal!,
+                                activityLevel:
+                                cubit.state.activity!,
+                              ),
+                            ),
+                          );
+                        },
+                        child:
+                        state.registerStatus == Status.loading
+                            ? LoadingStateWidget(
+                          progressIndicatorColor: AppColors.white,
+                        )
+                            : const Text('Next'),
+                      );
+                    },
                   ),
                 ],
               ),

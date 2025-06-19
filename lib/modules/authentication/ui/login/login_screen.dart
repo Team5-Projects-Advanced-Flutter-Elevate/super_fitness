@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';

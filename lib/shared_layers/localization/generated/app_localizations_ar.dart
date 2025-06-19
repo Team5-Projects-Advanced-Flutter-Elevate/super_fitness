@@ -117,9 +117,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get back => 'السابق';
 
   @override
-  String get next => 'التالى';
-
-  @override
   String get doIt => 'افعلها';
 
   @override
@@ -237,6 +234,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get female => 'انثى';
 
   @override
+  String get next => 'التالى';
+
+  @override
   String get year => 'سنة';
 
   @override
@@ -274,4 +274,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get trueBeast => 'وحش حقيقي';
+
+  @override
+  String get appSections___________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get explore => 'استكشاف';
+
+  @override
+  String get aiChat => 'دردشة AI';
+
+  @override
+  String get workouts => 'التمارين';
+
+  @override
+  String get profile => 'الملف الشخصي';
 }

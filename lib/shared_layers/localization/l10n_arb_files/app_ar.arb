@@ -33,7 +33,6 @@
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "skip": "تخطي",
   "back": "السابق",
-  "next": "التالي",
   "doIt": "افعلها",
   "priceOfExcellence": "ثمن التميز",
   "isDiscipline": "هو الانضباط",
@@ -85,5 +84,12 @@
   "beginner": "مبتدئ",
   "intermediate": "متوسط",
   "advanced": "متقدم",
-  "trueBeast": "وحش حقيقي"
+  "trueBeast": "وحش حقيقي",
+  "appSections___________": "$$$ تعليق $$$",
+  "explore": "استكشاف",
+  "aiChat": "دردشة AI",
+  "workouts": "التمارين",
+  "profile": "الملف الشخصي"
+
+
 }

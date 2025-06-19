@@ -33,7 +33,6 @@
   "pleaseEnterValidAddress": "Please enter a valid address",
   "skip": "Skip",
   "back": "Back",
-  "next": "Next",
   "doIt": "Do It",
   "priceOfExcellence": "The Price Of Excellence",
   "isDiscipline": "Is Discipline",
@@ -85,5 +84,10 @@
   "beginner": "Beginner",
   "intermediate": "Intermediate",
   "advanced": "Advanced",
-  "trueBeast": "True Beast"
+  "trueBeast": "True Beast",
+  "appSections___________": "$$$ Comment $$$",
+  "explore": "Explore",
+  "aiChat": "AI Chat",
+  "workouts": "Workouts",
+  "profile": "Profile"
 }

@@ -205,7 +205,8 @@ class _ResetPasswordScreenState
                                       ),
                                     ),
                                     SizedBox(height: screenHeight * 0.04),
-                                    state is PasswordLoadingState
+                                    state.resetPasswordStatus ==
+                                            ResetPasswordStatus.loading
                                         ? const LoadingStateWidget()
                                         : Row(
                                           children: [

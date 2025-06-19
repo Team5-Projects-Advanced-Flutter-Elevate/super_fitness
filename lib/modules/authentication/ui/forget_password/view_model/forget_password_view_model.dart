@@ -16,7 +16,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ForgetPasswordUseCase forgetPasswordUseCase;
   ResetCodeUseCase resetCodeUseCase;
   ResetPasswordUseCase resetPasswordUseCase;
-
+  String? otpCode;
   @factoryMethod
   ForgetPasswordViewModel(
     this.resetPasswordUseCase,
@@ -30,16 +30,18 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
         _forgetPasswordHandling(intent.email);
         break;
       case ResetCodeIntent():
-        _resetCodeHandling(intent.code);
+        _resetCodeHandling();
         break;
       case ResetPasswordIntent():
         _resetPasswordHandling(intent.email, intent.newPassword);
+        break;
+      case ResetCodeTimerOutIntent():
+        _resetCodeTimerOut();
         break;
     }
   }
 
   _resetPasswordHandling(String email, String newPassword) async {
-    FocusManager.instance.primaryFocus?.unfocus();
     emit(state.copyWith(resetPasswordStatus: ResetPasswordStatus.loading));
     var result = await resetPasswordUseCase.call(email, newPassword);
     switch (result) {
@@ -56,24 +58,28 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _resetCodeHandling(String code) async {
+  _resetCodeHandling() async {
     emit(
       state.copyWith(
         sendOtpStatus: SendOtpStatus.loading,
         sendEmailStatus: SendEmailStatus.initial,
       ),
     );
-    var result = await resetCodeUseCase.call(code);
+    var result = await resetCodeUseCase.call(otpCode!);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
-        emit(state.copyWith(sendOtpStatus: SendOtpStatus.success, otp: code));
+        emit(
+          state.copyWith(sendOtpStatus: SendOtpStatus.success, otp: otpCode),
+        );
       case Error<ForgetPasswordResponse?>():
+        otpCode = null;
         emit(
           state.copyWith(
             sendOtpStatus: SendOtpStatus.error,
             error: getIt.get<ApiErrorHandler>().handle(result.error),
           ),
         );
+        emit(state.copyWith(sendOtpStatus: SendOtpStatus.initial));
     }
   }
 
@@ -99,6 +105,10 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
         );
     }
   }
+
+  _resetCodeTimerOut() {
+    emit(state.copyWith(sendEmailStatus: SendEmailStatus.initial));
+  }
 }
 
 sealed class ForgetPasswordIntent {}
@@ -110,9 +120,7 @@ class ForgotPasswordIntent extends ForgetPasswordIntent {
 }
 
 class ResetCodeIntent extends ForgetPasswordIntent {
-  final String code;
-
-  ResetCodeIntent(this.code);
+  ResetCodeIntent();
 }
 
 class ResetPasswordIntent extends ForgetPasswordIntent {
@@ -121,3 +129,5 @@ class ResetPasswordIntent extends ForgetPasswordIntent {
 
   ResetPasswordIntent(this.email, this.newPassword);
 }
+
+class ResetCodeTimerOutIntent extends ForgetPasswordIntent {}

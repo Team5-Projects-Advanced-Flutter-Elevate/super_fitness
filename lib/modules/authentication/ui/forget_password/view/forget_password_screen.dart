@@ -25,7 +25,7 @@ late TextEditingController emailController;
 class _ForgetPasswordScreenState
     extends BaseStatefulWidgetState<ForgetPasswordScreen> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  ForgetPasswordViewModel emailViewModel = getIt.get<ForgetPasswordViewModel>();
+  ForgetPasswordViewModel viewModel = getIt.get<ForgetPasswordViewModel>();
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _ForgetPasswordScreenState
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => emailViewModel,
+      create: (context) => viewModel,
       child: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -152,7 +152,7 @@ class _ForgetPasswordScreenState
                                         onPressed: () {
                                           if (formKey.currentState!
                                               .validate()) {
-                                            emailViewModel.onIntent(
+                                            viewModel.onIntent(
                                               ForgotPasswordIntent(
                                                 emailController.text.trim(),
                                               ),
@@ -177,7 +177,9 @@ class _ForgetPasswordScreenState
                                     context,
                                     MaterialPageRoute(
                                       builder:
-                                          (context) => const ResetCodeScreen(),
+                                          (context) => ResetCodeScreen(
+                                            viewModel: viewModel,
+                                          ),
                                     ),
                                   );
                                 } else if (state.sendEmailStatus ==

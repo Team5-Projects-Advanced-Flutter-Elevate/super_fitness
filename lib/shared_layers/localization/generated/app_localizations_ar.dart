@@ -108,6 +108,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
+  String get forgotPassword => 'هل نسيت كلمة المرور؟';
+
+  @override
+  String get noAccount => 'ليس لديك حساب بعد؟ ';
+
+  @override
+  String get success => 'نجاح';
+
+  @override
+  String get loginSuccessfully => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get welcomeBack => 'مرحبا بعودتك';
+
+  @override
   String get registerScreen________ => '\$\$\$ تعليق \$\$\$';
 
   @override
@@ -142,34 +157,4 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get login => 'تسجيل الدخول';
-
-  @override
-  String get email => 'البريد الإلكتروني';
-
-  @override
-  String get password => 'كلمة المرور';
-
-  @override
-  String get forgotPassword => 'هل نسيت كلمة المرور؟';
-
-  @override
-  String get or => 'أو';
-
-  @override
-  String get noAccount => 'ليس لديك حساب بعد؟ ';
-
-  @override
-  String get register => 'سجّل الآن';
-
-  @override
-  String get success => 'نجاح';
-
-  @override
-  String get loginSuccessfully => 'تم تسجيل الدخول بنجاح';
-
-  @override
-  String get heyThere => 'اهلا';
-
-  @override
-  String get welcomeBack => 'مرحبا بعودتك';
 }

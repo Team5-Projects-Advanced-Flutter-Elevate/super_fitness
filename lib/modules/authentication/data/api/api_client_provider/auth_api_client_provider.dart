@@ -7,7 +7,6 @@ import '../api_client/auth_api_client.dart';
 @module
 abstract class AuthApiClientProvider {
   @lazySingleton
-  AuthApiClient provide(Dio dio) {
   AuthApiClient provideApiClient(Dio dio) {
     return AuthApiClient(dio);
   }

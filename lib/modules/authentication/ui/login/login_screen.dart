@@ -10,7 +10,7 @@ import 'package:super_fitness/modules/authentication/ui/login/state.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/widgets/error_state_widget.dart';
-import '../cubit/login/view_model.dart';
+import 'cubit/login/view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -175,7 +175,8 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                         suffixIcon: IconButton(
                                           onPressed: () {
                                             setState(() {
-                                              isPasswordObscure = !isPasswordObscure;
+                                              isPasswordObscure =
+                                                  !isPasswordObscure;
                                             });
                                           },
                                           icon: Icon(
@@ -260,7 +261,10 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                           ),
                                         ),
                                         ElevatedButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            loginViewModel.doIntent(GoogleLogin());
+
+                                          },
                                           style: ElevatedButton.styleFrom(
                                             backgroundColor: AppColors.black,
 

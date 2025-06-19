@@ -8,8 +8,6 @@ import 'package:super_fitness/modules/authentication/data/models/register/respon
 part 'auth_api_client.g.dart';
 
 @RestApi(baseUrl: ApisEndpoints.baseUrl)
-
-@RestApi()
 abstract class AuthApiClient {
   factory AuthApiClient(Dio dio) = _AuthApiClient;
 
@@ -17,7 +15,4 @@ abstract class AuthApiClient {
   Future<RegisterResponseDto> register(@Body() Map<String, dynamic> request);
   @POST(ApisEndpoints.loginEndPoint)
   Future<LoginModel> login(@Body() Map<String, dynamic> body);
-
-
-
 }

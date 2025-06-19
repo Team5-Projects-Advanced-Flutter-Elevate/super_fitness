@@ -108,6 +108,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
+  String get forgotPassword => 'Forgot Password?';
+
+  @override
+  String get noAccount => 'Don\'t Have An Account Yet? ';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get loginSuccessfully => 'Login Successfully';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
+
+  @override
   String get registerScreen________ => '\$\$\$ Comment \$\$\$';
 
   @override
@@ -142,34 +157,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
-
-  @override
-  String get email => 'Email';
-
-  @override
-  String get password => 'Password';
-
-  @override
-  String get forgotPassword => 'Forgot Password?';
-
-  @override
-  String get or => 'Or';
-
-  @override
-  String get noAccount => 'Don\'t Have An Account Yet? ';
-
-  @override
-  String get register => 'Register';
-
-  @override
-  String get success => 'Success';
-
-  @override
-  String get loginSuccessfully => 'Login Successfully';
-
-  @override
-  String get heyThere => 'Hey There';
-
-  @override
-  String get welcomeBack => 'Welcome Back';
 }

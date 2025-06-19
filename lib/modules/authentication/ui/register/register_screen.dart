@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_view_model.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -370,7 +371,9 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                                     baseline: TextBaseline.alphabetic,
                                     alignment: PlaceholderAlignment.baseline,
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.push(context,MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                                      },
                                       child: Text(
                                         appLocalizations.login,
                                         style: theme.textTheme.labelLarge!

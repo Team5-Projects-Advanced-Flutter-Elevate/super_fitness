@@ -5,7 +5,7 @@ import 'package:super_fitness/modules/authentication/data/api/api_client/auth_ap
 @module
 abstract class AuthApiClientProvider {
   @lazySingleton
-  AuthApiClient provide(Dio dio) {
+  AuthApiClient provideApiClient(Dio dio) {
     return AuthApiClient(dio);
   }
 }

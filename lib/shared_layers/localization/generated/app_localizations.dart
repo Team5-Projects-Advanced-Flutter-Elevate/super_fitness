@@ -368,6 +368,36 @@ abstract class AppLocalizations {
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
 
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t Have An Account Yet? '**
+  String get noAccount;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @loginSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successfully'**
+  String get loginSuccessfully;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get welcomeBack;
+
   /// No description provided for @registerScreen________.
   ///
   /// In en, this message translates to:

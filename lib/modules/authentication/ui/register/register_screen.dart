@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
@@ -48,6 +49,17 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
             width: screenWidth * 0.2,
           ),
           centerTitle: true,
+          leading: IconButton(
+            color: AppColors.white,
+            constraints: const BoxConstraints(maxHeight: 25, maxWidth: 25),
+            style: IconButton.styleFrom(
+              backgroundColor: AppColors.mainColorLight,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+          ),
         ),
         body: GestureDetector(
           onTap: () {
@@ -370,7 +382,9 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                                     baseline: TextBaseline.alphabetic,
                                     alignment: PlaceholderAlignment.baseline,
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
                                       child: Text(
                                         appLocalizations.login,
                                         style: theme.textTheme.labelLarge!

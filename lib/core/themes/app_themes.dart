@@ -192,6 +192,15 @@ abstract class AppThemes {
         ),
       ),
     ),
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.mainColorLight;
+        } else {
+          return AppColors.white;
+        }
+      }),
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

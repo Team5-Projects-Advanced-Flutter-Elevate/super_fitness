@@ -62,7 +62,8 @@ import 'app_localizations_en.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,17 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en')
+    Locale('en'),
   ];
 
   /// No description provided for @errorMessages________.
@@ -293,11 +296,41 @@ abstract class AppLocalizations {
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
 
-  /// No description provided for @login.
+  /// No description provided for @registerScreen________.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get registerScreen________;
+
+  /// No description provided for @heyThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey There'**
+  String get heyThere;
+
+  /// No description provided for @createAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'create an account'**
+  String get createAnAccount;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get firstName;
+
+  /// No description provided for @lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastName;
 
   /// No description provided for @email.
   ///
@@ -311,11 +344,11 @@ abstract class AppLocalizations {
   /// **'Password'**
   String get password;
 
-  /// No description provided for @forgotPassword.
+  /// No description provided for @confirmPassword.
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password?'**
-  String get forgotPassword;
+  /// **'Confirm Password'**
+  String get confirmPassword;
 
   /// No description provided for @or.
   ///
@@ -323,44 +356,21 @@ abstract class AppLocalizations {
   /// **'Or'**
   String get or;
 
-  /// No description provided for @noAccount.
+  /// No description provided for @alreadyHaveAccount.
   ///
   /// In en, this message translates to:
-  /// **'Don\'t Have An Account Yet? '**
-  String get noAccount;
+  /// **'Already Have an account ?'**
+  String get alreadyHaveAccount;
 
-  /// No description provided for @register.
+  /// No description provided for @login.
   ///
   /// In en, this message translates to:
-  /// **'Register'**
-  String get register;
-
-  /// No description provided for @success.
-  ///
-  /// In en, this message translates to:
-  /// **'Success'**
-  String get success;
-
-  /// No description provided for @loginSuccessfully.
-  ///
-  /// In en, this message translates to:
-  /// **'Login Successfully'**
-  String get loginSuccessfully;
-
-  /// No description provided for @heyThere.
-  ///
-  /// In en, this message translates to:
-  /// **'Hey There'**
-  String get heyThere;
-
-  /// No description provided for @welcomeBack.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome Back'**
-  String get welcomeBack;
+  /// **'Login'**
+  String get login;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -369,25 +379,26 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
   }
 
   throw FlutterError(
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

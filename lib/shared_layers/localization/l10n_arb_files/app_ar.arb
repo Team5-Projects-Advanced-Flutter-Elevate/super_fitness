@@ -43,4 +43,16 @@
   "loginSuccessfully": "تم تسجيل الدخول بنجاح",
   "heyThere": "اهلا",
   "welcomeBack": "مرحبا بعودتك"
+  "registerScreen________": "$$$ تعليق $$$",
+  "heyThere": "مرحباً",
+  "createAnAccount": "إنشىء حساب",
+  "register": "تسجيل",
+  "firstName": "الاسم الأول",
+  "lastName": "الاسم الأخير",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "or": "أو",
+  "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+  "login": "تسجيل الدخول"
 }

@@ -1,11 +1,13 @@
 import 'dart:developer';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/utilities/extensions/gender_ex.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_state.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_view_model.dart';
+
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
@@ -21,7 +23,7 @@ class SelectedActivityScreen extends StatefulWidget {
 
 class _SelectedActivityScreenState
     extends BaseStatefulWidgetState<SelectedActivityScreen> {
-  List<String> goals = [
+  List<String> activities = [
     getIt<AppLocalizations>().rookie,
     getIt<AppLocalizations>().beginner,
     getIt<AppLocalizations>().intermediate,
@@ -154,7 +156,7 @@ class _SelectedActivityScreenState
                                 ? LoadingStateWidget(
                                   progressIndicatorColor: AppColors.white,
                                 )
-                                : const Text(appLocalizations.next),
+                                : Text(appLocalizations.next),
                       );
                     },
                   ),

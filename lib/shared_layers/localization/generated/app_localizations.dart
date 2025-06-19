@@ -290,6 +290,78 @@ abstract class AppLocalizations {
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @doIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It'**
+  String get doIt;
+
+  /// No description provided for @priceOfExcellence.
+  ///
+  /// In en, this message translates to:
+  /// **'The Price Of Excellence'**
+  String get priceOfExcellence;
+
+  /// No description provided for @isDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Is Discipline'**
+  String get isDiscipline;
+
+  /// No description provided for @fitnessHasNeverBeenSo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Has Never Been So'**
+  String get fitnessHasNeverBeenSo;
+
+  /// No description provided for @muchFun.
+  ///
+  /// In en, this message translates to:
+  /// **'Much Fun'**
+  String get muchFun;
+
+  /// No description provided for @noMoreExecuses.
+  ///
+  /// In en, this message translates to:
+  /// **'NO MORE EXCUSES'**
+  String get noMoreExecuses;
+
+  /// No description provided for @doItNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It Now'**
+  String get doItNow;
+
+  /// No description provided for @loremIpsumDolorSitAmetConsectetureuUrna.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna'**
+  String get loremIpsumDolorSitAmetConsectetureuUrna;
+
+  /// No description provided for @utGravidaQuisIdPretiumPurusMaurisMassa.
+  ///
+  /// In en, this message translates to:
+  /// **'ut gravida quis id pretium purus. Mauris massa'**
+  String get utGravidaQuisIdPretiumPurusMaurisMassa;
+
   /// No description provided for @pleaseEnterValidRecipient.
   ///
   /// In en, this message translates to:
@@ -433,12 +505,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Female'**
   String get female;
-
-  /// No description provided for @next.
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get next;
 
   /// No description provided for @year.
   ///

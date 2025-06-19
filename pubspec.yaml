@@ -97,6 +97,7 @@ dependencies:
   firebase_core: ^3.14.0
   firebase_crashlytics: ^4.3.7
   firebase_analytics: ^11.5.0
+  smooth_page_indicator: ^1.2.1
   step_progress_indicator: ^1.0.2
   percent_indicator: ^4.2.5
   numberpicker: ^2.1.2
@@ -152,6 +153,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/icons/
+    - assets/icon/
     - assets/animations/
     - assets/files/
     - assets/images/

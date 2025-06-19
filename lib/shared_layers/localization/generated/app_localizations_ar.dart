@@ -110,6 +110,44 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
 
   @override
+  String get skip => 'تخطي';
+
+  @override
+  String get back => 'السابق';
+
+  @override
+  String get next => 'التالى';
+
+  @override
+  String get doIt => 'افعلها';
+
+  @override
+  String get priceOfExcellence => 'ثمن التميز';
+
+  @override
+  String get isDiscipline => 'هو الانضباط';
+
+  @override
+  String get fitnessHasNeverBeenSo => 'اللياقة البدنية لم تكن أبدا';
+
+  @override
+  String get muchFun => 'الكثير من المرح';
+
+  @override
+  String get noMoreExecuses => 'لا مزيد من الأعذار';
+
+  @override
+  String get doItNow => 'افعلها الآن';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا';
+
+  @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
@@ -181,9 +219,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get female => 'انثى';
-
-  @override
-  String get next => 'التالى';
 
   @override
   String get year => 'سنة';

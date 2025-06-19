@@ -110,6 +110,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get doIt => 'Do It';
+
+  @override
+  String get priceOfExcellence => 'The Price Of Excellence';
+
+  @override
+  String get isDiscipline => 'Is Discipline';
+
+  @override
+  String get fitnessHasNeverBeenSo => 'Fitness Has Never Been So';
+
+  @override
+  String get muchFun => 'Much Fun';
+
+  @override
+  String get noMoreExecuses => 'NO MORE EXCUSES';
+
+  @override
+  String get doItNow => 'Do It Now';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'ut gravida quis id pretium purus. Mauris massa';
+
+  @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
@@ -181,9 +219,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get female => 'Female';
-
-  @override
-  String get next => 'Next';
 
   @override
   String get year => 'Year';

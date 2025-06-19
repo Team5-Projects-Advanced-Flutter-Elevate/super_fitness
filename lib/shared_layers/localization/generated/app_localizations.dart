@@ -287,6 +287,78 @@ abstract class AppLocalizations {
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @doIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It'**
+  String get doIt;
+
+  /// No description provided for @priceOfExcellence.
+  ///
+  /// In en, this message translates to:
+  /// **'The Price Of Excellence'**
+  String get priceOfExcellence;
+
+  /// No description provided for @isDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Is Discipline'**
+  String get isDiscipline;
+
+  /// No description provided for @fitnessHasNeverBeenSo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Has Never Been So'**
+  String get fitnessHasNeverBeenSo;
+
+  /// No description provided for @muchFun.
+  ///
+  /// In en, this message translates to:
+  /// **'Much Fun'**
+  String get muchFun;
+
+  /// No description provided for @noMoreExecuses.
+  ///
+  /// In en, this message translates to:
+  /// **'NO MORE EXCUSES'**
+  String get noMoreExecuses;
+
+  /// No description provided for @doItNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It Now'**
+  String get doItNow;
+
+  /// No description provided for @loremIpsumDolorSitAmetConsectetureuUrna.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna'**
+  String get loremIpsumDolorSitAmetConsectetureuUrna;
+
+  /// No description provided for @utGravidaQuisIdPretiumPurusMaurisMassa.
+  ///
+  /// In en, this message translates to:
+  /// **'ut gravida quis id pretium purus. Mauris massa'**
+  String get utGravidaQuisIdPretiumPurusMaurisMassa;
+
   /// No description provided for @pleaseEnterValidRecipient.
   ///
   /// In en, this message translates to:
@@ -394,6 +466,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Login'**
   String get login;
+
+  /// No description provided for @tellUsAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about yourself !'**
+  String get tellUsAboutYourself;
+
+  /// No description provided for @weNeedToKnowYourGender.
+  ///
+  /// In en, this message translates to:
+  /// **'We need to know your gender'**
+  String get weNeedToKnowYourGender;
+
+  /// No description provided for @howOldAreYou.
+  ///
+  /// In en, this message translates to:
+  /// **'How old are you ?'**
+  String get howOldAreYou;
+
+  /// No description provided for @whatIsYourWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your weight ?'**
+  String get whatIsYourWeight;
+
+  /// No description provided for @thisHelpsUsCreateYourPersonalizedPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get thisHelpsUsCreateYourPersonalizedPlan;
+
+  /// No description provided for @whatIsYourHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your height ?'**
+  String get whatIsYourHeight;
+
+  /// No description provided for @whatIsYourGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your goal?'**
+  String get whatIsYourGoal;
+
+  /// No description provided for @yourPhysicalActivityLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your physical activity level'**
+  String get yourPhysicalActivityLevel;
+
+  /// No description provided for @activityLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Level ?'**
+  String get activityLevel;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @year.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// No description provided for @kg.
+  ///
+  /// In en, this message translates to:
+  /// **'KG'**
+  String get kg;
+
+  /// No description provided for @cm.
+  ///
+  /// In en, this message translates to:
+  /// **'CM'**
+  String get cm;
+
+  /// No description provided for @gainWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Gain Weight'**
+  String get gainWeight;
+
+  /// No description provided for @loseWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Lose Weight'**
+  String get loseWeight;
+
+  /// No description provided for @getFitter.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Fitter'**
+  String get getFitter;
+
+  /// No description provided for @gainMoreFlexible.
+  ///
+  /// In en, this message translates to:
+  /// **'Gain More Flexible'**
+  String get gainMoreFlexible;
+
+  /// No description provided for @learnTheBasic.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn The Basic'**
+  String get learnTheBasic;
+
+  /// No description provided for @rookie.
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get rookie;
+
+  /// No description provided for @beginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get beginner;
+
+  /// No description provided for @intermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get intermediate;
+
+  /// No description provided for @advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advanced;
+
+  /// No description provided for @trueBeast.
+  ///
+  /// In en, this message translates to:
+  /// **'True Beast'**
+  String get trueBeast;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

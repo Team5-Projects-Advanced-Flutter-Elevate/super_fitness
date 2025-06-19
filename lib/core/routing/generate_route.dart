@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
-import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
+import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 import 'package:super_fitness/modules/home/home_screen.dart';
 
 abstract class GenerateRoute {
@@ -13,9 +13,12 @@ abstract class GenerateRoute {
       switch (name) {
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
-        case DefinedRoutes.allRegisterFeature:
+        case DefinedRoutes.onboardingScreenRoute:
           return MaterialPageRoute(
-            builder: (context) => const AllRegisterFeature(),
+            builder: (context) => const OnboardingScreen(),
+            // case DefinedRoutes.allRegisterFeature:
+            //   return MaterialPageRoute(
+            //     builder: (context) => const AllRegisterFeature(),
           );
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen(),);
@@ -37,7 +40,7 @@ abstract class GenerateRoute {
           builder: (context) => const SizedBox(),
         ) // LayoutScreen()
       else
-        MaterialPageRoute(builder: (context) => const SizedBox()),
+        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       // OnboardingScreen()
     ];
   }

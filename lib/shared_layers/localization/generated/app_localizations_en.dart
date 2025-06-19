@@ -105,6 +105,44 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get doIt => 'Do It';
+
+  @override
+  String get priceOfExcellence => 'The Price Of Excellence';
+
+  @override
+  String get isDiscipline => 'Is Discipline';
+
+  @override
+  String get fitnessHasNeverBeenSo => 'Fitness Has Never Been So';
+
+  @override
+  String get muchFun => 'Much Fun';
+
+  @override
+  String get noMoreExecuses => 'NO MORE EXCUSES';
+
+  @override
+  String get doItNow => 'Do It Now';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'ut gravida quis id pretium purus. Mauris massa';
+
+  @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
@@ -157,4 +195,77 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get login => 'Login';
+
+  @override
+  String get tellUsAboutYourself => 'Tell us about yourself !';
+
+  @override
+  String get weNeedToKnowYourGender => 'We need to know your gender';
+
+  @override
+  String get howOldAreYou => 'How old are you ?';
+
+  @override
+  String get whatIsYourWeight => 'What is your weight ?';
+
+  @override
+  String get thisHelpsUsCreateYourPersonalizedPlan =>
+      'This helps us create your personalized plan';
+
+  @override
+  String get whatIsYourHeight => 'What is your height ?';
+
+  @override
+  String get whatIsYourGoal => 'What is your goal?';
+
+  @override
+  String get yourPhysicalActivityLevel => 'Your physical activity level';
+
+  @override
+  String get activityLevel => 'Activity Level ?';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get kg => 'KG';
+
+  @override
+  String get cm => 'CM';
+
+  @override
+  String get gainWeight => 'Gain Weight';
+
+  @override
+  String get loseWeight => 'Lose Weight';
+
+  @override
+  String get getFitter => 'Get Fitter';
+
+  @override
+  String get gainMoreFlexible => 'Gain More Flexible';
+
+  @override
+  String get learnTheBasic => 'Learn The Basic';
+
+  @override
+  String get rookie => 'Rookie';
+
+  @override
+  String get beginner => 'Beginner';
+
+  @override
+  String get intermediate => 'Intermediate';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get trueBeast => 'True Beast';
 }

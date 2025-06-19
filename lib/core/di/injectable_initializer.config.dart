@@ -25,25 +25,18 @@ import '../../modules/authentication/data/collections/users/users_collection_imp
     as _i431;
 import '../../modules/authentication/data/data_sources_contracts/firebase_auth/firebase_auth_data_source.dart'
     as _i449;
-import '../../modules/authentication/data/data_sources_contracts/login/login.dart'
-    as _i969;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
 import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
     as _i1026;
-import '../../modules/authentication/data/data_sources_imp/login/login.dart'
-    as _i79;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
     as _i132;
 import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart'
     as _i525;
 import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
     as _i121;
-import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
-    as _i641;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
     as _i193;
-import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
     as _i396;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
@@ -54,11 +47,8 @@ import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_
     as _i210;
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
-import '../../modules/authentication/domain/usecase/login/login.dart' as _i192;
 import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
     as _i778;
-import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
-    as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
 import '../../shared_layers/localization/generated/app_localizations.dart'
@@ -111,7 +101,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
-      () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+      () => authApiClientProvider.provide(gh<_i361.Dio>()),
     );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
@@ -124,9 +114,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
-    );
-    gh.factory<_i969.LoginOnlineDataSource>(
-      () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -156,9 +143,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
     );
-    gh.factory<_i239.LoginRepo>(
-      () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
-    );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
     );
@@ -174,20 +158,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i782.RegisterUserCase>(
       () => _i782.RegisterUserCase(gh<_i496.RegisterRepo>()),
     );
-    gh.factory<_i192.LoginUseCase>(
-      () => _i192.LoginUseCase(gh<_i239.LoginRepo>()),
-    );
     gh.factory<_i610.RegisterViewModel>(
       () => _i610.RegisterViewModel(
         gh<_i782.RegisterUserCase>(),
         gh<_i210.SignUpWithGoogleAccountUseCase>(),
-        gh<_i138.GoogleSignInHandler>(),
-      ),
-    );
-    gh.factory<_i396.LoginViewModel>(
-      () => _i396.LoginViewModel(
-        gh<_i192.LoginUseCase>(),
-        gh<_i851.SignInWithGoogleAccountUseCase>(),
         gh<_i138.GoogleSignInHandler>(),
       ),
     );

@@ -10,6 +10,8 @@ import 'package:super_fitness/modules/authentication/ui/register/view_model/regi
 
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
+import '../../../../../core/di/injectable_initializer.dart';
+import '../../../../../shared_layers/localization/generated/app_localizations.dart';
 import '../view_model/complete_register_cubit.dart';
 
 class SelectedActivityScreen extends StatefulWidget {
@@ -22,11 +24,11 @@ class SelectedActivityScreen extends StatefulWidget {
 class _SelectedActivityScreenState
     extends BaseStatefulWidgetState<SelectedActivityScreen> {
   List<String> activities = [
-    "Rookie",
-    "Beginner",
-    "Intermediate",
-    "Advanced",
-    "True Beast",
+    getIt<AppLocalizations>().rookie,
+    getIt<AppLocalizations>().beginner,
+    getIt<AppLocalizations>().intermediate,
+    getIt<AppLocalizations>().advanced,
+    getIt<AppLocalizations>().trueBeast,
   ];
 
   String? selectedActivity;
@@ -52,13 +54,14 @@ class _SelectedActivityScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Your Regular Physical \n",
+                  text:
+                      "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 TextSpan(
-                  text: 'Activity Level ?',
+                  text: appLocalizations.activityLevel,
                   style: theme.textTheme.titleMedium,
                 ),
               ],
@@ -154,7 +157,7 @@ class _SelectedActivityScreenState
                                 ? LoadingStateWidget(
                                   progressIndicatorColor: AppColors.white,
                                 )
-                                : const Text('Next'),
+                                : Text(appLocalizations.next),
                       );
                     },
                   ),

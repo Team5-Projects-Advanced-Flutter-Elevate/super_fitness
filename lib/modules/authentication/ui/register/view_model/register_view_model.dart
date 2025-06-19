@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
+import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/utilities/activities/activities.dart';
 import 'package:super_fitness/core/utilities/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/request/register_request_entity.dart';
@@ -10,6 +11,7 @@ import 'package:super_fitness/modules/authentication/domain/entities/register/re
 import 'package:super_fitness/modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart';
 import 'package:super_fitness/modules/authentication/domain/use_cases/register/register_use_case.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_state.dart';
+import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import '../../../data/models/user/user_dto.dart';
 
@@ -28,9 +30,11 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   final GoogleSignInHandler _googleSignInHandler;
 
-  RegisterViewModel(this._registerUserCase,
-      this._signUpWithGoogleAccountUseCase,
-      this._googleSignInHandler,) : super(const RegisterState());
+  RegisterViewModel(
+    this._registerUserCase,
+    this._signUpWithGoogleAccountUseCase,
+    this._googleSignInHandler,
+  ) : super(const RegisterState());
 
   TextEditingController firstNameController = TextEditingController(),
       lastNameController = TextEditingController(),
@@ -70,10 +74,10 @@ class RegisterViewModel extends Cubit<RegisterState> {
       case RegisterMethod.googleRegister:
         _googleRegister(restOfRegisterRequest: restOfRegisterRequest);
       case RegisterMethod.facebookRegister:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         throw UnimplementedError();
       case RegisterMethod.appleRegister:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         throw UnimplementedError();
     }
   }
@@ -96,7 +100,8 @@ class RegisterViewModel extends Cubit<RegisterState> {
         height: restOfRegisterRequest.height,
         goal: restOfRegisterRequest.goal,
         activityLevel: Activities.getActivityLevel(
-          restOfRegisterRequest.activityLevel,
+          activity: restOfRegisterRequest.activityLevel,
+          currentLocale: getIt.get<LocalizationManager>().currentLocale,
         ),
       ),
     );
@@ -138,7 +143,8 @@ class RegisterViewModel extends Cubit<RegisterState> {
         height: restOfRegisterRequest.height,
         goal: restOfRegisterRequest.goal,
         activityLevel: Activities.getActivityLevel(
-          restOfRegisterRequest.activityLevel,
+          activity: restOfRegisterRequest.activityLevel,
+          currentLocale: getIt.get<LocalizationManager>().currentLocale,
         ),
       ),
     );
@@ -160,7 +166,7 @@ class RegisterViewModel extends Cubit<RegisterState> {
     if (formKey.currentState!.validate() &&
         currentRegisterMethod == RegisterMethod.apiRegister) {
       pageViewController.jumpToPage(1);
-    } else {
+    } else if (currentRegisterMethod != RegisterMethod.apiRegister) {
       pageViewController.jumpToPage(1);
     }
   }

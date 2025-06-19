@@ -3,7 +3,6 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
-import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -16,9 +15,9 @@ abstract class GenerateRoute {
         case DefinedRoutes.onboardingScreenRoute:
           return MaterialPageRoute(
             builder: (context) => const OnboardingScreen(),
-        case DefinedRoutes.allRegisterFeature:
-          return MaterialPageRoute(
-            builder: (context) => const AllRegisterFeature(),
+        // case DefinedRoutes.allRegisterFeature:
+        //   return MaterialPageRoute(
+        //     builder: (context) => const AllRegisterFeature(),
           );
         default:
           return _errorRoute();

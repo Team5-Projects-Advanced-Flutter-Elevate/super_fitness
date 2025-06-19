@@ -129,32 +129,32 @@ class _SelectedActivityScreenState
 
                                   log(cubit.state.toString());
 
-                          BlocProvider.of<RegisterViewModel>(
-                            context,
-                          ).doIntent(
-                            RegisterUser(
-                              restOfRegisterRequest:
-                              RestOfRegisterRequest(
-                                gender:
-                                cubit.state.isMale!
-                                    ? Gender.male.getValue()
-                                    : Gender.female.getValue(),
-                                age: cubit.state.age,
-                                weight: cubit.state.weight,
-                                height: cubit.state.height,
-                                goal: cubit.state.goal!,
-                                activityLevel:
-                                cubit.state.activity!,
-                              ),
-                            ),
-                          );
-                        },
+                                  BlocProvider.of<RegisterViewModel>(
+                                    context,
+                                  ).doIntent(
+                                    RegisterUser(
+                                      restOfRegisterRequest:
+                                          RestOfRegisterRequest(
+                                            gender:
+                                                cubit.state.isMale!
+                                                    ? Gender.male.getValue()
+                                                    : Gender.female.getValue(),
+                                            age: cubit.state.age,
+                                            weight: cubit.state.weight,
+                                            height: cubit.state.height,
+                                            goal: cubit.state.goal!,
+                                            activityLevel:
+                                                cubit.state.activity!,
+                                          ),
+                                    ),
+                                  );
+                                },
                         child:
-                        state.registerStatus == Status.loading
-                            ? LoadingStateWidget(
-                          progressIndicatorColor: AppColors.white,
-                        )
-                            : const Text('Next'),
+                            state.registerStatus == Status.loading
+                                ? LoadingStateWidget(
+                                  progressIndicatorColor: AppColors.white,
+                                )
+                                : const Text('Next'),
                       );
                     },
                   ),

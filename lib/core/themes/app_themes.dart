@@ -199,7 +199,7 @@ abstract class AppThemes {
           return AppColors.white;
         }
       }),
-    )
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

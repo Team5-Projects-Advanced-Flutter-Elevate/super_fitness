@@ -30,5 +30,17 @@
   "namesLengthRule": "Names must be at least three characters long.",
   "noMatch": "No Match!",
   "pleaseEnterAddress": "Please enter the address",
-  "pleaseEnterValidAddress": "Please enter a valid address"
+  "pleaseEnterValidAddress": "Please enter a valid address",
+  "heyThere": "Hey There",
+  "welcomeBack": "Welcome Back",
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot Password?",
+  "or": "Or",
+  "noAccount": "Don't Have An Account Yet? ",
+  "register": "Register",
+  "success": "Success",
+  "loginSuccessfully": "Login Successfully"
+
 }

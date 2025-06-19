@@ -30,5 +30,16 @@
   "namesLengthRule": "يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.",
   "noMatch": "لا يوجد تطابق!",
   "pleaseEnterAddress": "الرجاء إدخال العنوان",
-  "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح"
+  "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
+  "heyThere": "مرحباً",
+  "welcomeBack": "أهلاً بعودتك",
+  "login": "تسجيل الدخول",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "forgotPassword": "هل نسيت كلمة المرور؟",
+  "or": "أو",
+  "noAccount": "ليس لديك حساب بعد؟ ",
+  "register": "سجّل الآن",
+  "success": "نجاح",
+  "loginSuccessfully": "تم تسجيل الدخول بنجاح"
 }

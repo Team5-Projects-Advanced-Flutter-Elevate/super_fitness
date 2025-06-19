@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
@@ -318,7 +317,13 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                                   ),
                                 ),
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    registerViewModel.currentRegisterMethod =
+                                        RegisterMethod.googleRegister;
+                                    registerViewModel.doIntent(
+                                      OnAnyRegisterButtonClick(),
+                                    );
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     shape: const CircleBorder(),
                                     fixedSize: const Size(10, 20),
@@ -344,8 +349,10 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                             SizedBox(height: screenHeight * 0.005),
                             FilledButton(
                               onPressed: () {
+                                registerViewModel.currentRegisterMethod =
+                                    RegisterMethod.apiRegister;
                                 registerViewModel.doIntent(
-                                  OnRegisterButtonClick(),
+                                  OnAnyRegisterButtonClick(),
                                 );
                               },
                               child: Text(appLocalizations.register),

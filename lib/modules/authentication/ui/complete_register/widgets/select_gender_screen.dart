@@ -36,7 +36,8 @@ class _SelectGenderScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "${appLocalizations.tellUsAboutYourself.toUpperCase()}\n",
+                  text:
+                      "${appLocalizations.tellUsAboutYourself.toUpperCase()}\n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),

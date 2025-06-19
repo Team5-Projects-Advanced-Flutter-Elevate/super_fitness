@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -162,7 +161,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whatIsYourWeight => 'ما هو وزنك؟';
 
   @override
-  String get thisHelpsUsCreateYourPersonalizedPlan => 'سيساعدنا هذا في إعداد خطة مخصصة لك';
+  String get thisHelpsUsCreateYourPersonalizedPlan =>
+      'سيساعدنا هذا في إعداد خطة مخصصة لك';
 
   @override
   String get whatIsYourHeight => 'ما هو طولك؟';

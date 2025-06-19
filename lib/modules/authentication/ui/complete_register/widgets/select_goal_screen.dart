@@ -25,7 +25,6 @@ class _SelectGoalScreenState extends BaseStatefulWidgetState<SelectGoalScreen> {
     getIt<AppLocalizations>().learnTheBasic,
   ];
 
-
   String? selectedGoal;
 
   @override

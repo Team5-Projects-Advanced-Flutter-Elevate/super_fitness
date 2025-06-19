@@ -54,7 +54,8 @@ class _SelectedActivityScreenState
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
+                  text:
+                      "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w800,
                   ),

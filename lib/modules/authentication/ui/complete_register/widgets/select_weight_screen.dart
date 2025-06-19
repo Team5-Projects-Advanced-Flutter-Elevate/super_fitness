@@ -41,7 +41,7 @@ class _SelectWeightScreenState
                   ),
                 ),
                 TextSpan(
-                  text:appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
+                  text: appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
                   style: theme.textTheme.titleMedium,
                 ),
               ],

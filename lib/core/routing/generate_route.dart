@@ -21,11 +21,13 @@ abstract class GenerateRoute {
         case DefinedRoutes.chatScreenRoute:
           return MaterialPageRoute(builder: (context) => const ChatScreen());
         case DefinedRoutes.workoutsScreenRoute:
-          return MaterialPageRoute(builder: (context) => const WorkoutsScreen());
+          return MaterialPageRoute(
+            builder: (context) => const WorkoutsScreen(),
+          );
         case DefinedRoutes.profileScreenRoute:
           return MaterialPageRoute(builder: (context) => const ProfileScreen());
         case DefinedRoutes.layoutScreenRoute:
-          return MaterialPageRoute(builder: (context) => const LayoutScreen());          
+          return MaterialPageRoute(builder: (context) => const LayoutScreen());
         default:
           return _errorRoute();
       }

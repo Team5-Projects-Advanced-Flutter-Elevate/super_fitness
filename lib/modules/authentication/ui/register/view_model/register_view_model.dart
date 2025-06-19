@@ -28,9 +28,11 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   final GoogleSignInHandler _googleSignInHandler;
 
-  RegisterViewModel(this._registerUserCase,
-      this._signUpWithGoogleAccountUseCase,
-      this._googleSignInHandler,) : super(const RegisterState());
+  RegisterViewModel(
+    this._registerUserCase,
+    this._signUpWithGoogleAccountUseCase,
+    this._googleSignInHandler,
+  ) : super(const RegisterState());
 
   TextEditingController firstNameController = TextEditingController(),
       lastNameController = TextEditingController(),
@@ -70,10 +72,10 @@ class RegisterViewModel extends Cubit<RegisterState> {
       case RegisterMethod.googleRegister:
         _googleRegister(restOfRegisterRequest: restOfRegisterRequest);
       case RegisterMethod.facebookRegister:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         throw UnimplementedError();
       case RegisterMethod.appleRegister:
-      // TODO: Handle this case.
+        // TODO: Handle this case.
         throw UnimplementedError();
     }
   }

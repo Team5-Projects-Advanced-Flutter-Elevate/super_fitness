@@ -7,10 +7,11 @@ class GoogleAuthApi {
   GoogleAuthApi();
 
   Future<UserCredential> signInWithGoogle(
-      GoogleSignInAccount? googleUser,) async {
+    GoogleSignInAccount? googleUser,
+  ) async {
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
-    await googleUser?.authentication;
+        await googleUser?.authentication;
 
     // Create a new credential
     final credential = GoogleAuthProvider.credential(

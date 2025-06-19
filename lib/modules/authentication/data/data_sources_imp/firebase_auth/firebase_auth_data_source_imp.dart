@@ -19,7 +19,8 @@ class FirebaseAuthDataSourceImp implements FirebaseAuthDataSource {
 
   @override
   Future<ApiResult<UserCredential>> signInWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,) async {
+    GoogleSignInAccount googleUserAccount,
+  ) async {
     var firestoreResult = await _usersCollection.searchForUserWithId(
       googleUserAccount.id,
     );
@@ -27,7 +28,7 @@ class FirebaseAuthDataSourceImp implements FirebaseAuthDataSource {
       return Error(error: FirebaseAuthRegisterException());
     } else {
       var result = await ApiExecutor.executeApi(
-            () => _googleAuthApi.signInWithGoogle(googleUserAccount),
+        () => _googleAuthApi.signInWithGoogle(googleUserAccount),
       );
       return result;
     }
@@ -35,8 +36,9 @@ class FirebaseAuthDataSourceImp implements FirebaseAuthDataSource {
 
   @override
   Future<ApiResult<UserCredential>> signUpWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,
-      UserDto userDto,) async {
+    GoogleSignInAccount googleUserAccount,
+    UserDto userDto,
+  ) async {
     var firestoreResult = await _usersCollection.searchForUserWithId(
       googleUserAccount.id,
     );
@@ -45,12 +47,12 @@ class FirebaseAuthDataSourceImp implements FirebaseAuthDataSource {
       return Error(error: FirebaseAuthSignInException());
     } else {
       var firestoreResult = await ApiExecutor.executeApi(
-            () => _usersCollection.addUser(userDto),
+        () => _usersCollection.addUser(userDto),
       );
       switch (firestoreResult) {
         case Success<void>():
           var firebaseAuthResult = await ApiExecutor.executeApi(
-                () => _googleAuthApi.signInWithGoogle(googleUserAccount),
+            () => _googleAuthApi.signInWithGoogle(googleUserAccount),
           );
           return firebaseAuthResult;
         case Error<void>():

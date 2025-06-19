@@ -20,31 +20,31 @@ import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
 import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i1019;
 import '../../modules/authentication/data/collections/users/user_collection.dart'
-as _i550;
+    as _i550;
 import '../../modules/authentication/data/collections/users/users_collection_imp.dart'
-as _i431;
+    as _i431;
 import '../../modules/authentication/data/data_sources_contracts/firebase_auth/firebase_auth_data_source.dart'
-as _i449;
+    as _i449;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
 import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
-as _i1026;
+    as _i1026;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
     as _i132;
 import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart'
-as _i525;
+    as _i525;
 import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
-as _i121;
+    as _i121;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
     as _i193;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
-as _i396;
+    as _i396;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
     as _i496;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart'
-as _i851;
+    as _i851;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart'
-as _i210;
+    as _i210;
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
 import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
@@ -96,7 +96,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.lazySingleton<_i116.GoogleSignIn>(
-          () => googleSignInObject.providerObject(),
+      () => googleSignInObject.providerObject(),
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
@@ -104,17 +104,16 @@ extension GetItInjectableX on _i174.GetIt {
       () => authApiClientProvider.provide(gh<_i361.Dio>()),
     );
     gh.factory<_i138.GoogleSignInHandler>(
-          () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
+      () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
-          () =>
-          _i1026.FirebaseAuthDataSourceImp(
-            gh<_i525.GoogleAuthApi>(),
-            gh<_i550.UsersCollection>(),
-          ),
+      () => _i1026.FirebaseAuthDataSourceImp(
+        gh<_i525.GoogleAuthApi>(),
+        gh<_i550.UsersCollection>(),
+      ),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -142,15 +141,13 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
     gh.factory<_i396.FirebaseAuthRepo>(
-          () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+      () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
-          () =>
-          _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
+      () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
     );
     gh.factory<_i210.SignUpWithGoogleAccountUseCase>(
-          () =>
-          _i210.SignUpWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
+      () => _i210.SignUpWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -162,12 +159,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i782.RegisterUserCase(gh<_i496.RegisterRepo>()),
     );
     gh.factory<_i610.RegisterViewModel>(
-          () =>
-          _i610.RegisterViewModel(
-            gh<_i782.RegisterUserCase>(),
-            gh<_i210.SignUpWithGoogleAccountUseCase>(),
-            gh<_i138.GoogleSignInHandler>(),
-          ),
+      () => _i610.RegisterViewModel(
+        gh<_i782.RegisterUserCase>(),
+        gh<_i210.SignUpWithGoogleAccountUseCase>(),
+        gh<_i138.GoogleSignInHandler>(),
+      ),
     );
     return this;
   }

@@ -14,14 +14,16 @@ class FirebaseAuthRepoImp implements FirebaseAuthRepo {
 
   @override
   Future<ApiResult<UserCredential>> signInWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,) {
+    GoogleSignInAccount googleUserAccount,
+  ) {
     return _firebaseAuthDataSource.signInWithGoogleAccount(googleUserAccount);
   }
 
   @override
   Future<ApiResult<UserCredential>> signUpWithGoogleAccount(
-      GoogleSignInAccount googleUserAccount,
-      UserDto userDto,) {
+    GoogleSignInAccount googleUserAccount,
+    UserDto userDto,
+  ) {
     return _firebaseAuthDataSource.signUpWithGoogleAccount(
       googleUserAccount,
       userDto,

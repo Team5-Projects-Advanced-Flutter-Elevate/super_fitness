@@ -12,7 +12,8 @@ class SignInWithGoogleAccountUseCase {
   SignInWithGoogleAccountUseCase(this._firebaseAuthRepo);
 
   Future<ApiResult<UserCredential>> call(
-      GoogleSignInAccount googleUserAccount,) {
+    GoogleSignInAccount googleUserAccount,
+  ) {
     return _firebaseAuthRepo.signInWithGoogleAccount(googleUserAccount);
   }
 }

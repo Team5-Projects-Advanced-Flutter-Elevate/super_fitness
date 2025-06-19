@@ -27,6 +27,8 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  int currentScreenIndex = 0;
+
   void doIntent(RegisterIntent intent) {
     switch (intent) {
       case RegisterUser():

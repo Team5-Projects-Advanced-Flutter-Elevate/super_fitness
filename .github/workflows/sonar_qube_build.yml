@@ -56,8 +56,9 @@ jobs:
         if: steps.check_prs.outputs.prs_count == '0' && env.run_tests == 'true'
         run: flutter test --coverage
 
-      - name: Show coverage file
-        run: cat coverage/lcov.info
+      - name: Check coverage file
+        run: ls -l coverage && cat coverage/lcov.info
+
 
       - name: Build
         if: steps.check_prs.outputs.prs_count == '0'

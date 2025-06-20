@@ -1,13 +1,18 @@
-class LoginEntity {
+import 'package:equatable/equatable.dart';
+
+class LoginEntity extends Equatable {
   final String? message;
   final UserEntity? user;
   final String? token;
 
-  LoginEntity({this.message, this.user, this.token});
+  const LoginEntity({this.message, this.user, this.token});
+
+  @override
+  List<Object?> get props => [message, user, token];
 }
 
 // user_entity.dart
-class UserEntity {
+class UserEntity extends Equatable {
   final String? id;
   final String? firstName;
   final String? lastName;
@@ -21,7 +26,7 @@ class UserEntity {
   final String? photo;
   final DateTime? createdAt;
 
-  UserEntity({
+  const UserEntity({
     this.id,
     this.firstName,
     this.lastName,
@@ -35,4 +40,20 @@ class UserEntity {
     this.photo,
     this.createdAt,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    firstName,
+    lastName,
+    email,
+    gender,
+    age,
+    weight,
+    height,
+    activityLevel,
+    goal,
+    photo,
+    createdAt,
+  ];
 }

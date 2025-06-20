@@ -68,6 +68,8 @@
   "createNewPassword":"Create New Password",
   "done":"Done",
   "oTpCode":"Otp Code",
-  "enterOtpCode":"Enter Your Otp Code , check your email"
+  "enterOtpCode":"Enter Your Otp Code , check your email",
+  "successEmailVerified":"Email Verified Successfully"
+
 
 }

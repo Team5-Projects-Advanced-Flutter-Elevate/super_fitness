@@ -152,11 +152,11 @@ class _ForgetPasswordScreenState
                                         onPressed: () {
                                           if (formKey.currentState!
                                               .validate()) {
+                                           viewModel.email=emailController.text;
                                             viewModel.onIntent(
-                                              ForgotPasswordIntent(
-                                                emailController.text.trim(),
-                                              ),
+                                              ForgotPasswordIntent(),
                                             );
+
                                           }
                                         },
                                         child: Text(appLocalizations.sendOtp),

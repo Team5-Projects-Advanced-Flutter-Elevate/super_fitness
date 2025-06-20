@@ -217,4 +217,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterOtpCode => 'أدخل رمز التحقق الخاص بك، تحقق من بريدك الإلكتروني';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
 }

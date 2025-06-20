@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:otp_text_field/otp_text_field.dart';
 
 import '../../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../../core/apis/api_result/api_result.dart';
@@ -17,6 +20,10 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ResetCodeUseCase resetCodeUseCase;
   ResetPasswordUseCase resetPasswordUseCase;
   String? otpCode;
+  String? email;
+  OtpFieldController otpFieldController = OtpFieldController();
+  final ValueNotifier<int> timeRemaining = ValueNotifier(1);
+  Timer? _timer;
   @factoryMethod
   ForgetPasswordViewModel(
     this.resetPasswordUseCase,
@@ -27,23 +34,23 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   void onIntent(ForgetPasswordIntent intent) {
     switch (intent) {
       case ForgotPasswordIntent():
-        _forgetPasswordHandling(intent.email);
+        _forgetPasswordHandling();
         break;
       case ResetCodeIntent():
         _resetCodeHandling();
         break;
       case ResetPasswordIntent():
-        _resetPasswordHandling(intent.email, intent.newPassword);
+        _resetPasswordHandling(intent.newPassword);
         break;
-      case ResetCodeTimerOutIntent():
-        _resetCodeTimerOut();
+      case StartTimerIntent():
+        _startTimer(numberOfSeconds: 30);
         break;
     }
   }
 
-  _resetPasswordHandling(String email, String newPassword) async {
+  _resetPasswordHandling(String newPassword) async {
     emit(state.copyWith(resetPasswordStatus: ResetPasswordStatus.loading));
-    var result = await resetPasswordUseCase.call(email, newPassword);
+    var result = await resetPasswordUseCase.call(email!, newPassword);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
         emit(
@@ -73,6 +80,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
         );
       case Error<ForgetPasswordResponse?>():
         otpCode = null;
+        otpFieldController.clear();
         emit(
           state.copyWith(
             sendOtpStatus: SendOtpStatus.error,
@@ -83,18 +91,13 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _forgetPasswordHandling(String email) async {
+  _forgetPasswordHandling() async {
     FocusManager.instance.primaryFocus?.unfocus();
     emit(state.copyWith(sendEmailStatus: SendEmailStatus.loading));
-    var result = await forgetPasswordUseCase.call(email);
+    var result = await forgetPasswordUseCase.call(email!);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
-        emit(
-          state.copyWith(
-            sendEmailStatus: SendEmailStatus.success,
-            email: email,
-          ),
-        );
+        emit(state.copyWith(sendEmailStatus: SendEmailStatus.success));
 
       case Error<ForgetPasswordResponse?>():
         emit(
@@ -106,17 +109,30 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _resetCodeTimerOut() {
-    emit(state.copyWith(sendEmailStatus: SendEmailStatus.initial));
+  void _startTimer({required int numberOfSeconds}) {
+    if (_timer?.isActive == true) {
+      return;
+    }
+    timeRemaining.value = numberOfSeconds;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timeRemaining.value > 0) {
+        timeRemaining.value -= 1;
+      } else {
+        _timer?.cancel();
+      }
+    });
+  }
+
+  void _disposeTimerAndValueNotifier() {
+    _timer?.cancel();
+    timeRemaining.dispose();
   }
 }
 
 sealed class ForgetPasswordIntent {}
 
 class ForgotPasswordIntent extends ForgetPasswordIntent {
-  final String email;
-
-  ForgotPasswordIntent(this.email);
+  ForgotPasswordIntent();
 }
 
 class ResetCodeIntent extends ForgetPasswordIntent {
@@ -124,10 +140,9 @@ class ResetCodeIntent extends ForgetPasswordIntent {
 }
 
 class ResetPasswordIntent extends ForgetPasswordIntent {
-  final String email;
   final String newPassword;
 
-  ResetPasswordIntent(this.email, this.newPassword);
+  ResetPasswordIntent(this.newPassword);
 }
 
-class ResetCodeTimerOutIntent extends ForgetPasswordIntent {}
+class StartTimerIntent extends ForgetPasswordIntent {}

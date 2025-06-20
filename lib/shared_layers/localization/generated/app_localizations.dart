@@ -514,6 +514,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter Your Otp Code , check your email'**
   String get enterOtpCode;
+
+  /// No description provided for @successEmailVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verified Successfully'**
+  String get successEmailVerified;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

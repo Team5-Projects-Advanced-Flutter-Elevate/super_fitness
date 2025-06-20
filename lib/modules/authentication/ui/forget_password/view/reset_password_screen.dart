@@ -12,7 +12,6 @@ import '../../../../../core/validation/validation_functions.dart';
 import '../../../../../core/widgets/loading_state_widget.dart';
 import '../view_model/forget_password_state.dart';
 import '../view_model/forget_password_view_model.dart';
-import 'forget_password_screen.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -218,8 +217,6 @@ class _ResetPasswordScreenState
                                                     resetPasswordViewModel
                                                         .onIntent(
                                                           ResetPasswordIntent(
-                                                            emailController
-                                                                .text,
                                                             newPasswordController
                                                                 .text
                                                                 .trim(),

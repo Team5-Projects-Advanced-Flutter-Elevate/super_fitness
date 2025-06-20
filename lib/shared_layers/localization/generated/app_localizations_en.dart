@@ -217,4 +217,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterOtpCode => 'Enter Your Otp Code , check your email';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
 }

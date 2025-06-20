@@ -6,6 +6,8 @@ import 'package:super_fitness/modules/authentication/ui/register/all_register_fe
 import 'package:super_fitness/modules/home/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 
+import '../../modules/food_details/food_details_screen.dart';
+
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
     //var args = routeSettings.arguments;
@@ -24,6 +26,8 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.foodDetails:
+          return MaterialPageRoute(builder: (context) => const FoodDetailsScreen());
         default:
           return _errorRoute();
       }

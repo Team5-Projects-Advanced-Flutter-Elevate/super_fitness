@@ -8,6 +8,7 @@ import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/ui/login/state.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/exercise_screen.dart';
 
 import '../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../core/colors/app_colors.dart';
@@ -57,11 +58,12 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                     title: 'Success',
                     message: 'Login Successfully',
                   );
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    DefinedRoutes.homeScreenRoute,
-                    (route) => false,
-                  );
+                  // Navigator.pushNamedAndRemoveUntil(
+                  //   context,
+                  //   DefinedRoutes.homeScreenRoute,
+                  //   (route) => false,
+                  // );
+              Navigator.push(context,MaterialPageRoute(builder:  (context) => const ExerciseScreen(),));
 
                 case Status.error:
                   displaySnackBar(

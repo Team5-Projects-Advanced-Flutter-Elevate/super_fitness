@@ -153,7 +153,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get didnotReciveOtp => 'Did not receive code?';
 
   @override
-  String get resend => 'Resend';
+  String get resend => 'Resend code?';
 
   @override
   String get codeValid => 'Code is valid';

@@ -386,7 +386,7 @@ abstract class AppLocalizations {
   /// No description provided for @resend.
   ///
   /// In en, this message translates to:
-  /// **'Resend'**
+  /// **'Resend code?'**
   String get resend;
 
   /// No description provided for @codeValid.

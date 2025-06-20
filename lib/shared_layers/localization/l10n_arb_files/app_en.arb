@@ -47,7 +47,7 @@
   "otpScreenTitle": "Email verification",
   "otpScreenDescription": "Please enter your code that send to your email address",
   "didnotReciveOtp": "Did not receive code?",
-  "resend": "Resend",
+  "resend": "Resend code?",
   "codeValid": "Code is valid",
   "codeNotvalid": "Code not valid",
   "resetPasswordScreenDescription": "Password must not be empty and must contain 6 characters with upper case letter and one number at least",

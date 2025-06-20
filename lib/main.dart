@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
+import 'package:super_fitness/modules/authentication/ui/forget_password/view_model/forget_password_view_model.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
@@ -65,7 +66,9 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
-            home: const ResetCodeScreen(),
+            home: ResetCodeScreen(
+              viewModel: getIt.get<ForgetPasswordViewModel>(),
+            ),
             // initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
             // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {

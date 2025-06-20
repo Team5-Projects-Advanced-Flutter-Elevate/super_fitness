@@ -200,6 +200,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get successfullyRegistered => 'Registered Successfully!';
+
+  @override
+  String get error => 'Error!';
+
+  @override
   String get tellUsAboutYourself => 'Tell us about yourself !';
 
   @override

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
@@ -17,7 +18,9 @@ import 'shared_layers/localization/generated/app_localizations.dart';
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
 // just sonarQube workflow to run again
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(
+    widgetsBinding: WidgetsFlutterBinding.ensureInitialized(),
+  );
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
@@ -42,8 +45,22 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    FlutterNativeSplash.remove();
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getIt.get<LocalizationManager>().changeLocal("en");
+    // });
+  }
 
   // This widget is the root of your application.
   @override

@@ -464,6 +464,18 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @successfullyRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered Successfully!'**
+  String get successfullyRegistered;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error!'**
+  String get error;
+
   /// No description provided for @tellUsAboutYourself.
   ///
   /// In en, this message translates to:

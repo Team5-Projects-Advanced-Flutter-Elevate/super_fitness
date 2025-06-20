@@ -33,9 +33,6 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
       const WorkoutsPage(),
       const ProfilePage(),
     ];
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      localizationManager.changeLocal("ar");
-    });
   }
 
   @override
@@ -71,7 +68,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                         filter: ImageFilter.blur(sigmaY: 12, sigmaX: 12),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: AppColors.black.withAlpha(200),
+                            color: AppColors.black.withAlpha(190),
                           ),
                           child: ValueListenableBuilder(
                             valueListenable:
@@ -83,7 +80,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                                   BottomNavigationBarItem(
                                     icon: const Padding(
                                       padding: EdgeInsets.symmetric(
-                                        vertical: 10.0,
+                                        vertical: 14.0,
                                       ),
                                       child: ImageIcon(
                                         AssetImage(AssetsPaths.homeIcon),

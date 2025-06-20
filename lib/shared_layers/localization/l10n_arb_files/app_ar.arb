@@ -60,6 +60,8 @@
   "or": "أو",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "login": "تسجيل الدخول",
+  "successfullyRegistered": "تم التسجيل بنجاح!",
+  "error": "خطأ!",
   "tellUsAboutYourself": "أخبرنا عن نفسك",
   "weNeedToKnowYourGender": "نحتاج إلى معرفة جنسك",
   "howOldAreYou": "كم عمرك؟",

@@ -60,6 +60,8 @@
   "or": "Or",
   "alreadyHaveAccount": "Already Have an account ?",
   "login": "Login",
+  "successfullyRegistered": "Registered Successfully!",
+  "error": "Error!",
   "tellUsAboutYourself": "Tell us about yourself !",
   "weNeedToKnowYourGender": "We need to know your gender",
   "howOldAreYou": "How old are you ?",

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -117,9 +116,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get back => 'Back';
 
   @override
-  String get next => 'Next';
-
-  @override
   String get doIt => 'Do It';
 
   @override
@@ -203,6 +199,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get successfullyRegistered => 'Registered Successfully!';
+
+  @override
+  String get error => 'Error!';
+
+  @override
   String get tellUsAboutYourself => 'Tell us about yourself !';
 
   @override
@@ -235,6 +237,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get female => 'Female';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get year => 'Year';
@@ -274,4 +279,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trueBeast => 'True Beast';
+
+  @override
+  String get appSections___________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get aiChat => 'AI Chat';
+
+  @override
+  String get workouts => 'Workouts';
+
+  @override
+  String get profile => 'Profile';
 }

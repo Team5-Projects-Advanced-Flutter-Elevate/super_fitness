@@ -200,6 +200,19 @@ abstract class AppThemes {
         }
       }),
     ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: AppColors.white,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      showUnselectedLabels: false,
+      selectedItemColor: AppColors.mainColorDark,
+      selectedLabelStyle: GoogleFonts.balooThambi2(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.mainColorDark,
+      ),
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

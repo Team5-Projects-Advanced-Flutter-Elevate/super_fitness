@@ -33,7 +33,6 @@
   "pleaseEnterValidAddress": "Please enter a valid address",
   "skip": "Skip",
   "back": "Back",
-  "next": "Next",
   "doIt": "Do It",
   "priceOfExcellence": "The Price Of Excellence",
   "isDiscipline": "Is Discipline",
@@ -61,6 +60,8 @@
   "or": "Or",
   "alreadyHaveAccount": "Already Have an account ?",
   "login": "Login",
+  "successfullyRegistered": "Registered Successfully!",
+  "error": "Error!",
   "tellUsAboutYourself": "Tell us about yourself !",
   "weNeedToKnowYourGender": "We need to know your gender",
   "howOldAreYou": "How old are you ?",
@@ -85,5 +86,10 @@
   "beginner": "Beginner",
   "intermediate": "Intermediate",
   "advanced": "Advanced",
-  "trueBeast": "True Beast"
+  "trueBeast": "True Beast",
+  "appSections___________": "$$$ Comment $$$",
+  "explore": "Explore",
+  "aiChat": "AI Chat",
+  "workouts": "Workouts",
+  "profile": "Profile"
 }

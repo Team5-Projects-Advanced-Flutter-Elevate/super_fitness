@@ -52,6 +52,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
               children: [
                 PageView(
                   controller: homeViewModel.pageViewController,
+                  physics: const NeverScrollableScrollPhysics(),
                   children: pages,
                   onPageChanged: (value) {
                     homeViewModel.currentPageIndexNotifier.value = value;

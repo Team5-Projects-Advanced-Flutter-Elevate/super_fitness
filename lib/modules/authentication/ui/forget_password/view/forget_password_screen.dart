@@ -178,7 +178,7 @@ class _ForgetPasswordScreenState
                                     MaterialPageRoute(
                                       builder:
                                           (context) => ResetCodeScreen(
-                                            viewModel: viewModel,
+                                            //viewModel: viewModel,
                                           ),
                                     ),
                                   );

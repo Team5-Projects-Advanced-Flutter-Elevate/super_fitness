@@ -6,10 +6,13 @@ enum SendOtpStatus { initial, loading, success, error }
 
 enum ResetPasswordStatus { initial, loading, success, error }
 
+enum ConfirmButtonStatus { enabled, disabled }
+
 class ForgetPasswordState extends Equatable {
   final SendEmailStatus sendEmailStatus;
   final SendOtpStatus sendOtpStatus;
   final ResetPasswordStatus resetPasswordStatus;
+  final ConfirmButtonStatus confirmButtonStatus;
   final String? otp;
   //bool resendCode;
   final String? password;
@@ -22,12 +25,14 @@ class ForgetPasswordState extends Equatable {
     this.otp,
     this.password,
     this.error,
+    this.confirmButtonStatus = ConfirmButtonStatus.disabled,
   });
 
   ForgetPasswordState copyWith({
     SendEmailStatus? sendEmailStatus,
     SendOtpStatus? sendOtpStatus,
     ResetPasswordStatus? resetPasswordStatus,
+    ConfirmButtonStatus? confirmButtonStatus,
     String? email,
     String? otp,
     String? password,
@@ -36,6 +41,7 @@ class ForgetPasswordState extends Equatable {
     return ForgetPasswordState(
       sendEmailStatus: sendEmailStatus ?? this.sendEmailStatus,
       sendOtpStatus: sendOtpStatus ?? this.sendOtpStatus,
+      confirmButtonStatus: confirmButtonStatus ?? this.confirmButtonStatus,
       resetPasswordStatus: resetPasswordStatus ?? this.resetPasswordStatus,
       otp: otp ?? this.otp,
       password: password ?? this.password,
@@ -51,5 +57,6 @@ class ForgetPasswordState extends Equatable {
     otp,
     password,
     error,
+    confirmButtonStatus,
   ];
 }

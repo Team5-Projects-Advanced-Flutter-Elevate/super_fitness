@@ -14,7 +14,7 @@ import '../../../domain/use_cases/forget_password/reset_code_use_case.dart';
 import '../../../domain/use_cases/forget_password/reset_password_use_case.dart';
 import 'forget_password_state.dart';
 
-@injectable
+@lazySingleton
 class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ForgetPasswordUseCase forgetPasswordUseCase;
   ResetCodeUseCase resetCodeUseCase;
@@ -24,6 +24,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   OtpFieldController otpFieldController = OtpFieldController();
   final ValueNotifier<int> timeRemaining = ValueNotifier(1);
   Timer? _timer;
+  bool isNewPasswordObscure = true, isConfirmPasswordObscure = true;
   @factoryMethod
   ForgetPasswordViewModel(
     this.resetPasswordUseCase,
@@ -44,6 +45,9 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
         break;
       case StartTimerIntent():
         _startTimer(numberOfSeconds: 30);
+        break;
+      case ConfirmButtonIntent():
+        _confirmButtonHandling();
         break;
     }
   }
@@ -127,6 +131,14 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     _timer?.cancel();
     timeRemaining.dispose();
   }
+
+  void _confirmButtonHandling() {
+    otpCode != null
+        ? emit(state.copyWith(confirmButtonStatus: ConfirmButtonStatus.enabled))
+        : emit(
+          state.copyWith(confirmButtonStatus: ConfirmButtonStatus.disabled),
+        );
+  }
 }
 
 sealed class ForgetPasswordIntent {}
@@ -134,6 +146,8 @@ sealed class ForgetPasswordIntent {}
 class ForgotPasswordIntent extends ForgetPasswordIntent {
   ForgotPasswordIntent();
 }
+
+class ConfirmButtonIntent extends ForgetPasswordIntent {}
 
 class ResetCodeIntent extends ForgetPasswordIntent {
   ResetCodeIntent();

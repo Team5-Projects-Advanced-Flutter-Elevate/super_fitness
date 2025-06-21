@@ -91,7 +91,10 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const ResetPasswordScreen(),
+                        builder:
+                            (context) => ResetPasswordScreen(
+                              viewModel: widget.viewModel,
+                            ),
                       ),
                     );
                   }
@@ -156,14 +159,11 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                     ? const LoadingStateWidget()
                                     : Expanded(
                                       child: FilledButton(
-                                        onPressed:
-                                            widget.viewModel.otpCode == null
-                                                ? null
-                                                : () {
-                                                  widget.viewModel.onIntent(
-                                                    ResetCodeIntent(),
-                                                  );
-                                                },
+                                        onPressed: () {
+                                          widget.viewModel.onIntent(
+                                            ResetCodeIntent(),
+                                          );
+                                        },
                                         child: Text(appLocalizations.confirm),
                                       ),
                                     ),

@@ -14,8 +14,8 @@ import '../view_model/forget_password_state.dart';
 import '../view_model/forget_password_view_model.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
-
+  const ResetPasswordScreen({super.key, required this.viewModel});
+  final ForgetPasswordViewModel viewModel;
   @override
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
@@ -26,10 +26,6 @@ final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
 class _ResetPasswordScreenState
     extends BaseStatefulWidgetState<ResetPasswordScreen> {
-  final ForgetPasswordViewModel resetPasswordViewModel =
-      getIt.get<ForgetPasswordViewModel>();
-  bool isNewPasswordObscure = true, isConfirmPasswordObscure = true;
-
   @override
   void initState() {
     super.initState();
@@ -58,7 +54,7 @@ class _ResetPasswordScreenState
           FocusManager.instance.primaryFocus?.unfocus();
         },
         child: BlocProvider(
-          create: (context) => resetPasswordViewModel,
+          create: (context) => widget.viewModel,
           child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
             builder:
                 (context, state) => Scaffold(
@@ -131,20 +127,24 @@ class _ResetPasswordScreenState
                                       controller: newPasswordController,
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
-                                      obscureText: isNewPasswordObscure,
+                                      obscureText:
+                                          widget.viewModel.isNewPasswordObscure,
                                       obscuringCharacter: "*",
                                       decoration: InputDecoration(
                                         enabled: true,
                                         hintText: appLocalizations.password,
                                         suffixIcon: IconButton(
                                           onPressed: () {
-                                            setState(() {
-                                              isNewPasswordObscure =
-                                                  !isNewPasswordObscure;
-                                            });
+                                            widget
+                                                .viewModel
+                                                .isNewPasswordObscure = !widget
+                                                    .viewModel
+                                                    .isNewPasswordObscure;
                                           },
                                           icon: Icon(
-                                            isNewPasswordObscure
+                                            widget
+                                                    .viewModel
+                                                    .isNewPasswordObscure
                                                 ? Icons.visibility_off_outlined
                                                 : Icons.visibility_outlined,
                                             color: AppColors.white,
@@ -172,7 +172,7 @@ class _ResetPasswordScreenState
                                       controller: confirmPasswordController,
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
-                                      obscureText: isConfirmPasswordObscure,
+                                      obscureText:widget.viewModel. isConfirmPasswordObscure,
                                       obscuringCharacter: "*",
                                       decoration: InputDecoration(
                                         enabled: true,
@@ -180,13 +180,13 @@ class _ResetPasswordScreenState
                                             appLocalizations.confirmPassword,
                                         suffixIcon: IconButton(
                                           onPressed: () {
-                                            setState(() {
-                                              isConfirmPasswordObscure =
-                                                  !isConfirmPasswordObscure;
-                                            });
+
+                                            widget.viewModel. isConfirmPasswordObscure =
+                                                  !widget.viewModel.isConfirmPasswordObscure;
+
                                           },
                                           icon: Icon(
-                                            isConfirmPasswordObscure
+                                            widget.viewModel.isConfirmPasswordObscure
                                                 ? Icons.visibility_off_outlined
                                                 : Icons.visibility_outlined,
                                             color: AppColors.white,
@@ -204,42 +204,35 @@ class _ResetPasswordScreenState
                                       ),
                                     ),
                                     SizedBox(height: screenHeight * 0.04),
-                                    state.resetPasswordStatus ==
-                                            ResetPasswordStatus.loading
-                                        ? const LoadingStateWidget()
-                                        : Row(
-                                          children: [
-                                            Expanded(
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        state.resetPasswordStatus ==
+                                                ResetPasswordStatus.loading
+                                            ? const LoadingStateWidget()
+                                            : Expanded(
                                               child: FilledButton(
                                                 onPressed: () {
                                                   if (formKey.currentState!
                                                       .validate()) {
-                                                    resetPasswordViewModel
-                                                        .onIntent(
-                                                          ResetPasswordIntent(
-                                                            newPasswordController
-                                                                .text
-                                                                .trim(),
-                                                          ),
-                                                        );
+                                                    widget.viewModel.onIntent(
+                                                      ResetPasswordIntent(
+                                                        newPasswordController
+                                                            .text
+                                                            .trim(),
+                                                      ),
+                                                    );
                                                   }
                                                 },
 
-                                                child:
-                                                    state.resetPasswordStatus ==
-                                                            ResetPasswordStatus
-                                                                .loading
-                                                        ? CircularProgressIndicator(
-                                                          color:
-                                                              AppColors.white,
-                                                        )
-                                                        : Text(
-                                                          appLocalizations.done,
-                                                        ),
+                                                child: Text(
+                                                  appLocalizations.done,
+                                                ),
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),

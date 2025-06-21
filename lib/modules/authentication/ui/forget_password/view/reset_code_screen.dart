@@ -30,6 +30,12 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
   }
 
   @override
+  void dispose() {
+    widget.viewModel.onIntent(DisposeTimerAndValueNotifierIntent());
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(

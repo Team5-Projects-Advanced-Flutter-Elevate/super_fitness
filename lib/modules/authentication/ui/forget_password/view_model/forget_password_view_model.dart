@@ -35,13 +35,13 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   void onIntent(ForgetPasswordIntent intent) {
     switch (intent) {
       case ForgotPasswordIntent():
-        _forgetPasswordHandling();
+        _sendCodeToEmail();
         break;
       case ResetCodeIntent():
-        _resetCodeHandling();
+        _confirmEmail();
         break;
       case ResetPasswordIntent():
-        _resetPasswordHandling(intent.newPassword);
+        _resetPassword(intent.newPassword);
         break;
       case StartTimerIntent():
         _startTimer(numberOfSeconds: 30);
@@ -52,7 +52,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _resetPasswordHandling(String newPassword) async {
+  _resetPassword(String newPassword) async {
     emit(
       state.copyWith(
         sendEmailStatus: SendEmailStatus.initial,
@@ -80,7 +80,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _resetCodeHandling() async {
+  _confirmEmail() async {
     emit(
       state.copyWith(
         sendOtpStatus: SendOtpStatus.loading,
@@ -106,7 +106,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     }
   }
 
-  _forgetPasswordHandling() async {
+  _sendCodeToEmail() async {
     FocusManager.instance.primaryFocus?.unfocus();
     emit(state.copyWith(sendEmailStatus: SendEmailStatus.loading));
     var result = await forgetPasswordUseCase.call(email!);

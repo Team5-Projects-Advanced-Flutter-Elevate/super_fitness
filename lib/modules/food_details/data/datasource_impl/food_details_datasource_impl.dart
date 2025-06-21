@@ -23,10 +23,8 @@ class FoodDetailsDataSourceImpl implements FoodDetailsDataSource {
     );
     switch (result) {
       case Success<FoodDetailsModel>():
-        log(result.data.toString());
         return Success(data: result.data.toEntity());
       case Error<FoodDetailsModel>():
-        log(result.error.toString());
         return Error(error: result);
     }
   }

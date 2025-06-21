@@ -16,4 +16,8 @@ abstract class AssetsPaths {
   static const String dumbbellIcon = "assets/icons/dumbbell_icon.png";
   static const String homeIcon = "assets/icons/home_icon.png";
   static const String profileIcon = "assets/icons/profile_icon.png";
+
+  /// strings
+  static const String ingredientKey = "Ingredient";
+  static const String measureKey = "Measure";
 }

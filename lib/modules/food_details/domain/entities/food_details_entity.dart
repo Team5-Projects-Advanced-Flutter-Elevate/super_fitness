@@ -1,10 +1,15 @@
-class FoodDetailsEntity {
+import 'package:equatable/equatable.dart';
+
+class FoodDetailsEntity extends Equatable {
   final MealEntity? mealEntity;
 
-  FoodDetailsEntity({this.mealEntity});
+  const FoodDetailsEntity({this.mealEntity});
+
+  @override
+  List<Object?> get props => [mealEntity];
 }
 
-class MealEntity {
+class MealEntity extends Equatable {
   final String? idMeal;
   final String? strMeal;
   final dynamic strMealAlternate;
@@ -112,4 +117,41 @@ class MealEntity {
       "strMeasure10": strMeasure10,
     };
   }
+
+  @override
+  List<Object?> get props => [
+    idMeal,
+    strMeal,
+    strMealAlternate,
+    strCategory,
+    strArea,
+    strInstructions,
+    strMealThumb,
+    strTags,
+    strYoutube,
+    strSource,
+    strImageSource,
+    strCreativeCommonsConfirmed,
+    dateModified,
+    strIngredient1,
+    strIngredient2,
+    strIngredient3,
+    strIngredient4,
+    strIngredient5,
+    strIngredient6,
+    strIngredient7,
+    strIngredient8,
+    strIngredient9,
+    strIngredient10,
+    strMeasure1,
+    strMeasure2,
+    strMeasure3,
+    strMeasure4,
+    strMeasure5,
+    strMeasure6,
+    strMeasure7,
+    strMeasure8,
+    strMeasure9,
+    strMeasure10,
+  ];
 }

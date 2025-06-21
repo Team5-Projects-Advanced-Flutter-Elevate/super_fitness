@@ -11,7 +11,7 @@ class HomePage extends BaseStatelessWidget {
     return DefaultTabController(
       /// <==== Don't forget to user DefaultTabController
       initialIndex: 0,
-      length: 9,
+      length: 5,
       child: Scaffold(
         appBar: AppBar(
           title: Image.asset(

@@ -4,6 +4,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
@@ -107,6 +108,11 @@ class _ResetPasswordScreenState
                           contentType: ContentType.success,
                           title: appLocalizations.success,
                           message: appLocalizations.yourPasswordChanged,
+                        );
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          DefinedRoutes.loginScreenRoute,
+                          (route) => false,
                         );
                       } else if (state.resetPasswordStatus ==
                           ResetPasswordStatus.error) {

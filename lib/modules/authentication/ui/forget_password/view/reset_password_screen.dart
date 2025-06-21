@@ -25,6 +25,7 @@ class _ResetPasswordScreenState
   late TextEditingController newPasswordController;
   late TextEditingController confirmPasswordController;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool isNewPasswordObscure = true, isConfirmPasswordObscure = true;
   @override
   void initState() {
     super.initState();
@@ -52,220 +53,199 @@ class _ResetPasswordScreenState
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: BlocProvider(
-          create: (context) => widget.viewModel,
-          child: BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
-            builder:
-                (context, state) => Scaffold(
-                  appBar: AppBar(
-                    forceMaterialTransparency: true,
-                    automaticallyImplyLeading: false,
-                    titleSpacing: 0.0,
-                    leading: IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        size: screenWidth * 0.06,
-                      ),
+        child: Scaffold(
+          appBar: AppBar(
+            forceMaterialTransparency: true,
+            automaticallyImplyLeading: false,
+            titleSpacing: 0.0,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
+            ),
+          ),
+          body: SingleChildScrollView(
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Image.asset(AssetsPaths.appIcon)],
+                  ),
+                  SizedBox(height: screenHeight * 0.05),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                    ),
+
+                    child: Text(
+                      appLocalizations.resetPassDesc,
+                      style: theme.textTheme.titleMedium,
                     ),
                   ),
-                  body: SingleChildScrollView(
-                    child: Form(
-                      key: formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [Image.asset(AssetsPaths.appIcon)],
-                          ),
-                          SizedBox(height: screenHeight * 0.05),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.04,
-                            ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                    ),
 
-                            child: Text(
-                              appLocalizations.resetPassDesc,
-                              style: theme.textTheme.titleMedium,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.04,
-                            ),
+                    child: Text(
+                      appLocalizations.createNewPassword,
+                      style: theme.textTheme.titleLarge,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.04),
 
-                            child: Text(
-                              appLocalizations.createNewPassword,
-                              style: theme.textTheme.titleLarge,
+                  BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
+                    bloc: widget.viewModel,
+                    listener: (context, state) {
+                      if (state.resetPasswordStatus ==
+                          ResetPasswordStatus.success) {
+                        displaySnackBar(
+                          contentType: ContentType.success,
+                          title: appLocalizations.success,
+                          message: appLocalizations.yourPasswordChanged,
+                        );
+                      } else if (state.resetPasswordStatus ==
+                          ResetPasswordStatus.error) {
+                        displaySnackBar(
+                          contentType: ContentType.failure,
+                          title: appLocalizations.error,
+                          message: state.error,
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(40),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            padding: const EdgeInsets.all(30),
+                            decoration: BoxDecoration(
+                              color: AppColors.black.withValues(alpha: .5),
+
+                              borderRadius: BorderRadius.circular(40),
                             ),
-                          ),
-                          SizedBox(height: screenHeight * 0.04),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                TextFormField(
+                                  validator:
+                                      (value) => getIt<ValidateFunctions>()
+                                          .validationOfPassword(value),
 
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(40),
-                            child: BackdropFilter(
-                              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                              child: Container(
-                                padding: const EdgeInsets.all(30),
-                                decoration: BoxDecoration(
-                                  color: AppColors.black.withValues(alpha: .5),
-
-                                  borderRadius: BorderRadius.circular(40),
+                                  controller: newPasswordController,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  obscureText: isNewPasswordObscure,
+                                  obscuringCharacter: "*",
+                                  decoration: InputDecoration(
+                                    enabled: true,
+                                    hintText: appLocalizations.password,
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {});
+                                        isNewPasswordObscure =
+                                            !isNewPasswordObscure;
+                                      },
+                                      icon: Icon(
+                                        isNewPasswordObscure
+                                            ? Icons.visibility_off_outlined
+                                            : Icons.visibility_outlined,
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                    prefixIcon: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16.0,
+                                      ),
+                                      child: Icon(
+                                        Icons.lock_outline_sharp,
+                                        color: AppColors.black[20],
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                child: Column(
+                                SizedBox(height: screenHeight * 0.03),
+                                TextFormField(
+                                  validator:
+                                      (value) => getIt<ValidateFunctions>()
+                                          .validationOfConfirmPassword(
+                                            value,
+                                            newPasswordController.text,
+                                          ),
+                                  controller: confirmPasswordController,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  obscureText: isConfirmPasswordObscure,
+                                  obscuringCharacter: "*",
+                                  decoration: InputDecoration(
+                                    enabled: true,
+                                    hintText: appLocalizations.confirmPassword,
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        setState(() {});
+
+                                        isConfirmPasswordObscure =
+                                            !isConfirmPasswordObscure;
+                                      },
+                                      icon: Icon(
+                                        isConfirmPasswordObscure
+                                            ? Icons.visibility_off_outlined
+                                            : Icons.visibility_outlined,
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                    prefixIcon: Padding(
+                                      padding: const EdgeInsets.only(
+                                        left: 16.0,
+                                      ),
+                                      child: Icon(
+                                        Icons.lock_outline_sharp,
+                                        color: AppColors.black[20],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: screenHeight * 0.04),
+                                Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    TextFormField(
-                                      validator:
-                                          (value) => getIt<ValidateFunctions>()
-                                              .validationOfPassword(value),
+                                    state.resetPasswordStatus ==
+                                            ResetPasswordStatus.loading
+                                        ? const LoadingStateWidget()
+                                        : Expanded(
+                                          child: FilledButton(
+                                            onPressed: () {
+                                              if (formKey.currentState!
+                                                  .validate()) {
+                                                widget.viewModel.onIntent(
+                                                  ResetPasswordIntent(
+                                                    newPasswordController.text
+                                                        .trim(),
+                                                  ),
+                                                );
+                                              }
+                                            },
 
-                                      controller: newPasswordController,
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      obscureText:
-                                          widget.viewModel.isNewPasswordObscure,
-                                      obscuringCharacter: "*",
-                                      decoration: InputDecoration(
-                                        enabled: true,
-                                        hintText: appLocalizations.password,
-                                        suffixIcon: IconButton(
-                                          onPressed: () {
-                                            widget
-                                                .viewModel
-                                                .isNewPasswordObscure = !widget
-                                                    .viewModel
-                                                    .isNewPasswordObscure;
-                                          },
-                                          icon: Icon(
-                                            widget
-                                                    .viewModel
-                                                    .isNewPasswordObscure
-                                                ? Icons.visibility_off_outlined
-                                                : Icons.visibility_outlined,
-                                            color: AppColors.white,
+                                            child: Text(appLocalizations.done),
                                           ),
                                         ),
-                                        prefixIcon: Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 16.0,
-                                          ),
-                                          child: Icon(
-                                            Icons.lock_outline_sharp,
-                                            color: AppColors.black[20],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: screenHeight * 0.03),
-                                    TextFormField(
-                                      validator:
-                                          (value) => getIt<ValidateFunctions>()
-                                              .validationOfConfirmPassword(
-                                                value,
-                                                newPasswordController.text,
-                                              ),
-                                      controller: confirmPasswordController,
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      obscureText:
-                                          widget
-                                              .viewModel
-                                              .isConfirmPasswordObscure,
-                                      obscuringCharacter: "*",
-                                      decoration: InputDecoration(
-                                        enabled: true,
-                                        hintText:
-                                            appLocalizations.confirmPassword,
-                                        suffixIcon: IconButton(
-                                          onPressed: () {
-                                            widget
-                                                    .viewModel
-                                                    .isConfirmPasswordObscure =
-                                                !widget
-                                                    .viewModel
-                                                    .isConfirmPasswordObscure;
-                                          },
-                                          icon: Icon(
-                                            widget
-                                                    .viewModel
-                                                    .isConfirmPasswordObscure
-                                                ? Icons.visibility_off_outlined
-                                                : Icons.visibility_outlined,
-                                            color: AppColors.white,
-                                          ),
-                                        ),
-                                        prefixIcon: Padding(
-                                          padding: const EdgeInsets.only(
-                                            left: 16.0,
-                                          ),
-                                          child: Icon(
-                                            Icons.lock_outline_sharp,
-                                            color: AppColors.black[20],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: screenHeight * 0.04),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        state.resetPasswordStatus ==
-                                                ResetPasswordStatus.loading
-                                            ? const LoadingStateWidget()
-                                            : Expanded(
-                                              child: FilledButton(
-                                                onPressed: () {
-                                                  if (formKey.currentState!
-                                                      .validate()) {
-                                                    widget.viewModel.onIntent(
-                                                      ResetPasswordIntent(
-                                                        newPasswordController
-                                                            .text
-                                                            .trim(),
-                                                      ),
-                                                    );
-                                                  }
-                                                },
-
-                                                child: Text(
-                                                  appLocalizations.done,
-                                                ),
-                                              ),
-                                            ),
-                                      ],
-                                    ),
                                   ],
                                 ),
-                              ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    },
                   ),
-                ),
-            listener: (context, state) {
-              if (state.resetPasswordStatus == ResetPasswordStatus.success) {
-                displaySnackBar(
-                  contentType: ContentType.success,
-                  title: appLocalizations.success,
-                  message: appLocalizations.yourPasswordChanged,
-                );
-                //Navigator.pushNamedAndRemoveUntil(context, DefinedRoutes.loginScreenRoute, (_) => false);
-              } else if (state.resetPasswordStatus ==
-                  ResetPasswordStatus.error) {
-                displaySnackBar(
-                  contentType: ContentType.failure,
-                  title: appLocalizations.error,
-                  message: state.error,
-                );
-              }
-            },
+                ],
+              ),
+            ),
           ),
         ),
       ),

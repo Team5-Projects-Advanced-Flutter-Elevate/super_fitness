@@ -14,7 +14,7 @@ import '../../../domain/use_cases/forget_password/reset_code_use_case.dart';
 import '../../../domain/use_cases/forget_password/reset_password_use_case.dart';
 import 'forget_password_state.dart';
 
-@lazySingleton
+@injectable
 class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   ForgetPasswordUseCase forgetPasswordUseCase;
   ResetCodeUseCase resetCodeUseCase;
@@ -24,7 +24,7 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
   OtpFieldController otpFieldController = OtpFieldController();
   final ValueNotifier<int> timeRemaining = ValueNotifier(1);
   Timer? _timer;
-  bool isNewPasswordObscure = true, isConfirmPasswordObscure = true;
+
   @factoryMethod
   ForgetPasswordViewModel(
     this.resetPasswordUseCase,
@@ -46,14 +46,20 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
       case StartTimerIntent():
         _startTimer(numberOfSeconds: 30);
         break;
-      case ConfirmButtonIntent():
-        _confirmButtonHandling();
+      case DisposeTimerAndValueNotifierIntent():
+        _disposeTimerAndValueNotifier();
         break;
     }
   }
 
   _resetPasswordHandling(String newPassword) async {
-    emit(state.copyWith(resetPasswordStatus: ResetPasswordStatus.loading));
+    emit(
+      state.copyWith(
+        sendEmailStatus: SendEmailStatus.initial,
+        sendOtpStatus: SendOtpStatus.initial,
+        resetPasswordStatus: ResetPasswordStatus.loading,
+      ),
+    );
     var result = await resetPasswordUseCase.call(email!, newPassword);
     switch (result) {
       case Success<ForgetPasswordResponse?>():
@@ -63,9 +69,14 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
             password: newPassword,
           ),
         );
-
+        break;
       case Error<ForgetPasswordResponse?>():
-        emit(state.copyWith(resetPasswordStatus: ResetPasswordStatus.error));
+        emit(
+          state.copyWith(
+            resetPasswordStatus: ResetPasswordStatus.error,
+            error: getIt.get<ApiErrorHandler>().handle(result.error),
+          ),
+        );
     }
   }
 
@@ -131,14 +142,6 @@ class ForgetPasswordViewModel extends Cubit<ForgetPasswordState> {
     _timer?.cancel();
     timeRemaining.dispose();
   }
-
-  void _confirmButtonHandling() {
-    otpCode != null
-        ? emit(state.copyWith(confirmButtonStatus: ConfirmButtonStatus.enabled))
-        : emit(
-          state.copyWith(confirmButtonStatus: ConfirmButtonStatus.disabled),
-        );
-  }
 }
 
 sealed class ForgetPasswordIntent {}
@@ -147,7 +150,7 @@ class ForgotPasswordIntent extends ForgetPasswordIntent {
   ForgotPasswordIntent();
 }
 
-class ConfirmButtonIntent extends ForgetPasswordIntent {}
+class DisposeTimerAndValueNotifierIntent extends ForgetPasswordIntent {}
 
 class ResetCodeIntent extends ForgetPasswordIntent {
   ResetCodeIntent();

@@ -286,4 +286,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get ingredients => 'Ingredients';
+
+  @override
+  String get recommendation => 'Recommendation';
+
+  @override
+  String get energy => 'Energy';
+
+  @override
+  String get energyValue => '100 k';
 }

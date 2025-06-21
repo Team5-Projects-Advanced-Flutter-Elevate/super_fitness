@@ -91,5 +91,9 @@
   "explore": "Explore",
   "aiChat": "AI Chat",
   "workouts": "Workouts",
-  "profile": "Profile"
+  "profile": "Profile",
+  "ingredients": "Ingredients",
+  "recommendation": "Recommendation",
+  "energy": "Energy",
+  "energyValue": "100 k"
 }

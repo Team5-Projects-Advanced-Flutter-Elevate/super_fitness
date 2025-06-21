@@ -13,7 +13,7 @@ part 'food_details_state.dart';
 @injectable
 class FoodDetailsCubit extends Cubit<FoodDetailsState> {
   FoodDetailsCubit(this.getFoodDetailsUseCase)
-    : super(const FoodDetailsState());
+      : super(const FoodDetailsState());
   final GetFoodDetailsUseCase getFoodDetailsUseCase;
 
   void doIntent(FoodDetailsIntent intent) {
@@ -25,12 +25,13 @@ class FoodDetailsCubit extends Cubit<FoodDetailsState> {
     }
   }
 
-  void _updateVideoState(bool isPlaying) => emit(
-    state.copyWith(
-      foodVideoStatus:
+  void _updateVideoState(bool isPlaying) =>
+      emit(
+        state.copyWith(
+          foodVideoStatus:
           !isPlaying ? FoodVideoStatus.notPlaying : FoodVideoStatus.playing,
-    ),
-  );
+        ),
+      );
 
   Future<void> _getFoodDetails(String id) async {
     emit(state.copyWith(getFoodDetailsStatus: GetFoodDetailsStatus.loading));
@@ -40,12 +41,18 @@ class FoodDetailsCubit extends Cubit<FoodDetailsState> {
         List<String> ingredients = [];
         List<String> measures = [];
         var filteredResult = Map.fromEntries(
-          result.data.mealEntity?.toJson().entries.where((e) {
-                return (e.key.contains('Ingredient') ||
-                        e.key.contains('Measure')) &&
-                    e.value != null &&
-                    e.value.toString().trim().isNotEmpty;
-              }) ??
+          result.data.mealEntity
+              ?.toJson()
+              .entries
+              .where((e) {
+            return (e.key.contains('Ingredient') ||
+                e.key.contains('Measure')) &&
+                e.value != null &&
+                e.value
+                    .toString()
+                    .trim()
+                    .isNotEmpty;
+          }) ??
               [],
         );
         filteredResult.forEach((k, v) {

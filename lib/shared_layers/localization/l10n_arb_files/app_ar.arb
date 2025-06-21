@@ -91,7 +91,11 @@
   "explore": "استكشاف",
   "aiChat": "دردشة AI",
   "workouts": "التمارين",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "ingredients": "المكونات",
+  "recommendation": "التوصية",
+  "energy": "الطاقة",
+  "energyValue": "١٠٠ ك"
 
 
 }

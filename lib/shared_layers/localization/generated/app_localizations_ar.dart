@@ -286,4 +286,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get ingredients => 'المكونات';
+
+  @override
+  String get recommendation => 'التوصية';
+
+  @override
+  String get energy => 'الطاقة';
+
+  @override
+  String get energyValue => '١٠٠ ك';
 }

@@ -30,7 +30,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unknownError => 'Something Went Wrong 🤔';
 
   @override
-  String get badCertificate => 'The certificate provided by the server is not valid 📑';
+  String get badCertificate =>
+      'The certificate provided by the server is not valid 📑';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
@@ -48,10 +49,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterUserName => 'Please enter user name.';
 
   @override
-  String get userNameLength => 'Username must be between 3 and 16 characters long.';
+  String get userNameLength =>
+      'Username must be between 3 and 16 characters long.';
 
   @override
-  String get userNameRules => 'Username can only contain letters, numbers, and underscores.';
+  String get userNameRules =>
+      'Username can only contain letters, numbers, and underscores.';
 
   @override
   String get pleaseEnterFirstName => 'Please enter first name.';
@@ -72,7 +75,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'Please enter your phone number.';
 
   @override
-  String get phoneNumberRules => 'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
+  String get phoneNumberRules =>
+      'Number must start with one of the valid prefixes:\n010, 011, 012, or 015\nfollowed by 8 digits.';
 
   @override
   String get pleaseEnterPassword => 'Please enter your password.';
@@ -90,7 +94,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get digitRulePassword => 'At least one digit must be there.';
 
   @override
-  String get specialCharactersRulePassword => 'At least one special character(e.g., #?!@\$%^&*-) must be included.';
+  String get specialCharactersRulePassword =>
+      'At least one special character(e.g., #?!@\$%^&*-) must be included.';
 
   @override
   String get pleaseConfirmPassword => 'Please confirm password.';
@@ -132,7 +137,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removedImage => 'Removed image';
 
   @override
-  String get forgetPasswordDescription => 'Please enter your email associated to your account';
+  String get forgetPasswordDescription =>
+      'Please enter your email associated to your account';
 
   @override
   String get confirm => 'Confirm';
@@ -147,7 +153,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otpScreenTitle => 'Email verification';
 
   @override
-  String get otpScreenDescription => 'Please enter your code that send to your email address';
+  String get otpScreenDescription =>
+      'Please enter your code that send to your email address';
 
   @override
   String get didnotReciveOtp => 'Did not receive code?';
@@ -162,7 +169,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get codeNotvalid => 'Code not valid';
 
   @override
-  String get resetPasswordScreenDescription => 'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+  String get resetPasswordScreenDescription =>
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
 
   @override
   String get resetPasswordScreenTitle => 'Reset password';

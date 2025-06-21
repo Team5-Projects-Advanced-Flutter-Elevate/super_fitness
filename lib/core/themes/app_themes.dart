@@ -192,6 +192,48 @@ abstract class AppThemes {
         ),
       ),
     ),
+    radioTheme: RadioThemeData(
+      fillColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.selected)) {
+          return AppColors.mainColorLight;
+        } else {
+          return AppColors.white;
+        }
+      }),
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: AppColors.white,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      showUnselectedLabels: false,
+      selectedItemColor: AppColors.mainColorDark,
+      selectedLabelStyle: GoogleFonts.balooThambi2(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.mainColorDark,
+      ),
+    ),
+    tabBarTheme: TabBarTheme(
+      dividerColor: AppColors.transparent,
+      dividerHeight: 0,
+      overlayColor: WidgetStateColor.transparent,
+      indicator: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: AppColors.mainColorDark,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      labelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.black[20],
+        fontWeight: FontWeight.w700,
+      ),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 16),
+      indicatorSize: TabBarIndicatorSize.label,
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

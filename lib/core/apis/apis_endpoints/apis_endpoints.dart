@@ -4,4 +4,5 @@ class ApisEndpoints {
   static const String forgetPasswordEndPoint = '/api/v1/auth/forgotPassword';
   static const String resetPasswordEndPoint = '/api/v1/auth/resetPassword';
   static const String resetCodeEndPoint = '/api/v1/auth/verifyResetCode';
+  static const String registerEndPoint = '/api/v1/auth/signup';
 }

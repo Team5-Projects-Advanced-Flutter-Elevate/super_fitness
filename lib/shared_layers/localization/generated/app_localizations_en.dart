@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -64,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get namesRules => 'Names can only have alphabetic characters.';
 
   @override
-  String get pleaseEnterEmail => 'Please enter your E-mail.';
+  String get pleaseEnterEmail => 'Enter your Email.';
 
   @override
   String get pleaseEnterValidEmail => 'Please enter a valid email address.';
@@ -106,6 +105,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterAddress => 'Please enter the address';
+
+  @override
+  String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get emailHint => 'Enter your email';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get removedImage => 'Removed image';
+
+  @override
+  String get forgetPasswordDescription =>
+      'Please enter your email associated to your account';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get codeSendTitle => 'Code send To Email';
+
+  @override
+  String get otpScreenTitle => 'Email verification';
+
+  @override
+  String get otpScreenDescription =>
+      'Please enter your code that send to your email address';
+
+  @override
+  String get didnotReciveOtp => 'Did not receive code?';
+
+  @override
+  String get resend => 'Resend code?';
+
+  @override
+  String get codeValid => 'Code is valid';
+
+  @override
+  String get codeNotvalid => 'Code not valid';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get resetPasswordScreenTitle => 'Reset password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get yourPasswordChanged => 'Password Changed Successfully';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get forgetPassword => 'Forget password';
 
   @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
@@ -295,4 +366,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get sendOtp => 'Send OTP';
+
+  @override
+  String get resetPassDesc => 'Make Sure its 8 characters Or More ';
+
+  @override
+  String get createNewPassword => 'Create New Password';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get oTpCode => 'Otp Code';
+
+  @override
+  String get enterOtpCode => 'Enter Your Otp Code , check your email';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
 }

@@ -25,12 +25,16 @@ import '../../modules/authentication/data/collections/users/users_collection_imp
     as _i431;
 import '../../modules/authentication/data/data_sources_contracts/firebase_auth/firebase_auth_data_source.dart'
     as _i449;
+import '../../modules/authentication/data/data_sources_contracts/forget_password/forget_password_remote_data_source.dart'
+    as _i150;
 import '../../modules/authentication/data/data_sources_contracts/login/login.dart'
     as _i969;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
 import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
     as _i1026;
+import '../../modules/authentication/data/data_sources_imp/forget_password/forget_password_remote_data_source_imp.dart'
+    as _i191;
 import '../../modules/authentication/data/data_sources_imp/login/login.dart'
     as _i79;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
@@ -43,20 +47,32 @@ import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.
     as _i641;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
     as _i193;
+import '../../modules/authentication/data/respositoies_imp/forget_password/forget_password_repo_imp.dart'
+    as _i811;
 import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
     as _i396;
+import '../../modules/authentication/domain/repositories_contracts/forget_password/forget_password_repo.dart'
+    as _i1013;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
     as _i496;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart'
     as _i851;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart'
     as _i210;
+import '../../modules/authentication/domain/use_cases/forget_password/forget_password_use_case.dart'
+    as _i823;
+import '../../modules/authentication/domain/use_cases/forget_password/reset_code_use_case.dart'
+    as _i9;
+import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
+    as _i110;
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
 import '../../modules/authentication/domain/usecase/login/login.dart' as _i192;
 import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
     as _i778;
+import '../../modules/authentication/ui/forget_password/view_model/forget_password_view_model.dart'
+    as _i494;
 import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
@@ -102,11 +118,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -117,6 +133,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
+    );
+    gh.factory<_i150.ForgetPasswordRemoteDataSource>(
+      () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
@@ -140,6 +159,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i1013.ForgetPasswordRepo>(
+      () => _i811.ForgetPasswordRepoImpl(
+        gh<_i150.ForgetPasswordRemoteDataSource>(),
+      ),
+    );
     gh.singleton<_i273.LocalizationManager>(
       () => _i273.LocalizationManager(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -152,11 +176,20 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i9.ResetCodeUseCase>(
+      () => _i9.ResetCodeUseCase(gh<_i1013.ForgetPasswordRepo>()),
+    );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i110.ResetPasswordUseCase>(
+      () => _i110.ResetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i823.ForgetPasswordUseCase>(
+      () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
@@ -184,6 +217,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i782.RegisterUserCase>(),
         gh<_i210.SignUpWithGoogleAccountUseCase>(),
         gh<_i138.GoogleSignInHandler>(),
+      ),
+    );
+    gh.factory<_i494.ForgetPasswordViewModel>(
+      () => _i494.ForgetPasswordViewModel(
+        gh<_i110.ResetPasswordUseCase>(),
+        gh<_i823.ForgetPasswordUseCase>(),
+        gh<_i9.ResetCodeUseCase>(),
       ),
     );
     gh.factory<_i396.LoginViewModel>(

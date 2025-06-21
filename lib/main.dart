@@ -13,6 +13,7 @@ import 'package:super_fitness/shared_layers/localization/l10n_manager/localizati
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
+import 'modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -85,6 +86,9 @@ class _MyAppState extends State<MyApp> {
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
             initialRoute: DefinedRoutes.homeScreenRoute,
+            home: const ForgetPasswordScreen(),
+            // initialRoute: DefinedRoutes.forgetPasswordScreenRoute,
+            // onGenerateRoute: GenerateRoute.onGenerateRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: DefinedRoutes.onboardingScreenRoute,

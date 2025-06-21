@@ -4,6 +4,7 @@ import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/widgets/error_state_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/food_details/ui/view_model/food_details_cubit.dart';
+import 'package:super_fitness/modules/food_details/ui/view_model/food_details_intent.dart';
 import 'package:super_fitness/modules/food_details/ui/widgets/food_video_section.dart';
 import 'package:super_fitness/modules/food_details/ui/widgets/ingredients_section.dart';
 import 'package:super_fitness/modules/food_details/ui/widgets/recommendation_section.dart';

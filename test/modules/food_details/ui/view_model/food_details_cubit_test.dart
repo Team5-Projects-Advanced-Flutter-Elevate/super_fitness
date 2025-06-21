@@ -6,6 +6,7 @@ import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/modules/food_details/domain/entities/food_details_entity.dart';
 import 'package:super_fitness/modules/food_details/domain/usecases/get_food_details_use_case.dart';
 import 'package:super_fitness/modules/food_details/ui/view_model/food_details_cubit.dart';
+import 'package:super_fitness/modules/food_details/ui/view_model/food_details_intent.dart';
 
 import 'food_details_cubit_test.mocks.dart';
 

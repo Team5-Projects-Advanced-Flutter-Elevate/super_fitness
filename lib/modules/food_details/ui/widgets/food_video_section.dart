@@ -5,6 +5,7 @@ import '../../../../core/bases/base_stateful_widget_state.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../view_model/food_details_cubit.dart';
+import '../view_model/food_details_intent.dart';
 import 'categories_row.dart';
 import 'food_background.dart';
 import 'food_title_and_description.dart';

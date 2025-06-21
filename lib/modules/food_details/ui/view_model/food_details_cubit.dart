@@ -7,6 +7,7 @@ import 'package:super_fitness/modules/food_details/domain/usecases/get_food_deta
 
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../domain/entities/food_details_entity.dart';
+import 'food_details_intent.dart';
 
 part 'food_details_state.dart';
 
@@ -81,16 +82,3 @@ class FoodDetailsCubit extends Cubit<FoodDetailsState> {
   }
 }
 
-sealed class FoodDetailsIntent {}
-
-class UpdateVideoStateIntent extends FoodDetailsIntent {
-  bool isPlaying;
-
-  UpdateVideoStateIntent(this.isPlaying);
-}
-
-class GetFoodDetailsIntent extends FoodDetailsIntent {
-  String id;
-
-  GetFoodDetailsIntent(this.id);
-}

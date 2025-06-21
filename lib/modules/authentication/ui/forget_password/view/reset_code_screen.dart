@@ -148,6 +148,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                   state.sendOtpStatus == SendOtpStatus.error,
                               onChanged: (value) {},
                               onCompleted: (code) {
+                                setState(() {});
                                 widget.viewModel.otpCode = code;
                               },
                             ),
@@ -159,11 +160,14 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                                     ? const LoadingStateWidget()
                                     : Expanded(
                                       child: FilledButton(
-                                        onPressed: () {
-                                          widget.viewModel.onIntent(
-                                            ResetCodeIntent(),
-                                          );
-                                        },
+                                        onPressed:
+                                            widget.viewModel.otpCode == null
+                                                ? null
+                                                : () {
+                                                  widget.viewModel.onIntent(
+                                                    ResetCodeIntent(),
+                                                  );
+                                                },
                                         child: Text(appLocalizations.confirm),
                                       ),
                                     ),

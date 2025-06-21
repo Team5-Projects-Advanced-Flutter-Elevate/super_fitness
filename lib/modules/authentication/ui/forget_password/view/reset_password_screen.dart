@@ -20,12 +20,11 @@ class ResetPasswordScreen extends StatefulWidget {
   State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-late TextEditingController newPasswordController;
-late TextEditingController confirmPasswordController;
-final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
 class _ResetPasswordScreenState
     extends BaseStatefulWidgetState<ResetPasswordScreen> {
+  late TextEditingController newPasswordController;
+  late TextEditingController confirmPasswordController;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   void initState() {
     super.initState();
@@ -172,7 +171,10 @@ class _ResetPasswordScreenState
                                       controller: confirmPasswordController,
                                       autovalidateMode:
                                           AutovalidateMode.onUserInteraction,
-                                      obscureText:widget.viewModel. isConfirmPasswordObscure,
+                                      obscureText:
+                                          widget
+                                              .viewModel
+                                              .isConfirmPasswordObscure,
                                       obscuringCharacter: "*",
                                       decoration: InputDecoration(
                                         enabled: true,
@@ -180,13 +182,17 @@ class _ResetPasswordScreenState
                                             appLocalizations.confirmPassword,
                                         suffixIcon: IconButton(
                                           onPressed: () {
-
-                                            widget.viewModel. isConfirmPasswordObscure =
-                                                  !widget.viewModel.isConfirmPasswordObscure;
-
+                                            widget
+                                                    .viewModel
+                                                    .isConfirmPasswordObscure =
+                                                !widget
+                                                    .viewModel
+                                                    .isConfirmPasswordObscure;
                                           },
                                           icon: Icon(
-                                            widget.viewModel.isConfirmPasswordObscure
+                                            widget
+                                                    .viewModel
+                                                    .isConfirmPasswordObscure
                                                 ? Icons.visibility_off_outlined
                                                 : Icons.visibility_outlined,
                                             color: AppColors.white,

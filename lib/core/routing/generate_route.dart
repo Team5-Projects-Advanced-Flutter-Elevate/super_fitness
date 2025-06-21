@@ -6,7 +6,7 @@ import 'package:super_fitness/modules/authentication/ui/register/all_register_fe
 import 'package:super_fitness/modules/home/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 
-import '../../modules/food_details/food_details_screen.dart';
+import '../../modules/food_details/ui/food_details_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {

@@ -61,6 +61,22 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
+import '../../modules/food_details/data/api/api_client/food_details_api_client.dart'
+    as _i847;
+import '../../modules/food_details/data/api/api_provider/food_details_api_provider.dart'
+    as _i762;
+import '../../modules/food_details/data/datasource_contract/food_details_datasource.dart'
+    as _i208;
+import '../../modules/food_details/data/datasource_impl/food_details_datasource_impl.dart'
+    as _i432;
+import '../../modules/food_details/data/repo_impl/food_details_repo_impl.dart'
+    as _i946;
+import '../../modules/food_details/domain/repo_contract/food_details_repo_contract.dart'
+    as _i270;
+import '../../modules/food_details/domain/usecases/get_food_details_use_case.dart'
+    as _i812;
+import '../../modules/food_details/ui/view_model/food_details_cubit.dart'
+    as _i597;
 import '../../modules/home/view_model/home_view_model.dart' as _i749;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -93,6 +109,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final foodDetailsApiClientProvider = _$FoodDetailsApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -102,11 +119,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -115,11 +132,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i847.FoodDetailsApiClient>(
+      () => foodDetailsApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
+    );
+    gh.factory<_i208.FoodDetailsDataSource>(
+      () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
@@ -146,6 +169,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
+    gh.factory<_i270.FoodDetailsRepo>(
+      () => _i946.FoodDetailsRepoImpl(gh<_i208.FoodDetailsDataSource>()),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -157,6 +183,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i812.GetFoodDetailsUseCase>(
+      () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
@@ -186,6 +215,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i138.GoogleSignInHandler>(),
       ),
     );
+    gh.factory<_i597.FoodDetailsCubit>(
+      () => _i597.FoodDetailsCubit(gh<_i812.GetFoodDetailsUseCase>()),
+    );
     gh.factory<_i396.LoginViewModel>(
       () => _i396.LoginViewModel(
         gh<_i192.LoginUseCase>(),
@@ -204,6 +236,9 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$FoodDetailsApiClientProvider
+    extends _i762.FoodDetailsApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

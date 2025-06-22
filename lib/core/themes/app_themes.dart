@@ -213,6 +213,26 @@ abstract class AppThemes {
         color: AppColors.mainColorDark,
       ),
     ),
+    tabBarTheme: TabBarTheme(
+      dividerColor: AppColors.transparent,
+      dividerHeight: 0,
+      overlayColor: WidgetStateColor.transparent,
+      indicator: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: AppColors.mainColorDark,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      labelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.black[20],
+        fontWeight: FontWeight.w700,
+      ),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 16),
+      indicatorSize: TabBarIndicatorSize.label,
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

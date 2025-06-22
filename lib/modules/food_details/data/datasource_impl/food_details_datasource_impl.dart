@@ -1,4 +1,3 @@
-
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_executor/api_executor.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';

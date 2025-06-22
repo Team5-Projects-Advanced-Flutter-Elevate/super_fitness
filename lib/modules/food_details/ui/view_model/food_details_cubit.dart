@@ -80,4 +80,3 @@ class FoodDetailsCubit extends Cubit<FoodDetailsState> {
     return [ingredients, measures];
   }
 }
-

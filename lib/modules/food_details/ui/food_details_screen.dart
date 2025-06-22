@@ -67,7 +67,7 @@ class _FoodDetailsScreenState
         const SizedBox(height: 8),
 
         /// this data will be shown by the previous screen  => list of recommended food item
-        const RecommendationSection(),
+         RecommendationSection(state: state,),
       ],
     );
   }

@@ -1,11 +1,16 @@
+import 'package:super_fitness/modules/food_details/ui/view_model/food_details_cubit.dart';
+
 import '../../../../core/bases/base_statless_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/bases/base_inherited_widget.dart';
 import '../../../../core/colors/app_colors.dart';
+import '../../../../core/widgets/custom_item_container.dart';
 
 class RecommendationSection extends BaseStatelessWidget {
-  const RecommendationSection({super.key});
+  const RecommendationSection({super.key, required this.state});
+
+  final FoodDetailsState state;
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
@@ -28,20 +33,12 @@ class RecommendationSection extends BaseStatelessWidget {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder:
-                    (context, index) => Container(
-                      alignment: Alignment.bottomCenter,
-                      padding: const EdgeInsets.all(16),
-                      width: inherit.screenWidth * 0.44,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: AppColors.mainColorDark,
-                      ),
-                      child: Text(
-                        'data',
-                        style: inherit.theme.textTheme.titleLarge?.copyWith(
-                          fontSize: 16,
-                        ),
-                      ),
+                    (context, index) => CustomItemContainer(
+                      imageUrl:
+                          state.foodDetailsEntity?.mealEntity?.strMealThumb ??
+                          '',
+                      width: inherit.screenWidth * 0.45,
+                      title: "Food".replaceFirst(" ", "\n"),
                     ),
                 separatorBuilder: (context, index) => const SizedBox(width: 12),
                 itemCount: 10,

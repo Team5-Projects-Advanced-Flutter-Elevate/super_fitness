@@ -44,7 +44,7 @@ class MealEntity extends Equatable {
   final String? strMeasure9;
   final String? strMeasure10;
 
-  MealEntity({
+  const MealEntity({
     this.idMeal,
     this.strMeal,
     this.strMealAlternate,

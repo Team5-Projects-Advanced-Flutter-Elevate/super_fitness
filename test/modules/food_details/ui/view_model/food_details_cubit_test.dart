@@ -26,7 +26,7 @@ void main() {
         'emits loading → success state when use case returns success and filtered ingredients and measures',
         build: () => foodDetailsCubit,
         setUp: () {
-          final responseModel = FoodDetailsEntity(
+          const responseModel =  FoodDetailsEntity(
             mealEntity: MealEntity(
               strMeal: "Apam Balik",
               strIngredient1: "Flour",
@@ -49,7 +49,7 @@ void main() {
               const FoodDetailsState(
                 getFoodDetailsStatus: GetFoodDetailsStatus.loading,
               ),
-              FoodDetailsState(
+              const FoodDetailsState(
                 getFoodDetailsStatus: GetFoodDetailsStatus.success,
                 foodDetailsEntity: FoodDetailsEntity(
                   mealEntity: MealEntity(

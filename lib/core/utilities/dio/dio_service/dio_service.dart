@@ -14,6 +14,7 @@ abstract class DioService {
     final Dio dio = Dio(
       BaseOptions(
         connectTimeout: const Duration(seconds: 30),
+        baseUrl: ApisEndpoints.baseUrl,
         headers: {'Accept': 'application/json'},
       ),
     );
@@ -44,6 +45,7 @@ extension DioServiceExtension on DioService {
     Dio dio = getIt.get<Dio>();
     BaseOptions newBaseOptions = BaseOptions(
       connectTimeout: const Duration(seconds: 30),
+      baseUrl: ApisEndpoints.baseUrl,
       headers: {
         "Authorization": 'Bearer $token',
         'Content-Type': 'application/json',

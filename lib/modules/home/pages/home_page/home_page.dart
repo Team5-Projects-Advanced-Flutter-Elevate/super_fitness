@@ -1,85 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:super_fitness/core/bases/base_statless_widget.dart';
-import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
-import 'package:super_fitness/core/widgets/custom_bottom_tab_bar.dart';
+import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
+import 'package:super_fitness/core/widgets/custom_network_cached_image.dart';
+import 'package:super_fitness/modules/home/pages/home_page/sections/categories_section.dart';
 
-class HomePage extends BaseStatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  Widget customBuild(BuildContext context, inherit) {
-    return DefaultTabController(
-      /// <==== Don't forget to user DefaultTabController
-      initialIndex: 0,
-      length: 5,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Image.asset(
-            AssetsPaths.fitnessAppIcon,
-            width: inherit.screenWidth * 0.2,
-          ),
-          centerTitle: true,
+  State<HomePage> createState() => _HomePageState();
+}
 
-          /// ======== First Example Of TAB BAR (scrollable) ==========
-          bottom: const CustomBottomTabBar(
-            isScrollable: true,
-            tabs: [
-              Tab(child: Text("Full Body")),
-              Tab(child: Text("Chest")),
-              Tab(child: Text("Arm")),
-              Tab(child: Text("Arm")),
-              Tab(child: Text("Arm")),
+class _HomePageState extends BaseStatefulWidgetState<HomePage> {
+  String userName = "Ahmed";
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        titleSpacing: 8,
+        title: RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: "Hi $userName,\n",
+                style: theme.textTheme.titleMedium,
+              ),
+              TextSpan(
+                text: "Let’s Start Your Day",
+                style: theme.textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             ],
           ),
         ),
-        body: Builder(
-          builder: (context) {
-            return TabBarView(
-              children: [
-                Center(
-                  child: Text(
-                    "Tab Page1",
-                    style: inherit.theme.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Tab Page2",
-                    style: inherit.theme.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Tab Page3",
-                    style: inherit.theme.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Tab Page4",
-                    style: inherit.theme.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Tab Page5",
-                    style: inherit.theme.textTheme.titleLarge!.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+        actionsPadding: const EdgeInsets.symmetric(horizontal: 8),
+        actions: [
+          Container(
+            decoration: const BoxDecoration(shape: BoxShape.circle),
+            child: const CustomNetworkCachedImage(
+              imageUrl:
+                  "https://fitness.elevateegy.com/uploads/default-profile.png",
+              width: 45,
+              height: 45,
+            ),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: [CategoriesSection()]),
       ),
     );
   }

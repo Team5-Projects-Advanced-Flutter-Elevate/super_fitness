@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/bases/base_inherited_widget.dart';
 import '../../../../core/colors/app_colors.dart';
 import '../view_model/food_details_cubit.dart';
+
 class IngredientsSection extends BaseStatelessWidget {
   const IngredientsSection({super.key, required this.state});
 
@@ -42,23 +43,23 @@ class IngredientsSection extends BaseStatelessWidget {
                       padding: EdgeInsets.zero,
                       itemBuilder:
                           (context, index) => Row(
-                        children: [
-                          Text(
-                            state.ingredients![index],
-                            style: inherit.theme.textTheme.titleLarge
-                                ?.copyWith(fontSize: 16),
+                            children: [
+                              Text(
+                                state.ingredients![index],
+                                style: inherit.theme.textTheme.titleLarge
+                                    ?.copyWith(fontSize: 16),
+                              ),
+                              const Spacer(),
+                              Text(
+                                state.measures![index],
+                                style: inherit.theme.textTheme.labelSmall
+                                    ?.copyWith(color: AppColors.mainColorDark),
+                              ),
+                            ],
                           ),
-                          const Spacer(),
-                          Text(
-                            state.measures![index],
-                            style: inherit.theme.textTheme.labelSmall
-                                ?.copyWith(color: AppColors.mainColorDark),
-                          ),
-                        ],
-                      ),
                       separatorBuilder:
                           (context, index) =>
-                      const Divider(color: Color(0xFF2D2D2D)),
+                              const Divider(color: Color(0xFF2D2D2D)),
                       itemCount: state.ingredients!.length,
                     ),
                   ),

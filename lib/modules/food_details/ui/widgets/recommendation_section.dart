@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/bases/base_inherited_widget.dart';
 import '../../../../core/colors/app_colors.dart';
+
 class RecommendationSection extends BaseStatelessWidget {
   const RecommendationSection({super.key});
 
@@ -28,20 +29,20 @@ class RecommendationSection extends BaseStatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder:
                     (context, index) => Container(
-                  alignment: Alignment.bottomCenter,
-                  padding: const EdgeInsets.all(16),
-                  width: inherit.screenWidth * 0.44,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: AppColors.mainColorDark,
-                  ),
-                  child: Text(
-                    'data',
-                    style: inherit.theme.textTheme.titleLarge?.copyWith(
-                      fontSize: 16,
+                      alignment: Alignment.bottomCenter,
+                      padding: const EdgeInsets.all(16),
+                      width: inherit.screenWidth * 0.44,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: AppColors.mainColorDark,
+                      ),
+                      child: Text(
+                        'data',
+                        style: inherit.theme.textTheme.titleLarge?.copyWith(
+                          fontSize: 16,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
                 separatorBuilder: (context, index) => const SizedBox(width: 12),
                 itemCount: 10,
               ),

@@ -27,7 +27,9 @@ abstract class GenerateRoute {
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
         case DefinedRoutes.foodDetails:
-          return MaterialPageRoute(builder: (context) => const FoodDetailsScreen());
+          return MaterialPageRoute(
+            builder: (context) => const FoodDetailsScreen(),
+          );
         default:
           return _errorRoute();
       }

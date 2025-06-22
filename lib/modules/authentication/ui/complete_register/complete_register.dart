@@ -63,7 +63,10 @@ class _CompleteRegisterState extends BaseStatefulWidgetState<CompleteRegister> {
                 pageViewController: registerViewModel.pageViewController,
               );
             },
-            icon: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+            icon: Transform.flip(
+              flipX: !localizationManager.isEnglish,
+              child: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+            ),
           ),
           centerTitle: true,
         ),
@@ -79,7 +82,7 @@ class _CompleteRegisterState extends BaseStatefulWidgetState<CompleteRegister> {
                 case Status.success:
                   displaySnackBar(
                     contentType: ContentType.success,
-                    title: "Registered Successfully!",
+                    title: appLocalizations.successfullyRegistered,
                   );
                   Navigator.pushNamedAndRemoveUntil(
                     context,
@@ -91,7 +94,7 @@ class _CompleteRegisterState extends BaseStatefulWidgetState<CompleteRegister> {
                 case Status.error:
                   displaySnackBar(
                     contentType: ContentType.failure,
-                    title: "Error!",
+                    title: appLocalizations.error,
                     message: getIt.get<ApiErrorHandler>().handle(state.error!),
                     durationInSeconds: 4,
                   );

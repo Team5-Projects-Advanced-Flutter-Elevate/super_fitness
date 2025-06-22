@@ -58,7 +58,10 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+            icon: Transform.flip(
+              flipX: !localizationManager.isEnglish,
+              child: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
+            ),
           ),
         ),
         body: GestureDetector(

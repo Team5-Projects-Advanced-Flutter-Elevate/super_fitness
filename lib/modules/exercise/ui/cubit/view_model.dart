@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:super_fitness/modules/exercise/domain/entity/get_exercise.dart';
 import 'package:super_fitness/modules/exercise/domain/usecase/exercise_usecase.dart';
 import 'package:super_fitness/modules/exercise/ui/cubit/state.dart';
 
@@ -25,7 +24,6 @@ class ExerciseViewModel extends Cubit<ExerciseState> {
     var result = await _exerciseUseCase.call(muscleId, levelId);
     switch (result) {
       case Success<GetExerciseEntity>():
-        final list=result.data;
         emit(ExerciseState(status: Status.success,exercises:result.data.exercises ));
       case Error<GetExerciseEntity>():
         emit(ExerciseState(status: Status.error, error: result.error));

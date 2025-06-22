@@ -12,7 +12,10 @@ class ExerciseRepoImpl implements ExerciseRepo {
   ExerciseRepoImpl(this._exerciseOnlineDataSource);
 
   @override
-  Future<ApiResult<GetExerciseEntity>> exercise(String muscleId, String levelId) {
+  Future<ApiResult<GetExerciseEntity>> exercise(
+    String muscleId,
+    String levelId,
+  ) {
     return _exerciseOnlineDataSource.exercise(muscleId, levelId);
   }
 }

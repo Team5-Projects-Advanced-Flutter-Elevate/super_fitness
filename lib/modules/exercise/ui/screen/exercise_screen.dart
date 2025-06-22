@@ -295,13 +295,6 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                 message: getIt.get<ApiErrorHandler>().handle(state.error!),
                 durationInSeconds: 6,
               );
-            } else if (state.status == Status.success) {
-              print('lllscreen${state.exercises.length}');
-              displaySnackBar(
-                contentType: ContentType.success,
-                title: 'Success',
-                message: 'Exercises loaded successfully',
-              );
             }
           },
           builder: (context, state) {
@@ -346,7 +339,7 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Text(
-                                      's',
+                                      '${state.exercises[1].targetMuscleGroup}',
                                       style: TextStyle(
                                         color: AppColors.white,
                                         fontSize: 26,
@@ -397,6 +390,7 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                                       child: ListView.builder(
                                         itemCount: state.exercises.length,
                                         itemBuilder: (context, index) {
+                                          print('links${state.exercises[index].inDepthYoutubeExplanationLink}');
                                           return ListTile(
                                             contentPadding:
                                             const EdgeInsets.all(8.0),
@@ -411,7 +405,7 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                                                   ?.copyWith(fontSize: 18),
                                             ),
                                             subtitle: Text(
-                                              '${state.exercises[index].difficultyLevel ?? ""}\n${state.exercises[index].targetMuscleGroup ?? ""}',
+                                              '${state.exercises[index].difficultyLevel ?? ""}\n${state.exercises[index].posture ?? ""}',
                                               style: theme.textTheme.labelLarge,
                                             ),
                                             trailing: const Image(

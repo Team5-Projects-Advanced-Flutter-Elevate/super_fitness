@@ -4,7 +4,6 @@ import '../../../../core/bases/base_statless_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/bases/base_inherited_widget.dart';
-import '../../../../core/colors/app_colors.dart';
 import '../../../../core/widgets/custom_item_container.dart';
 
 class RecommendationSection extends BaseStatelessWidget {

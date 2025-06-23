@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:super_fitness/modules/food_details/ui/widgets/recommendation_section.dart';
-
 import '../view_model/food_details_cubit.dart';
 import 'food_video_section.dart';
 import 'ingredients_section.dart';

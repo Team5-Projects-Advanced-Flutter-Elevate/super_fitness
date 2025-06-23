@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/modules/food_details/domain/usecases/get_food_details_use_case.dart';
-
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../domain/entities/food_details_entity.dart';
 import 'food_details_intent.dart';
@@ -39,7 +38,6 @@ class FoodDetailsCubit extends Cubit<FoodDetailsState> {
       case Success<FoodDetailsEntity>():
         var ingredients = _getIngredientsAndMeasures(result).first;
         var measures = _getIngredientsAndMeasures(result).last;
-
         emit(
           state.copyWith(
             getFoodDetailsStatus: GetFoodDetailsStatus.success,

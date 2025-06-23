@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -106,6 +105,78 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterAddress => 'الرجاء إدخال العنوان';
+
+  @override
+  String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get emailHint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get passwordHint => 'أدخل كلمة المرور';
+
+  @override
+  String get confirmPasswordHint => 'أعد إدخال كلمة المرور';
+
+  @override
+  String get gender => 'الجنس';
+
+  @override
+  String get removedImage => 'تمت إزالة الصورة';
+
+  @override
+  String get forgetPasswordDescription =>
+      'الرجاء إدخال البريد الإلكتروني المرتبط بحسابك';
+
+  @override
+  String get confirm => 'تاكيد';
+
+  @override
+  String get codeSendTitle => 'تم ارسال الكود الي الحسابٍ';
+
+  @override
+  String get otpScreenTitle => 'تفعيل البريد الالكتروني';
+
+  @override
+  String get otpScreenDescription =>
+      'الرجاء إدخال الرمز الذي سيتم إرساله إلى عنوان بريدك الإلكتروني';
+
+  @override
+  String get didnotReciveOtp => 'لم تستلم الرمز؟';
+
+  @override
+  String get resend => 'اعاده ارسال';
+
+  @override
+  String get codeValid => 'الكود صحيح';
+
+  @override
+  String get codeNotvalid => 'الكود ليس صحيح';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف بحرف كبير ورقم واحد على الأقل';
+
+  @override
+  String get resetPasswordScreenTitle => 'اعاده تعيين الرقم السري';
+
+  @override
+  String get newPassword => 'رقم سري جديد';
+
+  @override
+  String get confirmNewPassword => 'تاكيد الرقم السري';
+
+  @override
+  String get yourPasswordChanged => 'تم تغير الرقم السري بنجاح';
+
+  @override
+  String get enterEmail => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get enterPassword => 'أدخل كلمة المرور';
+
+  @override
+  String get forgetPassword => 'Forget password';
 
   @override
   String get pleaseEnterValidAddress => 'الرجاء إدخال عنوان صالح';
@@ -295,4 +366,26 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get profile => 'الملف الشخصي';
+
+  @override
+  String get sendOtp => 'أرسل الرمز';
+
+  @override
+  String get resetPassDesc => 'تأكد من أن تكون 8 أحرف أو أكثر';
+
+  @override
+  String get createNewPassword => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get oTpCode => 'رمز التحقق';
+
+  @override
+  String get enterOtpCode =>
+      'أدخل رمز التحقق الخاص بك، تحقق من بريدك الإلكتروني';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
 }

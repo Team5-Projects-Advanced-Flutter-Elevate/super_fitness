@@ -286,4 +286,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get noWorkoutsAvailable => 'No workouts available';
 }

@@ -652,6 +652,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @noWorkoutsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No workouts available'**
+  String get noWorkoutsAvailable;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

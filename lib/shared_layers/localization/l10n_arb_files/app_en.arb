@@ -91,5 +91,6 @@
   "explore": "Explore",
   "aiChat": "AI Chat",
   "workouts": "Workouts",
-  "profile": "Profile"
+  "profile": "Profile",
+  "noWorkoutsAvailable": "No workouts available"
 }

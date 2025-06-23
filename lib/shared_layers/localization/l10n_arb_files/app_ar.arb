@@ -91,7 +91,9 @@
   "explore": "استكشاف",
   "aiChat": "دردشة AI",
   "workouts": "التمارين",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "noWorkoutsAvailable": "لا توجد تمارين متاحة"
+
 
 
 }

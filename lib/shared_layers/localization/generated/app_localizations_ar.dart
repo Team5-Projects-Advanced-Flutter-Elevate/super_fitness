@@ -220,6 +220,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get chatAI => 'دردشة';
+
+  @override
   String get forgotPassword => 'هل نسيت كلمة المرور؟';
 
   @override
@@ -271,11 +277,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
-  String get home => 'الرئيسية';
-
-  @override
-  String get chatAI => 'دردشة';
-
   String get successfullyRegistered => 'تم التسجيل بنجاح!';
 
   @override

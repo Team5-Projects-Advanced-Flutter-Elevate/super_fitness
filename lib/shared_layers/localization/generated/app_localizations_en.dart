@@ -220,6 +220,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
+  String get home => 'Home';
+
+  @override
+  String get chatAI => 'Chat';
+
+  @override
   String get forgotPassword => 'Forgot Password?';
 
   @override
@@ -271,11 +277,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
-  String get home => 'Home';
-
-  @override
-  String get chatAI => 'Chat';
-
   String get successfullyRegistered => 'Registered Successfully!';
 
   @override

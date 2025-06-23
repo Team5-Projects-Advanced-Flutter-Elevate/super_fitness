@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_api_client.dart';
+part of 'food_api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,9 +8,9 @@ part of 'auth_api_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthApiClient implements AuthApiClient {
-  _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://fitness.elevateegy.com';
+class _FoodApiClient implements FoodApiClient {
+  _FoodApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'www.themealdb.com/api/json/v1/1/';
   }
 
   final Dio _dio;
@@ -20,26 +20,25 @@ class _AuthApiClient implements AuthApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<RegisterResponseDto> register(Map<String, dynamic> request) async {
+  Future<GetFoodCategoriesModel> getFoodCategories() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request);
-    final _options = _setStreamType<RegisterResponseDto>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GetFoodCategoriesModel>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/signup',
+            'categories.php',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late RegisterResponseDto _value;
+    late GetFoodCategoriesModel _value;
     try {
-      _value = RegisterResponseDto.fromJson(_result.data!);
+      _value = GetFoodCategoriesModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -48,26 +47,25 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<LoginModel> login(Map<String, dynamic> body) async {
+  Future<MealByCategoryModel> getMealByCategoryName(String categoryName) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'c': categoryName};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
-    final _options = _setStreamType<LoginModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<MealByCategoryModel>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/signin',
+            'filter.php',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginModel _value;
+    late MealByCategoryModel _value;
     try {
-      _value = LoginModel.fromJson(_result.data!);
+      _value = MealByCategoryModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

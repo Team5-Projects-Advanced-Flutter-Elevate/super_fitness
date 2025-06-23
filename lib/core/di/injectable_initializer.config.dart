@@ -61,6 +61,9 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
+import '../../modules/food/data/api/api_client/food_api_client.dart' as _i642;
+import '../../modules/food/data/api/api_client_provider/food_api_client_provider.dart'
+    as _i561;
 import '../../modules/home/view_model/home_view_model.dart' as _i749;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -93,6 +96,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final foodApiClientProvider = _$FoodApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -102,11 +106,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -114,6 +118,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i642.FoodApiClient>(
+      () => foodApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
@@ -204,6 +211,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$FoodApiClientProvider extends _i561.FoodApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

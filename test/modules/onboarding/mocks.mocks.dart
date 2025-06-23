@@ -460,14 +460,6 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
-  String get next =>
-      (super.noSuchMethod(
-            Invocation.getter(#next),
-            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#next)),
-          )
-          as String);
-
-  @override
   String get doIt =>
       (super.noSuchMethod(
             Invocation.getter(#doIt),
@@ -570,6 +562,61 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.getter(#pleaseEnterValidRecipient),
+            ),
+          )
+          as String);
+
+  @override
+  String get forgotPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#forgotPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#forgotPassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get noAccount =>
+      (super.noSuchMethod(
+            Invocation.getter(#noAccount),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#noAccount),
+            ),
+          )
+          as String);
+
+  @override
+  String get success =>
+      (super.noSuchMethod(
+            Invocation.getter(#success),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#success),
+            ),
+          )
+          as String);
+
+  @override
+  String get loginSuccessfully =>
+      (super.noSuchMethod(
+            Invocation.getter(#loginSuccessfully),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#loginSuccessfully),
+            ),
+          )
+          as String);
+
+  @override
+  String get welcomeBack =>
+      (super.noSuchMethod(
+            Invocation.getter(#welcomeBack),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#welcomeBack),
             ),
           )
           as String);
@@ -704,6 +751,28 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get successfullyRegistered =>
+      (super.noSuchMethod(
+            Invocation.getter(#successfullyRegistered),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#successfullyRegistered),
+            ),
+          )
+          as String);
+
+  @override
+  String get error =>
+      (super.noSuchMethod(
+            Invocation.getter(#error),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#error),
+            ),
+          )
+          as String);
+
+  @override
   String get tellUsAboutYourself =>
       (super.noSuchMethod(
             Invocation.getter(#tellUsAboutYourself),
@@ -818,6 +887,14 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
               this,
               Invocation.getter(#female),
             ),
+          )
+          as String);
+
+  @override
+  String get next =>
+      (super.noSuchMethod(
+            Invocation.getter(#next),
+            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#next)),
           )
           as String);
 
@@ -951,6 +1028,61 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.getter(#trueBeast),
+            ),
+          )
+          as String);
+
+  @override
+  String get appSections___________ =>
+      (super.noSuchMethod(
+            Invocation.getter(#appSections___________),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#appSections___________),
+            ),
+          )
+          as String);
+
+  @override
+  String get explore =>
+      (super.noSuchMethod(
+            Invocation.getter(#explore),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#explore),
+            ),
+          )
+          as String);
+
+  @override
+  String get aiChat =>
+      (super.noSuchMethod(
+            Invocation.getter(#aiChat),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#aiChat),
+            ),
+          )
+          as String);
+
+  @override
+  String get workouts =>
+      (super.noSuchMethod(
+            Invocation.getter(#workouts),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#workouts),
+            ),
+          )
+          as String);
+
+  @override
+  String get profile =>
+      (super.noSuchMethod(
+            Invocation.getter(#profile),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#profile),
             ),
           )
           as String);

@@ -1,23 +1,30 @@
+import 'package:equatable/equatable.dart';
 import 'package:super_fitness/modules/home/pages/workouts_page/domain/entities/muscles_group_response_entity.dart';
 
-class MuscleGroupWorkoutsResponseEntity {
+class MuscleGroupWorkoutsResponseEntity extends Equatable {
   final String? message;
 
   final MuscleGroupEntity? muscleGroupEntity;
 
   final List<MuscleEntity>? musclesEntity;
 
-  MuscleGroupWorkoutsResponseEntity({
+  const MuscleGroupWorkoutsResponseEntity({
     this.message,
     this.muscleGroupEntity,
     this.musclesEntity,
   });
+
+  @override
+  List<Object?> get props => [message, muscleGroupEntity, musclesEntity];
 }
 
-class MuscleEntity {
+class MuscleEntity extends Equatable {
   final String? id;
   final String? name;
   final String? image;
 
-  MuscleEntity({this.id, this.name, this.image});
+  const MuscleEntity({this.id, this.name, this.image});
+
+  @override
+  List<Object?> get props => [id, name, image];
 }

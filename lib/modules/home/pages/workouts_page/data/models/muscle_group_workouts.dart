@@ -28,7 +28,7 @@ class MuscleGroupWorkoutsResponse {
     return MuscleGroupWorkoutsResponseEntity(
       message: message,
       muscleGroupEntity: MuscleGroupEntity(
-        id: muscleGroup?.Id,
+        id: muscleGroup?.id,
         name: muscleGroup?.name,
       ),
       musclesEntity:
@@ -42,11 +42,11 @@ class MuscleGroupWorkoutsResponse {
 @JsonSerializable()
 class MuscleGroup {
   @JsonKey(name: "_id")
-  final String? Id;
+  final String? id;
   @JsonKey(name: "name")
   final String? name;
 
-  MuscleGroup({this.Id, this.name});
+  MuscleGroup({this.id, this.name});
 
   factory MuscleGroup.fromJson(Map<String, dynamic> json) {
     return _$MuscleGroupFromJson(json);

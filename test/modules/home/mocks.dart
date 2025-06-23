@@ -86,12 +86,16 @@ void main() {
     when(mockSecureStorageService.deleteValue(any)).thenAnswer((_) async {});
 
     when(mockHomeViewModel.pageViewController).thenReturn(mockPageController);
-    when(mockHomeViewModel.currentPageIndexNotifier).thenReturn(mockCurrentPageIndexNotifier);
+    when(
+      mockHomeViewModel.currentPageIndexNotifier,
+    ).thenReturn(mockCurrentPageIndexNotifier);
     when(mockPageController.jumpToPage(any)).thenAnswer((_) async {});
     when(mockPageController.page).thenReturn(0.0); // Initial page
 
     await getIt.reset();
-    getIt.registerSingleton<SecureStorageService>(SecureStorageServiceImp(mockFlutterSecureStorage));
+    getIt.registerSingleton<SecureStorageService>(
+      SecureStorageServiceImp(mockFlutterSecureStorage),
+    );
     getIt.registerSingleton<LocalizationManager>(mockLocalizationManager);
     getIt.registerSingleton<AppLocalizations>(mockAppLocalizations);
     getIt.registerSingleton<ValidateFunctions>(mockValidateFunctions);
@@ -105,7 +109,9 @@ void main() {
   Widget createTestableWidget(Widget child) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LocalizationManager>.value(value: mockLocalizationManager),
+        ChangeNotifierProvider<LocalizationManager>.value(
+          value: mockLocalizationManager,
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: [

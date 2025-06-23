@@ -20,7 +20,6 @@ import 'package:super_fitness/shared_layers/storage/implementation/flutter_secur
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'mocks.mocks.dart';
 
-// Mock BaseInheritedWidget
 class MockBaseInheritedWidget extends InheritedWidget {
   final double screenWidth;
   final double screenHeight;
@@ -41,7 +40,6 @@ class MockBaseInheritedWidget extends InheritedWidget {
       context.dependOnInheritedWidgetOfExactType<MockBaseInheritedWidget>()!;
 }
 
-// Generate mocks
 @GenerateMocks([
   AppLocalizations,
   NavigatorObserver,
@@ -64,7 +62,6 @@ void main() {
   late ValueNotifier<int> mockCurrentPageIndexNotifier;
 
   setUp(() async {
-    // Initialize mocks
     mockAppLocalizations = MockAppLocalizations();
     mockNavigatorObserver = MockNavigatorObserver();
     mockLocalizationManager = MockLocalizationManager();
@@ -75,29 +72,24 @@ void main() {
     mockPageController = MockPageController();
     mockCurrentPageIndexNotifier = ValueNotifier<int>(0);
 
-    // Mock AppLocalizations
     when(mockAppLocalizations.explore).thenReturn('Explore');
     when(mockAppLocalizations.aiChat).thenReturn('AI Chat');
     when(mockAppLocalizations.workouts).thenReturn('Workouts');
     when(mockAppLocalizations.profile).thenReturn('Profile');
 
-    // Mock LocalizationManager
     when(mockLocalizationManager.currentLocale).thenReturn('en');
     when(mockLocalizationManager.changeLocal(any)).thenAnswer((_) async {});
     when(mockLocalizationManager.getSavedLocal()).thenAnswer((_) async => 'en');
 
-    // Mock SecureStorageService
     when(mockSecureStorageService.setStringValue(any, any)).thenAnswer((_) async {});
     when(mockSecureStorageService.getStringValue(any)).thenAnswer((_) async => 'en');
     when(mockSecureStorageService.deleteValue(any)).thenAnswer((_) async {});
 
-    // Mock HomeViewModel
     when(mockHomeViewModel.pageViewController).thenReturn(mockPageController);
     when(mockHomeViewModel.currentPageIndexNotifier).thenReturn(mockCurrentPageIndexNotifier);
     when(mockPageController.jumpToPage(any)).thenAnswer((_) async {});
     when(mockPageController.page).thenReturn(0.0); // Initial page
 
-    // Initialize getIt
     await getIt.reset();
     getIt.registerSingleton<SecureStorageService>(SecureStorageServiceImp(mockFlutterSecureStorage));
     getIt.registerSingleton<LocalizationManager>(mockLocalizationManager);
@@ -143,44 +135,36 @@ void main() {
 
   group('HomeScreen Widget Tests', () {
     testWidgets('BottomNavigationBar updates index on PageView change', (WidgetTester tester) async {
-      // Set screen size for testing
       await tester.binding.setSurfaceSize(const Size(400, 800));
 
-      // Mock network images for CustomNetworkCachedImage
       tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
         const MethodChannel('io.flutter.plugins.imageprovider/network_image'),
         (MethodCall call) async => null,
       );
 
-      // Render HomeScreen
       await tester.pumpWidget(createTestableWidget(const HomeScreen()));
       await tester.pumpAndSettle();
 
-      // Verify initial state
       expect(find.byType(BottomNavigationBar), findsOneWidget, reason: 'BottomNavigationBar should be rendered');
       expect(find.byType(HomePage), findsOneWidget, reason: 'HomePage should be initial page');
       final initialNavBar = tester.widget<BottomNavigationBar>(find.byType(BottomNavigationBar));
       expect(initialNavBar.currentIndex, 0, reason: 'Initial index should be 0');
 
-      // Simulate PageView change
-      when(mockPageController.page).thenReturn(2.0); // Mock current page
+      when(mockPageController.page).thenReturn(2.0); 
       mockCurrentPageIndexNotifier.value = 2;
-      mockHomeViewModel.pageViewController.jumpToPage(2); // Trigger PageView change
-      await tester.pumpAndSettle(); // Wait for rebuild and animations
+      mockHomeViewModel.pageViewController.jumpToPage(2); 
+      await tester.pumpAndSettle(); 
 
-      // Debug widget tree if BottomNavigationBar isn't found
       if (find.byType(BottomNavigationBar).evaluate().isEmpty) {
         debugDumpApp();
       }
 
-      // Verify updated state
       expect(find.byType(BottomNavigationBar), findsOneWidget, reason: 'BottomNavigationBar should still be rendered');
       final updatedNavBar = tester.widget<BottomNavigationBar>(find.byType(BottomNavigationBar));
       expect(updatedNavBar.currentIndex, 2, reason: 'BottomNavigationBar index should be 2');
       expect(find.byType(WorkoutsPage), findsOneWidget, reason: 'WorkoutsPage should be displayed');
       expect(find.byType(HomePage), findsNothing, reason: 'HomePage should not be displayed');
 
-      // Clean up
       tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
         const MethodChannel('io.flutter.plugins.imageprovider/network_image'),
         null,

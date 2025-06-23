@@ -33,7 +33,6 @@
   "pleaseEnterValidAddress": "الرجاء إدخال عنوان صالح",
   "skip": "تخطي",
   "back": "السابق",
-  "next": "التالي",
   "doIt": "افعلها",
   "priceOfExcellence": "ثمن التميز",
   "isDiscipline": "هو الانضباط",
@@ -44,6 +43,11 @@
   "loremIpsumDolorSitAmetConsectetureuUrna": "لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو",
   "utGravidaQuisIdPretiumPurusMaurisMassa": "اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+  "forgotPassword": "هل نسيت كلمة المرور؟",
+  "noAccount": "ليس لديك حساب بعد؟ ",
+  "success": "نجاح",
+  "loginSuccessfully": "تم تسجيل الدخول بنجاح",
+  "welcomeBack": "مرحبا بعودتك",
   "registerScreen________": "$$$ تعليق $$$",
   "heyThere": "مرحباً",
   "createAnAccount": "إنشىء حساب",
@@ -56,6 +60,8 @@
   "or": "أو",
   "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
   "login": "تسجيل الدخول",
+  "successfullyRegistered": "تم التسجيل بنجاح!",
+  "error": "خطأ!",
   "tellUsAboutYourself": "أخبرنا عن نفسك",
   "weNeedToKnowYourGender": "نحتاج إلى معرفة جنسك",
   "howOldAreYou": "كم عمرك؟",
@@ -80,5 +86,12 @@
   "beginner": "مبتدئ",
   "intermediate": "متوسط",
   "advanced": "متقدم",
-  "trueBeast": "وحش حقيقي"
+  "trueBeast": "وحش حقيقي",
+  "appSections___________": "$$$ تعليق $$$",
+  "explore": "استكشاف",
+  "aiChat": "دردشة AI",
+  "workouts": "التمارين",
+  "profile": "الملف الشخصي"
+
+
 }

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -116,9 +117,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get back => 'السابق';
 
   @override
-  String get next => 'التالى';
-
-  @override
   String get doIt => 'افعلها';
 
   @override
@@ -149,6 +147,21 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
+
+  @override
+  String get forgotPassword => 'هل نسيت كلمة المرور؟';
+
+  @override
+  String get noAccount => 'ليس لديك حساب بعد؟ ';
+
+  @override
+  String get success => 'نجاح';
+
+  @override
+  String get loginSuccessfully => 'تم تسجيل الدخول بنجاح';
+
+  @override
+  String get welcomeBack => 'مرحبا بعودتك';
 
   @override
   String get registerScreen________ => '\$\$\$ تعليق \$\$\$';
@@ -187,6 +200,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
+  String get successfullyRegistered => 'تم التسجيل بنجاح!';
+
+  @override
+  String get error => 'خطأ!';
+
+  @override
   String get tellUsAboutYourself => 'أخبرنا عن نفسك';
 
   @override
@@ -219,6 +238,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get female => 'انثى';
+
+  @override
+  String get next => 'التالى';
 
   @override
   String get year => 'سنة';
@@ -258,4 +280,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get trueBeast => 'وحش حقيقي';
+
+  @override
+  String get appSections___________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get explore => 'استكشاف';
+
+  @override
+  String get aiChat => 'دردشة AI';
+
+  @override
+  String get workouts => 'التمارين';
+
+  @override
+  String get profile => 'الملف الشخصي';
 }

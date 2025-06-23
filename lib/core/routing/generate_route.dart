@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
+import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
+import 'package:super_fitness/modules/home/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 
 abstract class GenerateRoute {
@@ -15,10 +17,13 @@ abstract class GenerateRoute {
         case DefinedRoutes.onboardingScreenRoute:
           return MaterialPageRoute(
             builder: (context) => const OnboardingScreen(),
-            // case DefinedRoutes.allRegisterFeature:
-            //   return MaterialPageRoute(
-            //     builder: (context) => const AllRegisterFeature(),
           );
+        case DefinedRoutes.allRegisterFeature:
+          return MaterialPageRoute(
+            builder: (context) => const AllRegisterFeature(),
+          );
+        case DefinedRoutes.homeScreenRoute:
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
         default:
           return _errorRoute();
       }
@@ -29,7 +34,7 @@ abstract class GenerateRoute {
 
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
-    LoginDataResponseEntity? loginInfo,
+    LoginEntity? loginInfo,
   }) {
     return [
       if (loginInfo != null)

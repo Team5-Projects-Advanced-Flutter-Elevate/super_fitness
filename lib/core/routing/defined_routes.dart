@@ -5,4 +5,9 @@ abstract class DefinedRoutes {
   static const String workoutsScreenRoute = 'workoutsScreen';
   static const String profileScreenRoute = 'profileScreen';
   static const String layoutScreenRoute = 'layoutScreen';
+  static const String otpScreenRoute = 'otpScreen';
+  static const String resetPasswordRoute = 'resetPasswordScreen';
+  static const String forgetPasswordScreenRoute = 'forgetPasswordScreen';
+  static const String onboardingScreenRoute = 'onboardingScreen';
+  static const String allRegisterFeature = 'allRegisterFeature';
 }

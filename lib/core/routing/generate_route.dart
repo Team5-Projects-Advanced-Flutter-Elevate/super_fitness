@@ -3,10 +3,13 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
-import 'package:super_fitness/modules/layout/home/home_screen.dart';
 import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
 import 'package:super_fitness/modules/layout/workout/workout_screen.dart';
+import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
+import 'package:super_fitness/modules/home/home_screen.dart';
+import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
+import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -16,8 +19,6 @@ abstract class GenerateRoute {
       switch (name) {
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
-        case DefinedRoutes.homeScreenRoute:
-          return MaterialPageRoute(builder: (context) => const HomeScreen());
         case DefinedRoutes.chatScreenRoute:
           return MaterialPageRoute(builder: (context) => const ChatScreen());
         case DefinedRoutes.workoutsScreenRoute:
@@ -28,6 +29,21 @@ abstract class GenerateRoute {
           return MaterialPageRoute(builder: (context) => const ProfileScreen());
         case DefinedRoutes.layoutScreenRoute:
           return MaterialPageRoute(builder: (context) => const LayoutScreen());
+        case DefinedRoutes.forgetPasswordScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordScreen(),
+          );
+
+        case DefinedRoutes.onboardingScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const OnboardingScreen(),
+          );
+        case DefinedRoutes.allRegisterFeature:
+          return MaterialPageRoute(
+            builder: (context) => const AllRegisterFeature(),
+          );
+        case DefinedRoutes.homeScreenRoute:
+          return MaterialPageRoute(builder: (context) => const HomeScreen());
         default:
           return _errorRoute();
       }
@@ -38,7 +54,7 @@ abstract class GenerateRoute {
 
   static List<Route<dynamic>> onGenerateInitialRoutes({
     String? initialRoute,
-    LoginDataResponseEntity? loginInfo,
+    LoginEntity? loginInfo,
   }) {
     return [
       if (loginInfo != null)

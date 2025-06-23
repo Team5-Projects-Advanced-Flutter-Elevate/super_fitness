@@ -203,7 +203,7 @@ abstract class AppLocalizations {
   /// No description provided for @pleaseEnterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Please enter your E-mail.'**
+  /// **'Enter your Email.'**
   String get pleaseEnterEmail;
 
   /// No description provided for @pleaseEnterValidEmail.
@@ -284,17 +284,317 @@ abstract class AppLocalizations {
   /// **'Please enter the address'**
   String get pleaseEnterAddress;
 
+  /// No description provided for @forgetPassword____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ تعليق \$\$\$'**
+  String get forgetPassword____________;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get emailHint;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @confirmPasswordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPasswordHint;
+
+  /// No description provided for @gender.
+  ///
+  /// In en, this message translates to:
+  /// **'Gender'**
+  String get gender;
+
+  /// No description provided for @removedImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed image'**
+  String get removedImage;
+
+  /// No description provided for @forgetPasswordDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email associated to your account'**
+  String get forgetPasswordDescription;
+
+  /// No description provided for @confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get confirm;
+
+  /// No description provided for @codeSendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Code send To Email'**
+  String get codeSendTitle;
+
+  /// No description provided for @otpScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Email verification'**
+  String get otpScreenTitle;
+
+  /// No description provided for @otpScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your code that send to your email address'**
+  String get otpScreenDescription;
+
+  /// No description provided for @didnotReciveOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Did not receive code?'**
+  String get didnotReciveOtp;
+
+  /// No description provided for @resend.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code?'**
+  String get resend;
+
+  /// No description provided for @codeValid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code is valid'**
+  String get codeValid;
+
+  /// No description provided for @codeNotvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Code not valid'**
+  String get codeNotvalid;
+
+  /// No description provided for @resetPasswordScreenDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must not be empty and must contain 6 characters with upper case letter and one number at least'**
+  String get resetPasswordScreenDescription;
+
+  /// No description provided for @resetPasswordScreenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset password'**
+  String get resetPasswordScreenTitle;
+
+  /// No description provided for @newPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'New Password'**
+  String get newPassword;
+
+  /// No description provided for @confirmNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm New Password'**
+  String get confirmNewPassword;
+
+  /// No description provided for @yourPasswordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed Successfully'**
+  String get yourPasswordChanged;
+
+  /// No description provided for @enterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enterEmail;
+
+  /// No description provided for @enterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enterPassword;
+
+  /// No description provided for @forgetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password'**
+  String get forgetPassword;
+
   /// No description provided for @pleaseEnterValidAddress.
   ///
   /// In en, this message translates to:
   /// **'Please enter a valid address'**
   String get pleaseEnterValidAddress;
 
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @doIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It'**
+  String get doIt;
+
+  /// No description provided for @priceOfExcellence.
+  ///
+  /// In en, this message translates to:
+  /// **'The Price Of Excellence'**
+  String get priceOfExcellence;
+
+  /// No description provided for @isDiscipline.
+  ///
+  /// In en, this message translates to:
+  /// **'Is Discipline'**
+  String get isDiscipline;
+
+  /// No description provided for @fitnessHasNeverBeenSo.
+  ///
+  /// In en, this message translates to:
+  /// **'Fitness Has Never Been So'**
+  String get fitnessHasNeverBeenSo;
+
+  /// No description provided for @muchFun.
+  ///
+  /// In en, this message translates to:
+  /// **'Much Fun'**
+  String get muchFun;
+
+  /// No description provided for @noMoreExecuses.
+  ///
+  /// In en, this message translates to:
+  /// **'NO MORE EXCUSES'**
+  String get noMoreExecuses;
+
+  /// No description provided for @doItNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Do It Now'**
+  String get doItNow;
+
+  /// No description provided for @loremIpsumDolorSitAmetConsectetureuUrna.
+  ///
+  /// In en, this message translates to:
+  /// **'Lorem ipsum dolor sit amet consectetur. Eu urna'**
+  String get loremIpsumDolorSitAmetConsectetureuUrna;
+
+  /// No description provided for @utGravidaQuisIdPretiumPurusMaurisMassa.
+  ///
+  /// In en, this message translates to:
+  /// **'ut gravida quis id pretium purus. Mauris massa'**
+  String get utGravidaQuisIdPretiumPurusMaurisMassa;
+
   /// No description provided for @pleaseEnterValidRecipient.
   ///
   /// In en, this message translates to:
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password?'**
+  String get forgotPassword;
+
+  /// No description provided for @noAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t Have An Account Yet? '**
+  String get noAccount;
+
+  /// No description provided for @success.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get success;
+
+  /// No description provided for @loginSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Login Successfully'**
+  String get loginSuccessfully;
+
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome Back'**
+  String get welcomeBack;
+
+  /// No description provided for @registerScreen________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get registerScreen________;
+
+  /// No description provided for @heyThere.
+  ///
+  /// In en, this message translates to:
+  /// **'Hey There'**
+  String get heyThere;
+
+  /// No description provided for @createAnAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'create an account'**
+  String get createAnAccount;
+
+  /// No description provided for @register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// No description provided for @firstName.
+  ///
+  /// In en, this message translates to:
+  /// **'First Name'**
+  String get firstName;
+
+  /// No description provided for @lastName.
+  ///
+  /// In en, this message translates to:
+  /// **'Last Name'**
+  String get lastName;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @confirmPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPassword;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get or;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already Have an account ?'**
+  String get alreadyHaveAccount;
 
   /// No description provided for @login.
   ///
@@ -313,6 +613,185 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Chat'**
   String get chatAI;
+  /// No description provided for @successfullyRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered Successfully!'**
+  String get successfullyRegistered;
+
+  /// No description provided for @error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error!'**
+  String get error;
+
+  /// No description provided for @tellUsAboutYourself.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about yourself !'**
+  String get tellUsAboutYourself;
+
+  /// No description provided for @weNeedToKnowYourGender.
+  ///
+  /// In en, this message translates to:
+  /// **'We need to know your gender'**
+  String get weNeedToKnowYourGender;
+
+  /// No description provided for @howOldAreYou.
+  ///
+  /// In en, this message translates to:
+  /// **'How old are you ?'**
+  String get howOldAreYou;
+
+  /// No description provided for @whatIsYourWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your weight ?'**
+  String get whatIsYourWeight;
+
+  /// No description provided for @thisHelpsUsCreateYourPersonalizedPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'This helps us create your personalized plan'**
+  String get thisHelpsUsCreateYourPersonalizedPlan;
+
+  /// No description provided for @whatIsYourHeight.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your height ?'**
+  String get whatIsYourHeight;
+
+  /// No description provided for @whatIsYourGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'What is your goal?'**
+  String get whatIsYourGoal;
+
+  /// No description provided for @yourPhysicalActivityLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your physical activity level'**
+  String get yourPhysicalActivityLevel;
+
+  /// No description provided for @activityLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Level ?'**
+  String get activityLevel;
+
+  /// No description provided for @male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get male;
+
+  /// No description provided for @female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get female;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @year.
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// No description provided for @kg.
+  ///
+  /// In en, this message translates to:
+  /// **'KG'**
+  String get kg;
+
+  /// No description provided for @cm.
+  ///
+  /// In en, this message translates to:
+  /// **'CM'**
+  String get cm;
+
+  /// No description provided for @gainWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Gain Weight'**
+  String get gainWeight;
+
+  /// No description provided for @loseWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Lose Weight'**
+  String get loseWeight;
+
+  /// No description provided for @getFitter.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Fitter'**
+  String get getFitter;
+
+  /// No description provided for @gainMoreFlexible.
+  ///
+  /// In en, this message translates to:
+  /// **'Gain More Flexible'**
+  String get gainMoreFlexible;
+
+  /// No description provided for @learnTheBasic.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn The Basic'**
+  String get learnTheBasic;
+
+  /// No description provided for @rookie.
+  ///
+  /// In en, this message translates to:
+  /// **'Rookie'**
+  String get rookie;
+
+  /// No description provided for @beginner.
+  ///
+  /// In en, this message translates to:
+  /// **'Beginner'**
+  String get beginner;
+
+  /// No description provided for @intermediate.
+  ///
+  /// In en, this message translates to:
+  /// **'Intermediate'**
+  String get intermediate;
+
+  /// No description provided for @advanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get advanced;
+
+  /// No description provided for @trueBeast.
+  ///
+  /// In en, this message translates to:
+  /// **'True Beast'**
+  String get trueBeast;
+
+  /// No description provided for @appSections___________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get appSections___________;
+
+  /// No description provided for @explore.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore'**
+  String get explore;
+
+  /// No description provided for @aiChat.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Chat'**
+  String get aiChat;
 
   /// No description provided for @workouts.
   ///
@@ -325,6 +804,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @sendOtp.
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP'**
+  String get sendOtp;
+
+  /// No description provided for @resetPassDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Make Sure its 8 characters Or More '**
+  String get resetPassDesc;
+
+  /// No description provided for @createNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Password'**
+  String get createNewPassword;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @oTpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Otp Code'**
+  String get oTpCode;
+
+  /// No description provided for @enterOtpCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter Your Otp Code , check your email'**
+  String get enterOtpCode;
+
+  /// No description provided for @successEmailVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verified Successfully'**
+  String get successEmailVerified;
 }
 
 class _AppLocalizationsDelegate

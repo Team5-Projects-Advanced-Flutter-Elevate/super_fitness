@@ -63,7 +63,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get namesRules => 'Names can only have alphabetic characters.';
 
   @override
-  String get pleaseEnterEmail => 'Please enter your E-mail.';
+  String get pleaseEnterEmail => 'Enter your Email.';
 
   @override
   String get pleaseEnterValidEmail => 'Please enter a valid email address.';
@@ -107,10 +107,165 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterAddress => 'Please enter the address';
 
   @override
+  String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get emailHint => 'Enter your email';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get removedImage => 'Removed image';
+
+  @override
+  String get forgetPasswordDescription =>
+      'Please enter your email associated to your account';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get codeSendTitle => 'Code send To Email';
+
+  @override
+  String get otpScreenTitle => 'Email verification';
+
+  @override
+  String get otpScreenDescription =>
+      'Please enter your code that send to your email address';
+
+  @override
+  String get didnotReciveOtp => 'Did not receive code?';
+
+  @override
+  String get resend => 'Resend code?';
+
+  @override
+  String get codeValid => 'Code is valid';
+
+  @override
+  String get codeNotvalid => 'Code not valid';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get resetPasswordScreenTitle => 'Reset password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get yourPasswordChanged => 'Password Changed Successfully';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get forgetPassword => 'Forget password';
+
+  @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
+  String get skip => 'Skip';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String get doIt => 'Do It';
+
+  @override
+  String get priceOfExcellence => 'The Price Of Excellence';
+
+  @override
+  String get isDiscipline => 'Is Discipline';
+
+  @override
+  String get fitnessHasNeverBeenSo => 'Fitness Has Never Been So';
+
+  @override
+  String get muchFun => 'Much Fun';
+
+  @override
+  String get noMoreExecuses => 'NO MORE EXCUSES';
+
+  @override
+  String get doItNow => 'Do It Now';
+
+  @override
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'Lorem ipsum dolor sit amet consectetur. Eu urna';
+
+  @override
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'ut gravida quis id pretium purus. Mauris massa';
+
+  @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
+
+  @override
+  String get forgotPassword => 'Forgot Password?';
+
+  @override
+  String get noAccount => 'Don\'t Have An Account Yet? ';
+
+  @override
+  String get success => 'Success';
+
+  @override
+  String get loginSuccessfully => 'Login Successfully';
+
+  @override
+  String get welcomeBack => 'Welcome Back';
+
+  @override
+  String get registerScreen________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get heyThere => 'Hey There';
+
+  @override
+  String get createAnAccount => 'create an account';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get firstName => 'First Name';
+
+  @override
+  String get lastName => 'Last Name';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get confirmPassword => 'Confirm Password';
+
+  @override
+  String get or => 'Or';
+
+  @override
+  String get alreadyHaveAccount => 'Already Have an account ?';
 
   @override
   String get login => 'Login';
@@ -121,9 +276,120 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get chatAI => 'Chat';
 
+  String get successfullyRegistered => 'Registered Successfully!';
+
+  @override
+  String get error => 'Error!';
+
+  @override
+  String get tellUsAboutYourself => 'Tell us about yourself !';
+
+  @override
+  String get weNeedToKnowYourGender => 'We need to know your gender';
+
+  @override
+  String get howOldAreYou => 'How old are you ?';
+
+  @override
+  String get whatIsYourWeight => 'What is your weight ?';
+
+  @override
+  String get thisHelpsUsCreateYourPersonalizedPlan =>
+      'This helps us create your personalized plan';
+
+  @override
+  String get whatIsYourHeight => 'What is your height ?';
+
+  @override
+  String get whatIsYourGoal => 'What is your goal?';
+
+  @override
+  String get yourPhysicalActivityLevel => 'Your physical activity level';
+
+  @override
+  String get activityLevel => 'Activity Level ?';
+
+  @override
+  String get male => 'Male';
+
+  @override
+  String get female => 'Female';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get kg => 'KG';
+
+  @override
+  String get cm => 'CM';
+
+  @override
+  String get gainWeight => 'Gain Weight';
+
+  @override
+  String get loseWeight => 'Lose Weight';
+
+  @override
+  String get getFitter => 'Get Fitter';
+
+  @override
+  String get gainMoreFlexible => 'Gain More Flexible';
+
+  @override
+  String get learnTheBasic => 'Learn The Basic';
+
+  @override
+  String get rookie => 'Rookie';
+
+  @override
+  String get beginner => 'Beginner';
+
+  @override
+  String get intermediate => 'Intermediate';
+
+  @override
+  String get advanced => 'Advanced';
+
+  @override
+  String get trueBeast => 'True Beast';
+
+  @override
+  String get appSections___________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get aiChat => 'AI Chat';
+
   @override
   String get workouts => 'Workouts';
 
   @override
   String get profile => 'Profile';
+
+  @override
+  String get sendOtp => 'Send OTP';
+
+  @override
+  String get resetPassDesc => 'Make Sure its 8 characters Or More ';
+
+  @override
+  String get createNewPassword => 'Create New Password';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get oTpCode => 'Otp Code';
+
+  @override
+  String get enterOtpCode => 'Enter Your Otp Code , check your email';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
 }

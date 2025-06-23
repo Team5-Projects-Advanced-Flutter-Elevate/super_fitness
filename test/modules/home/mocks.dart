@@ -87,19 +87,27 @@ void main() {
     when(mockLocalizationManager.getSavedLocal()).thenAnswer((_) async => 'en');
 
     // Mock SecureStorageService
-    when(mockSecureStorageService.setStringValue(any, any)).thenAnswer((_) async {});
-    when(mockSecureStorageService.getStringValue(any)).thenAnswer((_) async => 'en');
+    when(
+      mockSecureStorageService.setStringValue(any, any),
+    ).thenAnswer((_) async {});
+    when(
+      mockSecureStorageService.getStringValue(any),
+    ).thenAnswer((_) async => 'en');
     when(mockSecureStorageService.deleteValue(any)).thenAnswer((_) async {});
 
     // Mock HomeViewModel
     when(mockHomeViewModel.pageViewController).thenReturn(mockPageController);
-    when(mockHomeViewModel.currentPageIndexNotifier).thenReturn(mockCurrentPageIndexNotifier);
+    when(
+      mockHomeViewModel.currentPageIndexNotifier,
+    ).thenReturn(mockCurrentPageIndexNotifier);
     when(mockPageController.jumpToPage(any)).thenAnswer((_) async {});
     when(mockPageController.page).thenReturn(0.0); // Initial page
 
     // Initialize getIt
     await getIt.reset();
-    getIt.registerSingleton<SecureStorageService>(SecureStorageServiceImp(mockFlutterSecureStorage));
+    getIt.registerSingleton<SecureStorageService>(
+      SecureStorageServiceImp(mockFlutterSecureStorage),
+    );
     getIt.registerSingleton<LocalizationManager>(mockLocalizationManager);
     getIt.registerSingleton<AppLocalizations>(mockAppLocalizations);
     getIt.registerSingleton<ValidateFunctions>(mockValidateFunctions);
@@ -113,7 +121,9 @@ void main() {
   Widget createTestableWidget(Widget child) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<LocalizationManager>.value(value: mockLocalizationManager),
+        ChangeNotifierProvider<LocalizationManager>.value(
+          value: mockLocalizationManager,
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: [
@@ -142,7 +152,9 @@ void main() {
   }
 
   group('HomeScreen Widget Tests', () {
-    testWidgets('BottomNavigationBar updates index on PageView change', (WidgetTester tester) async {
+    testWidgets('BottomNavigationBar updates index on PageView change', (
+      WidgetTester tester,
+    ) async {
       // Set screen size for testing
       await tester.binding.setSurfaceSize(const Size(400, 800));
 
@@ -157,15 +169,31 @@ void main() {
       await tester.pumpAndSettle();
 
       // Verify initial state
-      expect(find.byType(BottomNavigationBar), findsOneWidget, reason: 'BottomNavigationBar should be rendered');
-      expect(find.byType(HomePage), findsOneWidget, reason: 'HomePage should be initial page');
-      final initialNavBar = tester.widget<BottomNavigationBar>(find.byType(BottomNavigationBar));
-      expect(initialNavBar.currentIndex, 0, reason: 'Initial index should be 0');
+      expect(
+        find.byType(BottomNavigationBar),
+        findsOneWidget,
+        reason: 'BottomNavigationBar should be rendered',
+      );
+      expect(
+        find.byType(HomePage),
+        findsOneWidget,
+        reason: 'HomePage should be initial page',
+      );
+      final initialNavBar = tester.widget<BottomNavigationBar>(
+        find.byType(BottomNavigationBar),
+      );
+      expect(
+        initialNavBar.currentIndex,
+        0,
+        reason: 'Initial index should be 0',
+      );
 
       // Simulate PageView change
       when(mockPageController.page).thenReturn(2.0); // Mock current page
       mockCurrentPageIndexNotifier.value = 2;
-      mockHomeViewModel.pageViewController.jumpToPage(2); // Trigger PageView change
+      mockHomeViewModel.pageViewController.jumpToPage(
+        2,
+      ); // Trigger PageView change
       await tester.pumpAndSettle(); // Wait for rebuild and animations
 
       // Debug widget tree if BottomNavigationBar isn't found
@@ -174,11 +202,29 @@ void main() {
       }
 
       // Verify updated state
-      expect(find.byType(BottomNavigationBar), findsOneWidget, reason: 'BottomNavigationBar should still be rendered');
-      final updatedNavBar = tester.widget<BottomNavigationBar>(find.byType(BottomNavigationBar));
-      expect(updatedNavBar.currentIndex, 2, reason: 'BottomNavigationBar index should be 2');
-      expect(find.byType(WorkoutsPage), findsOneWidget, reason: 'WorkoutsPage should be displayed');
-      expect(find.byType(HomePage), findsNothing, reason: 'HomePage should not be displayed');
+      expect(
+        find.byType(BottomNavigationBar),
+        findsOneWidget,
+        reason: 'BottomNavigationBar should still be rendered',
+      );
+      final updatedNavBar = tester.widget<BottomNavigationBar>(
+        find.byType(BottomNavigationBar),
+      );
+      expect(
+        updatedNavBar.currentIndex,
+        2,
+        reason: 'BottomNavigationBar index should be 2',
+      );
+      expect(
+        find.byType(WorkoutsPage),
+        findsOneWidget,
+        reason: 'WorkoutsPage should be displayed',
+      );
+      expect(
+        find.byType(HomePage),
+        findsNothing,
+        reason: 'HomePage should not be displayed',
+      );
 
       // Clean up
       tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
-import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
@@ -13,6 +12,7 @@ import 'package:super_fitness/shared_layers/localization/l10n_manager/localizati
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
+import 'modules/food/ui/food_recommendation_screen.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -84,7 +84,8 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            initialRoute: DefinedRoutes.loginScreenRoute,
+            //initialRoute: DefinedRoutes.loginScreenRoute,
+            home: const FoodRecommendationScreen(),
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: DefinedRoutes.onboardingScreenRoute,

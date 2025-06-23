@@ -10,7 +10,7 @@ part of 'food_api_client.dart';
 
 class _FoodApiClient implements FoodApiClient {
   _FoodApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'www.themealdb.com/api/json/v1/1/';
+    baseUrl ??= 'https://www.themealdb.com/api/json/v1/1/';
   }
 
   final Dio _dio;

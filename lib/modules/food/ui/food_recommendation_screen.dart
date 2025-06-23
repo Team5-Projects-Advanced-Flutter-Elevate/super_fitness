@@ -77,7 +77,7 @@ class _FoodRecommendationScreenState
                       case LoadFoodCategoriesState.success:
                         return DefaultTabController(
                           initialIndex: 0,
-                          length: 3,
+                          length: state.foodCategoriesList!.length,
                           child: CustomBottomTabBar(
                             preferredHeight: 35,
                             isScrollable: true,

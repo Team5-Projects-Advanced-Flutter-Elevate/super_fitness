@@ -7,7 +7,6 @@ import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/home/pages/workouts_page/ui/view_model/workouts_page_cubit.dart';
 import 'package:super_fitness/modules/home/pages/workouts_page/ui/widgets/build_workout_success.dart';
 
-
 class WorkoutsPage extends StatefulWidget {
   const WorkoutsPage({super.key});
 

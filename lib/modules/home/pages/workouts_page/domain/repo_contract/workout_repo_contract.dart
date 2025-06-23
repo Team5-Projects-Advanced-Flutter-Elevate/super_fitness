@@ -6,5 +6,4 @@ abstract interface class WorkoutRepo {
   Future<ApiResult<List<MuscleGroupEntity>?>> getMusclesGroup();
 
   Future<ApiResult<List<MuscleEntity>?>> getMuscleGroupWorkouts(String id);
-
 }

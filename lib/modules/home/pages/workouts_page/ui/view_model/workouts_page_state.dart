@@ -16,7 +16,7 @@ class WorkoutsPageState extends Equatable {
     this.musclesGroup,
     this.getMusclesGroupError,
     this.getMuscleGroupWorkoutsError,
-    this.muscleGroupWorkouts
+    this.muscleGroupWorkouts,
   });
 
   WorkoutsPageState copyWith({
@@ -25,7 +25,7 @@ class WorkoutsPageState extends Equatable {
     List<MuscleGroupEntity>? musclesGroup,
     Object? getMusclesGroupError,
     Object? getMuscleGroupWorkoutsError,
-    List<MuscleEntity>? muscleGroupWorkouts
+    List<MuscleEntity>? muscleGroupWorkouts,
   }) {
     return WorkoutsPageState(
       getMusclesGroupStatus:
@@ -36,8 +36,7 @@ class WorkoutsPageState extends Equatable {
       getMusclesGroupError: getMusclesGroupError ?? this.getMusclesGroupError,
       getMuscleGroupWorkoutsError:
           getMuscleGroupWorkoutsError ?? this.getMuscleGroupWorkoutsError,
-      muscleGroupWorkouts:
-          muscleGroupWorkouts ?? this.muscleGroupWorkouts,
+      muscleGroupWorkouts: muscleGroupWorkouts ?? this.muscleGroupWorkouts,
     );
   }
 
@@ -48,6 +47,6 @@ class WorkoutsPageState extends Equatable {
     getMusclesGroupError,
     getMuscleGroupWorkoutsStatus,
     getMuscleGroupWorkoutsError,
-    muscleGroupWorkouts
+    muscleGroupWorkouts,
   ];
 }

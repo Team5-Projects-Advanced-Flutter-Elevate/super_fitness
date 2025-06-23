@@ -76,11 +76,9 @@ class _ForgetPasswordScreenState
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [Image.asset(AssetsPaths.appIcon)],
                   ),
-                  SizedBox(height: screenHeight * 0.1),
+                  const SizedBox(height: 100),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.04,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
 
                     child: Text(
                       appLocalizations.pleaseEnterEmail,
@@ -88,9 +86,7 @@ class _ForgetPasswordScreenState
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.04,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
 
                     child: Text(
                       appLocalizations.forgetPassword,
@@ -98,9 +94,7 @@ class _ForgetPasswordScreenState
                       textAlign: TextAlign.center,
                     ),
                   ),
-
-                  SizedBox(height: screenHeight * 0.02),
-
+                  const SizedBox(height: 20),
                   ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     child: BackdropFilter(
@@ -135,7 +129,7 @@ class _ForgetPasswordScreenState
                                 ),
                               ),
                             ),
-                            SizedBox(height: screenHeight * 0.025),
+                            const SizedBox(height: 24),
                             BlocConsumer<
                               ForgetPasswordViewModel,
                               ForgetPasswordState

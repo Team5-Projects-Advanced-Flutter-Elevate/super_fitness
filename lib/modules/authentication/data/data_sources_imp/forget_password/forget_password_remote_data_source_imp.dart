@@ -9,7 +9,7 @@ import '../../models/forget_password/user.dart';
 
 @Injectable(as: ForgetPasswordRemoteDataSource)
 class ForgetPasswordRemoteDataSourceImpl
-    extends ForgetPasswordRemoteDataSource {
+    implements ForgetPasswordRemoteDataSource {
   AuthApiClient apiClient;
   @factoryMethod
   ForgetPasswordRemoteDataSourceImpl(this.apiClient);

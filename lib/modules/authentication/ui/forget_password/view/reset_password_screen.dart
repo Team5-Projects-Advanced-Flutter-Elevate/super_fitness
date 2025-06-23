@@ -76,11 +76,9 @@ class _ResetPasswordScreenState
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [Image.asset(AssetsPaths.appIcon)],
                   ),
-                  SizedBox(height: screenHeight * 0.05),
+                  const SizedBox(height: 50),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.04,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
 
                     child: Text(
                       appLocalizations.resetPassDesc,
@@ -88,16 +86,14 @@ class _ResetPasswordScreenState
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth * 0.04,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
 
                     child: Text(
                       appLocalizations.createNewPassword,
                       style: theme.textTheme.titleLarge,
                     ),
                   ),
-                  SizedBox(height: screenHeight * 0.04),
+                  const SizedBox(height: 40),
 
                   BlocConsumer<ForgetPasswordViewModel, ForgetPasswordState>(
                     bloc: widget.viewModel,
@@ -175,7 +171,7 @@ class _ResetPasswordScreenState
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: screenHeight * 0.03),
+                                const SizedBox(height: 30),
                                 TextFormField(
                                   validator:
                                       (value) => getIt<ValidateFunctions>()
@@ -216,7 +212,7 @@ class _ResetPasswordScreenState
                                     ),
                                   ),
                                 ),
-                                SizedBox(height: screenHeight * 0.04),
+                                const SizedBox(height: 40),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

@@ -43,12 +43,12 @@ import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart
     as _i525;
 import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
     as _i121;
+import '../../modules/authentication/data/repositories_imp/forget_password/forget_password_repo_imp.dart'
+    as _i956;
 import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
     as _i641;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
     as _i193;
-import '../../modules/authentication/data/respositoies_imp/forget_password/forget_password_repo_imp.dart'
-    as _i811;
 import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
     as _i396;
@@ -149,6 +149,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i1013.ForgetPasswordRepo>(
+      () => _i956.ForgetPasswordRepoImpl(
+        gh<_i150.ForgetPasswordRemoteDataSource>(),
+      ),
+    );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -158,11 +163,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
-    );
-    gh.factory<_i1013.ForgetPasswordRepo>(
-      () => _i811.ForgetPasswordRepoImpl(
-        gh<_i150.ForgetPasswordRemoteDataSource>(),
-      ),
     );
     gh.singleton<_i273.LocalizationManager>(
       () => _i273.LocalizationManager(

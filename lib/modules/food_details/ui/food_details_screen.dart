@@ -5,9 +5,7 @@ import 'package:super_fitness/core/widgets/error_state_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/food_details/ui/view_model/food_details_cubit.dart';
 import 'package:super_fitness/modules/food_details/ui/view_model/food_details_intent.dart';
-import 'package:super_fitness/modules/food_details/ui/widgets/food_video_section.dart';
-import 'package:super_fitness/modules/food_details/ui/widgets/ingredients_section.dart';
-import 'package:super_fitness/modules/food_details/ui/widgets/recommendation_section.dart';
+import 'package:super_fitness/modules/food_details/ui/widgets/build_success_state.dart';
 import '../../../core/bases/base_stateful_widget_state.dart';
 import '../../../core/constants/assets_paths/assets_paths.dart';
 
@@ -47,7 +45,7 @@ class _FoodDetailsScreenState
                 case GetFoodDetailsStatus.loading:
                   return const LoadingStateWidget();
                 case GetFoodDetailsStatus.success:
-                  return buildSuccess(state);
+                  return BuildSuccessState(state: state);
                 case GetFoodDetailsStatus.error:
                   return ErrorStateWidget(error: state.getFoodDetailsError!);
               }
@@ -55,20 +53,6 @@ class _FoodDetailsScreenState
           ),
         ),
       ),
-    );
-  }
-
-  Widget buildSuccess(FoodDetailsState state) {
-    return Column(
-      children: [
-        FoodVideoSection(state: state),
-        const SizedBox(height: 16),
-        IngredientsSection(state: state),
-        const SizedBox(height: 8),
-
-        /// this data will be shown by the previous screen  => list of recommended food item
-         RecommendationSection(state: state,),
-      ],
     );
   }
 }

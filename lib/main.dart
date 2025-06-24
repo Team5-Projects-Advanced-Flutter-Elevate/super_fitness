@@ -10,7 +10,6 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
-
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
@@ -42,9 +41,10 @@ void main() async {
         ),
       ],
       child: DevicePreview(
-          builder: (context) {
-            return const MyApp();
-          }
+        enabled: false,
+        builder: (context) {
+          return const MyApp();
+        },
       ),
     ),
   );

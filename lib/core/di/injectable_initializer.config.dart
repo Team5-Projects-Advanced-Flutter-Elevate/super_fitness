@@ -61,7 +61,22 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
-import '../../modules/home/view_model/home_view_model.dart' as _i749;
+import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
+import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
+    as _i939;
+import '../../modules/home/data/data_sources_contracts/random_exercises/random_exercises_remote_data_source.dart'
+    as _i1066;
+import '../../modules/home/data/data_sources_imp/random_exercises/random_exercises_remote_data_source_imp.dart'
+    as _i705;
+import '../../modules/home/data/respositories_imp/random_exercises/random_exercises_repo_imp.dart'
+    as _i16;
+import '../../modules/home/domain/repositories_contracts/random_exercises/random_exercise_repo.dart'
+    as _i352;
+import '../../modules/home/domain/use_cases/random_exercises/get_ten_random_exerciese_use_case.dart'
+    as _i784;
+import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
+    as _i102;
+import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -93,6 +108,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final homeApiClientProvider = _$HomeApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -102,11 +118,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -115,8 +131,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i293.HomeApiClient>(
+      () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
+    );
+    gh.factory<_i1066.RandomExerciseRemoteDataSource>(
+      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
@@ -146,6 +168,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
+    gh.factory<_i352.RandomExercisesRepo>(
+      () => _i16.RandomExercisesRepoImp(
+        gh<_i1066.RandomExerciseRemoteDataSource>(),
+      ),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -158,8 +185,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
     );
+    gh.factory<_i784.GetTenRandomExerciseUseCase>(
+      () => _i784.GetTenRandomExerciseUseCase(gh<_i352.RandomExercisesRepo>()),
+    );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
+    );
+    gh.factory<_i102.HomePageViewModel>(
+      () => _i102.HomePageViewModel(gh<_i784.GetTenRandomExerciseUseCase>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
@@ -204,6 +237,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
-import 'package:super_fitness/modules/home/pages/home_page/widgets/category_item.dart';
+import 'package:super_fitness/core/utilities/mixins/widget_height_watcher.dart';
+import 'package:super_fitness/modules/home/ui/pages/home_page/widgets/category_item.dart';
 
 class CategoriesSection extends StatefulWidget {
   const CategoriesSection({super.key});
@@ -11,24 +12,23 @@ class CategoriesSection extends StatefulWidget {
   State<CategoriesSection> createState() => _CategoriesSectionState();
 }
 
-class _CategoriesSectionState
-    extends BaseStatefulWidgetState<CategoriesSection> {
-  final GlobalKey _widgetAKey = GlobalKey();
-  double _widgetAHeight = 0;
+class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
+    with WidgetHeightWatcher<CategoriesSection> {
+  final GlobalKey categoryItemKey = GlobalKey();
+  double categoryItemHeight = 0;
 
   @override
   void initState() {
     super.initState();
     // Wait until the first frame is rendered
-    WidgetsBinding.instance.addPersistentFrameCallback((_) {
-      final RenderBox renderBox =
-          _widgetAKey.currentContext?.findRenderObject() as RenderBox;
-      if (renderBox != null) {
+    waitForStableHeight(
+      key: categoryItemKey,
+      onHeightReady: (height) {
         setState(() {
-          _widgetAHeight = renderBox.size.height;
+          categoryItemHeight = height;
         });
-      }
-    });
+      },
+    );
   }
 
   @override
@@ -54,14 +54,14 @@ class _CategoriesSectionState
             children: [
               Expanded(
                 child: CategoryItem(
-                  key: _widgetAKey,
+                  key: categoryItemKey,
                   onTap: () {},
                   image: AssetsPaths.gymPersonIcon,
                   title: "Gym",
                 ),
               ),
               SizedBox(
-                height: _widgetAHeight,
+                height: categoryItemHeight,
                 child: VerticalDivider(
                   color: AppColors.black[70],
                   indent: 6,
@@ -75,10 +75,13 @@ class _CategoriesSectionState
                   title: "Fitness",
                 ),
               ),
-              VerticalDivider(
-                color: AppColors.black[70],
-                indent: 6,
-                endIndent: 6,
+              SizedBox(
+                height: categoryItemHeight,
+                child: VerticalDivider(
+                  color: AppColors.black[70],
+                  indent: 6,
+                  endIndent: 6,
+                ),
               ),
               Expanded(
                 child: CategoryItem(
@@ -87,10 +90,13 @@ class _CategoriesSectionState
                   title: "Yoga",
                 ),
               ),
-              VerticalDivider(
-                color: AppColors.black[70],
-                indent: 6,
-                endIndent: 6,
+              SizedBox(
+                height: categoryItemHeight,
+                child: VerticalDivider(
+                  color: AppColors.black[70],
+                  indent: 6,
+                  endIndent: 6,
+                ),
               ),
               Expanded(
                 child: CategoryItem(
@@ -99,10 +105,13 @@ class _CategoriesSectionState
                   title: "Aerobics",
                 ),
               ),
-              VerticalDivider(
-                color: AppColors.black[70],
-                indent: 6,
-                endIndent: 6,
+              SizedBox(
+                height: categoryItemHeight,
+                child: VerticalDivider(
+                  color: AppColors.black[70],
+                  indent: 6,
+                  endIndent: 6,
+                ),
               ),
               Expanded(
                 child: CategoryItem(

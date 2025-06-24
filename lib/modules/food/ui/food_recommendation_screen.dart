@@ -1,3 +1,4 @@
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
@@ -10,7 +11,6 @@ import '../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../core/di/injectable_initializer.dart';
 import '../../../core/widgets/custom_bottom_tab_bar.dart';
 import '../../../core/widgets/custom_item_container.dart';
-import '../../../core/widgets/error_state_widget.dart';
 
 class FoodRecommendationScreen extends StatefulWidget {
   const FoodRecommendationScreen({super.key});
@@ -26,7 +26,6 @@ class _FoodRecommendationScreenState
   @override
   void initState() {
     viewModel.onIntent(GetCategoriesIntent());
-    //viewModel.onIntent(FilterMealsByCategoryIntent());
     super.initState();
   }
 
@@ -49,17 +48,22 @@ class _FoodRecommendationScreenState
                 Row(
                   children: [
                     const Spacer(),
-                    CircleAvatar(
-                      radius: 15,
-                      backgroundColor: AppColors.mainColorLight,
-                      child: const ImageIcon(
-                        AssetImage(AssetsPaths.backIcon),
-                        size: 12,
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: CircleAvatar(
+                        radius: 15,
+                        backgroundColor: AppColors.mainColorLight,
+                        child: const ImageIcon(
+                          AssetImage(AssetsPaths.backIcon),
+                          size: 12,
+                        ),
                       ),
                     ),
                     const Spacer(),
                     Text(
-                      'Food Recommendation',
+                      appLocalizations.foodRecommendation,
                       style: theme.textTheme.titleLarge,
                     ),
                     const Spacer(flex: 6),
@@ -68,20 +72,27 @@ class _FoodRecommendationScreenState
                 const SizedBox(height: 20),
                 BlocConsumer<FoodViewModel, FoodState>(
                   listener: (context, state) {
-                    switch (state.loadFoodCategoriesState) {
-                      case LoadFoodCategoriesState.loading:
-                      case LoadFoodCategoriesState.initial:
-                      case LoadFoodCategoriesState.idle:
-                        break;
-                      case LoadFoodCategoriesState.error:
-                        break;
-                      case LoadFoodCategoriesState.success:
-                        viewModel.onIntent(
-                          FilterMealsByCategoryIntent(
-                            selectedCategoryName: state.selectedCategory!,
-                          ),
-                        );
-                        break;
+                    if (state.loadFoodCategoriesState ==
+                        LoadFoodCategoriesState.success) {
+                      viewModel.onIntent(
+                        FilterMealsByCategoryIntent(
+                          selectedCategoryName: state.selectedCategory!,
+                        ),
+                      );
+                    } else if (state.loadFoodCategoriesState ==
+                        LoadFoodCategoriesState.error) {
+                      displaySnackBar(
+                        contentType: ContentType.failure,
+                        title: appLocalizations.error,
+                        message: state.loadCatErrMsg,
+                      );
+                    }
+                    if (state.filterFoodState == FilterFoodState.error) {
+                      displaySnackBar(
+                        contentType: ContentType.failure,
+                        title: appLocalizations.error,
+                        message: state.filterFoodErrMsg,
+                      );
                     }
                   },
                   builder: (context, state) {
@@ -90,7 +101,7 @@ class _FoodRecommendationScreenState
                       case LoadFoodCategoriesState.initial:
                         return const LoadingStateWidget();
                       case LoadFoodCategoriesState.error:
-                        return ErrorStateWidget(error: state.loadCatErrMsg!);
+                        return const Center(child: Icon(Icons.error));
                       case LoadFoodCategoriesState.success:
                       case LoadFoodCategoriesState.idle:
                         return DefaultTabController(
@@ -139,7 +150,7 @@ class _FoodRecommendationScreenState
                                 state.mealsList!.isEmpty
                                     ? Center(
                                       child: Text(
-                                        'no food',
+                                        appLocalizations.noFoodRecommendation,
                                         style: theme.textTheme.titleLarge,
                                       ),
                                     )
@@ -172,9 +183,7 @@ class _FoodRecommendationScreenState
                           );
 
                         case FilterFoodState.error:
-                          return ErrorStateWidget(
-                            error: state.filterFoodErrMsg!,
-                          );
+                          return const Center(child: Icon(Icons.error));
                       }
                     },
                   ),

@@ -42,7 +42,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Provider(
+      child: ChangeNotifierProvider(
         create: (context) => homeViewModel,
         child: Scaffold(
           body: SafeArea(

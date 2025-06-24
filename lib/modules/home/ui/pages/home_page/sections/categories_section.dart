@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/utilities/mixins/widget_height_watcher.dart';
 import 'package:super_fitness/modules/home/ui/pages/home_page/widgets/category_item.dart';
+import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 
 class CategoriesSection extends StatefulWidget {
   const CategoriesSection({super.key});
@@ -16,6 +19,8 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
     with WidgetHeightWatcher<CategoriesSection> {
   final GlobalKey categoryItemKey = GlobalKey();
   double categoryItemHeight = 0;
+
+  late HomeViewModel homeViewModel;
 
   @override
   void initState() {
@@ -31,6 +36,11 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
     );
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    homeViewModel = Provider.of<HomeViewModel>(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,7 +65,12 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
               Expanded(
                 child: CategoryItem(
                   key: categoryItemKey,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DefinedRoutes.upcomingFeatureScreen,
+                    );
+                  },
                   image: AssetsPaths.gymPersonIcon,
                   title: "Gym",
                 ),
@@ -70,7 +85,12 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
               ),
               Expanded(
                 child: CategoryItem(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DefinedRoutes.upcomingFeatureScreen,
+                    );
+                  },
                   image: AssetsPaths.fitnessPersonIcon,
                   title: "Fitness",
                 ),
@@ -85,7 +105,12 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
               ),
               Expanded(
                 child: CategoryItem(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DefinedRoutes.upcomingFeatureScreen,
+                    );
+                  },
                   image: AssetsPaths.yogaPersonIcon,
                   title: "Yoga",
                 ),
@@ -100,7 +125,12 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
               ),
               Expanded(
                 child: CategoryItem(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      DefinedRoutes.upcomingFeatureScreen,
+                    );
+                  },
                   image: AssetsPaths.aerobicsPersonIcon,
                   title: "Aerobics",
                 ),
@@ -115,7 +145,9 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
               ),
               Expanded(
                 child: CategoryItem(
-                  onTap: () {},
+                  onTap: () {
+                    homeViewModel.navigateToPage(1);
+                  },
                   image: AssetsPaths.trainerPersonIcon,
                   title: "Trainer",
                 ),

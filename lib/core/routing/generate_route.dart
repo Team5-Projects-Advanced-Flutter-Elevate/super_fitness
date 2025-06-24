@@ -5,6 +5,7 @@ import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart'
 import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
 import 'package:super_fitness/modules/home/ui/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
+import 'package:super_fitness/modules/upcoming_screen/ui/upcoming_feature_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
@@ -24,6 +25,9 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.upcomingFeatureScreen:
+          return MaterialPageRoute(
+            builder: (context) => const UpcomingFeatureScreen(),);
         default:
           return _errorRoute();
       }

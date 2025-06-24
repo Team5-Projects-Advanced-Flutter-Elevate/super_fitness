@@ -24,4 +24,6 @@ abstract class AssetsPaths {
   static const String trainerPersonIcon =
       "assets/icons/trainer_person_icon.png";
   static const String yogaPersonIcon = "assets/icons/yoga_person_icon.png";
+  static const String workingDeveloperAnimation =
+      "assets/animations/working_developer_animation.json";
 }

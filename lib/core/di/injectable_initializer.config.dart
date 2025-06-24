@@ -95,6 +95,8 @@ import '../utilities/app_localizations/app_localizations_provider.dart'
 import '../utilities/dio/dio_service/dio_service.dart' as _i738;
 import '../utilities/google_sign_in/google_sign_in_handler.dart' as _i138;
 import '../utilities/google_sign_in/google_sign_in_object.dart' as _i780;
+import '../utilities/single_data_per_application/single_data_per_application_provider.dart'
+as _i459;
 import '../validation/validation_functions.dart' as _i166;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -125,6 +127,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
+    );
+    gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
+          () => _i459.SingleDataPerApplicationProvider(),
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());

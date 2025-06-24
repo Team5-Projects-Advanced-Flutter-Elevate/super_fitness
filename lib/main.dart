@@ -9,6 +9,7 @@ import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
+import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
@@ -38,6 +39,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => getIt.get<LocalizationManager>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => getIt.get<SingleDataPerApplicationProvider>(),
         ),
       ],
       child: DevicePreview(

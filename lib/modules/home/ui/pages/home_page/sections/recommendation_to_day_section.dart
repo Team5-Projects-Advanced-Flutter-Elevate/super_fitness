@@ -32,7 +32,7 @@ class _RecommendationToDaySectionState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Recommendation To Day",
+          appLocalizations.recommendationToDay,
           textAlign: TextAlign.start,
           style: theme.textTheme.titleMedium!.copyWith(
             fontSize: 18,
@@ -56,7 +56,7 @@ class _RecommendationToDaySectionState
                 case Status.idle:
                   return const SizedBox();
                 case Status.loading:
-                  return const Center(child: LoadingStateWidget());
+                  return const LoadingStateWidget();
                 case Status.success:
                   List<ExerciseEntity> exercises =
                       state.randomExercisesResponse?.exercises ?? [];
@@ -65,7 +65,7 @@ class _RecommendationToDaySectionState
                   return exercises.isEmpty
                       ? Center(
                         child: Text(
-                          "No Data",
+                          appLocalizations.noData,
                           style: theme.textTheme.titleMedium!.copyWith(
                             fontSize: 20,
                           ),
@@ -86,7 +86,7 @@ class _RecommendationToDaySectionState
                       );
 
                 case Status.error:
-                  return Center(child: ErrorStateWidget(error: state.error!));
+                  return ErrorStateWidget(error: state.randomExercisesError!);
               }
             },
           ),

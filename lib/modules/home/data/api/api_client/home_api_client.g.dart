@@ -9,22 +9,27 @@ part of 'home_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _HomeApiClient implements HomeApiClient {
-  _HomeApiClient(this._dio, {this.baseUrl, this.errorLogger});
+  _HomeApiClient(this._dio) {
+    baseUrl = null;
+    errorLogger = null;
+  }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  final ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<RandomExercisesResponseDto> getRandomExercises({
     required Map<String, dynamic> queries,
+    required String languageCode,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     queryParameters.addAll(queries);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Accept-Language': languageCode};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<RandomExercisesResponseDto>(
       Options(method: 'GET', headers: _headers, extra: _extra)

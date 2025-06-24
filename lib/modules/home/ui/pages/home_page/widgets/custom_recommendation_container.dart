@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_statless_widget.dart';
@@ -28,7 +29,8 @@ class CustomRecommendationContainer extends BaseStatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20), color: AppColors.black),
           width: containerSize,
           height: containerSize,
           child: CustomNetworkCachedImage(imageUrl: imageUrl),

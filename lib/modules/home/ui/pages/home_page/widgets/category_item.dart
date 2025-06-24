@@ -24,7 +24,12 @@ class CategoryItem extends BaseStatelessWidget {
         children: [
           Image.asset(image, width: inherit.screenWidth * 0.17),
           const SizedBox(height: 4),
-          Text(title, style: inherit.theme.textTheme.labelMedium),
+          Text(
+            title,
+
+            style: inherit.theme.textTheme.labelMedium,
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     );

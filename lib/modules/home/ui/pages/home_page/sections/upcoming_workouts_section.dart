@@ -25,7 +25,7 @@ class _UpcomingWorkoutsSectionState
           Row(
             children: [
               Text(
-                "Upcoming Workouts",
+                appLocalizations.upcomingWorkouts,
                 textAlign: TextAlign.start,
                 style: theme.textTheme.titleMedium!.copyWith(
                   fontSize: 18,
@@ -36,7 +36,7 @@ class _UpcomingWorkoutsSectionState
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "See All",
+                  appLocalizations.seeAll,
                   style: theme.textTheme.titleSmall!.copyWith(
                     color: AppColors.mainColorLight,
                     decoration: TextDecoration.underline,

@@ -7,4 +7,6 @@ abstract class DefinedRoutes {
   static const String allRegisterFeature = 'allRegisterFeature';
   static const String homeScreenRoute = 'homeScreen';
   static const String upcomingFeatureScreen = 'upcomingFeatureScreen';
+  static const String foodRecommendationScreenRoute =
+      'foodRecommendationScreenRoute';
 }

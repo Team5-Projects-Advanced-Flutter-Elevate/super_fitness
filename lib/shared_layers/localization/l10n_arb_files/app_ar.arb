@@ -121,8 +121,20 @@
   "workouts": "التمارين",
   "profile": "الملف الشخصي",
   "foodRecommendation": "تفضيلات الطعام",
-  "noFoodRecommendation": "لايوجد تفضيلات طعام"
-
-
+  "noFoodRecommendation": "لايوجد تفضيلات طعام",
+  "homePage_________": "$$$ تعليق $$$",
+  "hiUser": "مرحبًا {userName},\n",
+  "startYourDayMessage": "لنبدأ يومك",
+  "category": "الفئة",
+  "gym": "نادي رياضي",
+  "fitness": "اللياقة",
+  "yoga": "يوغا",
+  "aerobics": "تمارين هوائية",
+  "trainer": "مدرب",
+  "recommendationToDay": "توصية اليوم",
+  "noData": "لا توجد بيانات",
+  "upcomingWorkouts": "التمارين القادمة",
+  "seeAll": "عرض الكل",
+  "recommendationForYou": "توصيات لك"
 
 }

@@ -47,7 +47,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Category",
+          appLocalizations.category,
           style: theme.textTheme.titleMedium!.copyWith(
             fontSize: 18,
             fontWeight: FontWeight.w700,
@@ -72,7 +72,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
                     );
                   },
                   image: AssetsPaths.gymPersonIcon,
-                  title: "Gym",
+                  title: appLocalizations.gym,
                 ),
               ),
               SizedBox(
@@ -92,7 +92,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
                     );
                   },
                   image: AssetsPaths.fitnessPersonIcon,
-                  title: "Fitness",
+                  title: appLocalizations.fitness,
                 ),
               ),
               SizedBox(
@@ -112,7 +112,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
                     );
                   },
                   image: AssetsPaths.yogaPersonIcon,
-                  title: "Yoga",
+                  title: appLocalizations.yoga,
                 ),
               ),
               SizedBox(
@@ -132,7 +132,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
                     );
                   },
                   image: AssetsPaths.aerobicsPersonIcon,
-                  title: "Aerobics",
+                  title: appLocalizations.aerobics,
                 ),
               ),
               SizedBox(
@@ -149,7 +149,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
                     homeViewModel.navigateToPage(1);
                   },
                   image: AssetsPaths.trainerPersonIcon,
-                  title: "Trainer",
+                  title: appLocalizations.trainer,
                 ),
               ),
             ],

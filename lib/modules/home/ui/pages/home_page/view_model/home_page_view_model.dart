@@ -4,6 +4,8 @@ import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
 import 'package:super_fitness/core/utilities/youtube_video_thumbnail/youtube_video_thumbnail.dart';
+import 'package:super_fitness/modules/food/domain/entities/food_categories_entity.dart';
+import 'package:super_fitness/modules/food/domain/use_cases/get_food_categories_use_case.dart';
 import 'package:super_fitness/modules/home/domain/entities/random_exercises/random_exercises_response_entity.dart';
 import 'package:super_fitness/modules/home/domain/use_cases/random_exercises/get_ten_random_exerciese_use_case.dart';
 import 'package:super_fitness/modules/home/ui/pages/home_page/view_model/home_page_state.dart';
@@ -11,14 +13,18 @@ import 'package:super_fitness/modules/home/ui/pages/home_page/view_model/home_pa
 @injectable
 class HomePageViewModel extends Cubit<HomePageState> {
   final GetTenRandomExerciseUseCase _getTenRandomExerciseUseCase;
+  final GetFoodCategoriesUseCase _getFoodCategoriesUseCase;
 
-  HomePageViewModel(this._getTenRandomExerciseUseCase)
-    : super(const HomePageState());
+  HomePageViewModel(
+    this._getTenRandomExerciseUseCase,
+    this._getFoodCategoriesUseCase,
+  ) : super(const HomePageState());
 
   void doIntent(HomePageIntent intent) {
     switch (intent) {
       case LoadHomePage():
         _getRandomExercises();
+        _getFoodCategories();
         break;
     }
   }
@@ -33,7 +39,7 @@ class HomePageViewModel extends Cubit<HomePageState> {
           randomExercisesStatus: Status.success,
           randomExercisesResponse: singleDataProvider.randomExercisesResponse,
           exercisesVideosThumbnailsUrls:
-          singleDataProvider.exercisesVideosThumbnailsUrls,
+              singleDataProvider.exercisesVideosThumbnailsUrls,
         ),
       );
     } else {
@@ -43,12 +49,11 @@ class HomePageViewModel extends Cubit<HomePageState> {
           var thumbnailsList = _getVideosThumbnails(
             useCaseResult.data.exercises ?? [],
           );
-          if (useCaseResult.data != null) {
-            singleDataProvider.changeRandomExercisesData(
-              entity: useCaseResult.data,
-              thumbnailsUrls: thumbnailsList,
-            );
-          }
+          singleDataProvider.changeRandomExercisesData(
+            entity: useCaseResult.data,
+            thumbnailsUrls: thumbnailsList,
+          );
+
           emit(
             state.copyWith(
               randomExercisesStatus: Status.success,
@@ -60,7 +65,7 @@ class HomePageViewModel extends Cubit<HomePageState> {
           emit(
             state.copyWith(
               randomExercisesStatus: Status.error,
-              error: useCaseResult.error,
+              randomExercisesError: useCaseResult.error,
             ),
           );
       }
@@ -87,6 +92,32 @@ class HomePageViewModel extends Cubit<HomePageState> {
       }
     }
     return thumbnailsUrls;
+  }
+
+  void _getFoodCategories() async {
+    emit(
+      state.copyWith(
+        foodCategoriesStatus: Status.loading,
+        foodCategoriesError: null,
+      ),
+    );
+    var useCaseResult = await _getFoodCategoriesUseCase.call();
+    switch (useCaseResult) {
+      case Success<List<FoodCategoryEntity>>():
+        emit(
+          state.copyWith(
+            foodCategoriesStatus: Status.success,
+            foodCategoryEntities: useCaseResult.data,
+          ),
+        );
+      case Error<List<FoodCategoryEntity>>():
+        emit(
+          state.copyWith(
+            foodCategoriesStatus: Status.error,
+            foodCategoriesError: state.randomExercisesError,
+          ),
+        );
+    }
   }
 }
 

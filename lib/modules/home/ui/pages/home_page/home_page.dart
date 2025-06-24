@@ -38,11 +38,11 @@ class _HomePageState extends BaseStatefulWidgetState<HomePage> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "Hi $userName,\n",
+                  text: appLocalizations.hiUser(userName),
                   style: theme.textTheme.titleMedium,
                 ),
                 TextSpan(
-                  text: "Let’s Start Your Day",
+                  text: appLocalizations.startYourDayMessage,
                   style: theme.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

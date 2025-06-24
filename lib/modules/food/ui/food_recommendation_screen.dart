@@ -69,7 +69,7 @@ class _FoodRecommendationScreenState
                     const Spacer(flex: 6),
                   ],
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 35),
                 BlocConsumer<FoodViewModel, FoodState>(
                   listener: (context, state) {
                     if (state.loadFoodCategoriesState ==

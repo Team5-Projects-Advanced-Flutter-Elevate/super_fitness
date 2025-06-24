@@ -3,7 +3,7 @@ import 'package:super_fitness/modules/food/domain/entities/meal_entity.dart';
 
 import '../../domain/entities/food_categories_entity.dart';
 
-enum LoadFoodCategoriesState { initial, loading, success, error }
+enum LoadFoodCategoriesState { initial, loading, success, error, idle }
 
 enum FilterFoodState { initial, loading, success, error }
 

@@ -23,7 +23,9 @@ class FoodViewModel extends Cubit<FoodState> {
         _getCategories();
         break;
       case FilterMealsByCategoryIntent():
-        _filterMealsByCategory(selectedCategoryName: state.selectedCategory!);
+        _filterMealsByCategory(
+          selectedCategoryName: intent.selectedCategoryName,
+        );
         break;
     }
   }
@@ -43,7 +45,9 @@ class FoodViewModel extends Cubit<FoodState> {
             selectedCategory: result.data.first.strCategory,
           ),
         );
-
+        emit(
+          state.copyWith(loadFoodCategoriesState: LoadFoodCategoriesState.idle),
+        );
         break;
       case Error<List<FoodCategoryEntity>>():
         emit(
@@ -63,6 +67,7 @@ class FoodViewModel extends Cubit<FoodState> {
       state.copyWith(
         filterFoodState: FilterFoodState.loading,
         selectedCategory: selectedCategoryName,
+        //  loadFoodCategoriesState: LoadFoodCategoriesState.initial,
       ),
     );
     var result = await _filterMealsByCategoryNameUseCase.call(
@@ -94,6 +99,6 @@ sealed class FoodIntent {}
 class GetCategoriesIntent extends FoodIntent {}
 
 class FilterMealsByCategoryIntent extends FoodIntent {
-  String? selectedCategoryName;
-  FilterMealsByCategoryIntent({this.selectedCategoryName});
+  String selectedCategoryName;
+  FilterMealsByCategoryIntent({required this.selectedCategoryName});
 }

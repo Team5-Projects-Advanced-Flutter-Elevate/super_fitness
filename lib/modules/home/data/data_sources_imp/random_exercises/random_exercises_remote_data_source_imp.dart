@@ -27,9 +27,7 @@ class RandomExercisesRemoteDataSourceImp
             RandomExercisesRequestDto.convertIntoDto(
               exercisesRequestEntity,
             ).toJson(),
-          languageCode: getIt
-              .get<LocalizationManager>()
-              .currentLocale
+        languageCode: getIt.get<LocalizationManager>().currentLocale,
       ),
     );
     switch (result) {

@@ -13,6 +13,6 @@ abstract class HomeApiClient {
   @GET(ApisEndpoints.randomExercisesEndPoint)
   Future<RandomExercisesResponseDto> getRandomExercises({
     @Queries() required Map<String, dynamic> queries,
-    @Header("Accept-Language") required String languageCode
+    @Header("Accept-Language") required String languageCode,
   });
 }

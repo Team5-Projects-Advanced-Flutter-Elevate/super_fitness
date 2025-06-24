@@ -41,6 +41,7 @@ class _CategoriesSectionState extends BaseStatefulWidgetState<CategoriesSection>
     super.didChangeDependencies();
     homeViewModel = Provider.of<HomeViewModel>(context);
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(

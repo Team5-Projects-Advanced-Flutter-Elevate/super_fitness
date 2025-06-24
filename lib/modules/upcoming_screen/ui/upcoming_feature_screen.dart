@@ -48,7 +48,6 @@ class UpcomingFeatureScreen extends BaseStatelessWidget {
                 child: Lottie.asset(AssetsPaths.workingDeveloperAnimation),
               ),
               const SizedBox(height: 18),
-
             ],
           ),
         ),

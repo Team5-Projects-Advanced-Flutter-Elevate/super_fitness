@@ -30,7 +30,9 @@ class CustomRecommendationContainer extends BaseStatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20), color: AppColors.black),
+            borderRadius: BorderRadius.circular(20),
+            color: AppColors.black,
+          ),
           width: containerSize,
           height: containerSize,
           child: CustomNetworkCachedImage(imageUrl: imageUrl),

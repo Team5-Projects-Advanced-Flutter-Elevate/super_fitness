@@ -5,15 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
-import 'package:super_fitness/modules/authentication/ui/forget_password/view_model/forget_password_view_model.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
-import 'modules/authentication/ui/forget_password/view/reset_password_screen.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -85,10 +84,13 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            //initialRoute: DefinedRoutes.loginScreenRoute,
-            home: ResetPasswordScreen(
-              viewModel: getIt.get<ForgetPasswordViewModel>(),
-            ),
+            initialRoute: DefinedRoutes.homeScreenRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: DefinedRoutes.onboardingScreenRoute,
+            //     loginInfo: null,
+            //   );
+            // },
           ),
         );
       },

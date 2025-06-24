@@ -387,4 +387,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get successEmailVerified => 'Email Verified Successfully';
+
+  @override
+  String get foodRecommendation => 'Food Recommendation';
+
+  @override
+  String get noFoodRecommendation => 'No Food Recommendation Found';
 }

@@ -388,4 +388,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get successEmailVerified => 'Email Verified Successfully';
+
+  @override
+  String get foodRecommendation => 'تفضيلات الطعام';
+
+  @override
+  String get noFoodRecommendation => 'لايوجد تفضيلات طعام';
 }

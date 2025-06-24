@@ -835,6 +835,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Email Verified Successfully'**
   String get successEmailVerified;
+
+  /// No description provided for @foodRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'Food Recommendation'**
+  String get foodRecommendation;
+
+  /// No description provided for @noFoodRecommendation.
+  ///
+  /// In en, this message translates to:
+  /// **'No Food Recommendation Found'**
+  String get noFoodRecommendation;
 }
 
 class _AppLocalizationsDelegate

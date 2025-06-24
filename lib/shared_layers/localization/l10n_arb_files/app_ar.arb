@@ -119,7 +119,10 @@
   "explore": "استكشاف",
   "aiChat": "دردشة AI",
   "workouts": "التمارين",
-  "profile": "الملف الشخصي"
+  "profile": "الملف الشخصي",
+  "foodRecommendation": "تفضيلات الطعام",
+  "noFoodRecommendation": "لايوجد تفضيلات طعام"
+
 
 
 }

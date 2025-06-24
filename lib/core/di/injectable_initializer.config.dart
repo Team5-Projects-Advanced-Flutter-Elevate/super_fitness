@@ -25,12 +25,16 @@ import '../../modules/authentication/data/collections/users/users_collection_imp
     as _i431;
 import '../../modules/authentication/data/data_sources_contracts/firebase_auth/firebase_auth_data_source.dart'
     as _i449;
+import '../../modules/authentication/data/data_sources_contracts/forget_password/forget_password_remote_data_source.dart'
+    as _i150;
 import '../../modules/authentication/data/data_sources_contracts/login/login.dart'
     as _i969;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
 import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
     as _i1026;
+import '../../modules/authentication/data/data_sources_imp/forget_password/forget_password_remote_data_source_imp.dart'
+    as _i191;
 import '../../modules/authentication/data/data_sources_imp/login/login.dart'
     as _i79;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
@@ -39,6 +43,8 @@ import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart
     as _i525;
 import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
     as _i121;
+import '../../modules/authentication/data/repositories_imp/forget_password/forget_password_repo_imp.dart'
+    as _i956;
 import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
     as _i641;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
@@ -46,36 +52,31 @@ import '../../modules/authentication/data/repositories_imp/register/register_rep
 import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
     as _i396;
+import '../../modules/authentication/domain/repositories_contracts/forget_password/forget_password_repo.dart'
+    as _i1013;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
     as _i496;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart'
     as _i851;
 import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart'
     as _i210;
+import '../../modules/authentication/domain/use_cases/forget_password/forget_password_use_case.dart'
+    as _i823;
+import '../../modules/authentication/domain/use_cases/forget_password/reset_code_use_case.dart'
+    as _i9;
+import '../../modules/authentication/domain/use_cases/forget_password/reset_password_use_case.dart'
+    as _i110;
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
 import '../../modules/authentication/domain/usecase/login/login.dart' as _i192;
 import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
     as _i778;
+import '../../modules/authentication/ui/forget_password/view_model/forget_password_view_model.dart'
+    as _i494;
 import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
-import '../../modules/food/data/api/api_client/food_api_client.dart' as _i642;
-import '../../modules/food/data/api/api_client_provider/food_api_client_provider.dart'
-    as _i561;
-import '../../modules/food/data/data_sources_contracts/food_data_source_contract.dart'
-    as _i34;
-import '../../modules/food/data/data_sources_imp/food_data_source_imp.dart'
-    as _i47;
-import '../../modules/food/data/repositories_imp/food_repo_imp.dart' as _i71;
-import '../../modules/food/domain/repositories_contracts/food_repo_contract.dart'
-    as _i442;
-import '../../modules/food/domain/use_cases/filter_meals_by_category_name_use_case.dart'
-    as _i751;
-import '../../modules/food/domain/use_cases/get_food_categories_use_case.dart'
-    as _i1035;
-import '../../modules/food/ui/view_model/food_view_model.dart' as _i624;
 import '../../modules/home/view_model/home_view_model.dart' as _i749;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -108,7 +109,6 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
-    final foodApiClientProvider = _$FoodApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -131,14 +131,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i642.FoodApiClient>(
-      () => foodApiClientProvider.provideApiClient(gh<_i361.Dio>()),
-    );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
-    gh.factory<_i34.FoodDataSourceContract>(
-      () => _i47.FoodDataSourceImp(gh<_i642.FoodApiClient>()),
+    gh.factory<_i150.ForgetPasswordRemoteDataSource>(
+      () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
@@ -151,6 +148,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i1013.ForgetPasswordRepo>(
+      () => _i956.ForgetPasswordRepoImpl(
+        gh<_i150.ForgetPasswordRemoteDataSource>(),
+      ),
     );
     await gh.factoryAsync<String>(
       () => localeInitializer.initCurrentLocal(
@@ -174,14 +176,20 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
-    gh.factory<_i442.FoodRepoContract>(
-      () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
+    gh.factory<_i9.ResetCodeUseCase>(
+      () => _i9.ResetCodeUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i110.ResetPasswordUseCase>(
+      () => _i110.ResetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
+    );
+    gh.factory<_i823.ForgetPasswordUseCase>(
+      () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
@@ -191,13 +199,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i210.SignUpWithGoogleAccountUseCase>(
       () => _i210.SignUpWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
-    );
-    gh.factory<_i751.FilterMealsByCategoryNameUseCase>(
-      () =>
-          _i751.FilterMealsByCategoryNameUseCase(gh<_i442.FoodRepoContract>()),
-    );
-    gh.factory<_i1035.GetFoodCategoriesUseCase>(
-      () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -218,10 +219,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i138.GoogleSignInHandler>(),
       ),
     );
-    gh.factory<_i624.FoodViewModel>(
-      () => _i624.FoodViewModel(
-        gh<_i1035.GetFoodCategoriesUseCase>(),
-        gh<_i751.FilterMealsByCategoryNameUseCase>(),
+    gh.factory<_i494.ForgetPasswordViewModel>(
+      () => _i494.ForgetPasswordViewModel(
+        gh<_i110.ResetPasswordUseCase>(),
+        gh<_i823.ForgetPasswordUseCase>(),
+        gh<_i9.ResetCodeUseCase>(),
       ),
     );
     gh.factory<_i396.LoginViewModel>(
@@ -242,8 +244,6 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
-
-class _$FoodApiClientProvider extends _i561.FoodApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

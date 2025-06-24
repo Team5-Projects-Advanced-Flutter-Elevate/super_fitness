@@ -123,5 +123,10 @@
   "done":"Done",
   "oTpCode":"Otp Code",
   "enterOtpCode":"Enter Your Otp Code , check your email",
-  "successEmailVerified":"Email Verified Successfully"
+  "successEmailVerified":"Email Verified Successfully",
+
+
+  "profile": "Profile",
+  "foodRecommendation": "Food Recommendation",
+  "noFoodRecommendation": "No Food Recommendation Found"
 }

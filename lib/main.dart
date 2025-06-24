@@ -83,12 +83,13 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            onGenerateInitialRoutes: (initialRoute) {
-              return GenerateRoute.onGenerateInitialRoutes(
-                initialRoute: DefinedRoutes.layoutScreenRoute,
-                loginInfo: null,
-              );
-            },
+            initialRoute: DefinedRoutes.homeScreenRoute,
+            // onGenerateInitialRoutes: (initialRoute) {
+            //   return GenerateRoute.onGenerateInitialRoutes(
+            //     initialRoute: DefinedRoutes.onboardingScreenRoute,
+            //     loginInfo: null,
+            //   );
+            // },
           ),
         );
       },

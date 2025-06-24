@@ -27,7 +27,9 @@ class ExerciseHeaderSection extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
           ),
-          Container(color: Colors.black.withOpacity(0.3)),
+          IgnorePointer(
+              ignoring: true,
+              child: Container(color: Colors.black.withOpacity(0.3))),
           Positioned(
             top: 40,
             left: 16,

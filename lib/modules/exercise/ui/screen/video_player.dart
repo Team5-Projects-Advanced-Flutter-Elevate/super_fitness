@@ -47,17 +47,33 @@ class _PlayerScreenState extends BaseStatefulWidgetState<PlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pop(context),
-      child: Scaffold(
-        body: Center(
-          child: YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: AppColors.mainColorLight,
-
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        children: [
+          Center(
+            child: YoutubePlayer(
+              controller: _controller,
+              showVideoProgressIndicator: true,
+              progressIndicatorColor: AppColors.mainColorLight,
+              actionsPadding: const EdgeInsets.only(top: 14),
+              progressColors: ProgressBarColors(
+                playedColor: AppColors.mainColorDark,
+                handleColor: AppColors.mainColorDark,
+                bufferedColor: AppColors.mainColorDark,
+                backgroundColor: AppColors.white,
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            top: 40,
+            left: 16,
+            child: IconButton(
+              icon: const Icon(Icons.close, color: Colors.white),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+        ],
       ),
     );
   }

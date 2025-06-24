@@ -500,6 +500,18 @@ abstract class AppLocalizations {
   /// **'Please enter a valid recipient'**
   String get pleaseEnterValidRecipient;
 
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @chatAI.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chatAI;
+
   /// No description provided for @forgotPassword.
   ///
   /// In en, this message translates to:

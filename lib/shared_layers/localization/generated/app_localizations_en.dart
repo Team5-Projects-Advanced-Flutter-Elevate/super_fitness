@@ -220,6 +220,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
 
   @override
+  String get home => 'Home';
+
+  @override
+  String get chatAI => 'Chat';
+
+  @override
   String get forgotPassword => 'Forgot Password?';
 
   @override

@@ -7,11 +7,11 @@ import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/modules/home/pages/ai_chat_page/ai_chat_page.dart';
 import 'package:super_fitness/modules/home/pages/home_page/home_page.dart';
-import 'package:super_fitness/modules/home/pages/profile_page/profile_page.dart';
 import 'package:super_fitness/modules/home/pages/workouts_page/workouts_page.dart';
 import 'package:super_fitness/modules/home/view_model/home_view_model.dart';
 
 import '../../core/di/injectable_initializer.dart';
+import '../exercise/ui/screen/exercise_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +31,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
       const HomePage(),
       const AiChatPage(),
       const WorkoutsPage(),
-      const ProfilePage(),
+      const ExerciseScreen(muscleId: '67c8499726895f87ce0aa9bc'),
     ];
   }
 

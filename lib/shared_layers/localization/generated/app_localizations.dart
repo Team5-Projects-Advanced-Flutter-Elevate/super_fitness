@@ -652,6 +652,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Profile'**
   String get profile;
+
+  /// No description provided for @noVideoProvide.
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available'**
+  String get noVideoProvide;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

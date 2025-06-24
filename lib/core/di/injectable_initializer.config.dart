@@ -61,6 +61,18 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
+import '../../modules/exercise/data/api/api_client/exercise_api_client.dart'
+    as _i14;
+import '../../modules/exercise/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i356;
+import '../../modules/exercise/data/datasource/exercise_datasource.dart'
+    as _i442;
+import '../../modules/exercise/data/datasource_impl/exercise_datasource_impl.dart'
+    as _i146;
+import '../../modules/exercise/data/repo_impl/exercise_repo_impl.dart' as _i830;
+import '../../modules/exercise/domain/repo/exercise_repo.dart' as _i960;
+import '../../modules/exercise/domain/usecase/exercise_usecase.dart' as _i111;
+import '../../modules/exercise/ui/cubit/view_model.dart' as _i370;
 import '../../modules/home/view_model/home_view_model.dart' as _i749;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -93,6 +105,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -102,11 +115,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -114,6 +127,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i14.ExerciseApiClient>(
+      () => exerciseApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i442.ExerciseOnlineDataSource>(
+      () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
     );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
@@ -126,6 +145,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
+    );
+    gh.factory<_i960.ExerciseRepo>(
+      () => _i830.ExerciseRepoImpl(gh<_i442.ExerciseOnlineDataSource>()),
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -152,6 +174,9 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i111.ExerciseUseCase>(
+      () => _i111.ExerciseUseCase(gh<_i960.ExerciseRepo>()),
+    );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
@@ -160,6 +185,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
+    );
+    gh.factory<_i370.ExerciseViewModel>(
+      () => _i370.ExerciseViewModel(gh<_i111.ExerciseUseCase>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
@@ -204,6 +232,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

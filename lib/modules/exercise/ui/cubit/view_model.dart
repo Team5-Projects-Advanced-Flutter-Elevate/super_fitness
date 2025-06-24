@@ -19,6 +19,9 @@ class ExerciseViewModel extends Cubit<ExerciseState> {
       case SelectThumbnail():
         _selectThumbnail(intent.thumbnailUrl);
         break;
+
+      case SelectShortVideo():
+        _selectShortVideo(intent.shortVideo);
     }
   }
 
@@ -35,7 +38,7 @@ class ExerciseViewModel extends Cubit<ExerciseState> {
             exercises
                 .map(
                   (e) => getYoutubeThumbnail(
-                    e.inDepthYoutubeExplanationLink.toString(),
+                    e.shortYoutubeDemonstrationLink.toString(),
                   ),
                 )
                 .toList();
@@ -58,6 +61,9 @@ class ExerciseViewModel extends Cubit<ExerciseState> {
     emit(state.copyWith(selectedThumbnailUrl: url));
   }
 
+  void _selectShortVideo(String url) {
+    emit(state.copyWith(selectedShortLink: url));
+  }
   String getYoutubeThumbnail(String url) {
     Uri uri = Uri.parse(url);
 
@@ -82,4 +88,8 @@ class Exercise extends ExerciseIntent {
 class SelectThumbnail extends ExerciseIntent {
   final String thumbnailUrl;
   SelectThumbnail(this.thumbnailUrl);
+}
+class SelectShortVideo extends ExerciseIntent {
+  final String shortVideo;
+  SelectShortVideo(this.shortVideo);
 }

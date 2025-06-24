@@ -37,7 +37,6 @@ class FoodViewModel extends Cubit<FoodState> {
     var result = await _categoriesUseCase.call();
     switch (result) {
       case Success<List<FoodCategoryEntity>>():
-        print('selectedCategory: ${result.data.first.strCategory}');
         emit(
           state.copyWith(
             loadFoodCategoriesState: LoadFoodCategoriesState.success,

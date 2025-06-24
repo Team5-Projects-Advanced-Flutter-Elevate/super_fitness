@@ -155,14 +155,14 @@ class _FoodRecommendationScreenState
                                               CustomItemContainer(
                                                 imageUrl:
                                                     state
-                                                        .mealsList![index]
+                                                        .mealsList?[index]
                                                         .thumbnailUrl ??
                                                     '',
                                                 width: screenWidth * 0.6,
                                                 height: screenHeight * 0.26,
                                                 title:
                                                     state
-                                                        .mealsList![index]
+                                                        .mealsList?[index]
                                                         .name ??
                                                     '',
                                               ),

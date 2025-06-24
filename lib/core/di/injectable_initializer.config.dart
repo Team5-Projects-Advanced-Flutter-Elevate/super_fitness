@@ -27,23 +27,31 @@ import '../../modules/authentication/data/data_sources_contracts/firebase_auth/f
     as _i449;
 import '../../modules/authentication/data/data_sources_contracts/login/login.dart'
     as _i969;
+import '../../modules/authentication/data/data_sources_contracts/login/login_local.dart'
+    as _i393;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
 import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
     as _i1026;
 import '../../modules/authentication/data/data_sources_imp/login/login.dart'
     as _i79;
+import '../../modules/authentication/data/data_sources_imp/login/login_local.dart'
+    as _i537;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
     as _i132;
 import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart'
     as _i525;
 import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
     as _i121;
+import '../../modules/authentication/data/repositories_imp/login/login_local.dart'
+    as _i849;
 import '../../modules/authentication/data/repositories_imp/login/login_repo_imp.dart'
     as _i641;
 import '../../modules/authentication/data/repositories_imp/register/register_repo_imp.dart'
     as _i193;
 import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
+import '../../modules/authentication/domain/repo/login/login_local.dart'
+    as _i630;
 import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
     as _i396;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
@@ -55,6 +63,8 @@ import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_
 import '../../modules/authentication/domain/use_cases/register/register_use_case.dart'
     as _i782;
 import '../../modules/authentication/domain/usecase/login/login.dart' as _i192;
+import '../../modules/authentication/domain/usecase/login/login_local.dart'
+    as _i966;
 import '../../modules/authentication/ui/complete_register/view_model/complete_register_cubit.dart'
     as _i778;
 import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
@@ -150,6 +160,11 @@ extension GetItInjectableX on _i174.GetIt {
       ),
       preResolve: true,
     );
+    gh.factory<_i393.StoreLoginLocalDataSource>(
+      () => _i537.StoreLoginLocalDataSourceImpl(
+        gh<_i629.SecureStorageService<dynamic>>(),
+      ),
+    );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
@@ -158,6 +173,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
+    );
+    gh.factory<_i630.StoreLoginLocalRepo>(
+      () =>
+          _i849.StoreLoginLocalRepoImpl(gh<_i393.StoreLoginLocalDataSource>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
@@ -184,11 +203,15 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i138.GoogleSignInHandler>(),
       ),
     );
+    gh.factory<_i966.StoreLoginLocalUseCase>(
+      () => _i966.StoreLoginLocalUseCase(gh<_i630.StoreLoginLocalRepo>()),
+    );
     gh.factory<_i396.LoginViewModel>(
       () => _i396.LoginViewModel(
         gh<_i192.LoginUseCase>(),
         gh<_i851.SignInWithGoogleAccountUseCase>(),
         gh<_i138.GoogleSignInHandler>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
     return this;

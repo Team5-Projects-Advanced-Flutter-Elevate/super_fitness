@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import '../../core/di/injectable_initializer.dart';
+import '../authentication/ui/login/cubit/login/view_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
+  LoginViewModel loginViewModel = getIt.get<LoginViewModel>();
+
   @override
   Widget build(BuildContext context) {
     return Container(

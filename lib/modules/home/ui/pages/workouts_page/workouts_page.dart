@@ -11,7 +11,7 @@ class WorkoutsPage extends BaseStatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        SizedBox(height: inherit.screenHeight * 0.1,),
+        SizedBox(height: inherit.screenHeight * 0.1),
         Text(
           "CustomNetwork\nCachedImage",
           textAlign: TextAlign.center,
@@ -21,7 +21,7 @@ class WorkoutsPage extends BaseStatelessWidget {
         ),
         CustomNetworkCachedImage(
           imageUrl:
-          "https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg",
+              "https://www.themealdb.com/images/media/meals/2dsltq1560461468.jpg",
           width: inherit.screenWidth * 0.6,
           height: inherit.screenHeight * 0.26,
         ),

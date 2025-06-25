@@ -39,7 +39,6 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //SizedBox(height: screenHeight * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

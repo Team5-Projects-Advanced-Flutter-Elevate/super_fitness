@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/modules/exercise/ui/screen/exercise_header.dart';
 import 'package:super_fitness/modules/exercise/ui/screen/exersice_list.dart';
+import 'package:super_fitness/shared_layers/storage/constants/storage_constants.dart';
 import '../../../../core/apis/api_error/api_error_handler.dart';
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/colors/app_colors.dart';
@@ -12,6 +13,7 @@ import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
 import '../cubit/state.dart';
 import '../cubit/view_model.dart';
+import 'level_tab.dart';
 
 class ExerciseScreen extends StatefulWidget {
   final String muscleId;
@@ -58,7 +60,12 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                         child:
                             state.status == Status.loading
                                 ? const LoadingStateWidget()
-                                : ExerciseHeaderSection(state: '${state.selectedShortLink}',targetMuscleGroup: '${state.exercises[0].targetMuscleGroup}',),
+                                : ExerciseHeaderSection(
+                                  state: '${state.selectedShortLink}',
+                                  targetMuscleGroup:
+                                      '${state.exercises[0].targetMuscleGroup}',
+                                  selectedThumbnail: state.thumbnailUrl[1],
+                                ),
                       );
                     },
                   ),
@@ -72,23 +79,48 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        _buildTab(
-                          context,
-                          '67c797e226895f87ce0aa94b',
-                          0,
-                          appLocalizations.beginner,
+                        ExerciseLevelTab(
+                          label: appLocalizations.beginner,
+                          levelId: StorageConstants.beginner,
+                          index: 0,
+                          selectedTabIndex: selectedTabIndex,
+                          onTap: (levelId, index) {
+                            setState(() {
+                              selectedTabIndex = index;
+                            });
+                            exerciseViewModel.doIntent(
+                              Exercise(widget.muscleId, levelId),
+                            );
+                          },
                         ),
-                        _buildTab(
-                          context,
-                          '67c797e226895f87ce0aa94c',
-                          1,
-                          appLocalizations.intermediate,
+                        ExerciseLevelTab(
+                          label: appLocalizations.intermediate,
+                          levelId: StorageConstants.intermediate,
+                          index: 1,
+                          selectedTabIndex: selectedTabIndex,
+                          onTap: (levelId, index) {
+                            setState(() {
+                              selectedTabIndex = index;
+                            });
+                            exerciseViewModel.doIntent(
+                              Exercise(widget.muscleId, levelId),
+                            );
+                          },
                         ),
-                        _buildTab(
-                          context,
-                          '67c797e226895f87ce0aa94e',
-                          2,
-                          appLocalizations.advanced,
+
+                        ExerciseLevelTab(
+                          label: appLocalizations.advanced,
+                          levelId: StorageConstants.advance,
+                          index: 2,
+                          selectedTabIndex: selectedTabIndex,
+                          onTap: (levelId, index) {
+                            setState(() {
+                              selectedTabIndex = index;
+                            });
+                            exerciseViewModel.doIntent(
+                              Exercise(widget.muscleId, levelId),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -108,46 +140,48 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              SizedBox(
-                                height: screenHeight * 0.5,
-                                child: BlocBuilder<
-                                  ExerciseViewModel,
-                                  ExerciseState
-                                >(
-                                  builder: (context, state) {
-                                    if (state.status == Status.success) {
-                                      return ExerciseListWidget(
+                              BlocBuilder<ExerciseViewModel, ExerciseState>(
+                                builder: (context, state) {
+                                  if (state.status == Status.success) {
+                                    return SizedBox(
+                                      height: screenHeight * 0.5,
+                                      child: ExerciseListWidget(
                                         exercises: state.exercises,
                                         thumbnails: state.thumbnailUrl,
                                         selectedThumbnailUrl:
                                             state.selectedThumbnailUrl,
-                                        onThumbnailTap: (thumbnail,shortVideoUrl) {
+                                        onThumbnailTap: (
+                                          thumbnail,
+                                          shortVideoUrl,
+                                        ) {
                                           exerciseViewModel.doIntent(
                                             SelectThumbnail(thumbnail),
                                           );
                                           exerciseViewModel.doIntent(
                                             SelectShortVideo(shortVideoUrl),
                                           );
-
                                         },
-                                      );
-                                    } else if (state.status == Status.loading) {
-                                      return const LoadingStateWidget();
-                                    } else if (state.status == Status.error) {
-                                      displaySnackBar(
-                                        contentType: ContentType.failure,
-                                        title: appLocalizations.error,
-                                        message: getIt
-                                            .get<ApiErrorHandler>()
-                                            .handle(state.error!),
-                                        durationInSeconds: 6,
-                                      );
-                                      return const SizedBox(); // or show a retry button
-                                    } else {
-                                      return const SizedBox();
-                                    }
-                                  },
-                                ),
+                                      ),
+                                    );
+                                  } else if (state.status == Status.loading) {
+                                    return SizedBox(
+                                      height: screenHeight * 0.25,
+                                      child: const LoadingStateWidget(),
+                                    );
+                                  } else if (state.status == Status.error) {
+                                    displaySnackBar(
+                                      contentType: ContentType.failure,
+                                      title: appLocalizations.error,
+                                      message: getIt
+                                          .get<ApiErrorHandler>()
+                                          .handle(state.error!),
+                                      durationInSeconds: 6,
+                                    );
+                                    return const SizedBox(); // or show a retry button
+                                  } else {
+                                    return const SizedBox();
+                                  }
+                                },
                               ),
                             ],
                           ),
@@ -158,39 +192,6 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTab(
-    BuildContext context,
-    String levelId,
-    int index,
-    String label,
-  ) {
-    final bool isSelected = index == selectedTabIndex;
-
-    return GestureDetector(
-      onTap: () {
-        if (isSelected) return;
-        setState(() {
-          selectedTabIndex = index;
-        });
-        exerciseViewModel.doIntent(Exercise(widget.muscleId, levelId));
-      },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.mainColorLight : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(
-          label,
-          style: theme.textTheme.labelMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
           ),
         ),
       ),

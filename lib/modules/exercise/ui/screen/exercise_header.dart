@@ -6,15 +6,22 @@ import '../../../../core/constants/assets_paths/assets_paths.dart';
 class ExerciseHeaderSection extends StatelessWidget {
   final String state;
   final String targetMuscleGroup;
+  final String selectedThumbnail;
 
-  const ExerciseHeaderSection({super.key, required this.state,required this.targetMuscleGroup});
+  const ExerciseHeaderSection({
+    super.key,
+    required this.state,
+    required this.targetMuscleGroup,
+    required this.selectedThumbnail,
+  });
 
   @override
   Widget build(BuildContext context) {
-    print('aaaa${state}');
     return SizedBox(
       height: 500,
+      width: double.infinity,
       child: Stack(
+        fit: StackFit.expand,
         children: [
           SizedBox(
             width: double.infinity,
@@ -22,34 +29,45 @@ class ExerciseHeaderSection extends StatelessWidget {
             child:
                 state.isNotEmpty
                     ? PlayerScreen(url: state)
-                    : Image.asset(
-                      AssetsPaths.fitnessAppIcon,
+                    : Image.network(
+                      selectedThumbnail,
                       fit: BoxFit.cover,
+                      loadingBuilder:
+                          (context, child, loadingProgress) =>
+                              loadingProgress == null
+                                  ? child
+                                  : const CircularProgressIndicator(),
+                      errorBuilder:
+                          (context, error, stackTrace) =>
+                              Image.asset(AssetsPaths.fitnessAppIcon),
                     ),
           ),
-          IgnorePointer(
-              ignoring: true,
-              child: Container(color: Colors.black.withOpacity(0.3))),
+
           Positioned(
             top: 40,
             left: 16,
             child: CircleAvatar(
               backgroundColor: AppColors.mainColorLight,
-              child: const ImageIcon(
-                AssetImage(AssetsPaths.backIcon),
-                size: 15,
+              child: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const ImageIcon(
+                  AssetImage(AssetsPaths.backIcon),
+                  size: 15,
+                ),
               ),
             ),
           ),
           Positioned(
-            bottom: 40,
+            bottom: 100,
             left: 20,
             right: 20,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  targetMuscleGroup.isNotEmpty?targetMuscleGroup : '',
+                  targetMuscleGroup.isNotEmpty ? targetMuscleGroup : '',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 26,
@@ -59,21 +77,21 @@ class ExerciseHeaderSection extends StatelessWidget {
               ],
             ),
           ),
+          IgnorePointer(
+            ignoring: true,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.black.withValues(alpha: 0.3),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  topLeft: Radius.circular(20.0),
+                ),
+              ),
+              height: 150,
+            ),
+          ),
         ],
       ),
     );
   }
 }
-// Image.network(
-// state.selectedThumbnailUrl!,
-// fit: BoxFit.cover,
-// errorBuilder:
-// (_, __, ___) => Image.asset(
-// AssetsPaths.fitnessAppIcon,
-// fit: BoxFit.cover,
-// ),
-// )
-//     : Image.asset(
-// AssetsPaths.fitnessAppIcon,
-// fit: BoxFit.cover,
-// ),

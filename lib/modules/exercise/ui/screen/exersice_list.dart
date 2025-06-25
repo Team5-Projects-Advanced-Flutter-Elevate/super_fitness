@@ -30,7 +30,6 @@ class ExerciseListWidget extends BaseStatelessWidget {
         final exercise = exercises[index];
         final thumbnail = thumbnails[index];
         final shortLink=exercise.shortYoutubeDemonstrationLink;
-        print('ssssss${shortLink}');
         return ListTile(
           onTap: () {
             if (shortLink != null) {

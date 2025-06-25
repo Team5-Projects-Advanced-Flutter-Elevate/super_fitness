@@ -58,11 +58,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                     title: 'Success',
                     message: 'Login Successfully',
                   );
-                  // Navigator.pushNamedAndRemoveUntil(
-                  //   context,
-                  //   DefinedRoutes.homeScreenRoute,
-                  //   (route) => false,
-                  // );
+
               Navigator.push(context,MaterialPageRoute(builder:  (context) => const ExerciseScreen(muscleId: '67c8499726895f87ce0aa9bc',),));
 
                 case Status.error:

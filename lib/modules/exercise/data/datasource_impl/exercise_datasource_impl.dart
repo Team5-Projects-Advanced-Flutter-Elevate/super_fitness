@@ -1,6 +1,5 @@
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/modules/exercise/data/model/get_exercise.dart';
-
 import '../../../../core/apis/api_executor/api_executor.dart';
 import '../../../../core/apis/api_result/api_result.dart';
 import '../../domain/entity/exercise_entity.dart';
@@ -12,7 +11,7 @@ class ExerciseOnlineDataSourceImpl implements ExerciseOnlineDataSource {
   final ExerciseApiClient _apiClient;
   ExerciseOnlineDataSourceImpl(this._apiClient);
   @override
-  Future<ApiResult<GetExerciseEntity>> exercise(
+  Future<ApiResult<GetExerciseEntity>> getExerciseList(
     String muscleId,
     String levelId,
   ) async {
@@ -26,7 +25,4 @@ class ExerciseOnlineDataSourceImpl implements ExerciseOnlineDataSource {
         return Error(error: apiResult.error);
     }
   }
-
-
-
 }

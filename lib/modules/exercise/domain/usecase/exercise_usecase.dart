@@ -10,6 +10,6 @@ class ExerciseUseCase {
 
   ExerciseUseCase(this._exerciseRepo);
   Future<ApiResult<GetExerciseEntity>> call(String muscleId, String levelId) {
-    return _exerciseRepo.exercise(muscleId, levelId);
+    return _exerciseRepo.getExerciseList(muscleId, levelId);
   }
 }

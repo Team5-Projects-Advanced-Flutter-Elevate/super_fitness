@@ -1,9 +1,10 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
-import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/onboarding/ui/widget/onboarding_card.dart';
 
@@ -79,7 +80,7 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
       OnboardingCard(
         image: 'assets/images/onboarding_third.png',
         title:
-            '${appLocalizations.noMoreExecuses}  \n  ${appLocalizations.doItNow}',
+            '${appLocalizations.noMoreExcuses}  \n  ${appLocalizations.doItNow}',
         description:
             '${appLocalizations.loremIpsumDolorSitAmetConsectetureuUrna}  \n  ${appLocalizations.utGravidaQuisIdPretiumPurusMaurisMassa}',
         buttonText: appLocalizations.doIt,

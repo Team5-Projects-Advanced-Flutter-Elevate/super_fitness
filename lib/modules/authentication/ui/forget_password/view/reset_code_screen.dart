@@ -186,7 +186,7 @@ class _ResetCodeScreenState extends BaseStatefulWidgetState<ResetCodeScreen> {
                               ),
                               const SizedBox(height: 20),
                               Text(
-                                appLocalizations.didnotReciveOtp,
+                                appLocalizations.didNotReceiveOtp,
                                 style: theme.textTheme.bodyLarge,
                               ),
                               const SizedBox(height: 10),

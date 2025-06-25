@@ -350,11 +350,11 @@ abstract class AppLocalizations {
   /// **'Please enter your code that send to your email address'**
   String get otpScreenDescription;
 
-  /// No description provided for @didnotReciveOtp.
+  /// No description provided for @didNotReceiveOtp.
   ///
   /// In en, this message translates to:
   /// **'Did not receive code?'**
-  String get didnotReciveOtp;
+  String get didNotReceiveOtp;
 
   /// No description provided for @resend.
   ///
@@ -368,11 +368,11 @@ abstract class AppLocalizations {
   /// **'Code is valid'**
   String get codeValid;
 
-  /// No description provided for @codeNotvalid.
+  /// No description provided for @codeNotValid.
   ///
   /// In en, this message translates to:
   /// **'Code not valid'**
-  String get codeNotvalid;
+  String get codeNotValid;
 
   /// No description provided for @resetPasswordScreenDescription.
   ///
@@ -470,11 +470,11 @@ abstract class AppLocalizations {
   /// **'Much Fun'**
   String get muchFun;
 
-  /// No description provided for @noMoreExecuses.
+  /// No description provided for @noMoreExcuses.
   ///
   /// In en, this message translates to:
   /// **'NO MORE EXCUSES'**
-  String get noMoreExecuses;
+  String get noMoreExcuses;
 
   /// No description provided for @doItNow.
   ///
@@ -949,6 +949,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recommendation For You'**
   String get recommendationForYou;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknown;
 }
 
 class _AppLocalizationsDelegate

@@ -143,7 +143,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please enter your code that send to your email address';
 
   @override
-  String get didnotReciveOtp => 'Did not receive code?';
+  String get didNotReceiveOtp => 'Did not receive code?';
 
   @override
   String get resend => 'Resend code?';
@@ -152,7 +152,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get codeValid => 'Code is valid';
 
   @override
-  String get codeNotvalid => 'Code not valid';
+  String get codeNotValid => 'Code not valid';
 
   @override
   String get resetPasswordScreenDescription =>
@@ -204,7 +204,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get muchFun => 'Much Fun';
 
   @override
-  String get noMoreExecuses => 'NO MORE EXCUSES';
+  String get noMoreExcuses => 'NO MORE EXCUSES';
 
   @override
   String get doItNow => 'Do It Now';
@@ -447,4 +447,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recommendationForYou => 'Recommendation For You';
+
+  @override
+  String get unknown => 'Unknown';
 }

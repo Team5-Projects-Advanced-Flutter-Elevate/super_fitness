@@ -28,6 +28,8 @@ class HomePageViewModel extends Cubit<HomePageState> {
     this._getMuscleGroupWorkoutUseCase,
   ) : super(const HomePageState());
 
+  String? lastChosenMuscleGroupId;
+
   void doIntent(HomePageIntent intent) {
     switch (intent) {
       case LoadHomePage():
@@ -159,6 +161,9 @@ class HomePageViewModel extends Cubit<HomePageState> {
   }
 
   void _getMusclesWorkouts(String musclesGroupId) async {
+    if (lastChosenMuscleGroupId == musclesGroupId) {
+      return;
+    }
     emit(
       state.copyWith(
         muscleWorkoutsStatus: Status.loading,
@@ -170,6 +175,7 @@ class HomePageViewModel extends Cubit<HomePageState> {
     );
     switch (muscleWorkoutUseCase) {
       case Success<List<MuscleEntity>?>():
+        lastChosenMuscleGroupId = musclesGroupId;
         emit(
           state.copyWith(
             muscleWorkoutsStatus: Status.success,

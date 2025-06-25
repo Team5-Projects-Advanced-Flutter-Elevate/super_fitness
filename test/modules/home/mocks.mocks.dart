@@ -568,12 +568,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get didnotReciveOtp =>
+  String get didNotReceiveOtp =>
       (super.noSuchMethod(
-            Invocation.getter(#didnotReciveOtp),
+            Invocation.getter(#didNotReceiveOtp),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#didnotReciveOtp),
+              Invocation.getter(#didNotReceiveOtp),
             ),
           )
           as String);
@@ -601,12 +601,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get codeNotvalid =>
+  String get codeNotValid =>
       (super.noSuchMethod(
-            Invocation.getter(#codeNotvalid),
+            Invocation.getter(#codeNotValid),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#codeNotvalid),
+              Invocation.getter(#codeNotValid),
             ),
           )
           as String);
@@ -779,12 +779,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get noMoreExecuses =>
+  String get noMoreExcuses =>
       (super.noSuchMethod(
-            Invocation.getter(#noMoreExecuses),
+            Invocation.getter(#noMoreExcuses),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#noMoreExecuses),
+              Invocation.getter(#noMoreExcuses),
             ),
           )
           as String);
@@ -1613,6 +1613,17 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
             returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#recommendationForYou),
+            ),
+          )
+          as String);
+
+  @override
+  String get unknown =>
+      (super.noSuchMethod(
+            Invocation.getter(#unknown),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#unknown),
             ),
           )
           as String);

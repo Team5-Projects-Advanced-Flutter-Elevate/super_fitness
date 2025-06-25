@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/custom_bottom_tab_bar.dart';
 import 'package:super_fitness/core/widgets/error_state_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
@@ -146,16 +147,36 @@ class _UpcomingWorkoutsSectionState
                                         scrollDirection: Axis.horizontal,
                                         itemCount: muscleWorkouts.length,
                                         itemBuilder: (context, index) {
-                                          return CustomRecommendationContainer(
-                                            containerSize: 80,
-                                            imageUrl:
-                                                muscleWorkouts[index].image ??
-                                                '',
-                                            title:
-                                                muscleWorkouts[index].name ??
-                                                '',
-                                            titleContainerTopRadius: 0,
-                                            titleContainerBottomRadius: 20,
+                                          return InkWell(
+                                            overlayColor:
+                                                WidgetStateColor.transparent,
+                                            splashColor:
+                                                WidgetStateColor.transparent,
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                DefinedRoutes
+                                                    .exerciseScreenRoute,
+                                                arguments:
+                                                    muscleWorkouts[index].id ??
+                                                    "",
+                                              );
+                                            },
+                                            child:
+                                                CustomRecommendationContainer(
+                                                  containerSize: 80,
+                                                  imageUrl:
+                                                      muscleWorkouts[index]
+                                                          .image ??
+                                                      '',
+                                                  title:
+                                                      muscleWorkouts[index]
+                                                          .name ??
+                                                      '',
+                                                  titleContainerTopRadius: 0,
+                                                  titleContainerBottomRadius:
+                                                      20,
+                                                ),
                                           );
                                         },
                                         separatorBuilder: (context, index) {

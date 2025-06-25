@@ -3,6 +3,8 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
 import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/exercise_screen.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/video_player.dart';
 import 'package:super_fitness/modules/food/ui/food_recommendation_screen.dart';
 import 'package:super_fitness/modules/food/ui/view_model/params/food_recommendation_screen_params.dart';
 import 'package:super_fitness/modules/home/ui/home_screen.dart';
@@ -37,7 +39,6 @@ abstract class GenerateRoute {
           return MaterialPageRoute(
             builder: (context) => const ForgetPasswordScreen(),
           );
-
         case DefinedRoutes.onboardingScreenRoute:
           return MaterialPageRoute(
             builder: (context) => const OnboardingScreen(),
@@ -58,6 +59,14 @@ abstract class GenerateRoute {
                 (context) => FoodRecommendationScreen(
                   params: (args as FoodRecommendationScreenParams?),
                 ),
+          );
+        case DefinedRoutes.exerciseScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => ExerciseScreen(muscleId: args as String),
+          );
+        case DefinedRoutes.playerScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => PlayerScreen(url: args as String,),
           );
         default:
           return _errorRoute();

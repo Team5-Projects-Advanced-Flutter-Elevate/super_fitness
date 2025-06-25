@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -15,10 +16,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get connectionTimeout => 'انتهت مهلة الاتصال بالخادم ⌛';
 
   @override
-  String get sendTimeout => 'انتهت مهلة الإرسال إلى الخادم ⏱';
+  String get sendTimeout => 'انتهت مهلة إرسال الاتصال بالخادم ⏱';
 
   @override
-  String get receiveTimeout => 'انتهت مهلة الاستقبال من الخادم ⏰';
+  String get receiveTimeout => 'انتهت مهلة استلام الاتصال بالخادم ⏰';
 
   @override
   String get cancel => 'تم إلغاء الطلب إلى الخادم ✖';
@@ -48,7 +49,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على حروف وأرقام وشرطة سفلية فقط.';
+  String get userNameRules =>
+      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'يرجى إدخال الاسم الأول.';
@@ -60,46 +62,50 @@ class AppLocalizationsAr extends AppLocalizations {
   String get namesRules => 'يمكن أن تحتوي الأسماء على أحرف أبجدية فقط.';
 
   @override
-  String get pleaseEnterEmail => 'يرجى إدخال البريد الإلكتروني.';
+  String get pleaseEnterEmail => 'أدخل بريدك الإلكتروني.';
 
   @override
-  String get pleaseEnterValidEmail => 'يرجى إدخال عنوان بريد إلكتروني صالح.';
+  String get pleaseEnterValidEmail => 'يرجى إدخال بريد إلكتروني صالح.';
 
   @override
   String get pleaseEnterPhoneNumber => 'يرجى إدخال رقم هاتفك.';
 
   @override
-  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات الصالحة:\n010، 011، 012، أو 015\nمتبوعًا بـ 8 أرقام.';
+  String get phoneNumberRules =>
+      'يجب أن يبدأ الرقم بأحد البادئات التالية:\n010، 011، 012، أو 015\nويتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'يرجى إدخال كلمة المرور.';
 
   @override
-  String get passwordLength => 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.';
+  String get passwordLength =>
+      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
-  String get uppercaseRulePassword => 'يجب أن تحتوي على حرف كبير واحد على الأقل.';
+  String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
 
   @override
-  String get lowercaseRulePassword => 'يجب أن تحتوي على حرف صغير واحد على الأقل.';
+  String get lowercaseRulePassword => 'حرف صغير واحد على الأقل.';
 
   @override
-  String get digitRulePassword => 'يجب أن يحتوي على رقم واحد على الأقل.';
+  String get digitRulePassword => 'يجب أن تحتوي على رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword => 'يجب أن تتضمن حرفًا خاصًا واحدًا على الأقل (مثل #?!@\$%^&*-).';
+  String get specialCharactersRulePassword =>
+      'يجب تضمين رمز خاص واحد على الأقل (مثال: #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'يرجى تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule => 'يجب أن تتكون الأسماء من ثلاثة أحرف على الأقل.';
+  String get namesLengthRule =>
+      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
-  String get noMatch => 'لا يوجد تطابق!';
+  String get noMatch => 'غير متطابق!';
 
   @override
-  String get pleaseEnterAddress => 'يرجى إدخال العنوان.';
+  String get pleaseEnterAddress => 'يرجى إدخال العنوان';
 
   @override
   String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
@@ -111,7 +117,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get passwordHint => 'أدخل كلمة المرور';
 
   @override
-  String get confirmPasswordHint => 'أكد كلمة المرور';
+  String get confirmPasswordHint => 'أعد تأكيد كلمة المرور';
 
   @override
   String get gender => 'الجنس';
@@ -120,7 +126,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removedImage => 'تمت إزالة الصورة';
 
   @override
-  String get forgetPasswordDescription => 'يرجى إدخال البريد الإلكتروني المرتبط بحسابك';
+  String get forgetPasswordDescription =>
+      'يرجى إدخال بريدك الإلكتروني المرتبط بحسابك';
 
   @override
   String get confirm => 'تأكيد';
@@ -147,13 +154,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get codeNotValid => 'الرمز غير صالح';
 
   @override
-  String get resetPasswordScreenDescription => 'يجب ألا تكون كلمة المرور فارغة وأن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
+  String get resetPasswordScreenDescription =>
+      'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
 
   @override
   String get resetPasswordScreenTitle => 'إعادة تعيين كلمة المرور';
 
   @override
-  String get newPassword => 'كلمة المرور الجديدة';
+  String get newPassword => 'كلمة مرور جديدة';
 
   @override
   String get confirmNewPassword => 'تأكيد كلمة المرور الجديدة';
@@ -177,22 +185,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get skip => 'تخطي';
 
   @override
-  String get back => 'عودة';
+  String get back => 'رجوع';
 
   @override
-  String get doIt => 'افعلها';
+  String get doIt => 'نفّذ';
 
   @override
-  String get priceOfExcellence => 'ثمن التميّز';
+  String get priceOfExcellence => 'ثمن التميز';
 
   @override
   String get isDiscipline => 'هو الانضباط';
 
   @override
-  String get fitnessHasNeverBeenSo => 'لم تكن اللياقة هكذا من قبل';
+  String get fitnessHasNeverBeenSo => 'اللياقة لم تكن يومًا بهذا';
 
   @override
-  String get muchFun => 'ممتعة للغاية';
+  String get muchFun => 'القدر من المتعة';
 
   @override
   String get noMoreExcuses => 'لا مزيد من الأعذار';
@@ -201,10 +209,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doItNow => 'افعلها الآن';
 
   @override
-  String get loremIpsumDolorSitAmetConsectetureuUrna => 'لوريم إيبسوم دولور سيت أميت كونسيكتيتور. إي أورنا';
+  String get loremIpsumDolorSitAmetConsectetureuUrna =>
+      'لوريم إيبسوم دولور سيت أميت. يو أورنا';
 
   @override
-  String get utGravidaQuisIdPretiumPurusMaurisMassa => 'أت جرافيدا كويز آيد بريتيوم بوروس. موريس ماسا';
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'يوت جرافيدا كويز إد بريتيوم بورس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'يرجى إدخال مستلم صالح';
@@ -213,13 +223,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get home => 'الرئيسية';
 
   @override
-  String get chatAI => 'المحادثة';
+  String get chatAI => 'الدردشة';
 
   @override
   String get forgotPassword => 'هل نسيت كلمة المرور؟';
 
   @override
-  String get noAccount => 'لا تملك حسابًا بعد؟ ';
+  String get noAccount => 'ليس لديك حساب بعد؟ ';
 
   @override
   String get success => 'نجاح';
@@ -237,7 +247,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get heyThere => 'مرحبًا';
 
   @override
-  String get createAnAccount => 'أنشئ حسابًا';
+  String get createAnAccount => 'إنشاء حساب';
 
   @override
   String get register => 'تسجيل';
@@ -276,7 +286,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tellUsAboutYourself => 'أخبرنا عن نفسك!';
 
   @override
-  String get weNeedToKnowYourGender => 'نحتاج لمعرفه جنسك';
+  String get weNeedToKnowYourGender => 'نحتاج لمعرفة جنسك';
 
   @override
   String get howOldAreYou => 'كم عمرك؟';
@@ -285,7 +295,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whatIsYourWeight => 'ما هو وزنك؟';
 
   @override
-  String get thisHelpsUsCreateYourPersonalizedPlan => 'هذا يساعدنا في إنشاء خطتك الشخصية';
+  String get thisHelpsUsCreateYourPersonalizedPlan =>
+      'يساعدنا ذلك على إنشاء خطة مخصصة لك';
 
   @override
   String get whatIsYourHeight => 'ما هو طولك؟';
@@ -309,10 +320,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
-  String get year => 'عام';
+  String get year => 'سنة';
 
   @override
-  String get kg => 'كغ';
+  String get kg => 'كجم';
 
   @override
   String get cm => 'سم';
@@ -321,19 +332,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get gainWeight => 'زيادة الوزن';
 
   @override
-  String get loseWeight => 'فقدان الوزن';
+  String get loseWeight => 'إنقاص الوزن';
 
   @override
-  String get getFitter => 'لتصبح أكثر لياقة';
+  String get getFitter => 'تحسين اللياقة';
 
   @override
-  String get gainMoreFlexible => 'لتحصل على مرونة أكثر';
+  String get gainMoreFlexible => 'زيادة المرونة';
 
   @override
   String get learnTheBasic => 'تعلم الأساسيات';
 
   @override
-  String get rookie => 'مبتدئ';
+  String get rookie => 'مبتدئ جدًا';
 
   @override
   String get beginner => 'مبتدئ';
@@ -345,7 +356,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get advanced => 'متقدم';
 
   @override
-  String get trueBeast => 'وحش حقيقي';
+  String get trueBeast => 'محترف فعلي';
 
   @override
   String get appSections___________ => '\$\$\$ تعليق \$\$\$';
@@ -354,19 +365,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get explore => 'استكشاف';
 
   @override
-  String get aiChat => 'الدردشة مع AI';
+  String get aiChat => 'الدردشة بالذكاء الاصطناعي';
 
   @override
-  String get workouts => 'تمارين';
+  String get workouts => 'التمارين';
 
   @override
   String get profile => 'الملف الشخصي';
 
   @override
-  String get sendOtp => 'إرسال رمز التحقق';
+  String get sendOtp => 'إرسال الرمز';
 
   @override
-  String get resetPassDesc => 'تأكد أن تكون 8 أحرف أو أكثر';
+  String get resetPassDesc => 'تأكد من أنها 8 أحرف أو أكثر';
 
   @override
   String get createNewPassword => 'إنشاء كلمة مرور جديدة';
@@ -387,17 +398,20 @@ class AppLocalizationsAr extends AppLocalizations {
   String get foodRecommendation => 'توصيات غذائية';
 
   @override
+  String get noVideoProvide => 'لا يوجد فيديو متاح';
+
+  @override
   String get noFoodRecommendation => 'لم يتم العثور على توصيات غذائية';
 
   @override
-  String get noWorkoutsAvailable => 'لا توجد تمارين متوفرة';
+  String get noWorkoutsAvailable => 'لا توجد تمارين متاحة';
 
   @override
   String get homePage_________ => '\$\$\$ تعليق \$\$\$';
 
   @override
   String hiUser(Object userName) {
-    return 'مرحبًا $userName،\n';
+    return 'مرحبًا $userName,\n';
   }
 
   @override
@@ -407,22 +421,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get category => 'الفئة';
 
   @override
-  String get gym => 'جيم';
+  String get gym => 'صالة الألعاب الرياضية';
 
   @override
-  String get fitness => 'لياقة';
+  String get fitness => 'اللياقة';
 
   @override
   String get yoga => 'يوغا';
 
   @override
-  String get aerobics => 'أيروبكس';
+  String get aerobics => 'تمارين هوائية';
 
   @override
   String get trainer => 'مدرب';
 
   @override
-  String get recommendationToDay => 'توصية اليوم';
+  String get recommendationToDay => 'توصيات اليوم';
 
   @override
   String get noData => 'لا توجد بيانات';
@@ -434,7 +448,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get seeAll => 'عرض الكل';
 
   @override
-  String get recommendationForYou => 'توصية لك';
+  String get recommendationForYou => 'توصيات لك';
 
   @override
   String get unknown => 'غير معروف';

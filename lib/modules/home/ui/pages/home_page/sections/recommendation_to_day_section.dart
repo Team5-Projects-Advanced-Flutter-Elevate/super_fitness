@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/error_state_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/home/domain/entities/random_exercises/random_exercises_response_entity.dart';
@@ -75,9 +76,25 @@ class _RecommendationToDaySectionState
                         scrollDirection: Axis.horizontal,
                         itemCount: exercises.length,
                         itemBuilder: (context, index) {
-                          return CustomRecommendationContainer(
-                            imageUrl: thumbnailsUrls[index],
-                            title: exercises[index].exercise ?? "",
+                          return InkWell(
+                            overlayColor: WidgetStateColor.transparent,
+                            hoverColor: WidgetStateColor.transparent,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                DefinedRoutes.playerScreenRoute,
+                                arguments:
+                                    exercises[index]
+                                        .shortYoutubeDemonstrationLink ??
+                                    exercises[index]
+                                        .inDepthYoutubeExplanationLink ??
+                                    "",
+                              );
+                            },
+                            child: CustomRecommendationContainer(
+                              imageUrl: thumbnailsUrls[index],
+                              title: exercises[index].exercise ?? "",
+                            ),
                           );
                         },
                         separatorBuilder: (context, index) {

@@ -13,7 +13,7 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:super_fitness/core/validation/validation_functions.dart'
     as _i11;
-import 'package:super_fitness/modules/home/view_model/home_view_model.dart'
+import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart'
     as _i12;
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart'
     as _i5;
@@ -1443,6 +1443,39 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
             returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#successEmailVerified),
+            ),
+          )
+          as String);
+
+  @override
+  String get foodRecommendation =>
+      (super.noSuchMethod(
+            Invocation.getter(#foodRecommendation),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#foodRecommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get noFoodRecommendation =>
+      (super.noSuchMethod(
+            Invocation.getter(#noFoodRecommendation),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#noFoodRecommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get noWorkoutsAvailable =>
+      (super.noSuchMethod(
+            Invocation.getter(#noWorkoutsAvailable),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#noWorkoutsAvailable),
             ),
           )
           as String);

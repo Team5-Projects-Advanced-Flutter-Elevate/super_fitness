@@ -1,23 +1,24 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/validation/validation_functions.dart';
 import 'package:super_fitness/main.dart';
-import 'package:super_fitness/modules/home/home_screen.dart';
-import 'package:super_fitness/modules/home/pages/home_page/home_page.dart';
-import 'package:super_fitness/modules/home/pages/workouts_page/workouts_page.dart';
-import 'package:super_fitness/modules/home/view_model/home_view_model.dart';
+import 'package:super_fitness/modules/home/ui/home_screen.dart';
+import 'package:super_fitness/modules/home/ui/pages/home_page/home_page.dart';
+import 'package:super_fitness/modules/home/ui/pages/workouts_page/workouts_page.dart';
+import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'package:super_fitness/shared_layers/storage/contracts/flutter_secure_storage_service_contract.dart';
 import 'package:super_fitness/shared_layers/storage/implementation/flutter_secure_storage_service_imp.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 import 'mocks.mocks.dart';
 
 class MockBaseInheritedWidget extends InheritedWidget {

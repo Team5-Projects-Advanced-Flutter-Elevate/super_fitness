@@ -81,11 +81,7 @@ import '../../modules/exercise/data/api/api_client/exercise_api_client.dart'
     as _i14;
 import '../../modules/exercise/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i356;
-import '../../modules/exercise/data/datasource/exercise_datasource.dart'
-    as _i442;
-import '../../modules/exercise/data/datasource_impl/exercise_datasource_impl.dart'
-    as _i146;
-import '../../modules/exercise/data/repo_impl/exercise_repo_impl.dart' as _i830;
+
 import '../../modules/exercise/domain/repo/exercise_repo.dart' as _i960;
 import '../../modules/exercise/domain/usecase/exercise_usecase.dart' as _i111;
 import '../../modules/exercise/ui/cubit/view_model.dart' as _i370;
@@ -104,13 +100,10 @@ import '../../modules/food/domain/use_cases/filter_meals_by_category_name_use_ca
 import '../../modules/food/domain/use_cases/get_food_categories_use_case.dart'
     as _i1035;
 import '../../modules/food/ui/view_model/food_view_model.dart' as _i624;
-import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
 import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
     as _i939;
 import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
     as _i195;
-import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
-    as _i369;
 import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
     as _i371;
 import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
@@ -155,8 +148,7 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
-    final homeApiClientProvider = _$HomeApiClientProvider();
-    final localeInitializer = _$LocaleInitializer();
+   final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
       () => dioService.provideDio(),

@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i6;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:super_fitness/modules/home/data/api/api_client/home_api_client.dart'
-    as _i4;
-import 'package:super_fitness/modules/home/data/models/workouts/get_all_muscles_group_response.dart'
+    as _i5;
+import 'package:super_fitness/modules/home/data/models/random_exercises/random_exercises_response_dto.dart'
     as _i2;
-import 'package:super_fitness/modules/home/data/models/workouts/muscle_group_workouts.dart'
+import 'package:super_fitness/modules/home/data/models/workouts/get_all_muscles_group_response.dart'
     as _i3;
+import 'package:super_fitness/modules/home/data/models/workouts/muscle_group_workouts.dart'
+    as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -27,51 +29,79 @@ import 'package:super_fitness/modules/home/data/models/workouts/muscle_group_wor
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeGetMusclesGroupResponse_0 extends _i1.SmartFake
-    implements _i2.GetMusclesGroupResponse {
-  _FakeGetMusclesGroupResponse_0(Object parent, Invocation parentInvocation)
+class _FakeRandomExercisesResponseDto_0 extends _i1.SmartFake
+    implements _i2.RandomExercisesResponseDto {
+  _FakeRandomExercisesResponseDto_0(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeMuscleGroupWorkoutsResponse_1 extends _i1.SmartFake
-    implements _i3.MuscleGroupWorkoutsResponse {
-  _FakeMuscleGroupWorkoutsResponse_1(Object parent, Invocation parentInvocation)
+class _FakeGetMusclesGroupResponse_1 extends _i1.SmartFake
+    implements _i3.GetMusclesGroupResponse {
+  _FakeGetMusclesGroupResponse_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeMuscleGroupWorkoutsResponse_2 extends _i1.SmartFake
+    implements _i4.MuscleGroupWorkoutsResponse {
+  _FakeMuscleGroupWorkoutsResponse_2(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [HomeApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHomeApiClient extends _i1.Mock implements _i4.HomeApiClient {
+class MockHomeApiClient extends _i1.Mock implements _i5.HomeApiClient {
   MockHomeApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.GetMusclesGroupResponse> getMusclesGroup() =>
+  _i6.Future<_i2.RandomExercisesResponseDto> getRandomExercises({
+    required Map<String, dynamic>? queries,
+    required String? languageCode,
+  }) =>
+      (super.noSuchMethod(
+            Invocation.method(#getRandomExercises, [], {
+              #queries: queries,
+              #languageCode: languageCode,
+            }),
+            returnValue: _i6.Future<_i2.RandomExercisesResponseDto>.value(
+              _FakeRandomExercisesResponseDto_0(
+                this,
+                Invocation.method(#getRandomExercises, [], {
+                  #queries: queries,
+                  #languageCode: languageCode,
+                }),
+              ),
+            ),
+          )
+          as _i6.Future<_i2.RandomExercisesResponseDto>);
+
+  @override
+  _i6.Future<_i3.GetMusclesGroupResponse> getMusclesGroup() =>
       (super.noSuchMethod(
             Invocation.method(#getMusclesGroup, []),
-            returnValue: _i5.Future<_i2.GetMusclesGroupResponse>.value(
-              _FakeGetMusclesGroupResponse_0(
+            returnValue: _i6.Future<_i3.GetMusclesGroupResponse>.value(
+              _FakeGetMusclesGroupResponse_1(
                 this,
                 Invocation.method(#getMusclesGroup, []),
               ),
             ),
           )
-          as _i5.Future<_i2.GetMusclesGroupResponse>);
+          as _i6.Future<_i3.GetMusclesGroupResponse>);
 
   @override
-  _i5.Future<_i3.MuscleGroupWorkoutsResponse> getMusclesGroupWorkouts(
+  _i6.Future<_i4.MuscleGroupWorkoutsResponse> getMusclesGroupWorkouts(
     String? id,
   ) =>
       (super.noSuchMethod(
             Invocation.method(#getMusclesGroupWorkouts, [id]),
-            returnValue: _i5.Future<_i3.MuscleGroupWorkoutsResponse>.value(
-              _FakeMuscleGroupWorkoutsResponse_1(
+            returnValue: _i6.Future<_i4.MuscleGroupWorkoutsResponse>.value(
+              _FakeMuscleGroupWorkoutsResponse_2(
                 this,
                 Invocation.method(#getMusclesGroupWorkouts, [id]),
               ),
             ),
           )
-          as _i5.Future<_i3.MuscleGroupWorkoutsResponse>);
+          as _i6.Future<_i4.MuscleGroupWorkoutsResponse>);
 }

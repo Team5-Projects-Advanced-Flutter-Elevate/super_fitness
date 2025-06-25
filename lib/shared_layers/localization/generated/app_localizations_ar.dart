@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -220,6 +221,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterValidRecipient => 'الرجاء إدخال مستلم صالح';
 
   @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get chatAI => 'دردشة';
+
+  @override
   String get forgotPassword => 'هل نسيت كلمة المرور؟';
 
   @override
@@ -394,6 +401,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noFoodRecommendation => 'لايوجد تفضيلات طعام';
+
+  @override
+  String get noWorkoutsAvailable => 'لا توجد تمارين متاحة';
 
   @override
   String get homePage_________ => '\$\$\$ تعليق \$\$\$';

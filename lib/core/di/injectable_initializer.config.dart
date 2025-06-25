@@ -97,16 +97,30 @@ import '../../modules/home/data/api/api_client_provider/home_api_client_provider
     as _i939;
 import '../../modules/home/data/data_sources_contracts/random_exercises/random_exercises_remote_data_source.dart'
     as _i1066;
+import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
+    as _i195;
 import '../../modules/home/data/data_sources_imp/random_exercises/random_exercises_remote_data_source_imp.dart'
     as _i705;
+import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
+    as _i369;
+import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
+    as _i371;
 import '../../modules/home/data/respositories_imp/random_exercises/random_exercises_repo_imp.dart'
     as _i16;
 import '../../modules/home/domain/repositories_contracts/random_exercises/random_exercise_repo.dart'
     as _i352;
+import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
+    as _i464;
 import '../../modules/home/domain/use_cases/random_exercises/get_ten_random_exerciese_use_case.dart'
     as _i784;
+import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_use_case.dart'
+    as _i1011;
+import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
+    as _i415;
 import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
     as _i102;
+import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
+    as _i72;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -160,10 +174,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
+    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -194,6 +208,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
+    );
+    gh.factory<_i195.WorkoutDatasource>(
+      () => _i369.WorkoutDatasourceImpl(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -251,6 +268,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i823.ForgetPasswordUseCase>(
       () => _i823.ForgetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
+    gh.factory<_i464.WorkoutRepo>(
+      () => _i371.WorkoutRepoImpl(
+        workoutDatasource: gh<_i195.WorkoutDatasource>(),
+      ),
+    );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
     );
@@ -266,6 +288,12 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
+    );
+    gh.factory<_i415.GetMusclesGroupUseCase>(
+      () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
+    );
+    gh.factory<_i1011.GetMuscleGroupWorkoutUseCase>(
+      () => _i1011.GetMuscleGroupWorkoutUseCase(gh<_i464.WorkoutRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -310,6 +338,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i102.HomePageViewModel(
         gh<_i784.GetTenRandomExerciseUseCase>(),
         gh<_i1035.GetFoodCategoriesUseCase>(),
+      ),
+    );
+    gh.factory<_i72.WorkoutsPageCubit>(
+      () => _i72.WorkoutsPageCubit(
+        gh<_i415.GetMusclesGroupUseCase>(),
+        gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
       ),
     );
     return this;

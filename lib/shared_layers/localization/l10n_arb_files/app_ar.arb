@@ -65,6 +65,8 @@
   "loremIpsumDolorSitAmetConsectetureuUrna": "لوريم إيبسوم دولور الجلوس أميت كونسيكتور. او اورنو",
   "utGravidaQuisIdPretiumPurusMaurisMassa": "اوت جرافيدا قويس ايد بريتيوم بوروس. موريس ماسا",
   "pleaseEnterValidRecipient": "الرجاء إدخال مستلم صالح",
+  "home": "الرئيسية",
+  "chatAI": "دردشة",
   "sendOtp": "أرسل الرمز",
   "resetPassDesc": "تأكد من أن تكون 8 أحرف أو أكثر",
   "createNewPassword": "إنشاء كلمة مرور جديدة",
@@ -122,6 +124,7 @@
   "profile": "الملف الشخصي",
   "foodRecommendation": "تفضيلات الطعام",
   "noFoodRecommendation": "لايوجد تفضيلات طعام",
+  "noWorkoutsAvailable": "لا توجد تمارين متاحة",
   "homePage_________": "$$$ تعليق $$$",
   "hiUser": "مرحبًا {userName},\n",
   "startYourDayMessage": "لنبدأ يومك",
@@ -136,5 +139,6 @@
   "upcomingWorkouts": "التمارين القادمة",
   "seeAll": "عرض الكل",
   "recommendationForYou": "توصيات لك"
+
 
 }

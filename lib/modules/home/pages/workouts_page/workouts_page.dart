@@ -35,7 +35,15 @@ class WorkoutsPage extends BaseStatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            Navigator.push(context,MaterialPageRoute(builder: (context) => const ExerciseScreen(muscleId: '67c8499726895f87ce0aa9bc',),));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => const ExerciseScreen(
+                      muscleId: '67c8499726895f87ce0aa9bc',
+                    ),
+              ),
+            );
           },
           child: CustomItemContainer(
             imageUrl: "https://iili.io/33p7y9p.png",

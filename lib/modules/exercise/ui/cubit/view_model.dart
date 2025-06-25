@@ -64,6 +64,7 @@ class ExerciseViewModel extends Cubit<ExerciseState> {
   void _selectShortVideo(String url) {
     emit(state.copyWith(selectedShortLink: url));
   }
+
   String getYoutubeThumbnail(String url) {
     Uri uri = Uri.parse(url);
 
@@ -89,6 +90,7 @@ class SelectThumbnail extends ExerciseIntent {
   final String thumbnailUrl;
   SelectThumbnail(this.thumbnailUrl);
 }
+
 class SelectShortVideo extends ExerciseIntent {
   final String shortVideo;
   SelectShortVideo(this.shortVideo);

@@ -17,7 +17,7 @@ abstract class AssetsPaths {
   static const String femaleIcon = "assets/icons/female_icon.png";
   static const String backIcon = "assets/icons/back_icon.png";
   static const String homeBg = "assets/images/home_bg.png";
-  static const String playBtn='assets/images/playbtn.png';
+  static const String playBtn = 'assets/images/playbtn.png';
   static const String chatAiIcon = "assets/icons/chat_ai_icon.png";
   static const String dumbbellIcon = "assets/icons/dumbbell_icon.png";
   static const String appIcon = "assets/icons/app_icon.png";

@@ -59,7 +59,15 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                     message: 'Login Successfully',
                   );
 
-              Navigator.push(context,MaterialPageRoute(builder:  (context) => const ExerciseScreen(muscleId: '67c8499726895f87ce0aa9bc',),));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder:
+                          (context) => const ExerciseScreen(
+                            muscleId: '67c8499726895f87ce0aa9bc',
+                          ),
+                    ),
+                  );
 
                 case Status.error:
                   displaySnackBar(

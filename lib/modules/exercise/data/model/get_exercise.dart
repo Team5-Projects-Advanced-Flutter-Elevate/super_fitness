@@ -44,10 +44,8 @@ class GetExerciseModel {
     message: message,
     currentPage: currentPage,
     totalExercises: totalExercises,
-    totalPages: totalPages
+    totalPages: totalPages,
   );
-
-
 }
 
 class Exercise {

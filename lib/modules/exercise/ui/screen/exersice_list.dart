@@ -11,7 +11,7 @@ class ExerciseListWidget extends BaseStatelessWidget {
   final String? selectedThumbnailUrl;
   final String? selectedShortVideoUrl;
 
-  final void Function(String thumbnail,String shortLink) onThumbnailTap;
+  final void Function(String thumbnail, String shortLink) onThumbnailTap;
 
   const ExerciseListWidget({
     super.key,
@@ -29,13 +29,13 @@ class ExerciseListWidget extends BaseStatelessWidget {
       itemBuilder: (context, index) {
         final exercise = exercises[index];
         final thumbnail = thumbnails[index];
-        final shortLink=exercise.shortYoutubeDemonstrationLink;
+        final shortLink = exercise.shortYoutubeDemonstrationLink;
         return ListTile(
           onTap: () {
             if (shortLink != null) {
               onThumbnailTap(thumbnail, shortLink);
             }
-            },
+          },
           contentPadding: const EdgeInsets.all(5.0),
           leading: Image.network(
             thumbnail,

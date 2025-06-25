@@ -9,7 +9,7 @@ class ExerciseState extends Equatable {
   final List<String> thumbnailUrl;
   final List<ExerciseEntity> exercises;
   final String? selectedThumbnailUrl;
-  final String?selectedShortLink;
+  final String? selectedShortLink;
   final String? selectedLevelId;
   final Object? error;
 
@@ -18,9 +18,9 @@ class ExerciseState extends Equatable {
     this.thumbnailStatus = Status.idle,
     this.thumbnailUrl = const [],
     this.exercises = const [],
-    this.selectedThumbnailUrl='',
-    this.selectedShortLink='',
-    this.selectedLevelId='',
+    this.selectedThumbnailUrl = '',
+    this.selectedShortLink = '',
+    this.selectedLevelId = '',
     this.error,
   });
 
@@ -30,8 +30,8 @@ class ExerciseState extends Equatable {
     List<String>? thumbnailUrl,
     List<ExerciseEntity>? exercises,
     String? selectedThumbnailUrl,
-    String?selectedShortLink,
-    String?selectedLevelId,
+    String? selectedShortLink,
+    String? selectedLevelId,
     Object? error,
   }) {
     return ExerciseState(
@@ -40,8 +40,8 @@ class ExerciseState extends Equatable {
       thumbnailUrl: thumbnailUrl ?? this.thumbnailUrl,
       exercises: exercises ?? this.exercises,
       selectedThumbnailUrl: selectedThumbnailUrl ?? this.selectedThumbnailUrl,
-      selectedShortLink: selectedShortLink??this.selectedShortLink,
-      selectedLevelId:  selectedLevelId??this.selectedLevelId,
+      selectedShortLink: selectedShortLink ?? this.selectedShortLink,
+      selectedLevelId: selectedLevelId ?? this.selectedLevelId,
       error: error,
     );
   }
@@ -55,6 +55,6 @@ class ExerciseState extends Equatable {
     thumbnailStatus,
     selectedThumbnailUrl,
     selectedLevelId,
-    selectedShortLink
+    selectedShortLink,
   ];
 }

@@ -100,8 +100,7 @@ import '../../modules/food/domain/use_cases/filter_meals_by_category_name_use_ca
 import '../../modules/food/domain/use_cases/get_food_categories_use_case.dart'
     as _i1035;
 import '../../modules/food/ui/view_model/food_view_model.dart' as _i624;
-import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
-    as _i939;
+
 import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
     as _i195;
 import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
@@ -148,7 +147,7 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
-   final localeInitializer = _$LocaleInitializer();
+    final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
       () => dioService.provideDio(),
@@ -335,8 +334,6 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 
 class _$FoodApiClientProvider extends _i561.FoodApiClientProvider {}
-
-class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

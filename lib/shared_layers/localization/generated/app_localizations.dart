@@ -797,12 +797,6 @@ abstract class AppLocalizations {
   /// **'Workouts'**
   String get workouts;
 
-  /// No description provided for @profile.
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
-
   /// No description provided for @sendOtp.
   ///
   /// In en, this message translates to:
@@ -851,11 +845,23 @@ abstract class AppLocalizations {
   /// **'Food Recommendation'**
   String get foodRecommendation;
 
+  /// No description provided for @noVideoProvide.
+  ///
+  /// In en, this message translates to:
+  /// **'Video not available'**
+  String get noVideoProvide;
+
   /// No description provided for @noFoodRecommendation.
   ///
   /// In en, this message translates to:
   /// **'No Food Recommendation Found'**
   String get noFoodRecommendation;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
 
   /// No description provided for @noWorkoutsAvailable.
   ///

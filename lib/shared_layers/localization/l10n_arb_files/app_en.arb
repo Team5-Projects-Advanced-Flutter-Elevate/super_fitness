@@ -116,7 +116,6 @@
   "explore": "Explore",
   "aiChat": "AI Chat",
   "workouts": "Workouts",
-  "profile": "Profile",
   "sendOtp": "Send OTP",
   "resetPassDesc":"Make Sure its 8 characters Or More " ,
   "createNewPassword":"Create New Password",
@@ -124,13 +123,8 @@
   "oTpCode":"Otp Code",
   "enterOtpCode":"Enter Your Otp Code , check your email",
   "successEmailVerified":"Email Verified Successfully",
-
-
-  "profile": "Profile",
   "foodRecommendation": "Food Recommendation",
-  "noFoodRecommendation": "No Food Recommendation Found"
-  "profile": "Profile",
-  "noVideoProvide": "Video not available"
+  "noVideoProvide": "Video not available",
   "noFoodRecommendation": "No Food Recommendation Found",
   "profile": "Profile",
   "noWorkoutsAvailable": "No workouts available"

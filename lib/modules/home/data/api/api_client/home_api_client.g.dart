@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_api_client.dart';
+part of 'home_api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,10 +8,8 @@ part of 'auth_api_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _AuthApiClient implements AuthApiClient {
-  _AuthApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://fitness.elevateegy.com';
-  }
+class _HomeApiClient implements HomeApiClient {
+  _HomeApiClient(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,26 +18,25 @@ class _AuthApiClient implements AuthApiClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<RegisterResponseDto> register(Map<String, dynamic> request) async {
+  Future<GetMusclesGroupResponse> getMusclesGroup() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(request);
-    final _options = _setStreamType<RegisterResponseDto>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<GetMusclesGroupResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/signup',
+            '/api/v1/muscles',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late RegisterResponseDto _value;
+    late GetMusclesGroupResponse _value;
     try {
-      _value = RegisterResponseDto.fromJson(_result.data!);
+      _value = GetMusclesGroupResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
@@ -48,26 +45,25 @@ class _AuthApiClient implements AuthApiClient {
   }
 
   @override
-  Future<LoginModel> login(Map<String, dynamic> body) async {
+  Future<MuscleGroupWorkoutsResponse> getMusclesGroupWorkouts(String id) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body);
-    final _options = _setStreamType<LoginModel>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<MuscleGroupWorkoutsResponse>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/auth/signin',
+            '/api/v1/musclesGroup/${id}',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginModel _value;
+    late MuscleGroupWorkoutsResponse _value;
     try {
-      _value = LoginModel.fromJson(_result.data!);
+      _value = MuscleGroupWorkoutsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

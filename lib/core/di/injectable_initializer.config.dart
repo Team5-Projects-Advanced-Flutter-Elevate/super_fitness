@@ -61,25 +61,24 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
-import '../../modules/home/pages/workouts_page/data/api/api_client/workout_page_api_client.dart'
-    as _i712;
-import '../../modules/home/pages/workouts_page/data/api/api_client_provider/workout_api_client_provider.dart'
-    as _i714;
-import '../../modules/home/pages/workouts_page/data/datasource_contract/workout_datasource_contract.dart'
-    as _i900;
-import '../../modules/home/pages/workouts_page/data/datasource_impl/workout_datasource_impl.dart'
-    as _i670;
-import '../../modules/home/pages/workouts_page/data/repo_impl/workout_repo_impl.dart'
+import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
+import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
+    as _i939;
+import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
+    as _i195;
+import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
+    as _i369;
+import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
+    as _i371;
+import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
+    as _i464;
+import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_use_case.dart'
     as _i1011;
-import '../../modules/home/pages/workouts_page/domain/repo_contract/workout_repo_contract.dart'
-    as _i844;
-import '../../modules/home/pages/workouts_page/domain/usecases/get_muscle_group_workout_use_case.dart'
-    as _i546;
-import '../../modules/home/pages/workouts_page/domain/usecases/get_muscles_group_use_case.dart'
-    as _i334;
-import '../../modules/home/pages/workouts_page/ui/view_model/workouts_page_cubit.dart'
-    as _i632;
-import '../../modules/home/view_model/home_view_model.dart' as _i749;
+import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
+    as _i415;
+import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
+    as _i72;
+import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -111,7 +110,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
-    final workoutApiClientProvider = _$WorkoutApiClientProvider();
+    final homeApiClientProvider = _$HomeApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -121,7 +120,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
-    gh.factory<_i749.HomeViewModel>(() => _i749.HomeViewModel());
+    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
@@ -134,8 +133,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i712.WorkoutApiClient>(
-      () => workoutApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i293.HomeApiClient>(
+      () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
@@ -143,14 +142,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
-    gh.factory<_i900.WorkoutDatasource>(
-      () => _i670.WorkoutDatasourceImpl(gh<_i712.WorkoutApiClient>()),
-    );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
+    );
+    gh.factory<_i195.WorkoutDatasource>(
+      () => _i369.WorkoutDatasourceImpl(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -171,11 +170,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
-    gh.factory<_i844.WorkoutRepo>(
-      () => _i1011.WorkoutRepoImpl(
-        workoutDatasource: gh<_i900.WorkoutDatasource>(),
-      ),
-    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -188,20 +182,25 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
     );
+    gh.factory<_i464.WorkoutRepo>(
+      () => _i371.WorkoutRepoImpl(
+        workoutDatasource: gh<_i195.WorkoutDatasource>(),
+      ),
+    );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
-    );
-    gh.factory<_i334.GetMusclesGroupUseCase>(
-      () => _i334.GetMusclesGroupUseCase(gh<_i844.WorkoutRepo>()),
-    );
-    gh.factory<_i546.GetMuscleGroupWorkoutUseCase>(
-      () => _i546.GetMuscleGroupWorkoutUseCase(gh<_i844.WorkoutRepo>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
     );
     gh.factory<_i210.SignUpWithGoogleAccountUseCase>(
       () => _i210.SignUpWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
+    );
+    gh.factory<_i415.GetMusclesGroupUseCase>(
+      () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
+    );
+    gh.factory<_i1011.GetMuscleGroupWorkoutUseCase>(
+      () => _i1011.GetMuscleGroupWorkoutUseCase(gh<_i464.WorkoutRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -222,17 +221,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i138.GoogleSignInHandler>(),
       ),
     );
-    gh.factory<_i632.WorkoutsPageCubit>(
-      () => _i632.WorkoutsPageCubit(
-        gh<_i334.GetMusclesGroupUseCase>(),
-        gh<_i546.GetMuscleGroupWorkoutUseCase>(),
-      ),
-    );
     gh.factory<_i396.LoginViewModel>(
       () => _i396.LoginViewModel(
         gh<_i192.LoginUseCase>(),
         gh<_i851.SignInWithGoogleAccountUseCase>(),
         gh<_i138.GoogleSignInHandler>(),
+      ),
+    );
+    gh.factory<_i72.WorkoutsPageCubit>(
+      () => _i72.WorkoutsPageCubit(
+        gh<_i415.GetMusclesGroupUseCase>(),
+        gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
       ),
     );
     return this;
@@ -247,7 +246,7 @@ class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
-class _$WorkoutApiClientProvider extends _i714.WorkoutApiClientProvider {}
+class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

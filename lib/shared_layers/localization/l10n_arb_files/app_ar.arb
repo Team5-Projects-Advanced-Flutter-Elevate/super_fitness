@@ -123,7 +123,10 @@
   "workouts": "التمارين",
   "profile": "الملف الشخصي",
   "foodRecommendation": "تفضيلات الطعام",
-  "noFoodRecommendation": "لايوجد تفضيلات طعام"
+  "noFoodRecommendation": "لايوجد تفضيلات طعام",
+
+  "profile": "الملف الشخصي",
+  "noWorkoutsAvailable": "لا توجد تمارين متاحة"
 
 
 

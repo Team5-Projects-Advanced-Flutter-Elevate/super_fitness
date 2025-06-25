@@ -859,6 +859,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No Food Recommendation Found'**
   String get noFoodRecommendation;
+
+  /// No description provided for @noWorkoutsAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'No workouts available'**
+  String get noWorkoutsAvailable;
 }
 
 class _AppLocalizationsDelegate

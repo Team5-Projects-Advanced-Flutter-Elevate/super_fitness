@@ -399,4 +399,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noFoodRecommendation => 'No Food Recommendation Found';
+
+  @override
+  String get noWorkoutsAvailable => 'No workouts available';
 }

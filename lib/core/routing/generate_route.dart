@@ -7,7 +7,7 @@ import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
 import 'package:super_fitness/modules/layout/workout/workout_screen.dart';
 import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
-import 'package:super_fitness/modules/home/home_screen.dart';
+import 'package:super_fitness/modules/home/ui/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 

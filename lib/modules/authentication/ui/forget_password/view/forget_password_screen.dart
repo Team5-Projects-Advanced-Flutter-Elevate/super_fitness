@@ -67,131 +67,133 @@ class _ForgetPasswordScreenState
                 icon: Icon(Icons.arrow_back_ios, size: screenWidth * 0.06),
               ),
             ),
-            body: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Image.asset(AssetsPaths.appIcon)],
-                  ),
-                  const SizedBox(height: 100),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-
-                    child: Text(
-                      appLocalizations.pleaseEnterEmail,
-                      style: theme.textTheme.bodyLarge,
+            body: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Image.asset(AssetsPaths.appIcon)],
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    const SizedBox(height: 100),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
 
-                    child: Text(
-                      appLocalizations.forgetPassword,
-                      style: theme.textTheme.titleLarge,
-                      textAlign: TextAlign.center,
+                      child: Text(
+                        appLocalizations.pleaseEnterEmail,
+                        style: theme.textTheme.bodyLarge,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                      child: Container(
-                        padding: const EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                          color: AppColors.black.withValues(alpha: .5),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
 
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            TextFormField(
-                              autovalidateMode:
-                                  AutovalidateMode.onUserInteraction,
-                              validator:
-                                  (value) => getIt<ValidateFunctions>()
-                                      .validationOfEmail(value),
+                      child: Text(
+                        appLocalizations.forgetPassword,
+                        style: theme.textTheme.titleLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: Container(
+                          padding: const EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            color: AppColors.black.withValues(alpha: .5),
 
-                              controller: emailController,
-                              decoration: InputDecoration(
-                                enabled: true,
-                                hintText: appLocalizations.email,
-                                prefixIcon: const Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 15.0,
-                                    right: 5,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              TextFormField(
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator:
+                                    (value) => getIt<ValidateFunctions>()
+                                        .validationOfEmail(value),
+
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  enabled: true,
+                                  hintText: appLocalizations.email,
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 15.0,
+                                      right: 5,
+                                    ),
+                                    child: Icon(Icons.mail_outline),
                                   ),
-                                  child: Icon(Icons.mail_outline),
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 24),
-                            BlocConsumer<
-                              ForgetPasswordViewModel,
-                              ForgetPasswordState
-                            >(
-                              builder: (context, state) {
-                                if (state.sendEmailStatus ==
-                                    SendEmailStatus.loading) {
-                                  return const LoadingStateWidget();
-                                }
-                                return Row(
-                                  children: [
-                                    Expanded(
-                                      child: FilledButton(
-                                        onPressed: () {
-                                          if (formKey.currentState!
-                                              .validate()) {
-                                            viewModel.email =
-                                                emailController.text;
-                                            viewModel.onIntent(
-                                              ForgotPasswordIntent(),
-                                            );
-                                          }
-                                        },
-                                        child: Text(appLocalizations.sendOtp),
+                              const SizedBox(height: 24),
+                              BlocConsumer<
+                                ForgetPasswordViewModel,
+                                ForgetPasswordState
+                              >(
+                                builder: (context, state) {
+                                  if (state.sendEmailStatus ==
+                                      SendEmailStatus.loading) {
+                                    return const LoadingStateWidget();
+                                  }
+                                  return Row(
+                                    children: [
+                                      Expanded(
+                                        child: FilledButton(
+                                          onPressed: () {
+                                            if (formKey.currentState!
+                                                .validate()) {
+                                              viewModel.email =
+                                                  emailController.text;
+                                              viewModel.onIntent(
+                                                ForgotPasswordIntent(),
+                                              );
+                                            }
+                                          },
+                                          child: Text(appLocalizations.sendOtp),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
-                              listener: (context, state) {
-                                if (state.sendEmailStatus ==
-                                    SendEmailStatus.success) {
-                                  displaySnackBar(
-                                    contentType: ContentType.success,
-                                    title: appLocalizations.success,
-                                    message: appLocalizations.codeSendTitle,
+                                    ],
                                   );
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder:
-                                          (context) => ResetCodeScreen(
-                                            viewModel: viewModel,
-                                          ),
-                                    ),
-                                  );
-                                } else if (state.sendEmailStatus ==
-                                    SendEmailStatus.error) {
-                                  displaySnackBar(
-                                    contentType: ContentType.failure,
-                                    title: appLocalizations.error,
-                                    message: state.error,
-                                  );
-                                }
-                              },
-                            ),
-                          ],
+                                },
+                                listener: (context, state) {
+                                  if (state.sendEmailStatus ==
+                                      SendEmailStatus.success) {
+                                    displaySnackBar(
+                                      contentType: ContentType.success,
+                                      title: appLocalizations.success,
+                                      message: appLocalizations.codeSendTitle,
+                                    );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder:
+                                            (context) => ResetCodeScreen(
+                                              viewModel: viewModel,
+                                            ),
+                                      ),
+                                    );
+                                  } else if (state.sendEmailStatus ==
+                                      SendEmailStatus.error) {
+                                    displaySnackBar(
+                                      contentType: ContentType.failure,
+                                      title: appLocalizations.error,
+                                      message: state.error,
+                                    );
+                                  }
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

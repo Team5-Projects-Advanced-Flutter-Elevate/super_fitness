@@ -400,4 +400,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noFoodRecommendation => 'لايوجد تفضيلات طعام';
+
+  @override
+  String get noWorkoutsAvailable => 'لا توجد تمارين متاحة';
 }

@@ -8,4 +8,6 @@ class ApisEndpoints {
   static const String registerEndPoint = '/api/v1/auth/signup';
   static const String getFoodCategories = "categories.php";
   static const String getFoodByCategory = "filter.php";
+  static const String musclesGroup = '/api/v1/muscles';
+  static const String musclesGroupWorkouts = '/api/v1/musclesGroup/{id}';
 }

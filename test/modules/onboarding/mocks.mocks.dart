@@ -433,6 +433,259 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get forgetPassword____________ =>
+      (super.noSuchMethod(
+            Invocation.getter(#forgetPassword____________),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#forgetPassword____________),
+            ),
+          )
+          as String);
+
+  @override
+  String get emailHint =>
+      (super.noSuchMethod(
+            Invocation.getter(#emailHint),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#emailHint),
+            ),
+          )
+          as String);
+
+  @override
+  String get passwordHint =>
+      (super.noSuchMethod(
+            Invocation.getter(#passwordHint),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#passwordHint),
+            ),
+          )
+          as String);
+
+  @override
+  String get confirmPasswordHint =>
+      (super.noSuchMethod(
+            Invocation.getter(#confirmPasswordHint),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#confirmPasswordHint),
+            ),
+          )
+          as String);
+
+  @override
+  String get gender =>
+      (super.noSuchMethod(
+            Invocation.getter(#gender),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#gender),
+            ),
+          )
+          as String);
+
+  @override
+  String get removedImage =>
+      (super.noSuchMethod(
+            Invocation.getter(#removedImage),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#removedImage),
+            ),
+          )
+          as String);
+
+  @override
+  String get forgetPasswordDescription =>
+      (super.noSuchMethod(
+            Invocation.getter(#forgetPasswordDescription),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#forgetPasswordDescription),
+            ),
+          )
+          as String);
+
+  @override
+  String get confirm =>
+      (super.noSuchMethod(
+            Invocation.getter(#confirm),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#confirm),
+            ),
+          )
+          as String);
+
+  @override
+  String get codeSendTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#codeSendTitle),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#codeSendTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get otpScreenTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#otpScreenTitle),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#otpScreenTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get otpScreenDescription =>
+      (super.noSuchMethod(
+            Invocation.getter(#otpScreenDescription),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#otpScreenDescription),
+            ),
+          )
+          as String);
+
+  @override
+  String get didnotReciveOtp =>
+      (super.noSuchMethod(
+            Invocation.getter(#didnotReciveOtp),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#didnotReciveOtp),
+            ),
+          )
+          as String);
+
+  @override
+  String get resend =>
+      (super.noSuchMethod(
+            Invocation.getter(#resend),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#resend),
+            ),
+          )
+          as String);
+
+  @override
+  String get codeValid =>
+      (super.noSuchMethod(
+            Invocation.getter(#codeValid),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#codeValid),
+            ),
+          )
+          as String);
+
+  @override
+  String get codeNotvalid =>
+      (super.noSuchMethod(
+            Invocation.getter(#codeNotvalid),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#codeNotvalid),
+            ),
+          )
+          as String);
+
+  @override
+  String get resetPasswordScreenDescription =>
+      (super.noSuchMethod(
+            Invocation.getter(#resetPasswordScreenDescription),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#resetPasswordScreenDescription),
+            ),
+          )
+          as String);
+
+  @override
+  String get resetPasswordScreenTitle =>
+      (super.noSuchMethod(
+            Invocation.getter(#resetPasswordScreenTitle),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#resetPasswordScreenTitle),
+            ),
+          )
+          as String);
+
+  @override
+  String get newPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#newPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#newPassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get confirmNewPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#confirmNewPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#confirmNewPassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get yourPasswordChanged =>
+      (super.noSuchMethod(
+            Invocation.getter(#yourPasswordChanged),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#yourPasswordChanged),
+            ),
+          )
+          as String);
+
+  @override
+  String get enterEmail =>
+      (super.noSuchMethod(
+            Invocation.getter(#enterEmail),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#enterEmail),
+            ),
+          )
+          as String);
+
+  @override
+  String get enterPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#enterPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#enterPassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get forgetPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#forgetPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#forgetPassword),
+            ),
+          )
+          as String);
+
+  @override
   String get pleaseEnterValidAddress =>
       (super.noSuchMethod(
             Invocation.getter(#pleaseEnterValidAddress),
@@ -562,6 +815,25 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.getter(#pleaseEnterValidRecipient),
+            ),
+          )
+          as String);
+
+  @override
+  String get home =>
+      (super.noSuchMethod(
+            Invocation.getter(#home),
+            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#home)),
+          )
+          as String);
+
+  @override
+  String get chatAI =>
+      (super.noSuchMethod(
+            Invocation.getter(#chatAI),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#chatAI),
             ),
           )
           as String);
@@ -1083,6 +1355,113 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.getter(#profile),
+            ),
+          )
+          as String);
+
+  @override
+  String get sendOtp =>
+      (super.noSuchMethod(
+            Invocation.getter(#sendOtp),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#sendOtp),
+            ),
+          )
+          as String);
+
+  @override
+  String get resetPassDesc =>
+      (super.noSuchMethod(
+            Invocation.getter(#resetPassDesc),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#resetPassDesc),
+            ),
+          )
+          as String);
+
+  @override
+  String get createNewPassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#createNewPassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#createNewPassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get done =>
+      (super.noSuchMethod(
+            Invocation.getter(#done),
+            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#done)),
+          )
+          as String);
+
+  @override
+  String get oTpCode =>
+      (super.noSuchMethod(
+            Invocation.getter(#oTpCode),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#oTpCode),
+            ),
+          )
+          as String);
+
+  @override
+  String get enterOtpCode =>
+      (super.noSuchMethod(
+            Invocation.getter(#enterOtpCode),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#enterOtpCode),
+            ),
+          )
+          as String);
+
+  @override
+  String get successEmailVerified =>
+      (super.noSuchMethod(
+            Invocation.getter(#successEmailVerified),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#successEmailVerified),
+            ),
+          )
+          as String);
+
+  @override
+  String get foodRecommendation =>
+      (super.noSuchMethod(
+            Invocation.getter(#foodRecommendation),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#foodRecommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get noFoodRecommendation =>
+      (super.noSuchMethod(
+            Invocation.getter(#noFoodRecommendation),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#noFoodRecommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get noWorkoutsAvailable =>
+      (super.noSuchMethod(
+            Invocation.getter(#noWorkoutsAvailable),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#noWorkoutsAvailable),
             ),
           )
           as String);

@@ -34,7 +34,7 @@ class BuildWorkoutsSuccessState extends BaseStatelessWidget {
             },
             tabs:
                 state.musclesGroup!
-                    .map((element) => Tab(child: Text(element?.name ?? '')))
+                    .map((element) => Tab(child: Text(element.name ?? '')))
                     .toList(),
           ),
         ),

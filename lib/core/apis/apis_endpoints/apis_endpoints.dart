@@ -9,4 +9,6 @@ class ApisEndpoints {
   static const String exerciseById='/api/v1/exercises/by-muscle-difficulty?';
   static const String getFoodCategories = "categories.php";
   static const String getFoodByCategory = "filter.php";
+  static const String musclesGroup = '/api/v1/muscles';
+  static const String musclesGroupWorkouts = '/api/v1/musclesGroup/{id}';
 }

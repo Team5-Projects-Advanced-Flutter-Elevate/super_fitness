@@ -12,7 +12,7 @@ abstract class AppThemes {
       surfaceTintColor: AppColors.transparent,
       titleSpacing: 0,
       titleTextStyle: GoogleFonts.balooThambi2(
-        fontSize: 20,
+        fontSize: 24,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),

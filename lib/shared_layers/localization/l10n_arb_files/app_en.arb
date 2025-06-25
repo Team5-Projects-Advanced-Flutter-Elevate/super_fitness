@@ -131,4 +131,7 @@
   "noFoodRecommendation": "No Food Recommendation Found"
   "profile": "Profile",
   "noVideoProvide": "Video not available"
+  "noFoodRecommendation": "No Food Recommendation Found",
+  "profile": "Profile",
+  "noWorkoutsAvailable": "No workouts available"
 }

@@ -9,9 +9,15 @@ import 'package:super_fitness/modules/home/pages/ai_chat_page/ai_chat_page.dart'
 import 'package:super_fitness/modules/home/pages/home_page/home_page.dart';
 import 'package:super_fitness/modules/home/pages/workouts_page/workouts_page.dart';
 import 'package:super_fitness/modules/home/view_model/home_view_model.dart';
+import 'package:super_fitness/modules/home/ui/pages/ai_chat_page/ai_chat_page.dart';
+import 'package:super_fitness/modules/home/ui/pages/home_page/home_page.dart';
+import 'package:super_fitness/modules/home/ui/pages/profile_page/profile_page.dart';
+import 'package:super_fitness/modules/home/ui/pages/workouts_page/workouts_page.dart';
+import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 
 import '../../core/di/injectable_initializer.dart';
 import '../exercise/ui/screen/exercise_screen.dart';
+import '../../../core/di/injectable_initializer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +37,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
       const HomePage(),
       const AiChatPage(),
       const WorkoutsPage(),
-      const ExerciseScreen(muscleId: '67c8499726895f87ce0aa9bc'),
+      const ProfilePage(),
     ];
   }
 
@@ -62,7 +68,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
                   bottom: screenHeight * 0.04,
                   width: screenWidth,
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: ClipRRect(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       child: BackdropFilter(

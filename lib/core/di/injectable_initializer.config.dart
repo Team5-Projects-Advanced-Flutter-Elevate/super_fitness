@@ -307,6 +307,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i192.LoginUseCase>(
       () => _i192.LoginUseCase(gh<_i239.LoginRepo>()),
     );
+    gh.factory<_i102.HomePageViewModel>(
+      () => _i102.HomePageViewModel(
+        gh<_i784.GetTenRandomExerciseUseCase>(),
+        gh<_i1035.GetFoodCategoriesUseCase>(),
+        gh<_i415.GetMusclesGroupUseCase>(),
+        gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
+      ),
+    );
     gh.factory<_i610.RegisterViewModel>(
       () => _i610.RegisterViewModel(
         gh<_i782.RegisterUserCase>(),
@@ -332,12 +340,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i192.LoginUseCase>(),
         gh<_i851.SignInWithGoogleAccountUseCase>(),
         gh<_i138.GoogleSignInHandler>(),
-      ),
-    );
-    gh.factory<_i102.HomePageViewModel>(
-      () => _i102.HomePageViewModel(
-        gh<_i784.GetTenRandomExerciseUseCase>(),
-        gh<_i1035.GetFoodCategoriesUseCase>(),
       ),
     );
     gh.factory<_i72.WorkoutsPageCubit>(

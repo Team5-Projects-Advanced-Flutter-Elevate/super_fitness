@@ -77,6 +77,14 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
+import '../../modules/exercise/data/api/api_client/exercise_api_client.dart'
+    as _i14;
+import '../../modules/exercise/data/api/api_client_provider/auth_api_client_provider.dart'
+    as _i356;
+
+import '../../modules/exercise/domain/repo/exercise_repo.dart' as _i960;
+import '../../modules/exercise/domain/usecase/exercise_usecase.dart' as _i111;
+import '../../modules/exercise/ui/cubit/view_model.dart' as _i370;
 import '../../modules/food/data/api/api_client/food_api_client.dart' as _i642;
 import '../../modules/food/data/api/api_client_provider/food_api_client_provider.dart'
     as _i561;
@@ -92,13 +100,9 @@ import '../../modules/food/domain/use_cases/filter_meals_by_category_name_use_ca
 import '../../modules/food/domain/use_cases/get_food_categories_use_case.dart'
     as _i1035;
 import '../../modules/food/ui/view_model/food_view_model.dart' as _i624;
-import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
-import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
-    as _i939;
+
 import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
     as _i195;
-import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
-    as _i369;
 import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
     as _i371;
 import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
@@ -141,7 +145,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
-    final homeApiClientProvider = _$HomeApiClientProvider();
+    final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -152,11 +156,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
-    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
@@ -165,8 +169,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i293.HomeApiClient>(
-      () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    gh.lazySingleton<_i14.ExerciseApiClient>(
+      () => exerciseApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i642.FoodApiClient>(
       () => foodApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -188,9 +192,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
-    );
-    gh.factory<_i195.WorkoutDatasource>(
-      () => _i369.WorkoutDatasourceImpl(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -225,6 +226,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i9.ResetCodeUseCase>(
       () => _i9.ResetCodeUseCase(gh<_i1013.ForgetPasswordRepo>()),
     );
+    gh.factory<_i111.ExerciseUseCase>(
+      () => _i111.ExerciseUseCase(gh<_i960.ExerciseRepo>()),
+    );
     gh.factory<_i442.FoodRepoContract>(
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
     );
@@ -248,6 +252,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
     );
+    gh.factory<_i370.ExerciseViewModel>(
+      () => _i370.ExerciseViewModel(gh<_i111.ExerciseUseCase>()),
+    );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
     );
@@ -261,11 +268,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
     );
-    gh.factory<_i415.GetMusclesGroupUseCase>(
-      () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
-    );
     gh.factory<_i1011.GetMuscleGroupWorkoutUseCase>(
       () => _i1011.GetMuscleGroupWorkoutUseCase(gh<_i464.WorkoutRepo>()),
+    );
+    gh.factory<_i415.GetMusclesGroupUseCase>(
+      () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -324,7 +331,7 @@ class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
-class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
+class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 
 class _$FoodApiClientProvider extends _i561.FoodApiClientProvider {}
 

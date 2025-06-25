@@ -371,9 +371,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workouts => 'Workouts';
 
   @override
-  String get profile => 'Profile';
-
-  @override
   String get sendOtp => 'Send OTP';
 
   @override
@@ -398,7 +395,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get foodRecommendation => 'Food Recommendation';
 
   @override
+  String get noVideoProvide => 'Video not available';
+
+  @override
   String get noFoodRecommendation => 'No Food Recommendation Found';
+
+  @override
+  String get profile => 'Profile';
 
   @override
   String get noWorkoutsAvailable => 'No workouts available';

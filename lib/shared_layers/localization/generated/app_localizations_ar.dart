@@ -371,9 +371,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get workouts => 'التمارين';
 
   @override
-  String get profile => 'الملف الشخصي';
-
-  @override
   String get sendOtp => 'أرسل الرمز';
 
   @override
@@ -399,7 +396,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get foodRecommendation => 'تفضيلات الطعام';
 
   @override
+  String get noVideoProvide => 'الفديو غير موجود';
+
+  @override
   String get noFoodRecommendation => 'لايوجد تفضيلات طعام';
+
+  @override
+  String get profile => 'الملف الشخصي';
 
   @override
   String get noWorkoutsAvailable => 'لا توجد تمارين متاحة';

@@ -1363,17 +1363,6 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get profile =>
-      (super.noSuchMethod(
-            Invocation.getter(#profile),
-            returnValue: _i6.dummyValue<String>(
-              this,
-              Invocation.getter(#profile),
-            ),
-          )
-          as String);
-
-  @override
   String get sendOtp =>
       (super.noSuchMethod(
             Invocation.getter(#sendOtp),
@@ -1459,12 +1448,34 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
+  String get noVideoProvide =>
+      (super.noSuchMethod(
+            Invocation.getter(#noVideoProvide),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#noVideoProvide),
+            ),
+          )
+          as String);
+
+  @override
   String get noFoodRecommendation =>
       (super.noSuchMethod(
             Invocation.getter(#noFoodRecommendation),
             returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#noFoodRecommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get profile =>
+      (super.noSuchMethod(
+            Invocation.getter(#profile),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#profile),
             ),
           )
           as String);

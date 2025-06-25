@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_api_client.dart';
+part of 'exercise_api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,10 @@ part of 'home_api_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
-class _HomeApiClient implements HomeApiClient {
-  _HomeApiClient(this._dio);
+class _ExerciseApiClient implements ExerciseApiClient {
+  _ExerciseApiClient(this._dio) {
+    baseUrl ??= 'https://fitness.elevateegy.com';
+  }
 
   final Dio _dio;
 
@@ -18,52 +20,31 @@ class _HomeApiClient implements HomeApiClient {
   ParseErrorLogger? errorLogger;
 
   @override
-  Future<GetMusclesGroupResponse> getMusclesGroup() async {
+  Future<GetExerciseModel> exercise({
+    required String muscleId,
+    required String levelId,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'primeMoverMuscleId': muscleId,
+      r'difficultyLevelId': levelId,
+    };
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<GetMusclesGroupResponse>(
+    final _options = _setStreamType<GetExerciseModel>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/v1/muscles',
+            '/api/v1/exercises/by-muscle-difficulty?',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late GetMusclesGroupResponse _value;
+    late GetExerciseModel _value;
     try {
-      _value = GetMusclesGroupResponse.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<MuscleGroupWorkoutsResponse> getMusclesGroupWorkouts(String id) async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<MuscleGroupWorkoutsResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/api/v1/musclesGroup/${id}',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late MuscleGroupWorkoutsResponse _value;
-    try {
-      _value = MuscleGroupWorkoutsResponse.fromJson(_result.data!);
+      _value = GetExerciseModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

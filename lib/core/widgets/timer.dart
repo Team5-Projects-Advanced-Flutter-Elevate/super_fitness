@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_timer_countdown/flutter_timer_countdown.dart';
 
+import '../colors/app_colors.dart';
+
 class Timer extends StatelessWidget {
   const Timer({
     super.key,
@@ -28,7 +30,7 @@ class Timer extends StatelessWidget {
             enableDescriptions: false,
             format: CountDownTimerFormat.minutesSeconds,
             timeTextStyle: Theme.of(context).textTheme.headlineMedium!.copyWith(
-              color: isLessThan5Minutes ? Colors.red : Colors.green,
+              color: AppColors.mainColorDark,
             ),
             endTime: DateTime.now().add(
               Duration(minutes: 0, seconds: examDuration),

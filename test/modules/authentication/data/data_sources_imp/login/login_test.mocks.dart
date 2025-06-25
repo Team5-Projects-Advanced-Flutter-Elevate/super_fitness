@@ -8,6 +8,8 @@ import 'dart:async' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:super_fitness/modules/authentication/data/api/api_client/auth_api_client.dart'
     as _i4;
+import 'package:super_fitness/modules/authentication/data/models/forget_password/forget_password_response.dart'
+    as _i6;
 import 'package:super_fitness/modules/authentication/data/models/login/login.dart'
     as _i3;
 import 'package:super_fitness/modules/authentication/data/models/register/response/register_response_dto.dart'
@@ -45,6 +47,36 @@ class MockAuthApiClient extends _i1.Mock implements _i4.AuthApiClient {
   MockAuthApiClient() {
     _i1.throwOnMissingStub(this);
   }
+
+  @override
+  _i5.Future<_i6.ForgetPasswordResponse?> forgetPassword(
+    Map<String, dynamic>? body,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#forgetPassword, [body]),
+            returnValue: _i5.Future<_i6.ForgetPasswordResponse?>.value(),
+          )
+          as _i5.Future<_i6.ForgetPasswordResponse?>);
+
+  @override
+  _i5.Future<_i6.ForgetPasswordResponse?> resetPassword(
+    Map<String, dynamic>? body,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetPassword, [body]),
+            returnValue: _i5.Future<_i6.ForgetPasswordResponse?>.value(),
+          )
+          as _i5.Future<_i6.ForgetPasswordResponse?>);
+
+  @override
+  _i5.Future<_i6.ForgetPasswordResponse?> resetCode(
+    Map<String, dynamic>? body,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#resetCode, [body]),
+            returnValue: _i5.Future<_i6.ForgetPasswordResponse?>.value(),
+          )
+          as _i5.Future<_i6.ForgetPasswordResponse?>);
 
   @override
   _i5.Future<_i2.RegisterResponseDto> register(Map<String, dynamic>? request) =>

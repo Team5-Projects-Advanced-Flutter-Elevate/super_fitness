@@ -66,7 +66,7 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.playerScreenRoute:
           return MaterialPageRoute(
-            builder: (context) => PlayerScreen(url: args as String,),
+            builder: (context) => PlayerScreen(url: args as String),
           );
         default:
           return _errorRoute();

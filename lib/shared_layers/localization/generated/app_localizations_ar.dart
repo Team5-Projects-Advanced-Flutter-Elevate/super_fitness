@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -139,7 +138,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otpScreenTitle => 'التحقق من البريد الإلكتروني';
 
   @override
-  String get otpScreenDescription => 'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
+  String get otpScreenDescription =>
+      'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
 
   @override
   String get didNotReceiveOtp => 'لم تستلم الرمز؟';

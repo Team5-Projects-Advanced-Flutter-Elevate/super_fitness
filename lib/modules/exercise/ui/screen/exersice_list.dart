@@ -11,6 +11,7 @@ class ExerciseListWidget extends BaseStatelessWidget {
   final String? selectedThumbnailUrl;
   final String? selectedShortVideoUrl;
 
+
   final void Function(String thumbnail, String shortLink) onThumbnailTap;
 
   const ExerciseListWidget({
@@ -68,6 +69,7 @@ class ExerciseListWidget extends BaseStatelessWidget {
                   builder:
                       (context) => PlayerScreen(
                         url: '${exercise.shortYoutubeDemonstrationLink}',
+
                       ),
                 ),
               );

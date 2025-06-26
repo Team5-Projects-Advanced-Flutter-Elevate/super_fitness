@@ -25,7 +25,7 @@ class _PlayerScreenState extends BaseStatefulWidgetState<PlayerScreen> {
     final videoId = YoutubePlayer.convertUrlToId(url)!;
     return YoutubePlayerController(
       initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(autoPlay: false, mute: false),
+      flags: const YoutubePlayerFlags(autoPlay: false, mute: false, loop: true),
     );
   }
 
@@ -48,7 +48,7 @@ class _PlayerScreenState extends BaseStatefulWidgetState<PlayerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.black,
       body: Stack(
         children: [
           Center(

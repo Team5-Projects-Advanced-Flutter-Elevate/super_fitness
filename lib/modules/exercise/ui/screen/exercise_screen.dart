@@ -57,15 +57,9 @@ class _ExerciseScreenState extends BaseStatefulWidgetState<ExerciseScreen> {
                     builder: (context, state) {
                       return SizedBox(
                         height: 500,
-                        child:
-                            state.status == Status.loading
-                                ? const LoadingStateWidget()
-                                : ExerciseHeaderSection(
-                                  state: '${state.selectedShortLink}',
-                                  targetMuscleGroup:
-                                      '${state.exercises[0].targetMuscleGroup}',
-                                  selectedThumbnail: state.thumbnailUrl[1],
-                                ),
+                        child: ExerciseHeaderSection(
+                          viewModel: exerciseViewModel,
+                        ),
                       );
                     },
                   ),

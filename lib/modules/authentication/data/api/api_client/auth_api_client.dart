@@ -11,8 +11,7 @@ part 'auth_api_client.g.dart';
 @RestApi(baseUrl: ApisEndpoints.baseUrl)
 abstract class AuthApiClient {
   //factory AuthApiClient(Dio dio, {String? baseUrl}) = _AuthApiClient;
-  factory AuthApiClient(
-    Dio dio) = _AuthApiClient;
+  factory AuthApiClient(Dio dio) = _AuthApiClient;
   @POST(ApisEndpoints.forgetPasswordEndPoint)
   Future<ForgetPasswordResponse?> forgetPassword(
     @Body() Map<String, dynamic> body,

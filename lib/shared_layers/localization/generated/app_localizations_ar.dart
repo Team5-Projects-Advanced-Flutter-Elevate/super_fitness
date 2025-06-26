@@ -125,7 +125,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removedImage => 'تمت إزالة الصورة';
 
   @override
-  String get forgetPasswordDescription => 'يرجى إدخال بريدك الإلكتروني المرتبط بحسابك';
+  String get forgetPasswordDescription =>
+      'يرجى إدخال بريدك الإلكتروني المرتبط بحسابك';
 
   @override
   String get confirm => 'تأكيد';
@@ -137,7 +138,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otpScreenTitle => 'التحقق من البريد الإلكتروني';
 
   @override
-  String get otpScreenDescription => 'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
+  String get otpScreenDescription =>
+      'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
 
   @override
   String get didNotReceiveOtp => 'لم تستلم الرمز؟';
@@ -152,7 +154,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get codeNotValid => 'الرمز غير صالح';
 
   @override
-  String get resetPasswordScreenDescription => 'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
+  String get resetPasswordScreenDescription =>
+      'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
 
   @override
   String get resetPasswordScreenTitle => 'إعادة تعيين كلمة المرور';
@@ -210,7 +213,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'لوريم إيبسوم دولور سيت أميت. يو أورنا';
 
   @override
-  String get utGravidaQuisIdPretiumPurusMaurisMassa => 'يوت جرافيدا كويز إد بريتيوم بورس. موريس ماسا';
+  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
+      'يوت جرافيدا كويز إد بريتيوم بورس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'يرجى إدخال مستلم صالح';

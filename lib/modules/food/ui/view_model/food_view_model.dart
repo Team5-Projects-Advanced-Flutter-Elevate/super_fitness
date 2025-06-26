@@ -20,7 +20,7 @@ class FoodViewModel extends Cubit<FoodState> {
   void onIntent(FoodIntent intent) {
     switch (intent) {
       case GetCategoriesIntent():
-        _getCategories();
+        _getCategories(intent.selectedCategory);
         break;
       case FilterMealsByCategoryIntent():
         _filterMealsByCategory(
@@ -30,7 +30,7 @@ class FoodViewModel extends Cubit<FoodState> {
     }
   }
 
-  Future<void> _getCategories() async {
+  Future<void> _getCategories(String? selectedCategory) async {
     emit(
       state.copyWith(loadFoodCategoriesState: LoadFoodCategoriesState.loading),
     );
@@ -41,7 +41,7 @@ class FoodViewModel extends Cubit<FoodState> {
           state.copyWith(
             loadFoodCategoriesState: LoadFoodCategoriesState.success,
             foodCategoriesList: result.data,
-            selectedCategory: result.data.first.strCategory,
+            selectedCategory: selectedCategory ?? result.data.first.strCategory,
           ),
         );
         emit(
@@ -95,7 +95,11 @@ class FoodViewModel extends Cubit<FoodState> {
 
 sealed class FoodIntent {}
 
-class GetCategoriesIntent extends FoodIntent {}
+class GetCategoriesIntent extends FoodIntent {
+  String? selectedCategory;
+
+  GetCategoriesIntent({this.selectedCategory});
+}
 
 class FilterMealsByCategoryIntent extends FoodIntent {
   String selectedCategoryName;

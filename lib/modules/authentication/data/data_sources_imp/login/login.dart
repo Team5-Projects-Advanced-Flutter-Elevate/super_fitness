@@ -5,6 +5,7 @@ import 'package:super_fitness/modules/authentication/data/models/login/login.dar
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 
 import '../../../../../core/apis/api_executor/api_executor.dart';
+import '../../../../../core/utilities/dio/dio_service/dio_service.dart';
 import '../../api/api_client/auth_api_client.dart';
 
 @Injectable(as: LoginOnlineDataSource)
@@ -20,6 +21,7 @@ class LoginOnlineDataSourceImpl implements LoginOnlineDataSource {
     );
     switch (apiResult) {
       case Success<LoginModel>():
+        DioServiceExtension.updateDioWithToken(apiResult.data.token ?? "");
         return Success(data: apiResult.data.toEntity());
       case Error<LoginModel>():
         return Error(error: apiResult.error);

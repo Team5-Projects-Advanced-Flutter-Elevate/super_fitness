@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-
+import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
 import '../../../../../../core/apis/api_result/api_result.dart';
 import '../../../../../../core/utilities/google_sign_in/google_sign_in_handler.dart';
 import '../../../../domain/entities/login/login_data_response_entity.dart';
@@ -15,11 +15,13 @@ class LoginViewModel extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final SignInWithGoogleAccountUseCase _signInWithGoogleAccountUseCase;
   final GoogleSignInHandler _googleSignInHandler;
+  final StoreLoginLocalUseCase _loginLocalUseCase;
 
   LoginViewModel(
     this._loginUseCase,
     this._signInWithGoogleAccountUseCase,
     this._googleSignInHandler,
+    this._loginLocalUseCase,
   ) : super(const LoginState());
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -28,17 +30,28 @@ class LoginViewModel extends Cubit<LoginState> {
     switch (intent) {
       case Login():
         _login(intent.email, intent.password);
-
+        break;
       case GoogleLogin():
         _googleLogin();
+        break;
+
+      case GetData():
+        _getData();
+        break;
+
+      case ClearData():
+        _clearData();
+        break;
     }
   }
 
   void _login(String email, String password) async {
     emit(const LoginState(loginStatus: Status.loading));
     var useCaseResult = await _loginUseCase.call(email, password);
+
     switch (useCaseResult) {
       case Success<LoginEntity>():
+        await _storeData(useCaseResult.data);
         emit(const LoginState(loginStatus: Status.success));
       case Error<LoginEntity>():
         emit(LoginState(loginStatus: Status.error, error: useCaseResult.error));
@@ -63,6 +76,30 @@ class LoginViewModel extends Cubit<LoginState> {
         emit(LoginState(loginStatus: Status.error, error: googleLogin.error));
     }
   }
+
+  Future<void> _storeData(LoginEntity userData) async {
+    await _loginLocalUseCase.call(userData);
+  }
+
+  Future<void> _getData() async {
+    emit(const LoginState(loginStatus: Status.loading));
+
+    final loginEntity = await _loginLocalUseCase.getLocalData();
+    if (loginEntity != null) {
+      emit(LoginState(loginStatus: Status.success, userData: loginEntity));
+    } else {
+      emit(
+        const LoginState(
+          loginStatus: Status.error,
+          error: 'No local login data found.',
+        ),
+      );
+    }
+  }
+
+  Future<void> _clearData() async {
+    await _loginLocalUseCase.clear();
+  }
 }
 
 sealed class LoginIntent {}
@@ -75,3 +112,7 @@ class Login extends LoginIntent {
 }
 
 class GoogleLogin extends LoginIntent {}
+
+class GetData extends LoginIntent {}
+
+class ClearData extends LoginIntent {}

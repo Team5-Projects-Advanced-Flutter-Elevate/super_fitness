@@ -48,7 +48,7 @@ class CustomItemContainer extends BaseStatelessWidget {
               title,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
-              maxLines: 5,
+              maxLines: 2,
               style: inherit.theme.textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.w800,
               ),

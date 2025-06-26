@@ -5,4 +5,9 @@ import 'package:injectable/injectable.dart';
 class HomeViewModel extends ChangeNotifier {
   ValueNotifier<int> currentPageIndexNotifier = ValueNotifier(0);
   PageController pageViewController = PageController();
+
+  void navigateToPage(int index) {
+    currentPageIndexNotifier.value = index;
+    pageViewController.jumpToPage(index);
+  }
 }

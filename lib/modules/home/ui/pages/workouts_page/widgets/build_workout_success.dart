@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_inherited_widget.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart';
 
 import '../../../../../../core/bases/base_statless_widget.dart';
@@ -66,15 +67,31 @@ class BuildWorkoutsSuccessState extends BaseStatelessWidget {
                                   mainAxisSpacing: 18,
                                 ),
                             itemBuilder:
-                                (context, index) => CustomItemContainer(
-                                  imageUrl:
-                                      state.muscleGroupWorkouts![index].image ??
-                                      '',
-                                  width: inherit.screenWidth * 0.6,
-                                  height: inherit.screenHeight * 0.26,
-                                  title:
-                                      state.muscleGroupWorkouts![index].name ??
-                                      '',
+                                (context, index) => InkWell(
+                                  hoverColor: WidgetStateColor.transparent,
+                                  overlayColor: WidgetStateColor.transparent,
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      DefinedRoutes.exerciseScreenRoute,
+                                      arguments:
+                                          state.muscleGroupWorkouts![index].id,
+                                    );
+                                  },
+                                  child: CustomItemContainer(
+                                    imageUrl:
+                                        state
+                                            .muscleGroupWorkouts![index]
+                                            .image ??
+                                        '',
+                                    width: inherit.screenWidth * 0.6,
+                                    height: inherit.screenHeight * 0.26,
+                                    title:
+                                        state
+                                            .muscleGroupWorkouts![index]
+                                            .name ??
+                                        '',
+                                  ),
                                 ),
 
                             itemCount: state.muscleGroupWorkouts!.length,

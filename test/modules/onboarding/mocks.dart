@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/validation/validation_functions.dart';
 import 'package:super_fitness/main.dart';
@@ -16,9 +18,8 @@ import 'package:super_fitness/shared_layers/storage/constants/storage_constants.
 import 'package:super_fitness/shared_layers/storage/contracts/flutter_secure_storage_service_contract.dart';
 import 'package:super_fitness/shared_layers/storage/handler/storage_execution_handler.dart';
 import 'package:super_fitness/shared_layers/storage/implementation/flutter_secure_storage_service_imp.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/shared_layers/storage/result/storage_result.dart';
+
 import 'mocks.mocks.dart';
 
 @GenerateMocks([
@@ -55,7 +56,7 @@ void main() {
       mockAppLocalizations.fitnessHasNeverBeenSo,
     ).thenReturn('Fitness Has Never Been So');
     when(mockAppLocalizations.muchFun).thenReturn('Much Fun');
-    when(mockAppLocalizations.noMoreExecuses).thenReturn('NO MORE EXCUSES');
+    when(mockAppLocalizations.noMoreExcuses).thenReturn('NO MORE EXCUSES');
     when(mockAppLocalizations.doItNow).thenReturn('Do It Now');
     when(
       mockAppLocalizations.loremIpsumDolorSitAmetConsectetureuUrna,

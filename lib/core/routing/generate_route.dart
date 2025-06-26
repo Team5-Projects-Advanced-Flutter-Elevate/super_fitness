@@ -95,7 +95,7 @@ abstract class GenerateRoute {
     return [
       if (loginInfo != null)
         MaterialPageRoute(
-          builder: (context) => const SizedBox(),
+          builder: (context) => const HomeScreen(),
         ) // LayoutScreen()
       else
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),

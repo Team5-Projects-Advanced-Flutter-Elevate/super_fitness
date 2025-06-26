@@ -180,6 +180,7 @@ import '../utilities/google_sign_in/google_sign_in_handler.dart' as _i138;
 import '../utilities/google_sign_in/google_sign_in_object.dart' as _i780;
 import '../utilities/single_data_per_application/single_data_per_application_provider.dart'
     as _i459;
+import '../utilities/user_provider/user_provider.dart' as _i911;
 import '../validation/validation_functions.dart' as _i166;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -211,13 +212,14 @@ extension GetItInjectableX on _i174.GetIt {
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
+    gh.singleton<_i911.UserProvider>(() => _i911.UserProvider());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
+    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),

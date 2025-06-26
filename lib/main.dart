@@ -10,11 +10,13 @@ import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
+import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
+import 'modules/authentication/domain/usecase/login/login_local.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -26,6 +28,9 @@ void main() async {
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await configureDependencies();
+
+  var userLoginInfo = await getIt.get<StoreLoginLocalUseCase>().getLocalData();
+  getIt.get<UserProvider>().changeUserLoginInfo(userLoginInfo);
 
   // Pass all uncaught "fatal" errors from the framework to Crashlytics
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
@@ -44,6 +49,7 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => getIt.get<SingleDataPerApplicationProvider>(),
         ),
+        ChangeNotifierProvider(create: (context) => getIt.get<UserProvider>()),
       ],
       child: DevicePreview(
         enabled: false,
@@ -94,13 +100,12 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            initialRoute: DefinedRoutes.loginScreenRoute,
-            // onGenerateInitialRoutes: (initialRoute) {
-            //   return GenerateRoute.onGenerateInitialRoutes(
-            //     initialRoute: DefinedRoutes.onboardingScreenRoute,
-            //     loginInfo: null,
-            //   );
-            // },
+            onGenerateInitialRoutes: (initialRoute) {
+              return GenerateRoute.onGenerateInitialRoutes(
+                initialRoute: DefinedRoutes.onboardingScreenRoute,
+                loginInfo: getIt.get<UserProvider>().userLoginInfo,
+              );
+            },
           ),
         );
       },

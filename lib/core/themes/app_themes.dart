@@ -5,13 +5,14 @@ import 'package:super_fitness/core/colors/app_colors.dart';
 abstract class AppThemes {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
+
     scaffoldBackgroundColor: AppColors.transparent,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.transparent,
       surfaceTintColor: AppColors.transparent,
       titleSpacing: 0,
       titleTextStyle: GoogleFonts.balooThambi2(
-        fontSize: 20,
+        fontSize: 24,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),

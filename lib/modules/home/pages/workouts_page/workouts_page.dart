@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/bases/base_statless_widget.dart';
 import 'package:super_fitness/core/widgets/custom_item_container.dart';
 import 'package:super_fitness/core/widgets/custom_network_cached_image.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/exercise_screen.dart';
 
 class WorkoutsPage extends BaseStatelessWidget {
   const WorkoutsPage({super.key});
@@ -32,11 +33,24 @@ class WorkoutsPage extends BaseStatelessWidget {
             fontWeight: FontWeight.w800,
           ),
         ),
-        CustomItemContainer(
-          imageUrl: "https://iili.io/33p7y9p.png",
-          width: inherit.screenWidth * 0.6,
-          height: inherit.screenHeight * 0.26,
-          title: "Chest Exercise".replaceFirst(" ", "\n"),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder:
+                    (context) => const ExerciseScreen(
+                      muscleId: '67c8499726895f87ce0aa9bc',
+                    ),
+              ),
+            );
+          },
+          child: CustomItemContainer(
+            imageUrl: "https://iili.io/33p7y9p.png",
+            width: inherit.screenWidth * 0.6,
+            height: inherit.screenHeight * 0.26,
+            title: "Chest Exercise".replaceFirst(" ", "\n"),
+          ),
         ),
       ],
     );

@@ -16,7 +16,9 @@ class MyBackButton extends BaseStatelessWidget {
         color: AppColors.white,
         constraints: const BoxConstraints(maxHeight: 25, maxWidth: 25),
         style: IconButton.styleFrom(backgroundColor: AppColors.mainColorLight),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pop(context);
+        },
         icon: Transform.flip(
           flipX: !inherit.localizationManager.isEnglish,
           child: const ImageIcon(AssetImage(AssetsPaths.backIcon)),

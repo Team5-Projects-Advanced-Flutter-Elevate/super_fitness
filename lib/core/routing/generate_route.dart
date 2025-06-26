@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
+import 'package:super_fitness/modules/food/domain/entities/meal_entity.dart';
 import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
 import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
@@ -11,6 +12,7 @@ import 'package:super_fitness/modules/home/ui/home_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
 import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 
+import '../../modules/food/ui/food_recommendation_screen.dart';
 import '../../modules/food_details/ui/food_details_screen.dart';
 
 abstract class GenerateRoute {
@@ -46,9 +48,16 @@ abstract class GenerateRoute {
           );
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
-        case DefinedRoutes.foodDetails:
+        case DefinedRoutes.foodRecommendation:
           return MaterialPageRoute(
-            builder: (context) => const FoodDetailsScreen(),
+            builder: (context) => const FoodRecommendationScreen(),
+          );
+        case DefinedRoutes.foodDetails:
+          var args = routeSettings.arguments;
+          return MaterialPageRoute(
+            builder:
+                (context) =>
+                    FoodDetailsScreen(arguments: args as FoodDetailsArguments),
           );
         default:
           return _errorRoute();

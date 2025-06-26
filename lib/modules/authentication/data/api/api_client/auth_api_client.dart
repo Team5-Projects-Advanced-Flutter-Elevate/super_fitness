@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:retrofit/error_logger.dart' as http;
 import 'package:retrofit/retrofit.dart';
 import 'package:super_fitness/modules/authentication/data/models/login/login.dart';
 import 'package:super_fitness/modules/authentication/data/models/register/response/register_response_dto.dart';
@@ -13,10 +12,7 @@ part 'auth_api_client.g.dart';
 abstract class AuthApiClient {
   //factory AuthApiClient(Dio dio, {String? baseUrl}) = _AuthApiClient;
   factory AuthApiClient(
-    Dio dio, {
-    String? baseUrl,
-    http.ParseErrorLogger? errorLogger,
-  }) = _AuthApiClient;
+    Dio dio) = _AuthApiClient;
   @POST(ApisEndpoints.forgetPasswordEndPoint)
   Future<ForgetPasswordResponse?> forgetPassword(
     @Body() Map<String, dynamic> body,

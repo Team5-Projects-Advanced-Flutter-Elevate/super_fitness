@@ -120,8 +120,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get removedImage => 'Removed image';
 
   @override
-  String get forgetPasswordDescription =>
-      'Please enter your email associated to your account';
+  String get forgetPasswordDescription => 'Please enter your email associated to your account';
 
   @override
   String get confirm => 'Confirm';
@@ -133,8 +132,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otpScreenTitle => 'Email verification';
 
   @override
-  String get otpScreenDescription =>
-      'Please enter your code that send to your email address';
+  String get otpScreenDescription => 'Please enter your code that send to your email address';
 
   @override
   String get didNotReceiveOtp => 'Did not receive code?';
@@ -149,8 +147,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get codeNotValid => 'Code not valid';
 
   @override
-  String get resetPasswordScreenDescription =>
-      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+  String get resetPasswordScreenDescription => 'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
 
   @override
   String get resetPasswordScreenTitle => 'Reset password';

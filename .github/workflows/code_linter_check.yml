@@ -55,7 +55,7 @@ jobs:
       - name: Commit changes
         if: env.commit_changes == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.email "bot@example.com"
           git config --global user.name "GitHub Bot"

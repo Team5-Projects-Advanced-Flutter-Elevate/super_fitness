@@ -60,7 +60,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get namesRules => 'Names can only have alphabetic characters.';
 
   @override
-  String get pleaseEnterEmail => 'Please enter your E-mail.';
+  String get pleaseEnterEmail => 'Enter your Email.';
 
   @override
   String get pleaseEnterValidEmail => 'Please enter a valid email address.';
@@ -102,6 +102,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pleaseEnterAddress => 'Please enter the address';
 
   @override
+  String get forgetPassword____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get emailHint => 'Enter your email';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get removedImage => 'Removed image';
+
+  @override
+  String get forgetPasswordDescription =>
+      'Please enter your email associated to your account';
+
+  @override
+  String get confirm => 'Confirm';
+
+  @override
+  String get codeSendTitle => 'Code send To Email';
+
+  @override
+  String get otpScreenTitle => 'Email verification';
+
+  @override
+  String get otpScreenDescription =>
+      'Please enter your code that send to your email address';
+
+  @override
+  String get didNotReceiveOtp => 'Did not receive code?';
+
+  @override
+  String get resend => 'Resend code?';
+
+  @override
+  String get codeValid => 'Code is valid';
+
+  @override
+  String get codeNotValid => 'Code not valid';
+
+  @override
+  String get resetPasswordScreenDescription =>
+      'Password must not be empty and must contain 6 characters with upper case letter and one number at least';
+
+  @override
+  String get resetPasswordScreenTitle => 'Reset password';
+
+  @override
+  String get newPassword => 'New Password';
+
+  @override
+  String get confirmNewPassword => 'Confirm New Password';
+
+  @override
+  String get yourPasswordChanged => 'Password Changed Successfully';
+
+  @override
+  String get enterEmail => 'Enter your email';
+
+  @override
+  String get enterPassword => 'Enter your password';
+
+  @override
+  String get forgetPassword => 'Forget password';
+
+  @override
   String get pleaseEnterValidAddress => 'Please enter a valid address';
 
   @override
@@ -109,9 +181,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get back => 'Back';
-
-  @override
-  String get next => 'Next';
 
   @override
   String get doIt => 'Do It';
@@ -129,7 +198,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get muchFun => 'Much Fun';
 
   @override
-  String get noMoreExecuses => 'NO MORE EXCUSES';
+  String get noMoreExcuses => 'NO MORE EXCUSES';
 
   @override
   String get doItNow => 'Do It Now';
@@ -142,6 +211,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseEnterValidRecipient => 'Please enter a valid recipient';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get chatAI => 'Chat';
 
   @override
   String get forgotPassword => 'Forgot Password?';
@@ -195,6 +270,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get successfullyRegistered => 'Registered Successfully!';
+
+  @override
+  String get error => 'Error!';
+
+  @override
   String get tellUsAboutYourself => 'Tell us about yourself !';
 
   @override
@@ -226,6 +307,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get female => 'Female';
+
+  @override
+  String get next => 'Next';
 
   @override
   String get year => 'Year';
@@ -265,4 +349,99 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get trueBeast => 'True Beast';
+
+  @override
+  String get appSections___________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get explore => 'Explore';
+
+  @override
+  String get aiChat => 'AI Chat';
+
+  @override
+  String get workouts => 'Workouts';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get sendOtp => 'Send OTP';
+
+  @override
+  String get resetPassDesc => 'Make Sure its 8 characters Or More ';
+
+  @override
+  String get createNewPassword => 'Create New Password';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get oTpCode => 'Otp Code';
+
+  @override
+  String get enterOtpCode => 'Enter Your Otp Code , check your email';
+
+  @override
+  String get successEmailVerified => 'Email Verified Successfully';
+
+  @override
+  String get foodRecommendation => 'Food Recommendation';
+
+  @override
+  String get noVideoProvide => 'Video not available';
+
+  @override
+  String get noFoodRecommendation => 'No Food Recommendation Found';
+
+  @override
+  String get noWorkoutsAvailable => 'No workouts available';
+
+  @override
+  String get homePage_________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String hiUser(Object userName) {
+    return 'Hi $userName,\n';
+  }
+
+  @override
+  String get startYourDayMessage => 'Let’s Start Your Day';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get gym => 'Gym';
+
+  @override
+  String get fitness => 'Fitness';
+
+  @override
+  String get yoga => 'Yoga';
+
+  @override
+  String get aerobics => 'Aerobics';
+
+  @override
+  String get trainer => 'Trainer';
+
+  @override
+  String get recommendationToDay => 'Recommendation To Day';
+
+  @override
+  String get noData => 'No Data';
+
+  @override
+  String get upcomingWorkouts => 'Upcoming Workouts';
+
+  @override
+  String get seeAll => 'See All';
+
+  @override
+  String get recommendationForYou => 'Recommendation For You';
+
+  @override
+  String get unknown => 'Unknown';
 }

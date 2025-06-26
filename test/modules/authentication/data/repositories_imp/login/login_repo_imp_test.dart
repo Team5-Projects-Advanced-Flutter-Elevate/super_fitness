@@ -22,7 +22,7 @@ void main() {
       // TODO: Implement test
 
       // var result=Success<LoginEntity>([LoginEntity()]);
-      var result = Success<LoginEntity>(data: LoginEntity());
+      var result = Success<LoginEntity>(data: const LoginEntity());
 
       provideDummy<ApiResult<LoginEntity>>(result);
       var email = 'mahmoud.mohamed.gamal44@gmail.com';

@@ -39,7 +39,6 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          //SizedBox(height: screenHeight * 0.01),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -86,7 +85,7 @@ class _OnboardingCardState extends BaseStatefulWidgetState<OnboardingCard> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: MediaQuery.of(context).textScaler.scale(14),
+                      fontSize: MediaQuery.of(context).textScaler.scale(12),
                       fontWeight: FontWeight.w400,
                     ),
                   ),

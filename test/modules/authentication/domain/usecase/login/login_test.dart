@@ -21,7 +21,7 @@ void main() {
     test('when call call function it should call login from repo', () async {
       // TODO: Implement test
 
-      var result = Success<LoginEntity>(data: LoginEntity());
+      var result = Success<LoginEntity>(data: const LoginEntity());
 
       provideDummy<ApiResult<LoginEntity>>(result);
       var email = 'mahmoud.mohamed.gamal44@gmail.com';

@@ -5,13 +5,14 @@ import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/utilities/activities/activities.dart';
+import 'package:super_fitness/core/utilities/goals/goals.dart';
 import 'package:super_fitness/core/utilities/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/request/register_request_entity.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/response/register_response_entity.dart';
 import 'package:super_fitness/modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart';
 import 'package:super_fitness/modules/authentication/domain/use_cases/register/register_use_case.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_state.dart';
-import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
+import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 
 import '../../../data/models/user/user_dto.dart';
 
@@ -98,10 +99,13 @@ class RegisterViewModel extends Cubit<RegisterState> {
         age: restOfRegisterRequest.age,
         weight: restOfRegisterRequest.weight,
         height: restOfRegisterRequest.height,
-        goal: restOfRegisterRequest.goal,
+        goal: Goals.getGoal(
+          chosenGoal: restOfRegisterRequest.goal,
+          appLocalizations: getIt.get<AppLocalizations>(),
+        ),
         activityLevel: Activities.getActivityLevel(
           activity: restOfRegisterRequest.activityLevel,
-          currentLocale: getIt.get<LocalizationManager>().currentLocale,
+          appLocalizations: getIt.get<AppLocalizations>(),
         ),
       ),
     );
@@ -141,10 +145,13 @@ class RegisterViewModel extends Cubit<RegisterState> {
         age: restOfRegisterRequest.age,
         weight: restOfRegisterRequest.weight,
         height: restOfRegisterRequest.height,
-        goal: restOfRegisterRequest.goal,
+        goal: Goals.getGoal(
+          chosenGoal: restOfRegisterRequest.goal,
+          appLocalizations: getIt.get<AppLocalizations>(),
+        ),
         activityLevel: Activities.getActivityLevel(
           activity: restOfRegisterRequest.activityLevel,
-          currentLocale: getIt.get<LocalizationManager>().currentLocale,
+          appLocalizations: getIt.get<AppLocalizations>(),
         ),
       ),
     );

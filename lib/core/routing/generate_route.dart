@@ -2,26 +2,72 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
+import 'package:super_fitness/modules/authentication/ui/register/all_register_feature.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/exercise_screen.dart';
+import 'package:super_fitness/modules/exercise/ui/screen/video_player.dart';
+import 'package:super_fitness/modules/food/ui/food_recommendation_screen.dart';
+import 'package:super_fitness/modules/food/ui/view_model/params/food_recommendation_screen_params.dart';
+import 'package:super_fitness/modules/home/ui/home_screen.dart';
+import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
+import 'package:super_fitness/modules/layout/layout_screen.dart';
+import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
+import 'package:super_fitness/modules/layout/workout/workout_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
-import 'package:super_fitness/modules/home/home_screen.dart';
+import 'package:super_fitness/modules/upcoming_screen/ui/upcoming_feature_screen.dart';
+
+import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
 
 abstract class GenerateRoute {
   static Route<dynamic>? onGenerateRoute(RouteSettings routeSettings) {
-    //var args = routeSettings.arguments;
+    var args = routeSettings.arguments;
     var name = routeSettings.name;
     try {
       switch (name) {
         case DefinedRoutes.loginScreenRoute:
           return MaterialPageRoute(builder: (context) => const LoginScreen());
+        case DefinedRoutes.chatScreenRoute:
+          return MaterialPageRoute(builder: (context) => const ChatScreen());
+        case DefinedRoutes.workoutsScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const WorkoutsScreen(),
+          );
+        case DefinedRoutes.profileScreenRoute:
+          return MaterialPageRoute(builder: (context) => const ProfileScreen());
+        case DefinedRoutes.layoutScreenRoute:
+          return MaterialPageRoute(builder: (context) => const LayoutScreen());
+        case DefinedRoutes.forgetPasswordScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ForgetPasswordScreen(),
+          );
         case DefinedRoutes.onboardingScreenRoute:
           return MaterialPageRoute(
             builder: (context) => const OnboardingScreen(),
-            // case DefinedRoutes.allRegisterFeature:
-            //   return MaterialPageRoute(
-            //     builder: (context) => const AllRegisterFeature(),
+          );
+        case DefinedRoutes.allRegisterFeature:
+          return MaterialPageRoute(
+            builder: (context) => const AllRegisterFeature(),
           );
         case DefinedRoutes.homeScreenRoute:
           return MaterialPageRoute(builder: (context) => const HomeScreen());
+        case DefinedRoutes.upcomingFeatureScreen:
+          return MaterialPageRoute(
+            builder: (context) => const UpcomingFeatureScreen(),
+          );
+        case DefinedRoutes.foodRecommendationScreenRoute:
+          return MaterialPageRoute(
+            builder:
+                (context) => FoodRecommendationScreen(
+                  params: (args as FoodRecommendationScreenParams?),
+                ),
+          );
+        case DefinedRoutes.exerciseScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => ExerciseScreen(muscleId: args as String),
+          );
+        case DefinedRoutes.playerScreenRoute:
+          return MaterialPageRoute(
+            builder: (context) => PlayerScreen(url: args as String),
+          );
         default:
           return _errorRoute();
       }

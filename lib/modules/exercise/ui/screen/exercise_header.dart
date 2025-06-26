@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:super_fitness/modules/exercise/ui/screen/video_player.dart';
+
 import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 
@@ -36,7 +37,8 @@ class ExerciseHeaderSection extends StatelessWidget {
                           (context, child, loadingProgress) =>
                               loadingProgress == null
                                   ? child
-                                  : const CircularProgressIndicator(),
+                                  : const Center(
+                                  child: CircularProgressIndicator()),
                       errorBuilder:
                           (context, error, stackTrace) =>
                               Image.asset(AssetsPaths.fitnessAppIcon),

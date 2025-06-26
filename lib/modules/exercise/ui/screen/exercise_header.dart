@@ -33,11 +33,13 @@ class ExerciseHeaderSection extends StatelessWidget {
                     } else if (state.status == Status.success) {
                       if (state.selectedShortLink!.isNotEmpty) {
                         return PlayerScreen(url: '${state.selectedShortLink}');
-                      } else {
+                      } else if(state.exercises[0].shortYoutubeDemonstrationLink!=null) {
                         return PlayerScreen(
                           url:
                               '${state.exercises[0].shortYoutubeDemonstrationLink}',
                         );
+                      }else {
+                        return Image.asset(AssetsPaths.fitnessAppIcon);
                       }
                     } else if (state.status == Status.error) {
                       return Image.network(

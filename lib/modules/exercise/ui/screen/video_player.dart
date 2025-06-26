@@ -22,9 +22,9 @@ class _PlayerScreenState extends BaseStatefulWidgetState<PlayerScreen> {
   }
 
   YoutubePlayerController _createController(String url) {
-    final videoId = YoutubePlayer.convertUrlToId(url)!;
+    final videoId = YoutubePlayer.convertUrlToId(url);
     return YoutubePlayerController(
-      initialVideoId: videoId,
+      initialVideoId: videoId??'',
       flags: const YoutubePlayerFlags(autoPlay: false, mute: false, loop: true),
     );
   }

@@ -10,5 +10,5 @@ class LoginState extends Equatable {
   const LoginState({this.loginStatus = Status.idle, this.error, this.userData});
 
   @override
-  List<Object?> get props => [loginStatus, error,userData];
+  List<Object?> get props => [loginStatus, error, userData];
 }

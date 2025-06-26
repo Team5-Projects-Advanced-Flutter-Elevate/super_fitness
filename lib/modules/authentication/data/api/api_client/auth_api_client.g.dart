@@ -17,7 +17,7 @@ class _AuthApiClient implements AuthApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<RegisterResponseDto> register(Map<String, dynamic> request) async {

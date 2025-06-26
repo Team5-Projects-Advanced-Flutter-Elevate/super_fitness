@@ -150,17 +150,42 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                             ),
                           ),
                           SizedBox(height: screenHeight * 0.01),
-                          Text(
-                            (onboardingPages(context)[_currentPage]
-                                    as OnboardingCard)
-                                .description,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: MediaQuery.of(
-                                context,
-                              ).textScaler.scale(16),
-                              fontWeight: FontWeight.w400,
+                          FittedBox(
+                            child: Text(
+                              appLocalizations
+                                  .loremIpsumDolorSitAmetConsectetureuUrna,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: MediaQuery
+                                    .of(
+                                  context,
+                                )
+                                    .textScaler
+                                    .scale(16),
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                          FittedBox(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 8),
+                              child: Text(
+                                appLocalizations
+                                    .utGravidaQuisIdPretiumPurusMaurisMassa,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: MediaQuery
+                                      .of(
+                                    context,
+                                  )
+                                      .textScaler
+                                      .scale(16),
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(height: screenHeight * 0.02),

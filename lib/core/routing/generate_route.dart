@@ -16,8 +16,6 @@ import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dar
 import 'package:super_fitness/modules/upcoming_screen/ui/upcoming_feature_screen.dart';
 
 import '../../modules/authentication/ui/forget_password/view/forget_password_screen.dart';
-
-import '../../modules/food/ui/food_recommendation_screen.dart';
 import '../../modules/food_details/ui/food_details_screen.dart';
 
 abstract class GenerateRoute {

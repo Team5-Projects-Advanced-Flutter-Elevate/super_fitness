@@ -17,6 +17,7 @@ abstract class HomeApiClient {
     @Queries() required Map<String, dynamic> queries,
     @Header("Accept-Language") required String languageCode,
   });
+
   @GET(ApisEndpoints.musclesGroup)
   Future<GetMusclesGroupResponse> getMusclesGroup();
 

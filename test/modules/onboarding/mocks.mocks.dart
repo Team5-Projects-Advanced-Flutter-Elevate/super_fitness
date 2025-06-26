@@ -1349,6 +1349,17 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get profile =>
+      (super.noSuchMethod(
+            Invocation.getter(#profile),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#profile),
+            ),
+          )
+          as String);
+
+  @override
   String get sendOtp =>
       (super.noSuchMethod(
             Invocation.getter(#sendOtp),

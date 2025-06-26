@@ -2,9 +2,11 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/food/ui/view_model/food_state.dart';
 import 'package:super_fitness/modules/food/ui/view_model/food_view_model.dart';
+import 'package:super_fitness/modules/food_details/ui/food_details_screen.dart';
 import 'package:super_fitness/modules/food/ui/view_model/params/food_recommendation_screen_params.dart';
 
 import '../../../core/colors/app_colors.dart';
@@ -26,6 +28,7 @@ class FoodRecommendationScreen extends StatefulWidget {
 class _FoodRecommendationScreenState
     extends BaseStatefulWidgetState<FoodRecommendationScreen> {
   final viewModel = getIt.get<FoodViewModel>();
+
   @override
   void initState() {
     viewModel.onIntent(
@@ -167,21 +170,36 @@ class _FoodRecommendationScreenState
                                             mainAxisSpacing: 18,
                                           ),
                                       itemBuilder:
-                                          (context, index) =>
-                                              CustomItemContainer(
-                                                imageUrl:
-                                                    state
-                                                        .mealsList?[index]
-                                                        .thumbnailUrl ??
-                                                    '',
-                                                width: screenWidth * 0.6,
-                                                height: screenHeight * 0.26,
-                                                title:
-                                                    state
-                                                        .mealsList?[index]
-                                                        .name ??
-                                                    '',
-                                              ),
+                                          (context, index) => GestureDetector(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                context,
+                                                DefinedRoutes.foodDetails,
+                                                arguments: FoodDetailsArguments(
+                                                  recommendationList:
+                                                      state.mealsList!,
+                                                  mealId:
+                                                      state
+                                                          .mealsList![index]
+                                                          .id,
+                                                ),
+                                              );
+                                            },
+                                            child: CustomItemContainer(
+                                              imageUrl:
+                                                  state
+                                                      .mealsList?[index]
+                                                      .thumbnailUrl ??
+                                                  '',
+                                              width: screenWidth * 0.6,
+                                              height: screenHeight * 0.26,
+                                              title:
+                                                  state
+                                                      .mealsList?[index]
+                                                      .name ??
+                                                  '',
+                                            ),
+                                          ),
 
                                       itemCount: state.mealsList!.length,
                                     ),

@@ -1,6 +1,7 @@
 class ApisEndpoints {
   static const String baseUrl = 'https://fitness.elevateegy.com';
   static const String foodBaseUrl = 'https://www.themealdb.com/api/json/v1/1/';
+  static const String foodBaseURL = 'https://www.themealdb.com';
   static const String loginEndPoint = '/api/v1/auth/signin';
   static const String forgetPasswordEndPoint = '/api/v1/auth/forgotPassword';
   static const String resetPasswordEndPoint = '/api/v1/auth/resetPassword';
@@ -12,4 +13,5 @@ class ApisEndpoints {
   static const String randomExercisesEndPoint = '/api/v1/exercises/random';
   static const String musclesGroup = '/api/v1/muscles';
   static const String musclesGroupWorkouts = '/api/v1/musclesGroup/{id}';
+  static const String foodDetails = '/api/json/v1/1/lookup.php';
 }

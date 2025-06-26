@@ -31,4 +31,8 @@ abstract class AssetsPaths {
   static const String yogaPersonIcon = "assets/icons/yoga_person_icon.png";
   static const String workingDeveloperAnimation =
       "assets/animations/working_developer_animation.json";
+
+  /// strings
+  static const String ingredientKey = "Ingredient";
+  static const String measureKey = "Measure";
 }

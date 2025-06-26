@@ -395,13 +395,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get successEmailVerified => 'تم التحقق من البريد الإلكتروني بنجاح';
 
   @override
-  String get foodRecommendation => 'توصيات غذائية';
+  String get foodRecommendation => 'تفضيلات الطعام';
 
   @override
-  String get noVideoProvide => 'لا يوجد فيديو متاح';
+  String get noVideoProvide => 'الفديو غير موجود';
 
   @override
-  String get noFoodRecommendation => 'لم يتم العثور على توصيات غذائية';
+  String get noFoodRecommendation => 'لايوجد تفضيلات طعام';
+
+  @override
+  String get ingredients => 'المكونات';
+
+  @override
+  String get recommendation => 'التوصية';
+
+  @override
+  String get energy => 'الطاقة';
+
+  @override
+  String get energyValue => '١٠٠ ك';
 
   @override
   String get noWorkoutsAvailable => 'لا توجد تمارين متاحة';

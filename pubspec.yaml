@@ -106,9 +106,9 @@ dependencies:
   firebase_auth: ^5.6.0
   google_sign_in: ^6.3.0
   cloud_firestore: ^5.6.9
-  shimmer_animation: ^2.2.2
-
   youtube_player_flutter: ^9.1.1
+  shimmer_animation: ^2.2.2
+  get: ^4.7.2
 
 
 

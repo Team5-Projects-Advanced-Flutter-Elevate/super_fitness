@@ -5,6 +5,7 @@ import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/food/ui/view_model/food_state.dart';
 import 'package:super_fitness/modules/food/ui/view_model/food_view_model.dart';
+import 'package:super_fitness/modules/food/ui/view_model/params/food_recommendation_screen_params.dart';
 
 import '../../../core/colors/app_colors.dart';
 import '../../../core/constants/assets_paths/assets_paths.dart';
@@ -13,7 +14,9 @@ import '../../../core/widgets/custom_bottom_tab_bar.dart';
 import '../../../core/widgets/custom_item_container.dart';
 
 class FoodRecommendationScreen extends StatefulWidget {
-  const FoodRecommendationScreen({super.key});
+  final FoodRecommendationScreenParams? params;
+
+  const FoodRecommendationScreen({super.key, this.params});
 
   @override
   State<FoodRecommendationScreen> createState() =>
@@ -25,7 +28,9 @@ class _FoodRecommendationScreenState
   final viewModel = getIt.get<FoodViewModel>();
   @override
   void initState() {
-    viewModel.onIntent(GetCategoriesIntent());
+    viewModel.onIntent(
+      GetCategoriesIntent(selectedCategory: widget.params?.selectedCategory),
+    );
     super.initState();
   }
 
@@ -105,7 +110,7 @@ class _FoodRecommendationScreenState
                       case LoadFoodCategoriesState.success:
                       case LoadFoodCategoriesState.idle:
                         return DefaultTabController(
-                          initialIndex: 0,
+                          initialIndex: widget.params?.initialTabIndex ?? 0,
                           length: state.foodCategoriesList!.length,
                           child: CustomBottomTabBar(
                             preferredHeight: 35,

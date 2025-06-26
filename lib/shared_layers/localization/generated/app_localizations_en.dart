@@ -142,7 +142,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Please enter your code that send to your email address';
 
   @override
-  String get didnotReciveOtp => 'Did not receive code?';
+  String get didNotReceiveOtp => 'Did not receive code?';
 
   @override
   String get resend => 'Resend code?';
@@ -151,7 +151,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get codeValid => 'Code is valid';
 
   @override
-  String get codeNotvalid => 'Code not valid';
+  String get codeNotValid => 'Code not valid';
 
   @override
   String get resetPasswordScreenDescription =>
@@ -203,7 +203,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get muchFun => 'Much Fun';
 
   @override
-  String get noMoreExecuses => 'NO MORE EXCUSES';
+  String get noMoreExcuses => 'NO MORE EXCUSES';
 
   @override
   String get doItNow => 'Do It Now';
@@ -371,6 +371,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get workouts => 'Workouts';
 
   @override
+  String get profile => 'Profile';
+
+  @override
   String get sendOtp => 'Send OTP';
 
   @override
@@ -401,8 +404,52 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noFoodRecommendation => 'No Food Recommendation Found';
 
   @override
-  String get profile => 'Profile';
+  String get noWorkoutsAvailable => 'No workouts available';
 
   @override
-  String get noWorkoutsAvailable => 'No workouts available';
+  String get homePage_________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String hiUser(Object userName) {
+    return 'Hi $userName,\n';
+  }
+
+  @override
+  String get startYourDayMessage => 'Let’s Start Your Day';
+
+  @override
+  String get category => 'Category';
+
+  @override
+  String get gym => 'Gym';
+
+  @override
+  String get fitness => 'Fitness';
+
+  @override
+  String get yoga => 'Yoga';
+
+  @override
+  String get aerobics => 'Aerobics';
+
+  @override
+  String get trainer => 'Trainer';
+
+  @override
+  String get recommendationToDay => 'Recommendation To Day';
+
+  @override
+  String get noData => 'No Data';
+
+  @override
+  String get upcomingWorkouts => 'Upcoming Workouts';
+
+  @override
+  String get seeAll => 'See All';
+
+  @override
+  String get recommendationForYou => 'Recommendation For You';
+
+  @override
+  String get unknown => 'Unknown';
 }

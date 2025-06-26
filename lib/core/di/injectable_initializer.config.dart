@@ -81,7 +81,11 @@ import '../../modules/exercise/data/api/api_client/exercise_api_client.dart'
     as _i14;
 import '../../modules/exercise/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i356;
-
+import '../../modules/exercise/data/datasource/exercise_datasource.dart'
+    as _i442;
+import '../../modules/exercise/data/datasource_impl/exercise_datasource_impl.dart'
+    as _i146;
+import '../../modules/exercise/data/repo_impl/exercise_repo_impl.dart' as _i830;
 import '../../modules/exercise/domain/repo/exercise_repo.dart' as _i960;
 import '../../modules/exercise/domain/usecase/exercise_usecase.dart' as _i111;
 import '../../modules/exercise/ui/cubit/view_model.dart' as _i370;
@@ -100,17 +104,33 @@ import '../../modules/food/domain/use_cases/filter_meals_by_category_name_use_ca
 import '../../modules/food/domain/use_cases/get_food_categories_use_case.dart'
     as _i1035;
 import '../../modules/food/ui/view_model/food_view_model.dart' as _i624;
-
+import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
+import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
+    as _i939;
+import '../../modules/home/data/data_sources_contracts/random_exercises/random_exercises_remote_data_source.dart'
+    as _i1066;
 import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
     as _i195;
+import '../../modules/home/data/data_sources_imp/random_exercises/random_exercises_remote_data_source_imp.dart'
+    as _i705;
+import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
+    as _i369;
 import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
     as _i371;
+import '../../modules/home/data/respositories_imp/random_exercises/random_exercises_repo_imp.dart'
+    as _i16;
+import '../../modules/home/domain/repositories_contracts/random_exercises/random_exercise_repo.dart'
+    as _i352;
 import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
     as _i464;
+import '../../modules/home/domain/use_cases/random_exercises/get_ten_random_exerciese_use_case.dart'
+    as _i784;
 import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_use_case.dart'
     as _i1011;
 import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
     as _i415;
+import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
+    as _i102;
 import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
     as _i72;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
@@ -132,6 +152,8 @@ import '../utilities/app_localizations/app_localizations_provider.dart'
 import '../utilities/dio/dio_service/dio_service.dart' as _i738;
 import '../utilities/google_sign_in/google_sign_in_handler.dart' as _i138;
 import '../utilities/google_sign_in/google_sign_in_object.dart' as _i780;
+import '../utilities/single_data_per_application/single_data_per_application_provider.dart'
+    as _i459;
 import '../validation/validation_functions.dart' as _i166;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -147,6 +169,7 @@ extension GetItInjectableX on _i174.GetIt {
     final authApiClientProvider = _$AuthApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
+    final homeApiClientProvider = _$HomeApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -156,15 +179,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
+    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     await gh.factoryAsync<_i558.FlutterSecureStorage>(
       () => storagesInitializer.initFlutterSecureStorage(),
       preResolve: true,
     );
-    gh.factory<_i540.HomeViewModel>(() => _i540.HomeViewModel());
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
+    gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
+      () => _i459.SingleDataPerApplicationProvider(),
+    );
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -175,11 +201,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i642.FoodApiClient>(
       () => foodApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i293.HomeApiClient>(
+      () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i442.ExerciseOnlineDataSource>(
+      () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
+    );
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
+    );
+    gh.factory<_i1066.RandomExerciseRemoteDataSource>(
+      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i34.FoodDataSourceContract>(
       () => _i47.FoodDataSourceImp(gh<_i642.FoodApiClient>()),
@@ -192,6 +227,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i525.GoogleAuthApi>(),
         gh<_i550.UsersCollection>(),
       ),
+    );
+    gh.factory<_i960.ExerciseRepo>(
+      () => _i830.ExerciseRepoImpl(gh<_i442.ExerciseOnlineDataSource>()),
+    );
+    gh.factory<_i195.WorkoutDatasource>(
+      () => _i369.WorkoutDatasourceImpl(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i969.LoginOnlineDataSource>(
       () => _i79.LoginOnlineDataSourceImpl(gh<_i343.AuthApiClient>()),
@@ -217,6 +258,11 @@ extension GetItInjectableX on _i174.GetIt {
         gh<String>(instanceName: 'initCurrentLocal'),
       ),
     );
+    gh.factory<_i352.RandomExercisesRepo>(
+      () => _i16.RandomExercisesRepoImp(
+        gh<_i1066.RandomExerciseRemoteDataSource>(),
+      ),
+    );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
         gh<String>(instanceName: 'initCurrentLocal'),
@@ -237,6 +283,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i784.GetTenRandomExerciseUseCase>(
+      () => _i784.GetTenRandomExerciseUseCase(gh<_i352.RandomExercisesRepo>()),
     );
     gh.factory<_i110.ResetPasswordUseCase>(
       () => _i110.ResetPasswordUseCase(gh<_i1013.ForgetPasswordRepo>()),
@@ -268,11 +317,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
     );
-    gh.factory<_i1011.GetMuscleGroupWorkoutUseCase>(
-      () => _i1011.GetMuscleGroupWorkoutUseCase(gh<_i464.WorkoutRepo>()),
-    );
     gh.factory<_i415.GetMusclesGroupUseCase>(
       () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
+    );
+    gh.factory<_i1011.GetMuscleGroupWorkoutUseCase>(
+      () => _i1011.GetMuscleGroupWorkoutUseCase(gh<_i464.WorkoutRepo>()),
     );
     gh.lazySingleton<_i439.ApiErrorHandler>(
       () => _i439.ApiErrorHandler(gh<_i543.AppLocalizations>()),
@@ -285,6 +334,14 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i192.LoginUseCase>(
       () => _i192.LoginUseCase(gh<_i239.LoginRepo>()),
+    );
+    gh.factory<_i102.HomePageViewModel>(
+      () => _i102.HomePageViewModel(
+        gh<_i784.GetTenRandomExerciseUseCase>(),
+        gh<_i1035.GetFoodCategoriesUseCase>(),
+        gh<_i415.GetMusclesGroupUseCase>(),
+        gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
+      ),
     );
     gh.factory<_i610.RegisterViewModel>(
       () => _i610.RegisterViewModel(
@@ -334,6 +391,8 @@ class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 
 class _$FoodApiClientProvider extends _i561.FoodApiClientProvider {}
+
+class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

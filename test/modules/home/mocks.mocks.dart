@@ -568,12 +568,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get didnotReciveOtp =>
+  String get didNotReceiveOtp =>
       (super.noSuchMethod(
-            Invocation.getter(#didnotReciveOtp),
+            Invocation.getter(#didNotReceiveOtp),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#didnotReciveOtp),
+              Invocation.getter(#didNotReceiveOtp),
             ),
           )
           as String);
@@ -601,12 +601,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get codeNotvalid =>
+  String get codeNotValid =>
       (super.noSuchMethod(
-            Invocation.getter(#codeNotvalid),
+            Invocation.getter(#codeNotValid),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#codeNotvalid),
+              Invocation.getter(#codeNotValid),
             ),
           )
           as String);
@@ -779,12 +779,12 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get noMoreExecuses =>
+  String get noMoreExcuses =>
       (super.noSuchMethod(
-            Invocation.getter(#noMoreExecuses),
+            Invocation.getter(#noMoreExcuses),
             returnValue: _i6.dummyValue<String>(
               this,
-              Invocation.getter(#noMoreExecuses),
+              Invocation.getter(#noMoreExcuses),
             ),
           )
           as String);
@@ -1470,23 +1470,171 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
-  String get profile =>
-      (super.noSuchMethod(
-            Invocation.getter(#profile),
-            returnValue: _i6.dummyValue<String>(
-              this,
-              Invocation.getter(#profile),
-            ),
-          )
-          as String);
-
-  @override
   String get noWorkoutsAvailable =>
       (super.noSuchMethod(
             Invocation.getter(#noWorkoutsAvailable),
             returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#noWorkoutsAvailable),
+            ),
+          )
+          as String);
+
+  @override
+  String get homePage_________ =>
+      (super.noSuchMethod(
+            Invocation.getter(#homePage_________),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#homePage_________),
+            ),
+          )
+          as String);
+
+  @override
+  String get startYourDayMessage =>
+      (super.noSuchMethod(
+            Invocation.getter(#startYourDayMessage),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#startYourDayMessage),
+            ),
+          )
+          as String);
+
+  @override
+  String get category =>
+      (super.noSuchMethod(
+            Invocation.getter(#category),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#category),
+            ),
+          )
+          as String);
+
+  @override
+  String get gym =>
+      (super.noSuchMethod(
+            Invocation.getter(#gym),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#gym)),
+          )
+          as String);
+
+  @override
+  String get fitness =>
+      (super.noSuchMethod(
+            Invocation.getter(#fitness),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#fitness),
+            ),
+          )
+          as String);
+
+  @override
+  String get yoga =>
+      (super.noSuchMethod(
+            Invocation.getter(#yoga),
+            returnValue: _i6.dummyValue<String>(this, Invocation.getter(#yoga)),
+          )
+          as String);
+
+  @override
+  String get aerobics =>
+      (super.noSuchMethod(
+            Invocation.getter(#aerobics),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#aerobics),
+            ),
+          )
+          as String);
+
+  @override
+  String get trainer =>
+      (super.noSuchMethod(
+            Invocation.getter(#trainer),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#trainer),
+            ),
+          )
+          as String);
+
+  @override
+  String get recommendationToDay =>
+      (super.noSuchMethod(
+            Invocation.getter(#recommendationToDay),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#recommendationToDay),
+            ),
+          )
+          as String);
+
+  @override
+  String get noData =>
+      (super.noSuchMethod(
+            Invocation.getter(#noData),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#noData),
+            ),
+          )
+          as String);
+
+  @override
+  String get upcomingWorkouts =>
+      (super.noSuchMethod(
+            Invocation.getter(#upcomingWorkouts),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#upcomingWorkouts),
+            ),
+          )
+          as String);
+
+  @override
+  String get seeAll =>
+      (super.noSuchMethod(
+            Invocation.getter(#seeAll),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#seeAll),
+            ),
+          )
+          as String);
+
+  @override
+  String get recommendationForYou =>
+      (super.noSuchMethod(
+            Invocation.getter(#recommendationForYou),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#recommendationForYou),
+            ),
+          )
+          as String);
+
+  @override
+  String get unknown =>
+      (super.noSuchMethod(
+            Invocation.getter(#unknown),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#unknown),
+            ),
+          )
+          as String);
+
+  @override
+  String hiUser(Object? userName) =>
+      (super.noSuchMethod(
+            Invocation.method(#hiUser, [userName]),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.method(#hiUser, [userName]),
             ),
           )
           as String);
@@ -2025,6 +2173,12 @@ class MockHomeViewModel extends _i1.Mock implements _i12.HomeViewModel {
   bool get hasListeners =>
       (super.noSuchMethod(Invocation.getter(#hasListeners), returnValue: false)
           as bool);
+
+  @override
+  void navigateToPage(int? index) => super.noSuchMethod(
+    Invocation.method(#navigateToPage, [index]),
+    returnValueForMissingStub: null,
+  );
 
   @override
   void addListener(_i9.VoidCallback? listener) => super.noSuchMethod(

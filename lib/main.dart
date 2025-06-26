@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,9 @@ import 'package:super_fitness/core/bases/base_inherited_widget.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
+import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
+
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
@@ -38,8 +41,16 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => getIt.get<LocalizationManager>(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => getIt.get<SingleDataPerApplicationProvider>(),
+        ),
       ],
-      child: const MyApp(),
+      child: DevicePreview(
+        enabled: false,
+        builder: (context) {
+          return const MyApp();
+        },
+      ),
     ),
   );
 }
@@ -56,9 +67,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
-    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-    //   getIt.get<LocalizationManager>().changeLocal("en");
-    // });
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      getIt.get<LocalizationManager>().changeLocal("en");
+    });
   }
 
   // This widget is the root of your application.
@@ -83,7 +94,7 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            initialRoute: DefinedRoutes.homeScreenRoute,
+            initialRoute: DefinedRoutes.loginScreenRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: DefinedRoutes.onboardingScreenRoute,

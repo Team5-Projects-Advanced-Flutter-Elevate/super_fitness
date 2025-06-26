@@ -52,7 +52,7 @@ class RecommendationSection extends BaseStatelessWidget {
                         );
                       },
                       child: CustomItemContainer(
-                        imageUrl: recommendationList[index].thumbnailUrl ,
+                        imageUrl: recommendationList[index].thumbnailUrl,
                         width: inherit.screenWidth * 0.45,
                         title: recommendationList[index].name.replaceFirst(
                           " ",

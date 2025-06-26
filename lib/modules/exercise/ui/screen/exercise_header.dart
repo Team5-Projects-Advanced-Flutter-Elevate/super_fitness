@@ -38,7 +38,8 @@ class ExerciseHeaderSection extends StatelessWidget {
                               loadingProgress == null
                                   ? child
                                   : const Center(
-                                  child: CircularProgressIndicator()),
+                                    child: CircularProgressIndicator(),
+                                  ),
                       errorBuilder:
                           (context, error, stackTrace) =>
                               Image.asset(AssetsPaths.fitnessAppIcon),

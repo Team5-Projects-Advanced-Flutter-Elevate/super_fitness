@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/authentication/ui/login/login_screen.dart';
-import 'package:super_fitness/modules/food/domain/entities/meal_entity.dart';
 import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
 import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';

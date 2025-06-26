@@ -1481,6 +1481,50 @@ class MockAppLocalizations extends _i1.Mock implements _i5.AppLocalizations {
           as String);
 
   @override
+  String get ingredients =>
+      (super.noSuchMethod(
+            Invocation.getter(#ingredients),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#ingredients),
+            ),
+          )
+          as String);
+
+  @override
+  String get recommendation =>
+      (super.noSuchMethod(
+            Invocation.getter(#recommendation),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#recommendation),
+            ),
+          )
+          as String);
+
+  @override
+  String get energy =>
+      (super.noSuchMethod(
+            Invocation.getter(#energy),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#energy),
+            ),
+          )
+          as String);
+
+  @override
+  String get energyValue =>
+      (super.noSuchMethod(
+            Invocation.getter(#energyValue),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#energyValue),
+            ),
+          )
+          as String);
+
+  @override
   String get noWorkoutsAvailable =>
       (super.noSuchMethod(
             Invocation.getter(#noWorkoutsAvailable),

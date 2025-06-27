@@ -31,6 +31,9 @@ abstract class AssetsPaths {
   static const String yogaPersonIcon = "assets/icons/yoga_person_icon.png";
   static const String workingDeveloperAnimation =
       "assets/animations/working_developer_animation.json";
+  static const String robotImage = "assets/images/robot_image.png";
+  static const String threeLinesIcon = "assets/icons/three_lines_icon.png";
+  static const String aiChatBg = "assets/images/ai_chat_bg.png";
 
   /// strings
   static const String ingredientKey = "Ingredient";

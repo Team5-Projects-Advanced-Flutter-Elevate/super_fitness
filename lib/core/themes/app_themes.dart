@@ -234,6 +234,11 @@ abstract class AppThemes {
       labelPadding: const EdgeInsets.symmetric(horizontal: 16),
       indicatorSize: TabBarIndicatorSize.label,
     ),
+
+    drawerTheme: DrawerThemeData(
+      elevation: 0,
+      backgroundColor: AppColors.black.withAlpha(200),
+    ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

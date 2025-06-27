@@ -2,7 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
+
 import '../../../../../../core/apis/api_result/api_result.dart';
 import '../../../../../../core/utilities/google_sign_in/google_sign_in_handler.dart';
 import '../../../../domain/entities/login/login_data_response_entity.dart';
@@ -79,6 +82,7 @@ class LoginViewModel extends Cubit<LoginState> {
 
   Future<void> _storeData(LoginEntity userData) async {
     await _loginLocalUseCase.call(userData);
+    getIt.get<UserProvider>().changeUserLoginInfo(userData);
   }
 
   Future<void> _getData() async {

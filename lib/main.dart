@@ -73,9 +73,9 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     FlutterNativeSplash.remove();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      getIt.get<LocalizationManager>().changeLocal("en");
-    });
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   getIt.get<LocalizationManager>().changeLocal("en");
+    // });
   }
 
   // This widget is the root of your application.

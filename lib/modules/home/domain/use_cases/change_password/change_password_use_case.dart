@@ -6,7 +6,7 @@ import 'package:super_fitness/modules/home/domain/repositories_contracts/change_
 @injectable
 class ChangePasswordUseCase {
   ChangePasswordRepoContract changePasswordRepoContract;
-@factoryMethod
+  @factoryMethod
   ChangePasswordUseCase(this.changePasswordRepoContract);
   Future<ApiResult<ChangePasswordResponseEntity>> call(
     String password,

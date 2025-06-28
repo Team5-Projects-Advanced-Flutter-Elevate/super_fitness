@@ -84,7 +84,7 @@ abstract class GenerateRoute {
         case DefinedRoutes.changePasswordRoute:
           return MaterialPageRoute(
             builder: (context) => const ChangePasswordScreen(),
-          );  
+          );
         default:
           return _errorRoute();
       }

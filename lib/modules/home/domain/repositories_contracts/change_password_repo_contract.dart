@@ -5,5 +5,5 @@ abstract class ChangePasswordRepoContract {
   Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
     String password,
     String newPassword,
-    );
+  );
 }

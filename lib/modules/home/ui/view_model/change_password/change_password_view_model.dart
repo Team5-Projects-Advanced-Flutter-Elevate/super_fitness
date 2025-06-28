@@ -11,7 +11,7 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordState> {
 
   @factoryMethod
   ChangePasswordViewModel(this.changePasswordUseCase)
-      : super(const ChangePasswordState());
+    : super(const ChangePasswordState());
 
   void onIntent(ChangePasswordIntent intent) {
     switch (intent) {

@@ -23,8 +23,10 @@ class ChangePasswordRemoteDataSourceImpl
   ) async {
     var result = await ApiExecutor.executeApi(() async {
       var response = await _homeApiClient.changePassword(
-        ChangePasswordRequestDto(password: password, newPassword: newPassword)
-            .toJson(),
+        ChangePasswordRequestDto(
+          password: password,
+          newPassword: newPassword,
+        ).toJson(),
         getIt.get<LocalizationManager>().currentLocale,
       );
       return response;

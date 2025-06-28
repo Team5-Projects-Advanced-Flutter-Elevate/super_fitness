@@ -4,6 +4,6 @@ import 'package:super_fitness/modules/home/domain/entities/change_password/chang
 abstract interface class ChangePasswordRemoteDataSourceContract {
   Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
     String password,
-    String newPassword
+    String newPassword,
   );
 }

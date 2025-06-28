@@ -26,9 +26,9 @@ abstract class HomeApiClient {
   Future<MuscleGroupWorkoutsResponse> getMusclesGroupWorkouts(
     @Path('id') String id,
   );
-   @PATCH(ApisEndpoints.changePasswordEndPoint)
+  @PATCH(ApisEndpoints.changePasswordEndPoint)
   Future<ChangePasswordResponseDto> changePassword(
     @Body() Map<String, dynamic> body,
     @Header("Accept-Language") String languageCode,
-  ); 
+  );
 }

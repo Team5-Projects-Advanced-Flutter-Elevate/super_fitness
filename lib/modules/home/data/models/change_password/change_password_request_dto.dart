@@ -3,10 +3,7 @@ import 'package:super_fitness/modules/home/domain/entities/change_password/chang
 /// password : "Mohamed@1234"
 /// newPassword : "Ahmed@1234"
 class ChangePasswordRequestDto {
-  ChangePasswordRequestDto({
-    this.password,
-    this.newPassword,
-  });
+  ChangePasswordRequestDto({this.password, this.newPassword});
 
   ChangePasswordRequestDto.fromJson(dynamic json) {
     password = json['password'];

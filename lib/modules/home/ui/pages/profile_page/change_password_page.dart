@@ -13,7 +13,7 @@ import '../../../../../core/di/injectable_initializer.dart';
 import '../../../../../core/validation/validation_functions.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key,});
+  const ChangePasswordScreen({super.key});
   @override
   State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
 }
@@ -79,7 +79,9 @@ class _ChangePasswordScreenState
                   ),
                   SizedBox(height: screenHeight * 0.05),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                    ),
 
                     child: Text(
                       appLocalizations.resetPassDesc,
@@ -87,7 +89,9 @@ class _ChangePasswordScreenState
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: screenWidth * 0.04,
+                    ),
 
                     child: Text(
                       appLocalizations.createNewPassword,
@@ -251,7 +255,7 @@ class _ChangePasswordScreenState
                                           ),
                                 ),
                                 SizedBox(height: screenHeight * 0.08),
-                                
+
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -265,7 +269,8 @@ class _ChangePasswordScreenState
                                                   .validate()) {
                                                 changePasswordViewModel.onIntent(
                                                   PasswordIntent(
-                                                    _currentPasswordController.text
+                                                    _currentPasswordController
+                                                        .text
                                                         .trim(),
                                                     _newPasswordController.text
                                                         .trim(),

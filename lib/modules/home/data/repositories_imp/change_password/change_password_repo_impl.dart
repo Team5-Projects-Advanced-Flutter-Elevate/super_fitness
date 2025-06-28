@@ -6,7 +6,8 @@ import 'package:super_fitness/modules/home/domain/repositories_contracts/change_
 
 @Injectable(as: ChangePasswordRepoContract)
 class ChangePasswordRepoImpl implements ChangePasswordRepoContract {
-  final ChangePasswordRemoteDataSourceContract changePasswordRemoteDataSourceContract;
+  final ChangePasswordRemoteDataSourceContract
+  changePasswordRemoteDataSourceContract;
 
   ChangePasswordRepoImpl(this.changePasswordRemoteDataSourceContract);
 

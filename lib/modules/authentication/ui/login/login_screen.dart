@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -214,16 +215,28 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                           SizedBox(height: 0.02 * screenHeight),
                                           Align(
                                             alignment: Alignment.centerRight,
-                                            child: Text(
-                                              appLocalizations.forgotPassword,
-                                              style: theme.textTheme.titleLarge
-                                                  ?.copyWith(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w900,
-                                                    color:
-                                                        AppColors
-                                                            .mainColorLight,
-                                                  ),
+                                            child: InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                  context,
+                                                  DefinedRoutes
+                                                      .forgetPasswordScreenRoute,
+                                                );
+                                              },
+                                              child: Text(
+                                                appLocalizations.forgotPassword,
+                                                style: theme
+                                                    .textTheme
+                                                    .titleLarge
+                                                    ?.copyWith(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w900,
+                                                      color:
+                                                          AppColors
+                                                              .mainColorLight,
+                                                    ),
+                                              ),
                                             ),
                                           ),
                                           SizedBox(height: 0.02 * screenHeight),

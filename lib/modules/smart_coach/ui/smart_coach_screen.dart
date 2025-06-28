@@ -23,10 +23,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    userLoginInfo = Provider
-        .of<UserProvider>(context)
-        .userLoginInfo
-        ?.user;
+    userLoginInfo = Provider.of<UserProvider>(context).userLoginInfo?.user;
   }
 
   @override
@@ -133,7 +130,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   message: "Hello How Can I Assist You Today ?",
                   messageBackgroundColor: AppColors.black.withAlpha(126),
                 ),
-                const SizedBox(height: 24,),
+                const SizedBox(height: 24),
                 CustomChatMessageContainer(
                   flipX: true,
                   imagePath: userLoginInfo?.photo ?? "",

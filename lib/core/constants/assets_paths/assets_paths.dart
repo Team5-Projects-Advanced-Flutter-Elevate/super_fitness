@@ -34,6 +34,7 @@ abstract class AssetsPaths {
   static const String robotImage = "assets/images/robot_image.png";
   static const String threeLinesIcon = "assets/icons/three_lines_icon.png";
   static const String aiChatBg = "assets/images/ai_chat_bg.png";
+  static const String geminiIcon = "assets/icons/gemini_icon.svg";
 
   /// strings
   static const String ingredientKey = "Ingredient";

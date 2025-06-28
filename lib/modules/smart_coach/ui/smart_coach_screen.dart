@@ -1,9 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
+import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
+import 'package:super_fitness/modules/smart_coach/ui/widgets/custom_chat_message_container.dart';
 
 class SmartCoachScreen extends StatefulWidget {
   const SmartCoachScreen({super.key});
@@ -14,6 +18,16 @@ class SmartCoachScreen extends StatefulWidget {
 
 class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
+  late UserEntity? userLoginInfo;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    userLoginInfo = Provider
+        .of<UserProvider>(context)
+        .userLoginInfo
+        ?.user;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,6 +122,26 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   ),
                 ),
               ),
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ListView(
+              children: [
+                CustomChatMessageContainer(
+                  imagePath: AssetsPaths.geminiIcon,
+                  message: "Hello How Can I Assist You Today ?",
+                  messageBackgroundColor: AppColors.black.withAlpha(126),
+                ),
+                const SizedBox(height: 24,),
+                CustomChatMessageContainer(
+                  flipX: true,
+                  imagePath: userLoginInfo?.photo ?? "",
+                  message: "Lorem ipsum dolor sit amet consectetur.",
+                  messageBackgroundColor: AppColors.mainColorLight[80]!
+                      .withAlpha(126),
+                ),
+              ],
             ),
           ),
         ),

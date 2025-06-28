@@ -77,9 +77,9 @@ class _ChangePasswordScreenState
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [Image.asset(AssetsPaths.appIcon)],
                   ),
-                  const SizedBox(height: 50),
+                  SizedBox(height: screenHeight * 0.05),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
 
                     child: Text(
                       appLocalizations.resetPassDesc,
@@ -87,14 +87,14 @@ class _ChangePasswordScreenState
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
 
                     child: Text(
                       appLocalizations.createNewPassword,
                       style: theme.textTheme.titleLarge,
                     ),
                   ),
-                  const SizedBox(height: 40),
+                  SizedBox(height: screenHeight * 0.04),
 
                   BlocConsumer<ChangePasswordViewModel, ChangePasswordState>(
                     bloc: changePasswordViewModel,
@@ -126,7 +126,7 @@ class _ChangePasswordScreenState
                         child: BackdropFilter(
                           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                           child: Container(
-                            padding: const EdgeInsets.all(30),
+                            padding: EdgeInsets.all(screenWidth * 0.07),
                             decoration: BoxDecoration(
                               color: AppColors.black.withValues(alpha: .5),
 
@@ -145,8 +145,8 @@ class _ChangePasswordScreenState
                                   decoration: InputDecoration(
                                     hintText: appLocalizations.password,
                                     prefixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 16.0,
+                                      padding: EdgeInsets.only(
+                                        left: screenWidth * 0.016,
                                       ),
                                       child: Icon(
                                         Icons.lock_outline_sharp,
@@ -171,7 +171,7 @@ class _ChangePasswordScreenState
                                       (value) => getIt<ValidateFunctions>()
                                           .validationOfPassword(value),
                                 ),
-                                const SizedBox(height: 30),
+                                SizedBox(height: screenHeight * 0.03),
 
                                 TextFormField(
                                   controller: _newPasswordController,
@@ -183,8 +183,8 @@ class _ChangePasswordScreenState
                                     enabled: true,
                                     hintText: appLocalizations.newPassword,
                                     prefixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 16.0,
+                                      padding: EdgeInsets.only(
+                                        left: screenWidth * 0.016,
                                       ),
                                       child: Icon(
                                         Icons.lock_outline_sharp,
@@ -209,7 +209,7 @@ class _ChangePasswordScreenState
                                       (value) => getIt<ValidateFunctions>()
                                           .validationOfPassword(value),
                                 ),
-                                const SizedBox(height: 30),
+                                SizedBox(height: screenHeight * 0.03),
 
                                 TextFormField(
                                   autovalidateMode:
@@ -221,8 +221,8 @@ class _ChangePasswordScreenState
                                     enabled: true,
                                     hintText: appLocalizations.confirmPassword,
                                     prefixIcon: Padding(
-                                      padding: const EdgeInsets.only(
-                                        left: 16.0,
+                                      padding: EdgeInsets.only(
+                                        left: screenWidth * 0.016,
                                       ),
                                       child: Icon(
                                         Icons.lock_outline_sharp,
@@ -250,9 +250,8 @@ class _ChangePasswordScreenState
                                             _newPasswordController.text,
                                           ),
                                 ),
-                                const SizedBox(height: 40),
-
-                                const SizedBox(height: 40),
+                                SizedBox(height: screenHeight * 0.08),
+                                
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [

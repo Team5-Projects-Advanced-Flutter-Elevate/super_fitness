@@ -214,7 +214,7 @@ abstract class AppThemes {
         color: AppColors.mainColorDark,
       ),
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: TabBarThemeData(
       dividerColor: AppColors.transparent,
       dividerHeight: 0,
       overlayColor: WidgetStateColor.transparent,

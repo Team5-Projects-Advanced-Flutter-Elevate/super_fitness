@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_ai/firebase_ai.dart' as _i187;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
@@ -160,6 +161,20 @@ import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.da
 import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
     as _i72;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
+import '../../modules/smart_coach/data/ai_model_contracts/ai_model_source.dart'
+as _i684;
+import '../../modules/smart_coach/data/ai_model_implementations/ai_model_source_imp.dart'
+as _i296;
+import '../../modules/smart_coach/data/model_provider/model_provider.dart'
+as _i17;
+import '../../modules/smart_coach/data/repositories_imp/ai_model_repo_imp.dart'
+as _i742;
+import '../../modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart'
+as _i384;
+import '../../modules/smart_coach/domain/use_cases/prompt_model_use_case.dart'
+as _i831;
+import '../../modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart'
+as _i533;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -193,6 +208,7 @@ extension GetItInjectableX on _i174.GetIt {
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
+    final geminiModelProvider = _$GeminiModelProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
@@ -220,6 +236,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i459.SingleDataPerApplicationProvider(),
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
+    gh.lazySingleton<_i187.GenerativeModel>(
+          () => geminiModelProvider.provide(),
+    );
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -235,6 +254,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i293.HomeApiClient>(
       () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i684.AiModelSource>(
+          () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
     );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
@@ -256,6 +278,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i208.FoodDetailsDataSource>(
       () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
+    );
+    gh.factory<_i384.AiModelRepo>(
+          () => _i742.AiModelRepoImp(gh<_i684.AiModelSource>()),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
@@ -321,6 +346,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i442.FoodRepoContract>(
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
     );
+    gh.factory<_i831.PromptModelUseCase>(
+          () => _i831.PromptModelUseCase(gh<_i384.AiModelRepo>()),
+    );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
@@ -353,6 +381,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i630.StoreLoginLocalRepo>(
       () =>
           _i849.StoreLoginLocalRepoImpl(gh<_i393.StoreLoginLocalDataSource>()),
+    );
+    gh.factory<_i533.SmartCoachScreenViewModel>(
+          () => _i533.SmartCoachScreenViewModel(gh<_i831.PromptModelUseCase>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
@@ -442,6 +473,8 @@ class _$DioService extends _i738.DioService {}
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
 
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
+
+class _$GeminiModelProvider extends _i17.GeminiModelProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 

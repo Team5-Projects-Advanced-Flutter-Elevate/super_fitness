@@ -217,7 +217,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                         onPressed:
                                             hasText
                                                 ? () {
-                                                  SmartCoachScreenViewModel.callAiModel();
                                                 }
                                                 : null,
                                         icon: const Icon(Icons.send),

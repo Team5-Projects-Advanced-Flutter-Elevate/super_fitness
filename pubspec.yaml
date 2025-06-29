@@ -110,6 +110,7 @@ dependencies:
   shimmer_animation: ^2.2.2
   get: ^4.7.2
   firebase_ai: ^2.1.0
+  firebase_app_check: ^0.3.2+7
 
 
 

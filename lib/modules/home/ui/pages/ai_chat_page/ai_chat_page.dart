@@ -148,7 +148,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                             DefinedRoutes.smartCoachScreenRoute,
                           );
                         },
-                        child: const Text("Ger Started"),
+                        child: const Text("Get Started"),
                       ),
                     ],
                   ),

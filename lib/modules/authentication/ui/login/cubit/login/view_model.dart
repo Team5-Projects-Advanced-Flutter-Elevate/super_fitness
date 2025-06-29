@@ -53,6 +53,11 @@ class LoginViewModel extends Cubit<LoginState> {
       case Success<LoginEntity>():
         await _storeData(useCaseResult.data);
         emit(const LoginState(loginStatus: Status.success));
+
+        Future.delayed(const Duration(milliseconds: 100), () {
+          emit(const LoginState(loginStatus: Status.idle));
+        });
+
       case Error<LoginEntity>():
         emit(LoginState(loginStatus: Status.error, error: useCaseResult.error));
     }

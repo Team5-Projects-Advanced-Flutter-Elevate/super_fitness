@@ -41,6 +41,8 @@ class UserEntity extends Equatable {
     this.createdAt,
   });
 
+  String get fullName => '$firstName $lastName';
+
   @override
   List<Object?> get props => [
     id,

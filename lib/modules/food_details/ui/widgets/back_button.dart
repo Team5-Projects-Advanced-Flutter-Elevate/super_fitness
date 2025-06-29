@@ -10,19 +10,16 @@ class MyBackButton extends BaseStatelessWidget {
 
   @override
   Widget customBuild(BuildContext context, BaseInheritedWidget inherit) {
-    return Positioned(
-      top: 40,
-      child: IconButton(
-        color: AppColors.white,
-        constraints: const BoxConstraints(maxHeight: 25, maxWidth: 25),
-        style: IconButton.styleFrom(backgroundColor: AppColors.mainColorLight),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        icon: Transform.flip(
-          flipX: !inherit.localizationManager.isEnglish,
-          child: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
-        ),
+    return IconButton(
+      color: AppColors.white,
+      constraints: const BoxConstraints(maxHeight: 25, maxWidth: 25),
+      style: IconButton.styleFrom(backgroundColor: AppColors.mainColorLight),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: Transform.flip(
+        flipX: !inherit.localizationManager.isEnglish,
+        child: const ImageIcon(AssetImage(AssetsPaths.backIcon)),
       ),
     );
   }

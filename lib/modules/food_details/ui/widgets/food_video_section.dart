@@ -79,7 +79,7 @@ class _FoodVideoSectionState extends BaseStatefulWidgetState<FoodVideoSection> {
                 children: [
                   FoodBackground(state: state),
                   FoodTitleAndDescription(state: state),
-                  const MyBackButton(),
+                  const Positioned(top: 40, child: MyBackButton()),
 
                   /// dummy data because no data available in api
                   const CaloriesRow(),

@@ -32,7 +32,7 @@ class _ProfilePageState extends BaseStatefulWidgetState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile'), centerTitle: true),
+      appBar: AppBar(title: Text(appLocalizations.profile), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         child: BlocProvider(
@@ -107,19 +107,19 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                   spacing: 2,
                   children: [
                     ProfileItem(
-                      title: 'Edit Profile ',
+                      title: appLocalizations.editProfile,
                       leadingIcon: AssetsPaths.profileIcon,
                       onTrailingTap: () {},
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Change Password ',
+                      title: appLocalizations.changePassword,
                       leadingIcon: AssetsPaths.changePasswordIcon,
                       onTrailingTap: () {},
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Select Language',
+                      title: appLocalizations.selectLanguage,
                       isSwitch: true,
                       switchWidget: Switch(
                         value: isEnglish,
@@ -140,25 +140,25 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Security',
+                      title: appLocalizations.security,
                       leadingIcon: AssetsPaths.securityIcon,
                       onTrailingTap: () {},
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Privacy Policy',
+                      title: appLocalizations.privacyPolicy,
                       leadingIcon: AssetsPaths.privacyIcon,
                       onTrailingTap: () {},
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Help',
+                      title: appLocalizations.help,
                       leadingIcon: AssetsPaths.helpIcon,
                       onTrailingTap: () {},
                     ),
                     const Divider(color: Color(0xFF2D2D2D)),
                     ProfileItem(
-                      title: 'Logout',
+                      title: appLocalizations.logout,
                       leadingIcon: AssetsPaths.logoutIcon,
                       onTrailingTap: () {},
                     ),
@@ -211,11 +211,7 @@ class ProfileItem extends BaseStatelessWidget {
                     ),
                   ),
                   TextSpan(
-                    text:
-                        inherit.localizationManager.currentLocale ==
-                                LanguagesEnum.en.getLanguageCode()
-                            ? 'English'
-                            : 'العربية',
+                    text: inherit.appLocalizations.english,
                     style: inherit.theme.textTheme.titleLarge?.copyWith(
                       fontSize: 14,
                       color: AppColors.mainColorLight,

@@ -100,7 +100,7 @@ class _MyAppState extends State<MyApp> {
             navigatorKey: globalNavigatorKey,
             locale: Locale(localizationManager.currentLocale),
             onGenerateRoute: GenerateRoute.onGenerateRoute,
-            initialRoute: DefinedRoutes.loginScreenRoute,
+            initialRoute: DefinedRoutes.homeScreenRoute,
             // onGenerateInitialRoutes: (initialRoute) {
             //   return GenerateRoute.onGenerateInitialRoutes(
             //     initialRoute: DefinedRoutes.onboardingScreenRoute,

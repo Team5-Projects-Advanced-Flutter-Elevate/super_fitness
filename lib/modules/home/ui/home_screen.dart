@@ -12,6 +12,7 @@ import 'package:super_fitness/modules/home/ui/pages/workouts_page/workouts_page.
 import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 
 import '../../../core/di/injectable_initializer.dart';
+import '../../edit_profile/ui/screens/edit_profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -31,7 +32,7 @@ class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
       const HomePage(),
       const AiChatPage(),
       const WorkoutsPage(),
-      const ProfilePage(),
+      const EditProfileScreen(),
     ];
   }
 

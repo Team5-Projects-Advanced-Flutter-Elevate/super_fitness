@@ -192,6 +192,12 @@ abstract class AppThemes {
         ),
       ),
     ),
+      iconButtonTheme: IconButtonThemeData(
+          style: IconButton.styleFrom(
+              foregroundColor: AppColors.white,
+              disabledForegroundColor: AppColors.black[40]
+          )
+      ),
     radioTheme: RadioThemeData(
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
@@ -234,6 +240,14 @@ abstract class AppThemes {
       labelPadding: const EdgeInsets.symmetric(horizontal: 16),
       indicatorSize: TabBarIndicatorSize.label,
     ),
+
+    drawerTheme: DrawerThemeData(
+      elevation: 0,
+      backgroundColor: AppColors.black.withAlpha(200),
+    ),
+      bottomSheetTheme: BottomSheetThemeData(
+          backgroundColor: AppColors.transparent
+      )
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {
     //     if (states.contains(WidgetState.selected)) {

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../../../../../core/bases/base_inherited_widget.dart';
@@ -29,48 +28,48 @@ class ProfileItem extends BaseStatelessWidget {
         const SizedBox(width: 16),
         isSwitch
             ? RichText(
-          text: TextSpan(
-            text: title,
-            style: inherit.theme.textTheme.titleLarge?.copyWith(
-              fontSize: 14,
-            ),
-            children: [
-              TextSpan(
-                text: ' ( ',
+              text: TextSpan(
+                text: title,
                 style: inherit.theme.textTheme.titleLarge?.copyWith(
                   fontSize: 14,
                 ),
+                children: [
+                  TextSpan(
+                    text: ' ( ',
+                    style: inherit.theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                  TextSpan(
+                    text: inherit.appLocalizations.english,
+                    style: inherit.theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 14,
+                      color: AppColors.mainColorLight,
+                    ),
+                  ),
+                  TextSpan(
+                    text: ' )',
+                    style: inherit.theme.textTheme.titleLarge?.copyWith(
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
-              TextSpan(
-                text: inherit.appLocalizations.english,
-                style: inherit.theme.textTheme.titleLarge?.copyWith(
-                  fontSize: 14,
-                  color: AppColors.mainColorLight,
-                ),
-              ),
-              TextSpan(
-                text: ' )',
-                style: inherit.theme.textTheme.titleLarge?.copyWith(
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        )
+            )
             : Text(
-          title,
-          style: inherit.theme.textTheme.titleLarge?.copyWith(fontSize: 14),
-        ),
+              title,
+              style: inherit.theme.textTheme.titleLarge?.copyWith(fontSize: 14),
+            ),
         const Spacer(),
         isSwitch
             ? switchWidget!
             : GestureDetector(
-          onTap: onTrailingTap,
-          child: Icon(
-            Icons.arrow_forward_ios,
-            color: AppColors.mainColorLight,
-          ),
-        ),
+              onTap: onTrailingTap,
+              child: Icon(
+                Icons.arrow_forward_ios,
+                color: AppColors.mainColorLight,
+              ),
+            ),
       ],
     );
   }

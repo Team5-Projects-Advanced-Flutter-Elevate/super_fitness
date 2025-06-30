@@ -9,7 +9,7 @@ import 'package:super_fitness/core/widgets/custom_network_cached_image.dart';
 class CustomChatMessageContainer extends BaseStatelessWidget {
   final String imagePath;
   final Color messageBackgroundColor;
-  final String message;
+  final Widget message;
 
   final bool flipX;
 
@@ -50,14 +50,14 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
                     ? SvgPicture.asset(imagePath)
                     : Image.asset(imagePath),
           ),
-          const SizedBox(width: 16),
-          Expanded(
+          const SizedBox(width: 8),
+          Flexible(
             child: ClipRect(
               child: BackdropFilter(
                 filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),
                 child: Container(
                   padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.symmetric(vertical: 4),
+                  margin: const EdgeInsets.only(bottom: 4, top: 8),
                   decoration: BoxDecoration(
                     color: messageBackgroundColor,
                     borderRadius: const BorderRadius.only(
@@ -68,10 +68,7 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
                   ),
                   child: Transform.flip(
                     flipX: flipX,
-                    child: Text(
-                      message,
-                      style: inherit.theme.textTheme.titleMedium,
-                    ),
+                    child: message,
                   ),
                 ),
               ),

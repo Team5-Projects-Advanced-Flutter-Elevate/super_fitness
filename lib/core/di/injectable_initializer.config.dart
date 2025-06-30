@@ -162,19 +162,19 @@ import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit
     as _i72;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../modules/smart_coach/data/ai_model_contracts/ai_model_source.dart'
-as _i684;
+    as _i684;
 import '../../modules/smart_coach/data/ai_model_implementations/ai_model_source_imp.dart'
-as _i296;
+    as _i296;
 import '../../modules/smart_coach/data/model_provider/model_provider.dart'
-as _i17;
+    as _i17;
 import '../../modules/smart_coach/data/repositories_imp/ai_model_repo_imp.dart'
-as _i742;
+    as _i742;
 import '../../modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart'
-as _i384;
+    as _i384;
 import '../../modules/smart_coach/domain/use_cases/prompt_model_use_case.dart'
-as _i831;
+    as _i831;
 import '../../modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart'
-as _i533;
+    as _i533;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -237,7 +237,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i187.GenerativeModel>(
-          () => geminiModelProvider.provide(),
+      () => geminiModelProvider.provide(),
     );
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
@@ -256,7 +256,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i684.AiModelSource>(
-          () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
+      () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
     );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
@@ -280,7 +280,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
     );
     gh.factory<_i384.AiModelRepo>(
-          () => _i742.AiModelRepoImp(gh<_i684.AiModelSource>()),
+      () => _i742.AiModelRepoImp(gh<_i684.AiModelSource>()),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
@@ -347,7 +347,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
     );
     gh.factory<_i831.PromptModelUseCase>(
-          () => _i831.PromptModelUseCase(gh<_i384.AiModelRepo>()),
+      () => _i831.PromptModelUseCase(gh<_i384.AiModelRepo>()),
     );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
@@ -383,7 +383,7 @@ extension GetItInjectableX on _i174.GetIt {
           _i849.StoreLoginLocalRepoImpl(gh<_i393.StoreLoginLocalDataSource>()),
     );
     gh.factory<_i533.SmartCoachScreenViewModel>(
-          () => _i533.SmartCoachScreenViewModel(gh<_i831.PromptModelUseCase>()),
+      () => _i533.SmartCoachScreenViewModel(gh<_i831.PromptModelUseCase>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),

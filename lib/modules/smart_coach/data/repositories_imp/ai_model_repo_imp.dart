@@ -25,7 +25,7 @@ class AiModelRepoImp implements AiModelRepo {
         .promptModel(chatHistoryModel: chatHistoryModel)
         .listen(
           (chunk) {
-        stringBuffer.write(chunk);
+            stringBuffer.write(chunk.text);
         controller.add(chunk);
       },
       onDone: () {

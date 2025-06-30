@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
@@ -11,33 +12,187 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   final PromptModelUseCase _promptModelUseCase;
 
   SmartCoachScreenViewModel(this._promptModelUseCase)
-      : super(SmartCoachScreenState());
+    : super(const SmartCoachScreenState());
 
   final ChatHistoryModel chatHistoryModel = ChatHistoryModel(messages: []);
 
-  void promptAiToSayWelcome() {
-    var userInfo = getIt
-        .get<UserProvider>()
-        .userLoginInfo
-        ?.user;
+  var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
+  ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);
+  ValueNotifier<String> conversationTitleNotifier = ValueNotifier("");
+
+  void doIntent(SmartCoachScreenIntent intent) {
+    switch (intent) {
+      case PromptAiToWelcomeUser():
+        _promptAiToSayWelcome();
+        break;
+      case PromptAiToAnswerUser():
+        _promptAiModelToAnswerUser(intent.message);
+        break;
+    }
+  }
+
+  void _promptAiToSayWelcome() {
     chatHistoryModel.messages.addAll([
       MessageItem(
         role: MessageRoles.user,
         message:
-        "You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.",
+            "You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.",
       ),
       MessageItem(
         role: MessageRoles.user,
         message:
-        userInfo?.firstName == null && userInfo?.lastName == null
-            ? "Welcome User."
-            : "Welcome User Named ${userInfo?.firstName ??
-            userInfo?.lastName}.",
+            userInfo?.firstName == null && userInfo?.lastName == null
+                ? "Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations"
+                : "Welcome user named ${userInfo?.firstName ?? userInfo?.lastName} briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
       ),
     ]);
+    List<MessageItem> currentMessageItems =
+        chatHistoryModel.messages.map((e) => e.copyWith()).toList();
+    currentMessageItems.add(MessageItem(role: MessageRoles.model, message: ""));
+    emit(
+      SmartCoachScreenState(
+        promptAiModelStatus: Status.loading,
+        messageItems: currentMessageItems,
+      ),
+    );
+    var useCaseResult = _promptModelUseCase.call(
+      chatHistoryModel: chatHistoryModel,
+    );
+    useCaseResult.listen(
+      (response) {
+        if (response.text != null) {
+          var newMessageItems =
+              state.messageItems.map((e) => e.copyWith()).toList();
+          newMessageItems.last.message += response.text!;
+          emit(
+            state.copyWith(
+              promptAiModelStatus: Status.success,
+              messageItems: newMessageItems,
+            ),
+          );
+        } else {
+          emit(state.copyWith(promptAiModelStatus: Status.success));
+        }
+      },
+      onError: (error) {
+        var newMessagesItem =
+            state.messageItems.map((e) => e.copyWith()).toList();
+        newMessagesItem.last.message = "Something Went Wrong";
+        emit(
+          state.copyWith(
+            promptAiModelStatus: Status.error,
+            messageItems: newMessagesItem,
+            promptAiModelError: error,
+          ),
+        );
+      },
+      cancelOnError: true,
+      onDone: () {
+        takeAnotherMessageNotifier.value = true;
+        chatHistoryModel.messages.add(state.messageItems.last);
+      },
+    );
   }
 
-  void promptAiModel(String message) async {}
+  void _getTitleFromUserFirstMessage(String firstMessage) async {
+    var userCaseResult = _promptModelUseCase.call(
+      chatHistoryModel: ChatHistoryModel(
+        messages: [
+          MessageItem(
+            role: MessageRoles.user,
+            message:
+                "Give a short, 10-20 characters (not more) title for this message: $firstMessage, don't give me options just choose the best one.",
+          ),
+        ],
+      ),
+    );
+    final StringBuffer titleStringBuffer = StringBuffer();
+    userCaseResult.listen(
+      (response) {
+        titleStringBuffer.write(response.text);
+      },
+      cancelOnError: true,
+      onError: (error) {
+        conversationTitleNotifier.value = "";
+      },
+      onDone: () {
+        conversationTitleNotifier.value = titleStringBuffer.toString();
+      },
+    );
+  }
+
+  void _promptAiModelToAnswerUser(String message) async {
+    chatHistoryModel.messages.add(
+      MessageItem(role: MessageRoles.user, message: message),
+    );
+    List<MessageItem> currentMessageItems =
+        chatHistoryModel.messages.map((e) => e.copyWith()).toList();
+    emit(
+      SmartCoachScreenState(
+        promptAiModelStatus: Status.idle,
+        messageItems: currentMessageItems,
+      ),
+    );
+    List<MessageItem> newMessageItems =
+        chatHistoryModel.messages.map((e) => e.copyWith()).toList();
+    newMessageItems.add(MessageItem(role: MessageRoles.model, message: ""));
+    emit(
+      SmartCoachScreenState(
+        promptAiModelStatus: Status.loading,
+        messageItems: newMessageItems,
+      ),
+    );
+    if (conversationTitleNotifier.value.isEmpty) {
+      _getTitleFromUserFirstMessage(message);
+    }
+    var useCaseResult = _promptModelUseCase.call(
+      chatHistoryModel: chatHistoryModel,
+    );
+    useCaseResult.listen(
+      (response) {
+        if (response.text != null) {
+          var newMessageItems =
+              state.messageItems.map((e) => e.copyWith()).toList();
+          newMessageItems.last.message += response.text!;
+          emit(
+            state.copyWith(
+              promptAiModelStatus: Status.success,
+              messageItems: newMessageItems,
+            ),
+          );
+        } else {
+          emit(state.copyWith(promptAiModelStatus: Status.success));
+        }
+      },
+      onError: (error) {
+        var newMessagesItem =
+            state.messageItems.map((e) => e.copyWith()).toList();
+        newMessagesItem.last.message = "Something Went Wrong";
+        emit(
+          state.copyWith(
+            promptAiModelStatus: Status.error,
+            messageItems: newMessagesItem,
+            promptAiModelError: error,
+          ),
+        );
+      },
+      cancelOnError: true,
+      onDone: () {
+        takeAnotherMessageNotifier.value = true;
+        chatHistoryModel.messages.add(state.messageItems.last);
+      },
+    );
+  }
+}
+
+sealed class SmartCoachScreenIntent {}
+
+class PromptAiToWelcomeUser extends SmartCoachScreenIntent {}
+
+class PromptAiToAnswerUser extends SmartCoachScreenIntent {
+  String message;
+
+  PromptAiToAnswerUser({required this.message});
 }
 
 /*

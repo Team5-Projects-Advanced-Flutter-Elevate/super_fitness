@@ -1,13 +1,20 @@
 import 'dart:ui';
 
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:super_fitness/core/apis/api_error/api_error_handler.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
+import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart';
+import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_state.dart';
 import 'package:super_fitness/modules/smart_coach/ui/widgets/custom_chat_message_container.dart';
 
 class SmartCoachScreen extends StatefulWidget {
@@ -25,9 +32,13 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   ValueNotifier<bool> hasFocusNotifier = ValueNotifier(false);
   ValueNotifier<bool> hasText = ValueNotifier(false);
 
+  final SmartCoachScreenViewModel smartCoachScreenViewModel =
+  getIt.get<SmartCoachScreenViewModel>();
+
   @override
   void initState() {
     super.initState();
+    smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
       print("========= ${hasFocusNotifier.value}");
@@ -45,17 +56,15 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AssetsPaths.aiChatBg),
-          fit: BoxFit.cover,
+    return BlocProvider(
+      create: (context) => smartCoachScreenViewModel,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(AssetsPaths.aiChatBg),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
         child: SafeArea(
           child: Scaffold(
             key: scaffoldKey,
@@ -143,30 +152,112 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                bottom: 16,
+              ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  ValueListenableBuilder(
+                    valueListenable:
+                    smartCoachScreenViewModel.conversationTitleNotifier,
+                    builder: (context, title, child) {
+                      return Text(
+                        title.isEmpty ? "Untitled Chat" : title,
+                        textAlign: TextAlign.center,
+                        style: theme.textTheme.titleSmall!.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 6),
                   Expanded(
-                    child: ListView(
-                      keyboardDismissBehavior:
-                          ScrollViewKeyboardDismissBehavior.onDrag,
-                      children: [
-                        CustomChatMessageContainer(
-                          imagePath: AssetsPaths.geminiIcon,
-                          message: "Hello How Can I Assist You Today ?",
-                          messageBackgroundColor: AppColors.black.withAlpha(
-                            126,
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        CustomChatMessageContainer(
-                          flipX: true,
-                          imagePath: userLoginInfo?.photo ?? "",
-                          message: "Lorem ipsum dolor sit amet consectetur.",
-                          messageBackgroundColor: AppColors.mainColorLight[80]!
-                              .withAlpha(126),
-                        ),
-                      ],
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      child: BlocBuilder<
+                          SmartCoachScreenViewModel,
+                          SmartCoachScreenState
+                      >(
+                        builder: (context, state) {
+                          print("@@@@@@2 inside Bloc Builder");
+                          return ListView.separated(
+                            shrinkWrap: true,
+                            itemCount: state.messageItems.length - 2,
+                            itemBuilder: (context, index) {
+                              if (state.promptAiModelStatus == Status.loading &&
+                                  index + 2 == state.messageItems.length - 1) {
+                                return CustomChatMessageContainer(
+                                  imagePath: AssetsPaths.geminiIcon,
+                                  message: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                        ),
+                                        child: Center(
+                                          child:
+                                          LoadingAnimationWidget
+                                              .staggeredDotsWave(
+                                            color: AppColors.white,
+                                            size: 30,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  messageBackgroundColor: AppColors.black
+                                      .withAlpha(150),
+                                );
+                              } else {
+                                if (state.promptAiModelStatus == Status.error) {
+                                  displaySnackBar(
+                                    contentType: ContentType.failure,
+                                    title: getIt.get<ApiErrorHandler>().handle(
+                                      state.promptAiModelError!,
+                                    ),
+                                  );
+                                }
+                                return state.messageItems[index + 2].role ==
+                                    MessageRoles.user
+                                    ? Center(
+                                  child: CustomChatMessageContainer(
+                                    flipX: true,
+                                    imagePath: userLoginInfo?.photo ?? "",
+                                    message: Text(
+                                      state.messageItems[index + 2].message,
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                    messageBackgroundColor: AppColors
+                                        .mainColorLight[80]!
+                                        .withAlpha(126),
+                                  ),
+                                )
+                                    : AnimatedContainer(
+                                  duration: const Duration(seconds: 4),
+                                  child: CustomChatMessageContainer(
+                                    imagePath: AssetsPaths.geminiIcon,
+                                    message: Text(
+                                      state.messageItems[index + 2].message,
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                    messageBackgroundColor: AppColors.black
+                                        .withAlpha(150),
+                                  ),
+                                );
+                              }
+                            },
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(height: 24);
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -194,7 +285,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                 child: TextField(
                                   controller: textEditingController,
                                   maxLines: 5,
-                                  minLines: isFocused ? 2 : 1,
+                                  minLines: 1,
                                   focusNode: textFieldFocusNode,
                                   decoration: InputDecoration(
                                     hoverColor: Colors.transparent,
@@ -210,18 +301,41 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                               ValueListenableBuilder(
                                 valueListenable: hasText,
                                 builder: (context, hasText, child) {
-                                  return Row(
-                                    children: [
-                                      const Spacer(),
-                                      IconButton(
-                                        onPressed:
-                                            hasText
+                                  return ValueListenableBuilder(
+                                    valueListenable:
+                                    smartCoachScreenViewModel
+                                        .takeAnotherMessageNotifier,
+                                    builder: (context,
+                                        takeAnotherMessage,
+                                        child,) {
+                                      return Row(
+                                        children: [
+                                          const Spacer(),
+                                          IconButton(
+                                            onPressed:
+                                            hasText && takeAnotherMessage
                                                 ? () {
-                                                }
+                                              smartCoachScreenViewModel
+                                                  .doIntent(
+                                                PromptAiToAnswerUser(
+                                                  message:
+                                                  textEditingController
+                                                      .text,
+                                                ),
+                                              );
+                                              textEditingController
+                                                  .clear();
+                                              FocusManager
+                                                  .instance
+                                                  .primaryFocus
+                                                  ?.unfocus();
+                                            }
                                                 : null,
-                                        icon: const Icon(Icons.send),
-                                      ),
-                                    ],
+                                            icon: const Icon(Icons.send),
+                                          ),
+                                        ],
+                                      );
+                                    },
                                   );
                                 },
                               ),

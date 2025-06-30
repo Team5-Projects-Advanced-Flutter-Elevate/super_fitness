@@ -75,7 +75,12 @@ class _ChangePasswordScreenState
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [Image.asset(AssetsPaths.appIcon)],
+                    children: [
+                      Image.asset(
+                        AssetsPaths.appIcon,
+                        key: const ValueKey('changePasswordScreenImage'),
+                      ),
+                    ],
                   ),
                   SizedBox(height: screenHeight * 0.05),
                   Padding(
@@ -84,6 +89,7 @@ class _ChangePasswordScreenState
                     ),
 
                     child: Text(
+                      key: const ValueKey('changePasswordScreenFirstTitle'),
                       appLocalizations.resetPassDesc,
                       style: theme.textTheme.titleMedium,
                     ),
@@ -94,6 +100,7 @@ class _ChangePasswordScreenState
                     ),
 
                     child: Text(
+                      key: const ValueKey('changePasswordScreenSecondTitle'),
                       appLocalizations.createNewPassword,
                       style: theme.textTheme.titleLarge,
                     ),
@@ -140,6 +147,9 @@ class _ChangePasswordScreenState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 TextFormField(
+                                  key: const ValueKey(
+                                    'changePasswordScreenCurrentPassword',
+                                  ),
                                   enabled: true,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
@@ -178,6 +188,9 @@ class _ChangePasswordScreenState
                                 SizedBox(height: screenHeight * 0.03),
 
                                 TextFormField(
+                                  key: const ValueKey(
+                                    'changePasswordScreenNewPassword',
+                                  ),
                                   controller: _newPasswordController,
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
@@ -216,6 +229,9 @@ class _ChangePasswordScreenState
                                 SizedBox(height: screenHeight * 0.03),
 
                                 TextFormField(
+                                  key: const ValueKey(
+                                    'changePasswordScreenConfirmPassword',
+                                  ),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   controller: _confirmPasswordController,
@@ -264,6 +280,9 @@ class _ChangePasswordScreenState
                                         ? const LoadingStateWidget()
                                         : Expanded(
                                           child: FilledButton(
+                                            key: const ValueKey(
+                                              'changePasswordScreenDoneButton',
+                                            ),
                                             onPressed: () {
                                               if (_formKey.currentState!
                                                   .validate()) {

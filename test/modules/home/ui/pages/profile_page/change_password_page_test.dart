@@ -82,9 +82,7 @@ void main() {
         findsAtLeast(1),
       );
     });
-    testWidgets('Check if DoneButton is rendered', (
-      tester,
-    ) async {
+    testWidgets('Check if DoneButton is rendered', (tester) async {
       await tester.pumpWidget(buildWidget());
       await tester.pump();
       expect(

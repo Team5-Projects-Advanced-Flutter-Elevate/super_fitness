@@ -28,7 +28,7 @@ class _ProfilePageState extends BaseStatefulWidgetState<ProfilePage> {
     return Scaffold(
       appBar: AppBar(title: Text(appLocalizations.profile), centerTitle: true),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: BlocProvider(
           create: (context) => profileCubit,
           child: BlocBuilder<ProfileCubit, ProfileState>(

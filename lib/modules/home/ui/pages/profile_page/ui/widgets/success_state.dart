@@ -27,7 +27,7 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
     return Column(
       children: [
         Expanded(
-          flex: 2,
+          flex: 4,
           child: Column(
             children: [
               CustomNetworkCachedImage(
@@ -46,9 +46,8 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
             ],
           ),
         ),
-        const SizedBox(height: 30),
         Expanded(
-          flex: 5,
+          flex: 7,
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             child: BackdropFilter(
@@ -57,72 +56,75 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                 width: screenWidth,
                 color: AppColors.black.withAlpha(150),
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                child: Column(
-                  spacing: 2,
-                  children: [
-                    ProfileItem(
-                      title: appLocalizations.editProfile,
-                      leadingIcon: AssetsPaths.profileIcon,
-                      onTrailingTap: () {},
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.changePassword,
-                      leadingIcon: AssetsPaths.changePasswordIcon,
-                      onTrailingTap: () {},
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.selectLanguage,
-                      isSwitch: true,
-                      switchWidget: Switch(
-                        value: isEnglish,
-                        onChanged: (val) {
-                          final newLocale =
-                              localizationManager.currentLocale ==
-                                      LanguagesEnum.en.getLanguageCode()
-                                  ? LanguagesEnum.ar.getLanguageCode()
-                                  : LanguagesEnum.en.getLanguageCode();
-
-                          localizationManager.changeLocal(newLocale);
-                          setState(() {
-                            isEnglish = val;
-                          });
-                        },
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    spacing: 2,
+                    children: [
+                      ProfileItem(
+                        title: appLocalizations.editProfile,
+                        leadingIcon: AssetsPaths.profileIcon,
+                        onTrailingTap: () {},
                       ),
-                      leadingIcon: AssetsPaths.languageIcon,
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.security,
-                      leadingIcon: AssetsPaths.securityIcon,
-                      onTrailingTap: () {},
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.privacyPolicy,
-                      leadingIcon: AssetsPaths.privacyIcon,
-                      onTrailingTap: () {},
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.help,
-                      leadingIcon: AssetsPaths.helpIcon,
-                      onTrailingTap: () {},
-                    ),
-                    const Divider(color: Color(0xFF2D2D2D)),
-                    ProfileItem(
-                      title: appLocalizations.logout,
-                      leadingIcon: AssetsPaths.logoutIcon,
-                      onTrailingTap: () {},
-                    ),
-                  ],
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.changePassword,
+                        leadingIcon: AssetsPaths.changePasswordIcon,
+                        onTrailingTap: () {},
+                      ),
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.selectLanguage,
+                        isSwitch: true,
+                        switchWidget: Switch(
+                          value: isEnglish,
+                          onChanged: (val) {
+                            final newLocale =
+                                localizationManager.currentLocale ==
+                                        LanguagesEnum.en.getLanguageCode()
+                                    ? LanguagesEnum.ar.getLanguageCode()
+                                    : LanguagesEnum.en.getLanguageCode();
+
+                            localizationManager.changeLocal(newLocale);
+                            setState(() {
+                              isEnglish = val;
+                            });
+                          },
+                        ),
+                        leadingIcon: AssetsPaths.languageIcon,
+                      ),
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.security,
+                        leadingIcon: AssetsPaths.securityIcon,
+                        onTrailingTap: () {},
+                      ),
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.privacyPolicy,
+                        leadingIcon: AssetsPaths.privacyIcon,
+                        onTrailingTap: () {},
+                      ),
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.help,
+                        leadingIcon: AssetsPaths.helpIcon,
+                        onTrailingTap: () {},
+                      ),
+                      const Divider(color: Color(0xFF2D2D2D)),
+                      ProfileItem(
+                        title: appLocalizations.logout,
+                        leadingIcon: AssetsPaths.logoutIcon,
+                        onTrailingTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-        const Spacer(flex: 2),
+        const Spacer(flex: 3),
       ],
     );
   }

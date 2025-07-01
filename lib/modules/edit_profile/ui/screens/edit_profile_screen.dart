@@ -306,13 +306,15 @@ class _EditProfileScreenState
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => WeightScreen(
-                                    onSelected: (selectedWeight) {
-                                      localSetState(() {
-                                        weight.text = selectedWeight.toString();
-                                      });
-                                    },
-                                  ),
+                                  builder:
+                                      (context) => WeightScreen(
+                                        onSelected: (selectedWeight) {
+                                          localSetState(() {
+                                            weight.text =
+                                                selectedWeight.toString();
+                                          });
+                                        },
+                                      ),
                                 ),
                               );
                             },
@@ -350,13 +352,14 @@ class _EditProfileScreenState
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => GoalScreen(
-                                    onSelected: (selectedGoal) {
-                                      localSetState(() {
-                                        goal.text = selectedGoal;
-                                      });
-                                    },
-                                  ),
+                                  builder:
+                                      (context) => GoalScreen(
+                                        onSelected: (selectedGoal) {
+                                          localSetState(() {
+                                            goal.text = selectedGoal;
+                                          });
+                                        },
+                                      ),
                                 ),
                               );
                             },
@@ -394,13 +397,14 @@ class _EditProfileScreenState
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => ActivityScreen(
-                                    onSelected: (selectedActivity) {
-                                      localSetState(() {
-                                        level.text = selectedActivity;
-                                      });
-                                    },
-                                  ),
+                                  builder:
+                                      (context) => ActivityScreen(
+                                        onSelected: (selectedActivity) {
+                                          localSetState(() {
+                                            level.text = selectedActivity;
+                                          });
+                                        },
+                                      ),
                                 ),
                               );
                             },

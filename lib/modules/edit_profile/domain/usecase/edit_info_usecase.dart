@@ -17,6 +17,13 @@ class EditInfoUseCase {
     String? weight,
     String? level,
   ) {
-    return _editInfoRepo.editInfo(firstName, lastName, email, goal,weight,level);
+    return _editInfoRepo.editInfo(
+      firstName,
+      lastName,
+      email,
+      goal,
+      weight,
+      level,
+    );
   }
 }

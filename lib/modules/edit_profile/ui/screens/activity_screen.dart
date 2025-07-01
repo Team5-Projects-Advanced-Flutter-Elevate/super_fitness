@@ -9,10 +9,7 @@ import '../../../../core/constants/assets_paths/assets_paths.dart';
 class ActivityScreen extends StatefulWidget {
   final void Function(String selectedActivity)? onSelected;
 
-  const ActivityScreen({
-    super.key,
-    this.onSelected,
-  });
+  const ActivityScreen({super.key, this.onSelected});
 
   @override
   State<ActivityScreen> createState() => _ActivityScreenState();
@@ -21,7 +18,7 @@ class ActivityScreen extends StatefulWidget {
 class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
   late List<String> activities;
   String? selectedActivity;
-  int?  selectedIndex;
+  int? selectedIndex;
 
   @override
   void initState() {
@@ -69,7 +66,7 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                       children: [
                         TextSpan(
                           text:
-                          "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
+                              "${appLocalizations.yourPhysicalActivityLevel.toUpperCase()} \n",
                           style: theme.textTheme.titleLarge!.copyWith(
                             fontWeight: FontWeight.w800,
                           ),
@@ -121,8 +118,8 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                                       activities[index],
                                       style: theme.textTheme.labelMedium
                                           ?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                      ),
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                     ),
                                     const Spacer(),
                                     Radio<String>(
@@ -131,7 +128,8 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                                       onChanged: (val) {
                                         setState(() {
                                           selectedActivity = val;
-                                          selectedIndex=index;                                        });
+                                          selectedIndex = index;
+                                        });
                                       },
                                     ),
                                   ],
@@ -141,13 +139,16 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                           ),
                           SizedBox(height: screenHeight * 0.03),
                           FilledButton(
-                            onPressed: selectedActivity == null
-                                ? null
-                                : () {
-                              // call callback if provided
-                              widget.onSelected?.call('level${selectedIndex!+1}');
-                              Navigator.pop(context);
-                            },
+                            onPressed:
+                                selectedActivity == null
+                                    ? null
+                                    : () {
+                                      // call callback if provided
+                                      widget.onSelected?.call(
+                                        'level${selectedIndex! + 1}',
+                                      );
+                                      Navigator.pop(context);
+                                    },
                             child: Text(appLocalizations.done),
                           ),
                         ],

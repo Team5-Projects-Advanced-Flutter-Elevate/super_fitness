@@ -4,8 +4,5 @@ class EditMyInfoEntity {
   final String? message;
   final GetUserEntity? user;
 
-  const EditMyInfoEntity({
-    this.message,
-    this.user,
-  });
+  const EditMyInfoEntity({this.message, this.user});
 }

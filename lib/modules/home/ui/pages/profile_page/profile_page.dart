@@ -13,7 +13,12 @@ class ProfilePage extends BaseStatelessWidget {
         Center(
           child: InkWell(
             onTap: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context) =>const EditProfileScreen(),));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const EditProfileScreen(),
+                ),
+              );
             },
             child: Text(
               "Profile Page",

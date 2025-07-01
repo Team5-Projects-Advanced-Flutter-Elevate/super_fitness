@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/modules/smart_coach/data/ai_model_contracts/ai_model_source.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
+import 'package:super_fitness/modules/smart_coach/domain/result/ai_model_result.dart';
 
 @Injectable(as: AiModelSource)
 class AiModelSourceImp implements AiModelSource {
@@ -11,9 +14,7 @@ class AiModelSourceImp implements AiModelSource {
   AiModelSourceImp(this._generativeModel);
 
   @override
-  Stream<GenerateContentResponse> promptModel({
-    required ChatHistoryModel chatHistoryModel,
-  }) {
+  AiModelResult promptModel({required ChatHistoryModel chatHistoryModel}) {
     List<Content> prompt = [];
     int totalTokens = 0;
     for (var messageItem in chatHistoryModel.messages) {
@@ -26,7 +27,25 @@ class AiModelSourceImp implements AiModelSource {
           totalTokens += (messageItem.message.length / 4).ceil();
       }
     }
-    debugPrint("$totalTokens ================");
-    return _generativeModel.generateContentStream(prompt);
+    final StreamController<GenerateContentResponse> controller =
+        StreamController();
+    var response = _generativeModel.generateContentStream(prompt);
+    response.listen(
+      (chunk) {
+        if (chunk.text != null) {
+          totalTokens += (chunk.text!.length / 4).ceil();
+        }
+        controller.add(chunk);
+      },
+      onDone: () {
+        debugPrint("$totalTokens ================");
+      },
+      onError: controller.addError,
+      cancelOnError: true,
+    );
+    return AiModelResult(
+      numberOfToken: totalTokens,
+      responseStream: controller.stream,
+    );
   }
 }

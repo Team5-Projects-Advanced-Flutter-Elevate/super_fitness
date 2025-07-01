@@ -152,11 +152,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 16,
-              ),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -260,7 +256,17 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 8),
+                  ValueListenableBuilder(
+                    valueListenable: smartCoachScreenViewModel.tokenNotifier,
+                    builder: (context, value, child) {
+                      return Text(
+                        value,
+                        style: theme.textTheme.titleSmall,
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 4),
                   ValueListenableBuilder(
                     valueListenable: hasFocusNotifier,
                     builder: (context, isFocused, child) {
@@ -308,6 +314,11 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                     builder: (context,
                                         takeAnotherMessage,
                                         child,) {
+                                      print("----------- ${hasText &&
+                                          takeAnotherMessage}");
+                                      print("----------- ${hasText}");
+                                      print(
+                                          "----------- ${takeAnotherMessage}");
                                       return Row(
                                         children: [
                                           const Spacer(),

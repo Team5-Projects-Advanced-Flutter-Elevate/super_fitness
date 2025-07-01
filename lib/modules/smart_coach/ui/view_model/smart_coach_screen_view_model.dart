@@ -20,7 +20,12 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);
   ValueNotifier<String> conversationTitleNotifier = ValueNotifier("");
 
+  ValueNotifier<String> tokenNotifier = ValueNotifier("");
+
+  bool reachedTokenLimit = false;
+
   void doIntent(SmartCoachScreenIntent intent) {
+    if (reachedTokenLimit) return;
     switch (intent) {
       case PromptAiToWelcomeUser():
         _promptAiToSayWelcome();
@@ -49,6 +54,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     List<MessageItem> currentMessageItems =
         chatHistoryModel.messages.map((e) => e.copyWith()).toList();
     currentMessageItems.add(MessageItem(role: MessageRoles.model, message: ""));
+    takeAnotherMessageNotifier.value = false;
     emit(
       SmartCoachScreenState(
         promptAiModelStatus: Status.loading,
@@ -58,7 +64,8 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     var useCaseResult = _promptModelUseCase.call(
       chatHistoryModel: chatHistoryModel,
     );
-    useCaseResult.listen(
+    _handleNumberOfTokensReached(useCaseResult.numberOfToken);
+    useCaseResult.responseStream.listen(
       (response) {
         if (response.text != null) {
           var newMessageItems =
@@ -85,9 +92,11 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
             promptAiModelError: error,
           ),
         );
+        takeAnotherMessageNotifier.value = true;
       },
       cancelOnError: true,
       onDone: () {
+        print("in onDone:of sayWelcome");
         takeAnotherMessageNotifier.value = true;
         chatHistoryModel.messages.add(state.messageItems.last);
       },
@@ -95,7 +104,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   }
 
   void _getTitleFromUserFirstMessage(String firstMessage) async {
-    var userCaseResult = _promptModelUseCase.call(
+    var useCaseResult = _promptModelUseCase.call(
       chatHistoryModel: ChatHistoryModel(
         messages: [
           MessageItem(
@@ -107,7 +116,8 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       ),
     );
     final StringBuffer titleStringBuffer = StringBuffer();
-    userCaseResult.listen(
+    _handleNumberOfTokensReached(useCaseResult.numberOfToken);
+    useCaseResult.responseStream.listen(
       (response) {
         titleStringBuffer.write(response.text);
       },
@@ -136,6 +146,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     List<MessageItem> newMessageItems =
         chatHistoryModel.messages.map((e) => e.copyWith()).toList();
     newMessageItems.add(MessageItem(role: MessageRoles.model, message: ""));
+    takeAnotherMessageNotifier.value = false;
     emit(
       SmartCoachScreenState(
         promptAiModelStatus: Status.loading,
@@ -148,7 +159,8 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     var useCaseResult = _promptModelUseCase.call(
       chatHistoryModel: chatHistoryModel,
     );
-    useCaseResult.listen(
+    _handleNumberOfTokensReached(useCaseResult.numberOfToken);
+    useCaseResult.responseStream.listen(
       (response) {
         if (response.text != null) {
           var newMessageItems =
@@ -175,6 +187,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
             promptAiModelError: error,
           ),
         );
+        takeAnotherMessageNotifier.value = true;
       },
       cancelOnError: true,
       onDone: () {
@@ -182,6 +195,15 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
         chatHistoryModel.messages.add(state.messageItems.last);
       },
     );
+  }
+
+  void _handleNumberOfTokensReached(int tokens) {
+    if (tokens > 400_000) {
+      tokenNotifier.value = "Conversation is about to reach the limit";
+    } else if (tokens >= 500_000) {
+      tokenNotifier.value = "Conversation Ended";
+      reachedTokenLimit = true;
+    }
   }
 }
 

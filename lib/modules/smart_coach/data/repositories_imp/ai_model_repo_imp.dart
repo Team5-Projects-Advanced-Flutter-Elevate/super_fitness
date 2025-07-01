@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:super_fitness/modules/smart_coach/data/ai_model_contracts/ai_model_source.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart';
+import 'package:super_fitness/modules/smart_coach/domain/result/ai_model_result.dart';
 
 @Injectable(as: AiModelRepo)
 class AiModelRepoImp implements AiModelRepo {
@@ -14,18 +15,18 @@ class AiModelRepoImp implements AiModelRepo {
   AiModelRepoImp(this._aiModelSource);
 
   @override
-  Stream<GenerateContentResponse> promptModel({
-    required ChatHistoryModel chatHistoryModel,
-  }) {
+  AiModelResult promptModel({required ChatHistoryModel chatHistoryModel}) {
     // TODO: cache chat history
-    final StreamController<
-        GenerateContentResponse> controller = StreamController();
+    final StreamController<GenerateContentResponse> controller =
+        StreamController();
     final StringBuffer stringBuffer = StringBuffer();
-    _aiModelSource
-        .promptModel(chatHistoryModel: chatHistoryModel)
-        .listen(
-          (chunk) {
-            stringBuffer.write(chunk.text);
+    var aiModelResult = _aiModelSource.promptModel(
+      chatHistoryModel: chatHistoryModel,
+    );
+
+    aiModelResult.responseStream.listen(
+      (chunk) {
+        stringBuffer.write(chunk.text);
         controller.add(chunk);
       },
       onDone: () {
@@ -37,6 +38,9 @@ class AiModelRepoImp implements AiModelRepo {
       onError: controller.addError,
       cancelOnError: true,
     );
-    return controller.stream;
+    return AiModelResult(
+      numberOfToken: aiModelResult.numberOfToken,
+      responseStream: controller.stream,
+    );
   }
 }

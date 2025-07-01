@@ -982,6 +982,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown'**
   String get unknown;
+
+  /// No description provided for @editProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit profile'**
+  String get editProfile;
+
+  /// No description provided for @updatedSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated Successfully'**
+  String get updatedSuccessfully;
+
+  /// No description provided for @yourWeight.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Weight'**
+  String get yourWeight;
+
+  /// No description provided for @tapToEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'(tap to edit)'**
+  String get tapToEdit;
+
+  /// No description provided for @yourGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Goal'**
+  String get yourGoal;
+
+  /// No description provided for @yourActivityLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your activity level'**
+  String get yourActivityLevel;
+
+  /// No description provided for @update.
+  ///
+  /// In en, this message translates to:
+  /// **'Update'**
+  String get update;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

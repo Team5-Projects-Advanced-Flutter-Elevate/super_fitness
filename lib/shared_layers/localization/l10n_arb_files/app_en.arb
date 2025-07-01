@@ -146,5 +146,12 @@
   "upcomingWorkouts": "Upcoming Workouts",
   "seeAll": "See All",
   "recommendationForYou": "Recommendation For You",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "editProfile": "Edit profile",
+  "updatedSuccessfully": "Updated Successfully",
+  "yourWeight": "Your Weight",
+  "tapToEdit": "(tap to edit)",
+  "yourGoal": "Your Goal",
+  "yourActivityLevel": "Your activity level",
+  "update": "Update"
 }

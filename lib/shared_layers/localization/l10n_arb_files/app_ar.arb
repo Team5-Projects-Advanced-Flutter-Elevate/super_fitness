@@ -147,5 +147,12 @@
   "upcomingWorkouts": "التمارين القادمة",
   "seeAll": "عرض الكل",
   "recommendationForYou": "توصيات لك",
-  "unknown": "غير معروف"
+  "unknown": "غير معروف",
+  "editProfile": "تعديل الملف الشخصي",
+  "updatedSuccessfully": "تم التحديث بنجاح",
+  "yourWeight": "وزنك",
+  "tapToEdit": "(اضغط للتعديل)",
+  "yourGoal": "هدفك",
+  "yourActivityLevel": "مستوى نشاطك",
+  "update": "تحديث"
 }

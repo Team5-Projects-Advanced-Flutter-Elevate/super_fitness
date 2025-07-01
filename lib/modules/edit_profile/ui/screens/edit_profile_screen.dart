@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_fitness/modules/edit_profile/ui/screens/goal_screen.dart';
+import 'package:super_fitness/modules/edit_profile/ui/screens/weight_screen.dart';
 
 import '../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../core/colors/app_colors.dart';
@@ -12,6 +16,7 @@ import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
 import '../cubit/states.dart';
 import '../cubit/view_model.dart';
+import 'activity_screen.dart';
 
 class EditProfileScreen extends StatefulWidget {
   const EditProfileScreen({super.key});
@@ -96,16 +101,16 @@ class _EditProfileScreenState
             if (state.updateProfileStatus == EditProfileStatus.success) {
               displaySnackBar(
                 contentType: ContentType.success,
-                title: 'Success',
-                message: 'Updated Successfully',
+                title: appLocalizations.success,
+                message: appLocalizations.updatedSuccessfully,
               );
             } else if (state.updateProfileStatus == EditProfileStatus.error) {
               ErrorStateWidget(error: state.error.toString());
             } else if (state.uploadImageStatus == EditProfileStatus.success) {
               displaySnackBar(
                 contentType: ContentType.success,
-                title: 'Success',
-                message: 'Updated Successfully',
+                title: appLocalizations.success,
+                message: appLocalizations.updatedSuccessfully,
               );
             } else if (state.uploadImageStatus == EditProfileStatus.error) {
               ErrorStateWidget(error: state.error.toString());
@@ -137,7 +142,7 @@ class _EditProfileScreenState
                     ),
                   ),
                 ),
-                title: const Text('Edit profile'),
+                title: Text(appLocalizations.explore),
               ),
               body: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),
@@ -169,27 +174,49 @@ class _EditProfileScreenState
                                     shape: BoxShape.circle,
                                     boxShadow: [
                                       BoxShadow(
-                                        color: AppColors.mainColorDark.withValues(alpha: 0.3), // shadow color
+                                        color: AppColors.mainColorDark
+                                            .withValues(
+                                              alpha: 0.3,
+                                            ), // shadow color
                                         blurRadius: 8, // softens the shadow
-                                        offset: const Offset(0, 4), // moves shadow down
+                                        offset: const Offset(
+                                          0,
+                                          4,
+                                        ), // moves shadow down
                                       ),
                                     ],
                                   ),
                                   child: CircleAvatar(
                                     radius: 50,
                                     backgroundColor: AppColors.black,
-                                    child: state.profilePhotoLink == null
-                                        ? const Icon(Icons.person)
-                                        : CircleAvatar(
-                                      backgroundColor: AppColors.black,
-                                      radius: 40,
-                                      backgroundImage: CachedNetworkImageProvider(
-                                        "${state.profilePhotoLink}",
-                                      ),
-                                    ),
+                                    child:
+                                        state.profilePhotoLink == null
+                                            ? const Icon(Icons.person)
+                                            : state.profilePhotoLink != null
+                                            ? (state.profilePhotoLink!
+                                                    .startsWith('http')
+                                                ? CircleAvatar(
+                                                  backgroundColor:
+                                                      AppColors.black,
+                                                  radius: 40,
+                                                  backgroundImage:
+                                                      CachedNetworkImageProvider(
+                                                        state.profilePhotoLink!,
+                                                      ),
+                                                )
+                                                : CircleAvatar(
+                                                  backgroundColor:
+                                                      AppColors.black,
+                                                  radius: 40,
+                                                  backgroundImage: FileImage(
+                                                    File(
+                                                      state.profilePhotoLink!,
+                                                    ),
+                                                  ),
+                                                ))
+                                            : const Icon(Icons.person),
                                   ),
-                                )
-
+                                ),
                               ),
                             ],
                           ),
@@ -254,14 +281,14 @@ class _EditProfileScreenState
                           children: [
                             WidgetSpan(
                               child: Text(
-                                'Your Weight',
+                                appLocalizations.yourWeight,
                                 style: theme.textTheme.titleLarge,
                               ),
                             ),
 
                             WidgetSpan(
                               child: Text(
-                                ' (tap to edit)',
+                                appLocalizations.tapToEdit,
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   color: AppColors.mainColorDark,
                                 ),
@@ -270,21 +297,42 @@ class _EditProfileScreenState
                           ],
                         ),
                       ),
-                      TextFormField(controller: weight),
+                      StatefulBuilder(
+                        builder: (context, localSetState) {
+                          return TextFormField(
+                            controller: weight,
+                            readOnly: true,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => WeightScreen(
+                                    onSelected: (selectedWeight) {
+                                      localSetState(() {
+                                        weight.text = selectedWeight.toString();
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                       Text.rich(
                         textAlign: TextAlign.start,
                         TextSpan(
                           children: [
                             WidgetSpan(
                               child: Text(
-                                'Your Goal',
+                                appLocalizations.yourGoal,
                                 style: theme.textTheme.titleLarge,
                               ),
                             ),
 
                             WidgetSpan(
                               child: Text(
-                                ' (tap to edit)',
+                                appLocalizations.tapToEdit,
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   color: AppColors.mainColorDark,
                                 ),
@@ -293,21 +341,42 @@ class _EditProfileScreenState
                           ],
                         ),
                       ),
-                      TextFormField(controller: goal),
+                      StatefulBuilder(
+                        builder: (context, localSetState) {
+                          return TextFormField(
+                            controller: goal,
+                            readOnly: true,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GoalScreen(
+                                    onSelected: (selectedGoal) {
+                                      localSetState(() {
+                                        goal.text = selectedGoal;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
                       Text.rich(
                         textAlign: TextAlign.start,
                         TextSpan(
                           children: [
                             WidgetSpan(
                               child: Text(
-                                'Your activity level',
+                                appLocalizations.yourActivityLevel,
                                 style: theme.textTheme.titleLarge,
                               ),
                             ),
 
                             WidgetSpan(
                               child: Text(
-                                ' (tap to edit)',
+                                appLocalizations.tapToEdit,
                                 style: theme.textTheme.titleLarge?.copyWith(
                                   color: AppColors.mainColorDark,
                                 ),
@@ -316,7 +385,46 @@ class _EditProfileScreenState
                           ],
                         ),
                       ),
-                      TextFormField(controller: level),
+                      StatefulBuilder(
+                        builder: (context, localSetState) {
+                          return TextFormField(
+                            controller: level,
+                            readOnly: true,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ActivityScreen(
+                                    onSelected: (selectedActivity) {
+                                      localSetState(() {
+                                        level.text = selectedActivity;
+                                      });
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                      FilledButton(
+                        onPressed:
+                            isDirty
+                                ? () {
+                                  editProfileViewModel.onIntent(
+                                    EditInfo(
+                                      firstName.text,
+                                      lastName.text,
+                                      email.text,
+                                      goal.text,
+                                      weight.text,
+                                      level.text,
+                                    ),
+                                  );
+                                }
+                                : null,
+                        child: Text(appLocalizations.update),
+                      ),
                     ],
                   ),
                 ),

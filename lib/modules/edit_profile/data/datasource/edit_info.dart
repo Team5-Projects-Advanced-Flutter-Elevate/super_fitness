@@ -6,6 +6,8 @@ abstract class EditInfoOnlineDataSource {
     String? firstName,
     String? lastName,
     String? email,
-    String? phone,
+    String? goal,
+    String? weight,
+    String?level
   );
 }

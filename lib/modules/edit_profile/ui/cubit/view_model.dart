@@ -4,6 +4,9 @@ import 'package:injectable/injectable.dart';
 import 'package:super_fitness/modules/edit_profile/ui/cubit/states.dart';
 
 import '../../../../core/apis/api_result/api_result.dart';
+import '../../../../core/di/injectable_initializer.dart';
+import '../../../../core/utilities/user_provider/user_provider.dart';
+import '../../../authentication/domain/entities/login/login_data_response_entity.dart';
 import '../../domain/entity/edit_info.dart';
 import '../../domain/entity/get_data_entity.dart';
 import '../../domain/entity/upload_image_response_entity.dart';
@@ -35,14 +38,15 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           intent.firstName,
           intent.lastName,
           intent.email,
-          intent.phone,
+          intent.goal,
+          intent.weight,
+          intent.level,
         );
         break;
 
       case LoadProfileImageIntent():
         _uploadProfileImage(intent.imageFile);
         break;
-
     }
   }
 
@@ -66,7 +70,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           gender: data?.gender,
           goal: data?.goal,
           weight: data?.weight.toString(),
-          level: data?.activityLevel
+          level: data?.activityLevel,
         );
 
         // Save a snapshot of initial data for dirty-checking
@@ -91,6 +95,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
       case Success<UploadImageResponseEntity?>():
         final updatedState = state.copyWith(
           uploadImageStatus: EditProfileStatus.success,
+          profilePhotoLink: imageFile.path,
         );
         emit(updatedState.copyWith(initialData: updatedState));
         break;
@@ -106,20 +111,28 @@ class EditProfileViewModel extends Cubit<ProfileState> {
     }
   }
 
-
   Future<void> _editInfo(
     String? firstName,
     String? lastName,
     String? email,
-    String? phone,
+    String? goal,
+    String? weight,
+    String? level,
   ) async {
     emit(state.copyWith(updateProfileStatus: EditProfileStatus.loading));
 
-    var result = await editInfoUseCase.call(firstName, lastName, email, phone);
+    var result = await editInfoUseCase.call(
+      firstName,
+      lastName,
+      email,
+      goal,
+      weight,
+      level,
+    );
 
     switch (result) {
       case Success<EditMyInfoEntity>():
-        final data = result.data.driver;
+        final data = result.data.user;
 
         final updatedState = state.copyWith(
           updateProfileStatus: EditProfileStatus.success,
@@ -128,11 +141,30 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           email: data?.email ?? '',
           password: 'Mmmmm@123', // UI-only placeholder
           profilePhotoLink: data?.photo,
-          gender: data?.gender,
+          goal: data?.goal ?? '',
+          weight: data?.weight.toString() ?? '',
+          level: data?.activityLevel ?? '',
         );
 
         // After successful update, reset initial snapshot
         emit(updatedState.copyWith(initialData: updatedState));
+
+        getIt<UserProvider>().changeUserLoginInfo(
+          LoginEntity(
+            user: UserEntity(
+              id: data?.id,
+              firstName: data?.firstName,
+              lastName: data?.lastName,
+              email: data?.email,
+              photo: data?.photo,
+              goal: data?.goal ?? '',
+              weight: data?.weight,
+              activityLevel: data?.activityLevel ?? '',
+            ),
+
+            // add other fields from your LoginEntity
+          ),
+        );
         break;
 
       case Error<EditMyInfoEntity?>():
@@ -147,7 +179,6 @@ class EditProfileViewModel extends Cubit<ProfileState> {
   }
 }
 
-
 sealed class EditIntent {}
 
 class EditProfileIntent extends EditIntent {}
@@ -156,9 +187,17 @@ class EditInfo extends EditIntent {
   final String firstName;
   final String? lastName;
   final String? email;
-  final String? phone;
-
-  EditInfo(this.firstName, this.lastName, this.email, this.phone);
+  final String? goal;
+  final String? weight;
+  final String? level;
+  EditInfo(
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.goal,
+    this.weight,
+    this.level,
+  );
 }
 
 class LoadProfileImageIntent extends EditIntent {
@@ -166,5 +205,3 @@ class LoadProfileImageIntent extends EditIntent {
 
   LoadProfileImageIntent(this.imageFile);
 }
-
-

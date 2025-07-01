@@ -453,4 +453,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknown => 'غير معروف';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get updatedSuccessfully => 'تم التحديث بنجاح';
+
+  @override
+  String get yourWeight => 'وزنك';
+
+  @override
+  String get tapToEdit => '(اضغط للتعديل)';
+
+  @override
+  String get yourGoal => 'هدفك';
+
+  @override
+  String get yourActivityLevel => 'مستوى نشاطك';
+
+  @override
+  String get update => 'تحديث';
 }

@@ -15,14 +15,18 @@ class EditInfoOnlineDataSourceImpl implements EditInfoOnlineDataSource {
     String? firstName,
     String? lastName,
     String? email,
-    String? phone,
+    String? goal,
+    String? weight,
+    String? level,
   ) async {
     var apiResult = await ApiExecutor.executeApi(
       () => _getDataApiClient.editInfo({
         "firstName": "$firstName",
         "lastName": "$lastName",
         "email": "$email",
-        "phone": "$phone",
+        "goal": "$goal",
+        "weight": "$weight",
+        "activityLevel": "$level",
       }),
     );
 

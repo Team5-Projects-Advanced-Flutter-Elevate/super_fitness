@@ -453,4 +453,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknown => 'Unknown';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get updatedSuccessfully => 'Updated Successfully';
+
+  @override
+  String get yourWeight => 'Your Weight';
+
+  @override
+  String get tapToEdit => '(tap to edit)';
+
+  @override
+  String get yourGoal => 'Your Goal';
+
+  @override
+  String get yourActivityLevel => 'Your activity level';
+
+  @override
+  String get update => 'Update';
 }

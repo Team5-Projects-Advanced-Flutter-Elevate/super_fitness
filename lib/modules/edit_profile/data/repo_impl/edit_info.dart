@@ -14,13 +14,17 @@ class EditInfoRepoImpl implements EditInfoRepo {
     String? firstName,
     String? lastName,
     String? email,
-    String? phone,
+    String? goal,
+    String? weight,
+    String? level,
   ) {
     return _editInfoOnlineDataSource.editInfo(
       firstName,
       lastName,
       email,
-      phone,
+      goal,
+      weight,
+      level,
     );
   }
 }

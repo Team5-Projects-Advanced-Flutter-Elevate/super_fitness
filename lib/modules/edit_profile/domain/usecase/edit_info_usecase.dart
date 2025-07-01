@@ -13,8 +13,10 @@ class EditInfoUseCase {
     String? firstName,
     String? lastName,
     String? email,
-    String? phone,
+    String? goal,
+    String? weight,
+    String? level,
   ) {
-    return _editInfoRepo.editInfo(firstName, lastName, email, phone);
+    return _editInfoRepo.editInfo(firstName, lastName, email, goal,weight,level);
   }
 }

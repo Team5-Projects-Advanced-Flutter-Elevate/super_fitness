@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -465,4 +464,53 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknown => 'Unknown';
+
+  @override
+  String get aiChatFeature____________ => '\$\$\$ Comment \$\$\$';
+
+  @override
+  String get iAmYourSmartCoach => 'I Am Your Smart Coach';
+
+  @override
+  String get previousConversations => 'Previous Conversations';
+
+  @override
+  String get howCanIAssistYouToday => 'How Can I Assist You\nToday ?';
+
+  @override
+  String get getStarted => 'Get Started';
+
+  @override
+  String get smartCoach => 'Smart Coach';
+
+  @override
+  String get untitledChat => 'Untitled Chat';
+
+  @override
+  String get messageGemini => 'Message Gemini';
+
+  @override
+  String get tellingGeminiToBeSmartFitnessCoach =>
+      'You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.';
+
+  @override
+  String get tellingGeminiToWelcomeUser =>
+      'Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations';
+
+  @override
+  String tellingGeminiToWelcomeUserNamed(Object userName) {
+    return 'Welcome user named $userName briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations';
+  }
+
+  @override
+  String tellingGeminiToGiveChatTitle(Object firstMessage) {
+    return 'Give a short, 10-20 characters (not more) title for this message: $firstMessage, don\'t give me options just choose the best one.';
+  }
+
+  @override
+  String get conversationIsCloseToLimit =>
+      'Conversation is about to reach its limit';
+
+  @override
+  String get conversationEnded => 'Conversation Ended';
 }

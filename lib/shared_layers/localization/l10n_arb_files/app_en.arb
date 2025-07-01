@@ -146,5 +146,20 @@
   "upcomingWorkouts": "Upcoming Workouts",
   "seeAll": "See All",
   "recommendationForYou": "Recommendation For You",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "aiChatFeature____________": "$$$ Comment $$$",
+  "iAmYourSmartCoach": "I Am Your Smart Coach",
+  "previousConversations": "Previous Conversations",
+  "howCanIAssistYouToday": "How Can I Assist You\nToday ?",
+  "getStarted": "Get Started",
+  "smartCoach": "Smart Coach",
+  "untitledChat": "Untitled Chat",
+  "messageGemini": "Message Gemini",
+  "tellingGeminiToBeSmartFitnessCoach": "You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.",
+  "tellingGeminiToWelcomeUser": "Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
+  "tellingGeminiToWelcomeUserNamed": "Welcome user named {userName} briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
+  "tellingGeminiToGiveChatTitle": "Give a short, 10-20 characters (not more) title for this message: {firstMessage}, don't give me options just choose the best one.",
+  "conversationIsCloseToLimit": "Conversation is about to reach its limit",
+  "conversationEnded": "Conversation Ended"
+
 }

@@ -42,7 +42,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                 style: theme.textTheme.titleMedium,
               ),
               TextSpan(
-                text: "I Am Your Smart Coach",
+                text: appLocalizations.iAmYourSmartCoach,
                 style: theme.textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
@@ -57,7 +57,10 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
             onPressed: () {
               scaffoldKey.currentState!.openEndDrawer();
             },
-            icon: const ImageIcon(AssetImage(AssetsPaths.threeLinesIcon)),
+            icon: ImageIcon(
+              const AssetImage(AssetsPaths.threeLinesIcon),
+              color: AppColors.mainColorDark,
+            ),
           ),
         ],
       ),
@@ -73,7 +76,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "Previous Conversations",
+                    appLocalizations.previousConversations,
                     textAlign: TextAlign.end,
                     style: theme.textTheme.titleMedium!.copyWith(
                       fontWeight: FontWeight.w700,
@@ -136,7 +139,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "How Can I Assist You\nToday ?",
+                        appLocalizations.howCanIAssistYouToday,
                         textAlign: TextAlign.center,
                         style: theme.textTheme.titleLarge,
                       ),
@@ -148,7 +151,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                             DefinedRoutes.smartCoachScreenRoute,
                           );
                         },
-                        child: const Text("Get Started"),
+                        child: Text(appLocalizations.getStarted),
                       ),
                     ],
                   ),

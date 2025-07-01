@@ -1,10 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class ChatHistoryModel extends Equatable {
+  // ignore_for_file: must_be_immutable
 
   List<MessageItem> messages;
 
-  ChatHistoryModel({required this.messages});
+  bool didChatEnded;
+
+  String title;
+
+  ChatHistoryModel(
+      {required this.messages, this.didChatEnded = false, this.title = ""});
 
   @override
   List<Object?> get props => [messages];

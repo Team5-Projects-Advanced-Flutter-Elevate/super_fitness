@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -465,4 +464,53 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknown => 'غير معروف';
+
+  @override
+  String get aiChatFeature____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get iAmYourSmartCoach => 'أنا مدربك الذكي';
+
+  @override
+  String get previousConversations => 'المحادثات السابقة';
+
+  @override
+  String get howCanIAssistYouToday => 'كيف يمكنني مساعدتك\nاليوم؟';
+
+  @override
+  String get getStarted => 'ابدأ الآن';
+
+  @override
+  String get smartCoach => 'مدرب ذكي';
+
+  @override
+  String get untitledChat => 'دردشة بدون عنوان';
+
+  @override
+  String get messageGemini => 'أرسل رسالة إلى Gemini';
+
+  @override
+  String get tellingGeminiToBeSmartFitnessCoach =>
+      'أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.';
+
+  @override
+  String get tellingGeminiToWelcomeUser =>
+      'رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
+
+  @override
+  String tellingGeminiToWelcomeUserNamed(Object userName) {
+    return 'رحّب بالمستخدم الذي اسمه $userName بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
+  }
+
+  @override
+  String tellingGeminiToGiveChatTitle(Object firstMessage) {
+    return 'قدّم عنوانًا قصيرًا من 10 إلى 20 حرفًا لهذه الرسالة: $firstMessage، لا تعطِ خيارات، فقط اختر الأفضل.';
+  }
+
+  @override
+  String get conversationIsCloseToLimit =>
+      'المحادثة على وشك الوصول إلى الحد الأقصى';
+
+  @override
+  String get conversationEnded => 'انتهت المحادثة';
 }

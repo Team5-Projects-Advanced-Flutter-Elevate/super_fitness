@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -39,6 +38,7 @@ class AiModelSourceImp implements AiModelSource {
       },
       onDone: () {
         debugPrint("$totalTokens ================");
+        controller.close();
       },
       onError: controller.addError,
       cancelOnError: true,

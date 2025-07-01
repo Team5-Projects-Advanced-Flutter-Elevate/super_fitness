@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +17,9 @@ import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_stat
 import 'package:super_fitness/modules/smart_coach/ui/widgets/custom_chat_message_container.dart';
 
 class SmartCoachScreen extends StatefulWidget {
-  const SmartCoachScreen({super.key});
+  final ChatHistoryModel? chatHistoryModel;
+
+  const SmartCoachScreen({super.key, this.chatHistoryModel});
 
   @override
   State<SmartCoachScreen> createState() => _SmartCoachScreenState();
@@ -38,10 +39,15 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   @override
   void initState() {
     super.initState();
-    smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
+    if (widget.chatHistoryModel != null) {
+      smartCoachScreenViewModel.doIntent(
+        InitViewModel(chatHistoryModel: widget.chatHistoryModel!),
+      );
+    } else {
+      smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
+    }
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
-      print("========= ${hasFocusNotifier.value}");
     });
     textEditingController.addListener(() {
       hasText.value = textEditingController.text.trim().isNotEmpty;
@@ -70,7 +76,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
             key: scaffoldKey,
             appBar: AppBar(
               title: Text(
-                "Smart Coach",
+                appLocalizations.smartCoach,
                 style: theme.textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.w800,
                 ),
@@ -82,7 +88,10 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   onPressed: () {
                     scaffoldKey.currentState!.openEndDrawer();
                   },
-                  icon: const ImageIcon(AssetImage(AssetsPaths.threeLinesIcon)),
+                  icon: ImageIcon(
+                    const AssetImage(AssetsPaths.threeLinesIcon),
+                    color: AppColors.mainColorDark,
+                  ),
                 ),
               ],
               leading: IconButton(
@@ -111,7 +120,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          "Previous Conversations",
+                          appLocalizations.previousConversations,
                           textAlign: TextAlign.end,
                           style: theme.textTheme.titleMedium!.copyWith(
                             fontWeight: FontWeight.w700,
@@ -161,7 +170,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                     smartCoachScreenViewModel.conversationTitleNotifier,
                     builder: (context, title, child) {
                       return Text(
-                        title.isEmpty ? "Untitled Chat" : title,
+                        title.isEmpty ? appLocalizations.untitledChat : title,
                         textAlign: TextAlign.center,
                         style: theme.textTheme.titleSmall!.copyWith(
                           fontWeight: FontWeight.w600,
@@ -180,7 +189,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                           SmartCoachScreenState
                       >(
                         builder: (context, state) {
-                          print("@@@@@@2 inside Bloc Builder");
                           return ListView.separated(
                             shrinkWrap: true,
                             itemCount: state.messageItems.length - 2,
@@ -260,10 +268,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   ValueListenableBuilder(
                     valueListenable: smartCoachScreenViewModel.tokenNotifier,
                     builder: (context, value, child) {
-                      return Text(
-                        value,
-                        style: theme.textTheme.titleSmall,
-                      );
+                      return Text(value, style: theme.textTheme.titleSmall);
                     },
                   ),
                   const SizedBox(height: 4),
@@ -272,86 +277,93 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                     builder: (context, isFocused, child) {
                       return AnimatedContainer(
                         duration: const Duration(seconds: 1000),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.black,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color:
-                                  isFocused
+                        child: ValueListenableBuilder(
+                          valueListenable:
+                          smartCoachScreenViewModel.chatEndedNotifier,
+                          builder: (context, didChatEnd, child) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: AppColors.black,
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                  color:
+                                  didChatEnd
+                                      ? AppColors.black[60]!
+                                      : isFocused
                                       ? AppColors.mainColorDark
                                       : AppColors.white,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(20),
-                                child: TextField(
-                                  controller: textEditingController,
-                                  maxLines: 5,
-                                  minLines: 1,
-                                  focusNode: textFieldFocusNode,
-                                  decoration: InputDecoration(
-                                    hoverColor: Colors.transparent,
-                                    border: InputBorder.none,
-                                    hintText: "Message Gemini",
-                                    enabledBorder: InputBorder.none,
-                                    focusedBorder: InputBorder.none,
-                                    fillColor: AppColors.black,
-                                    filled: true,
-                                  ),
                                 ),
                               ),
-                              ValueListenableBuilder(
-                                valueListenable: hasText,
-                                builder: (context, hasText, child) {
-                                  return ValueListenableBuilder(
-                                    valueListenable:
-                                    smartCoachScreenViewModel
-                                        .takeAnotherMessageNotifier,
-                                    builder: (context,
-                                        takeAnotherMessage,
-                                        child,) {
-                                      print("----------- ${hasText &&
-                                          takeAnotherMessage}");
-                                      print("----------- ${hasText}");
-                                      print(
-                                          "----------- ${takeAnotherMessage}");
-                                      return Row(
-                                        children: [
-                                          const Spacer(),
-                                          IconButton(
-                                            onPressed:
-                                            hasText && takeAnotherMessage
-                                                ? () {
-                                              smartCoachScreenViewModel
-                                                  .doIntent(
-                                                PromptAiToAnswerUser(
-                                                  message:
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: TextField(
+                                      enabled: !didChatEnd,
+                                      controller: textEditingController,
+                                      maxLines: 5,
+                                      minLines: 1,
+                                      focusNode: textFieldFocusNode,
+                                      decoration: InputDecoration(
+                                        hoverColor: Colors.transparent,
+                                        border: InputBorder.none,
+                                        hintText:
+                                        appLocalizations.messageGemini,
+                                        enabledBorder: InputBorder.none,
+                                        focusedBorder: InputBorder.none,
+                                        disabledBorder: InputBorder.none,
+                                        fillColor: AppColors.black,
+                                        filled: true,
+                                      ),
+                                    ),
+                                  ),
+                                  ValueListenableBuilder(
+                                    valueListenable: hasText,
+                                    builder: (context, hasText, child) {
+                                      return ValueListenableBuilder(
+                                        valueListenable:
+                                        smartCoachScreenViewModel
+                                            .takeAnotherMessageNotifier,
+                                        builder: (context,
+                                            takeAnotherMessage,
+                                            child,) {
+                                          return Row(
+                                            children: [
+                                              const Spacer(),
+                                              IconButton(
+                                                onPressed:
+                                                hasText &&
+                                                    takeAnotherMessage
+                                                    ? () {
+                                                  smartCoachScreenViewModel
+                                                      .doIntent(
+                                                    PromptAiToAnswerUser(
+                                                      message:
+                                                      textEditingController
+                                                          .text,
+                                                    ),
+                                                  );
                                                   textEditingController
-                                                      .text,
-                                                ),
-                                              );
-                                              textEditingController
-                                                  .clear();
-                                              FocusManager
-                                                  .instance
-                                                  .primaryFocus
-                                                  ?.unfocus();
-                                            }
-                                                : null,
-                                            icon: const Icon(Icons.send),
-                                          ),
-                                        ],
+                                                      .clear();
+                                                  FocusManager
+                                                      .instance
+                                                      .primaryFocus
+                                                      ?.unfocus();
+                                                }
+                                                    : null,
+                                                icon: const Icon(Icons.send),
+                                              ),
+                                            ],
+                                          );
+                                        },
                                       );
                                     },
-                                  );
-                                },
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            );
+                          },
                         ),
                       );
                     },

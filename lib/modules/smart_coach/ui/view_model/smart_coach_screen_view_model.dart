@@ -6,6 +6,7 @@ import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/modules/smart_coach/domain/use_cases/prompt_model_use_case.dart';
 import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_state.dart';
+import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 
 @injectable
 class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
@@ -19,14 +20,14 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
   ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);
   ValueNotifier<String> conversationTitleNotifier = ValueNotifier("");
-
   ValueNotifier<String> tokenNotifier = ValueNotifier("");
-
-  bool reachedTokenLimit = false;
+  ValueNotifier<bool> chatEndedNotifier = ValueNotifier(false);
 
   void doIntent(SmartCoachScreenIntent intent) {
-    if (reachedTokenLimit) return;
     switch (intent) {
+      case InitViewModel():
+        _initViewModel(chatHistoryModel: intent.chatHistoryModel);
+        break;
       case PromptAiToWelcomeUser():
         _promptAiToSayWelcome();
         break;
@@ -36,19 +37,33 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     }
   }
 
+  void _initViewModel({required ChatHistoryModel chatHistoryModel}) {
+    conversationTitleNotifier.value = chatHistoryModel.title;
+    chatEndedNotifier.value = chatHistoryModel.didChatEnded;
+    emit(
+      SmartCoachScreenState(
+        promptAiModelStatus: Status.success,
+        messageItems: chatHistoryModel.messages,
+      ),
+    );
+    takeAnotherMessageNotifier.value = true;
+  }
+
   void _promptAiToSayWelcome() {
+    AppLocalizations appLocalizations = getIt.get<AppLocalizations>();
     chatHistoryModel.messages.addAll([
       MessageItem(
         role: MessageRoles.user,
-        message:
-            "You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.",
+        message: appLocalizations.tellingGeminiToBeSmartFitnessCoach,
       ),
       MessageItem(
         role: MessageRoles.user,
         message:
             userInfo?.firstName == null && userInfo?.lastName == null
-                ? "Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations"
-                : "Welcome user named ${userInfo?.firstName ?? userInfo?.lastName} briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
+                ? appLocalizations.tellingGeminiToWelcomeUser
+                : appLocalizations.tellingGeminiToWelcomeUserNamed(
+              "${userInfo?.firstName ?? userInfo?.lastName}",
+            ),
       ),
     ]);
     List<MessageItem> currentMessageItems =
@@ -66,11 +81,11 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     );
     _handleNumberOfTokensReached(useCaseResult.numberOfToken);
     useCaseResult.responseStream.listen(
-      (response) {
-        if (response.text != null) {
+          (chunk) {
+        if (chunk.text != null) {
           var newMessageItems =
               state.messageItems.map((e) => e.copyWith()).toList();
-          newMessageItems.last.message += response.text!;
+          newMessageItems.last.message += chunk.text!;
           emit(
             state.copyWith(
               promptAiModelStatus: Status.success,
@@ -84,7 +99,10 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       onError: (error) {
         var newMessagesItem =
             state.messageItems.map((e) => e.copyWith()).toList();
-        newMessagesItem.last.message = "Something Went Wrong";
+        newMessagesItem.last.message =
+            getIt
+                .get<AppLocalizations>()
+                .somethingWentWrong;
         emit(
           state.copyWith(
             promptAiModelStatus: Status.error,
@@ -96,7 +114,6 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       },
       cancelOnError: true,
       onDone: () {
-        print("in onDone:of sayWelcome");
         takeAnotherMessageNotifier.value = true;
         chatHistoryModel.messages.add(state.messageItems.last);
       },
@@ -104,13 +121,15 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   }
 
   void _getTitleFromUserFirstMessage(String firstMessage) async {
+    AppLocalizations appLocalizations = getIt.get<AppLocalizations>();
     var useCaseResult = _promptModelUseCase.call(
       chatHistoryModel: ChatHistoryModel(
         messages: [
           MessageItem(
             role: MessageRoles.user,
-            message:
-                "Give a short, 10-20 characters (not more) title for this message: $firstMessage, don't give me options just choose the best one.",
+            message: appLocalizations.tellingGeminiToGiveChatTitle(
+              firstMessage,
+            ),
           ),
         ],
       ),
@@ -126,6 +145,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
         conversationTitleNotifier.value = "";
       },
       onDone: () {
+        chatHistoryModel.title = titleStringBuffer.toString();
         conversationTitleNotifier.value = titleStringBuffer.toString();
       },
     );
@@ -179,7 +199,10 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       onError: (error) {
         var newMessagesItem =
             state.messageItems.map((e) => e.copyWith()).toList();
-        newMessagesItem.last.message = "Something Went Wrong";
+        newMessagesItem.last.message =
+            getIt
+                .get<AppLocalizations>()
+                .somethingWentWrong;
         emit(
           state.copyWith(
             promptAiModelStatus: Status.error,
@@ -198,11 +221,13 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   }
 
   void _handleNumberOfTokensReached(int tokens) {
+    AppLocalizations appLocalizations = getIt.get<AppLocalizations>();
     if (tokens > 400_000) {
-      tokenNotifier.value = "Conversation is about to reach the limit";
+      tokenNotifier.value = appLocalizations.conversationIsCloseToLimit;
     } else if (tokens >= 500_000) {
-      tokenNotifier.value = "Conversation Ended";
-      reachedTokenLimit = true;
+      tokenNotifier.value = appLocalizations.conversationEnded;
+      chatHistoryModel.didChatEnded = true;
+      chatEndedNotifier.value = true;
     }
   }
 }
@@ -215,6 +240,12 @@ class PromptAiToAnswerUser extends SmartCoachScreenIntent {
   String message;
 
   PromptAiToAnswerUser({required this.message});
+}
+
+class InitViewModel extends SmartCoachScreenIntent {
+  ChatHistoryModel chatHistoryModel;
+
+  InitViewModel({required this.chatHistoryModel});
 }
 
 /*

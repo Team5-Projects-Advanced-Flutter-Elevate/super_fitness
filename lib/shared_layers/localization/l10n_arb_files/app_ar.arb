@@ -147,5 +147,20 @@
   "upcomingWorkouts": "التمارين القادمة",
   "seeAll": "عرض الكل",
   "recommendationForYou": "توصيات لك",
-  "unknown": "غير معروف"
+  "unknown": "غير معروف",
+  "aiChatFeature____________": "$$$ تعليق $$$",
+  "iAmYourSmartCoach": "أنا مدربك الذكي",
+  "previousConversations": "المحادثات السابقة",
+  "howCanIAssistYouToday": "كيف يمكنني مساعدتك\nاليوم؟",
+  "getStarted": "ابدأ الآن",
+  "smartCoach": "مدرب ذكي",
+  "untitledChat": "دردشة بدون عنوان",
+  "messageGemini": "أرسل رسالة إلى Gemini",
+  "tellingGeminiToBeSmartFitnessCoach": "أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.",
+  "tellingGeminiToWelcomeUser": "رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.",
+  "tellingGeminiToWelcomeUserNamed": "رحّب بالمستخدم الذي اسمه {userName} بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.",
+  "tellingGeminiToGiveChatTitle": "قدّم عنوانًا قصيرًا من 10 إلى 20 حرفًا لهذه الرسالة: {firstMessage}، لا تعطِ خيارات، فقط اختر الأفضل.",
+  "conversationIsCloseToLimit": "المحادثة على وشك الوصول إلى الحد الأقصى",
+  "conversationEnded": "انتهت المحادثة"
+
 }

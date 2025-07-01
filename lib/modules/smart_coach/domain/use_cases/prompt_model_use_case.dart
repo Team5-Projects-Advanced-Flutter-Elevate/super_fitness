@@ -9,9 +9,7 @@ class PromptModelUseCase {
 
   PromptModelUseCase(this._aiModelRepo);
 
-  AiModelResult call({
-    required ChatHistoryModel chatHistoryModel,
-  }) {
+  AiModelResult call({required ChatHistoryModel chatHistoryModel}) {
     return _aiModelRepo.promptModel(chatHistoryModel: chatHistoryModel);
   }
 }

@@ -35,7 +35,7 @@ void main() async {
     // 2. Safety Net provider
     // 3. Play Integrity provider
     androidProvider:
-    kReleaseMode ? AndroidProvider.playIntegrity : AndroidProvider.debug,
+        kReleaseMode ? AndroidProvider.playIntegrity : AndroidProvider.debug,
     // Default provider for iOS/macOS is the Device Check provider. You can use the "AppleProvider" enum to choose
     // your preferred provider. Choose from:
     // 1. Debug provider
@@ -43,7 +43,7 @@ void main() async {
     // 3. App Attest provider
     // 4. App Attest provider with fallback to Device Check provider (App Attest provider is only available on iOS 14.0+, macOS 14.0+)
     appleProvider:
-    kReleaseMode ? AppleProvider.deviceCheck : AppleProvider.debug,
+        kReleaseMode ? AppleProvider.deviceCheck : AppleProvider.debug,
   );
   await configureDependencies();
 

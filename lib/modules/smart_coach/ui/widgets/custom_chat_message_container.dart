@@ -66,10 +66,7 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
                       topRight: Radius.circular(20),
                     ),
                   ),
-                  child: Transform.flip(
-                    flipX: flipX,
-                    child: message,
-                  ),
+                  child: Transform.flip(flipX: flipX, child: message),
                 ),
               ),
             ),

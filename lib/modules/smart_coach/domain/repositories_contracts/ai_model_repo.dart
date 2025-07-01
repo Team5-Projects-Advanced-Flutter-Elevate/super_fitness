@@ -3,5 +3,4 @@ import 'package:super_fitness/modules/smart_coach/domain/result/ai_model_result.
 
 abstract interface class AiModelRepo {
   AiModelResult promptModel({required ChatHistoryModel chatHistoryModel});
-
 }

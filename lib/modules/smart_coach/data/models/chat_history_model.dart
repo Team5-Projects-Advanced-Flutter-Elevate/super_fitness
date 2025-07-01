@@ -9,8 +9,11 @@ class ChatHistoryModel extends Equatable {
 
   String title;
 
-  ChatHistoryModel(
-      {required this.messages, this.didChatEnded = false, this.title = ""});
+  ChatHistoryModel({
+    required this.messages,
+    this.didChatEnded = false,
+    this.title = "",
+  });
 
   @override
   List<Object?> get props => [messages];
@@ -32,13 +35,10 @@ class MessageItem extends Equatable {
 
   MessageItem copyWith({MessageRoles? role, String? message}) {
     return MessageItem(
-        role: role ?? this.role,
-        message: message ?? this.message
+      role: role ?? this.role,
+      message: message ?? this.message,
     );
   }
 }
 
-enum MessageRoles {
-  user,
-  model
-}
+enum MessageRoles { user, model }

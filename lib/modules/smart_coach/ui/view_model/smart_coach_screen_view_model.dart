@@ -62,8 +62,8 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
             userInfo?.firstName == null && userInfo?.lastName == null
                 ? appLocalizations.tellingGeminiToWelcomeUser
                 : appLocalizations.tellingGeminiToWelcomeUserNamed(
-              "${userInfo?.firstName ?? userInfo?.lastName}",
-            ),
+                  "${userInfo?.firstName ?? userInfo?.lastName}",
+                ),
       ),
     ]);
     List<MessageItem> currentMessageItems =
@@ -81,7 +81,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     );
     _handleNumberOfTokensReached(useCaseResult.numberOfToken);
     useCaseResult.responseStream.listen(
-          (chunk) {
+      (chunk) {
         if (chunk.text != null) {
           var newMessageItems =
               state.messageItems.map((e) => e.copyWith()).toList();
@@ -100,9 +100,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
         var newMessagesItem =
             state.messageItems.map((e) => e.copyWith()).toList();
         newMessagesItem.last.message =
-            getIt
-                .get<AppLocalizations>()
-                .somethingWentWrong;
+            getIt.get<AppLocalizations>().somethingWentWrong;
         emit(
           state.copyWith(
             promptAiModelStatus: Status.error,
@@ -200,9 +198,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
         var newMessagesItem =
             state.messageItems.map((e) => e.copyWith()).toList();
         newMessagesItem.last.message =
-            getIt
-                .get<AppLocalizations>()
-                .somethingWentWrong;
+            getIt.get<AppLocalizations>().somethingWentWrong;
         emit(
           state.copyWith(
             promptAiModelStatus: Status.error,

@@ -1033,6 +1033,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'English'**
   String get english;
+
+  /// No description provided for @areYouSureLogout.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get areYouSureLogout;
+
+  /// No description provided for @logoutCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get logoutCancel;
 }
 
 class _AppLocalizationsDelegate

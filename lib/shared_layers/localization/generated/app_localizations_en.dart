@@ -488,4 +488,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get english => 'English';
+
+  @override
+  String get areYouSureLogout => 'Are you sure you want to logout?';
+
+  @override
+  String get logoutCancel => 'Cancel';
 }

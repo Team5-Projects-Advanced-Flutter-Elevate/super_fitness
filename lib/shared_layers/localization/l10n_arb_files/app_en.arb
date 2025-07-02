@@ -154,5 +154,7 @@
   "privacyPolicy": "Privacy Policy",
   "help": "Help",
   "logout": "Logout",
-  "english": "English"
+  "english": "English",
+  "areYouSureLogout": "Are you sure you want to logout?",
+  "logoutCancel": "Cancel"
 }

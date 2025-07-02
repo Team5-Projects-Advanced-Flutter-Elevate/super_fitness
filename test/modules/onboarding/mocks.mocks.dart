@@ -1755,6 +1755,28 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get areYouSureLogout =>
+      (super.noSuchMethod(
+            Invocation.getter(#areYouSureLogout),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#areYouSureLogout),
+            ),
+          )
+          as String);
+
+  @override
+  String get logoutCancel =>
+      (super.noSuchMethod(
+            Invocation.getter(#logoutCancel),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#logoutCancel),
+            ),
+          )
+          as String);
+
+  @override
   String hiUser(Object? userName) =>
       (super.noSuchMethod(
             Invocation.method(#hiUser, [userName]),

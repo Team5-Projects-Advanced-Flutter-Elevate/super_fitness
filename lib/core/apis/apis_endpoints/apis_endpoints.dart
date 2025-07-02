@@ -14,5 +14,6 @@ class ApisEndpoints {
   static const String musclesGroup = '/api/v1/muscles';
   static const String musclesGroupWorkouts = '/api/v1/musclesGroup/{id}';
   static const String foodDetails = '/api/json/v1/1/lookup.php';
+  static const String changePasswordEndPoint = '/api/v1/auth/change-password';
   static const String getProfileData = '/api/v1/auth/profile-data';
 }

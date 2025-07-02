@@ -133,22 +133,32 @@ import '../../modules/food_details/ui/view_model/food_details_cubit.dart'
 import '../../modules/home/data/api/api_client/home_api_client.dart' as _i293;
 import '../../modules/home/data/api/api_client_provider/home_api_client_provider.dart'
     as _i939;
+import '../../modules/home/data/data_sources_contracts/change_password/change_password_remote_data_source_contract.dart'
+    as _i544;
 import '../../modules/home/data/data_sources_contracts/random_exercises/random_exercises_remote_data_source.dart'
     as _i1066;
 import '../../modules/home/data/data_sources_contracts/workout_datasource_contract.dart'
     as _i195;
+import '../../modules/home/data/data_sources_imp/change_password/change_password_remote_data_source_impl.dart'
+    as _i712;
 import '../../modules/home/data/data_sources_imp/random_exercises/random_exercises_remote_data_source_imp.dart'
     as _i705;
 import '../../modules/home/data/data_sourcs_imp/workout_datasource_impl.dart'
     as _i369;
+import '../../modules/home/data/repositories_imp/change_password/change_password_repo_impl.dart'
+    as _i427;
 import '../../modules/home/data/repositories_imp/workout_repo_impl.dart'
     as _i371;
 import '../../modules/home/data/respositories_imp/random_exercises/random_exercises_repo_imp.dart'
     as _i16;
+import '../../modules/home/domain/repositories_contracts/change_password_repo_contract.dart'
+    as _i58;
 import '../../modules/home/domain/repositories_contracts/random_exercises/random_exercise_repo.dart'
     as _i352;
 import '../../modules/home/domain/repositories_contracts/workout_repo_contract.dart'
     as _i464;
+import '../../modules/home/domain/use_cases/change_password/change_password_use_case.dart'
+    as _i460;
 import '../../modules/home/domain/use_cases/random_exercises/get_ten_random_exerciese_use_case.dart'
     as _i784;
 import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_use_case.dart'
@@ -175,6 +185,8 @@ import '../../modules/home/ui/pages/profile_page/ui/view_model/profile_cubit.dar
     as _i936;
 import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
     as _i72;
+import '../../modules/home/ui/view_model/change_password/change_password_view_model.dart'
+    as _i1041;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
@@ -233,10 +245,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
+    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -274,6 +286,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i544.ChangePasswordRemoteDataSourceContract>(
+      () => _i712.ChangePasswordRemoteDataSourceImpl(
+        gh<_i145.ProfileApiClient>(),
+      ),
+    );
     gh.factory<_i208.FoodDetailsDataSource>(
       () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
     );
@@ -282,6 +299,11 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1041.ProfileRepo>(
       () => _i253.ProfileRepoImpl(gh<_i65.ProfileDatasource>()),
+    );
+    gh.factory<_i58.ChangePasswordRepoContract>(
+      () => _i427.ChangePasswordRepoImpl(
+        gh<_i544.ChangePasswordRemoteDataSourceContract>(),
+      ),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
@@ -359,9 +381,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
     );
-    gh.factory<_i936.ProfileCubit>(
-      () => _i936.ProfileCubit(gh<_i521.GetProfileDataUseCase>()),
-    );
     gh.factory<_i784.GetTenRandomExerciseUseCase>(
       () => _i784.GetTenRandomExerciseUseCase(gh<_i352.RandomExercisesRepo>()),
     );
@@ -378,6 +397,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i239.LoginRepo>(
       () => _i641.LoginRepoImpl(gh<_i969.LoginOnlineDataSource>()),
+    );
+    gh.factory<_i460.ChangePasswordUseCase>(
+      () => _i460.ChangePasswordUseCase(gh<_i58.ChangePasswordRepoContract>()),
     );
     gh.factory<_i370.ExerciseViewModel>(
       () => _i370.ExerciseViewModel(gh<_i111.ExerciseUseCase>()),
@@ -410,6 +432,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i166.ValidateFunctions>(
       () => _i166.ValidateFunctions(gh<_i543.AppLocalizations>()),
+    );
+    gh.factory<_i1041.ChangePasswordViewModel>(
+      () => _i1041.ChangePasswordViewModel(gh<_i460.ChangePasswordUseCase>()),
     );
     gh.factory<_i782.RegisterUserCase>(
       () => _i782.RegisterUserCase(gh<_i496.RegisterRepo>()),
@@ -449,6 +474,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i624.FoodViewModel(
         gh<_i1035.GetFoodCategoriesUseCase>(),
         gh<_i751.FilterMealsByCategoryNameUseCase>(),
+      ),
+    );
+    gh.factory<_i936.ProfileCubit>(
+      () => _i936.ProfileCubit(
+        gh<_i521.GetProfileDataUseCase>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
     gh.factory<_i396.LoginViewModel>(

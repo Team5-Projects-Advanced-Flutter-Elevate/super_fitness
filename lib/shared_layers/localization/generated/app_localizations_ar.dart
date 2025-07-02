@@ -488,4 +488,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get english => 'العربية';
+
+  @override
+  String get areYouSureLogout => 'هل انت متاكد من تسجيل الخروج؟';
+
+  @override
+  String get logoutCancel => 'الغاء';
 }

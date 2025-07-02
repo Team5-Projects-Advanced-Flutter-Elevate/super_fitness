@@ -10,6 +10,8 @@ import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:super_fitness/core/apis/api_result/api_result.dart' as _i4;
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart'
     as _i5;
+import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart'
+    as _i7;
 import 'package:super_fitness/modules/home/ui/pages/profile_page/domain/use_cases/get_profile_data.dart'
     as _i2;
 
@@ -48,4 +50,40 @@ class MockGetProfileDataUseCase extends _i1.Mock
             ),
           )
           as _i3.Future<_i4.ApiResult<_i5.UserEntity?>>);
+}
+
+/// A class which mocks [StoreLoginLocalUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockStoreLoginLocalUseCase extends _i1.Mock
+    implements _i7.StoreLoginLocalUseCase {
+  MockStoreLoginLocalUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<void> call(_i5.LoginEntity? loginEntity) =>
+      (super.noSuchMethod(
+            Invocation.method(#call, [loginEntity]),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
+
+  @override
+  _i3.Future<_i5.LoginEntity?> getLocalData() =>
+      (super.noSuchMethod(
+            Invocation.method(#getLocalData, []),
+            returnValue: _i3.Future<_i5.LoginEntity?>.value(),
+          )
+          as _i3.Future<_i5.LoginEntity?>);
+
+  @override
+  _i3.Future<void> clear() =>
+      (super.noSuchMethod(
+            Invocation.method(#clear, []),
+            returnValue: _i3.Future<void>.value(),
+            returnValueForMissingStub: _i3.Future<void>.value(),
+          )
+          as _i3.Future<void>);
 }

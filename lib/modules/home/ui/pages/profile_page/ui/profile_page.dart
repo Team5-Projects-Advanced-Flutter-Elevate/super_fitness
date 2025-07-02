@@ -38,7 +38,7 @@ class _ProfilePageState extends BaseStatefulWidgetState<ProfilePage> {
                 case ProfileStatus.loading:
                   return const LoadingStateWidget();
                 case ProfileStatus.success:
-                  return SuccessState(state: state);
+                  return SuccessState(state: state, cubit: profileCubit);
                 case ProfileStatus.error:
                   return ErrorStateWidget(error: state.getProfileError!);
               }

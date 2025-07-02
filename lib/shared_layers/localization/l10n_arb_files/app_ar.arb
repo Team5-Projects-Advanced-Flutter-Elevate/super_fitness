@@ -155,5 +155,7 @@
   "privacyPolicy": "سياسة الخصوصية",
   "help": "مساعدة",
   "logout": "تسجيل الخروج",
-  "english": "العربية"
+  "english": "العربية",
+  "areYouSureLogout": "هل انت متاكد من تسجيل الخروج؟",
+  "logoutCancel": "الغاء"
 }

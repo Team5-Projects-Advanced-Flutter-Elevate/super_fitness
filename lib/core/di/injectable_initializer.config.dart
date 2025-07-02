@@ -359,9 +359,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
     );
-    gh.factory<_i936.ProfileCubit>(
-      () => _i936.ProfileCubit(gh<_i521.GetProfileDataUseCase>()),
-    );
     gh.factory<_i784.GetTenRandomExerciseUseCase>(
       () => _i784.GetTenRandomExerciseUseCase(gh<_i352.RandomExercisesRepo>()),
     );
@@ -449,6 +446,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i624.FoodViewModel(
         gh<_i1035.GetFoodCategoriesUseCase>(),
         gh<_i751.FilterMealsByCategoryNameUseCase>(),
+      ),
+    );
+    gh.factory<_i936.ProfileCubit>(
+      () => _i936.ProfileCubit(
+        gh<_i521.GetProfileDataUseCase>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
     gh.factory<_i396.LoginViewModel>(

@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/profile_item.dart';
 
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
@@ -11,9 +11,10 @@ import '../../../../../../../shared_layers/localization/enums/languages_enum.dar
 import '../view_model/profile_cubit.dart';
 
 class SuccessState extends StatefulWidget {
-  const SuccessState({super.key, required this.state});
+  const SuccessState({super.key, required this.state, required this.cubit});
 
   final ProfileState state;
+  final ProfileCubit cubit;
 
   @override
   State<SuccessState> createState() => _SuccessStateState();
@@ -115,7 +116,9 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                       ProfileItem(
                         title: appLocalizations.logout,
                         leadingIcon: AssetsPaths.logoutIcon,
-                        onTrailingTap: () {},
+                        onTrailingTap: () {
+                          showLogoutDialog();
+                        },
                       ),
                     ],
                   ),
@@ -126,6 +129,33 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
         ),
         const Spacer(flex: 3),
       ],
+    );
+  }
+
+  void showLogoutDialog() {
+    showDialog(
+      context: context,
+      builder:
+          (context) => AlertDialog(
+            title: Text(appLocalizations.logout),
+            content: Text(appLocalizations.areYouSureLogout),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(appLocalizations.logoutCancel),
+              ),
+              TextButton(
+                onPressed: () {
+                  widget.cubit.doIntent(LogoutIntent());
+                  Navigator.pushReplacementNamed(
+                    context,
+                    DefinedRoutes.loginScreenRoute,
+                  );
+                },
+                child: Text(appLocalizations.confirm),
+              ),
+            ],
+          ),
     );
   }
 }

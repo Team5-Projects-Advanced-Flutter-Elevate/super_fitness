@@ -4,19 +4,25 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
+import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/domain/use_cases/get_profile_data.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/view_model/profile_cubit.dart';
 import 'profile_cubit_test.mocks.dart';
 
-@GenerateMocks([GetProfileDataUseCase])
+@GenerateMocks([GetProfileDataUseCase, StoreLoginLocalUseCase])
 void main() {
   late MockGetProfileDataUseCase mockGetProfileDataUseCase;
+  late MockStoreLoginLocalUseCase mockStoreLoginLocalUseCase;
   late ProfileCubit profileCubit;
   late Object getProfileDataError;
   late UserEntity userEntity;
   setUp(() {
     mockGetProfileDataUseCase = MockGetProfileDataUseCase();
-    profileCubit = ProfileCubit(mockGetProfileDataUseCase);
+    mockStoreLoginLocalUseCase = MockStoreLoginLocalUseCase();
+    profileCubit = ProfileCubit(
+      mockGetProfileDataUseCase,
+      mockStoreLoginLocalUseCase,
+    );
   });
   group('profile cubit', () {
     group('get profile data', () {

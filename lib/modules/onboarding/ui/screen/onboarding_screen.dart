@@ -157,12 +157,9 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: MediaQuery
-                                    .of(
+                                fontSize: MediaQuery.of(
                                   context,
-                                )
-                                    .textScaler
-                                    .scale(16),
+                                ).textScaler.scale(16),
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -170,19 +167,17 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                           FittedBox(
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 8),
+                                horizontal: 8,
+                              ),
                               child: Text(
                                 appLocalizations
                                     .utGravidaQuisIdPretiumPurusMaurisMassa,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: MediaQuery
-                                      .of(
+                                  fontSize: MediaQuery.of(
                                     context,
-                                  )
-                                      .textScaler
-                                      .scale(16),
+                                  ).textScaler.scale(16),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),

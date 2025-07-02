@@ -32,6 +32,13 @@ abstract class AssetsPaths {
   static const String workingDeveloperAnimation =
       "assets/animations/working_developer_animation.json";
 
+  static const String changePasswordIcon = "assets/icons/change_password.png";
+  static const String logoutIcon = "assets/icons/logout_icon.png";
+  static const String helpIcon = "assets/icons/help_icon.png";
+  static const String languageIcon = "assets/icons/Language_icon.png";
+  static const String privacyIcon = "assets/icons/privacy.png";
+  static const String securityIcon = "assets/icons/security_icon.png";
+
   /// strings
   static const String ingredientKey = "Ingredient";
   static const String measureKey = "Measure";

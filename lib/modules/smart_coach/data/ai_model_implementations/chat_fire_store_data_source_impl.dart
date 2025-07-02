@@ -9,12 +9,11 @@ import '../models/chat_history_model.dart';
 
 @Injectable(as: ChatFireStoreDataSource)
 class FirebaseChatDataSource implements ChatFireStoreDataSource {
-  final FirebaseFirestore _fireStore;
-
-  FirebaseChatDataSource(this._fireStore);
+  FirebaseChatDataSource();
 
   CollectionReference<ChatHistoryModel> _userChats(String userId) {
-    return _fireStore
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    return fireStore
         .collection(FireBaseConstants.userCollection)
         .doc(userId)
         .collection(FireBaseConstants.chatCollection)

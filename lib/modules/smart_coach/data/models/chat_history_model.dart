@@ -5,11 +5,11 @@ class ChatHistoryModel extends Equatable {
   // ignore_for_file: must_be_immutable
 
   String? id;
-  final String? title;
-  final List<MessageItem> messages;
+  String? title;
+  List<MessageItem> messages;
   int? createdAt; // Epoch timestamp
   int? lastUpdateAt; // Epoch timestamp
-  final bool? didChatEnded;
+  bool? didChatEnded;
 
   ChatHistoryModel({
     this.id,
@@ -50,7 +50,12 @@ class ChatHistoryModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, title, messages, createdAt, didChatEnded];
+  List<Object?> get props =>
+      [id, title, messages, createdAt, lastUpdateAt, didChatEnded];
+
+  @override
+  String toString() =>
+      "id: $id,title: $title,messages: $messages,createdAt: $createdAt,lastUpdatedAt $lastUpdateAt,didChatEnded: $didChatEnded";
 }
 
 class MessageItem extends Equatable {

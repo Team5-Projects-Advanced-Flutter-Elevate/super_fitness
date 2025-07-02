@@ -41,7 +41,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
     smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
-      print("========= ${hasFocusNotifier.value}");
     });
     textEditingController.addListener(() {
       hasText.value = textEditingController.text.trim().isNotEmpty;
@@ -184,7 +183,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                           SmartCoachScreenState
                       >(
                         builder: (context, state) {
-                          print("@@@@@@2 inside Bloc Builder");
                           return ListView.separated(
                             shrinkWrap: true,
                             itemCount: state.messageItems.length - 2,

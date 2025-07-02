@@ -1,9 +1,11 @@
+import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/modules/smart_coach/data/ai_model_contracts/chat_fire_store_data_source.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 
 import '../../domain/repositories_contracts/chat_fire_store_repo.dart';
 
+@Injectable(as: ChatFireStoreRepo)
 class ChatFireStoreRepoImp implements ChatFireStoreRepo {
   final ChatFireStoreDataSource _chatFireStoreDataSource;
 

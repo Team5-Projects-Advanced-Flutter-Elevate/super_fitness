@@ -463,12 +463,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recommendationForYou => 'Recommendation For You';
 
   @override
-  String get unknown => 'Unknown';
-
-  @override
-  String get editProfile => 'Edit Profile';
-
-  @override
   String get changePassword => 'Change Password';
 
   @override
@@ -494,4 +488,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logoutCancel => 'Cancel';
+
+  @override
+  String get unknown => 'Unknown';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get updatedSuccessfully => 'Updated Successfully';
+
+  @override
+  String get yourWeight => 'Your Weight';
+
+  @override
+  String get tapToEdit => '(tap to edit)';
+
+  @override
+  String get yourGoal => 'Your Goal';
+
+  @override
+  String get yourActivityLevel => 'Your activity level';
+
+  @override
+  String get update => 'Update';
 }

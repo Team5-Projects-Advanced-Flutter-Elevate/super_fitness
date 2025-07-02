@@ -18,25 +18,25 @@ class AiModelRepoImp implements AiModelRepo {
     required ChatHistoryModel chatHistoryModel,
   }) {
     // TODO: cache chat history
-    final StreamController<
-        GenerateContentResponse> controller = StreamController();
+    final StreamController<GenerateContentResponse> controller =
+        StreamController();
     final StringBuffer stringBuffer = StringBuffer();
     _aiModelSource
         .promptModel(chatHistoryModel: chatHistoryModel)
         .listen(
           (chunk) {
             stringBuffer.write(chunk.text);
-        controller.add(chunk);
-      },
-      onDone: () {
-        debugPrint("===================");
-        debugPrint(stringBuffer.toString());
-        debugPrint("===================");
-        controller.close();
-      },
-      onError: controller.addError,
-      cancelOnError: true,
-    );
+            controller.add(chunk);
+          },
+          onDone: () {
+            debugPrint("===================");
+            debugPrint(stringBuffer.toString());
+            debugPrint("===================");
+            controller.close();
+          },
+          onError: controller.addError,
+          cancelOnError: true,
+        );
     return controller.stream;
   }
 }

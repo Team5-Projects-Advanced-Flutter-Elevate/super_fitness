@@ -44,14 +44,20 @@ class ChatHistoryModel extends Equatable {
               .map((msg) => MessageItem.fromFireStore(msg))
               .toList(),
       didChatEnded: data['didChatEnded'],
-        createdAt: data['createdAt'],
-        lastUpdateAt: data['lastUpdateAt']
+      createdAt: data['createdAt'],
+      lastUpdateAt: data['lastUpdateAt'],
     );
   }
 
   @override
-  List<Object?> get props =>
-      [id, title, messages, createdAt, lastUpdateAt, didChatEnded];
+  List<Object?> get props => [
+    id,
+    title,
+    messages,
+    createdAt,
+    lastUpdateAt,
+    didChatEnded,
+  ];
 
   @override
   String toString() =>

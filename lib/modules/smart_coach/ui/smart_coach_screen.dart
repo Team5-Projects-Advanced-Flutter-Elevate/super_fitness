@@ -33,7 +33,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   ValueNotifier<bool> hasText = ValueNotifier(false);
 
   final SmartCoachScreenViewModel smartCoachScreenViewModel =
-  getIt.get<SmartCoachScreenViewModel>();
+      getIt.get<SmartCoachScreenViewModel>();
 
   @override
   void initState() {
@@ -151,17 +151,13 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
               ),
             ),
             body: Padding(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 16,
-              ),
+              padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   ValueListenableBuilder(
                     valueListenable:
-                    smartCoachScreenViewModel.conversationTitleNotifier,
+                        smartCoachScreenViewModel.conversationTitleNotifier,
                     builder: (context, title, child) {
                       return Text(
                         title.isEmpty ? "Untitled Chat" : title,
@@ -179,8 +175,8 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
                       child: BlocBuilder<
-                          SmartCoachScreenViewModel,
-                          SmartCoachScreenState
+                        SmartCoachScreenViewModel,
+                        SmartCoachScreenState
                       >(
                         builder: (context, state) {
                           return ListView.separated(
@@ -200,11 +196,10 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                         ),
                                         child: Center(
                                           child:
-                                          LoadingAnimationWidget
-                                              .staggeredDotsWave(
-                                            color: AppColors.white,
-                                            size: 30,
-                                          ),
+                                              LoadingAnimationWidget.staggeredDotsWave(
+                                                color: AppColors.white,
+                                                size: 30,
+                                              ),
                                         ),
                                       ),
                                     ],
@@ -222,32 +217,32 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                   );
                                 }
                                 return state.messageItems[index + 2].role ==
-                                    MessageRoles.user
+                                        MessageRoles.user
                                     ? Center(
-                                  child: CustomChatMessageContainer(
-                                    flipX: true,
-                                    imagePath: userLoginInfo?.photo ?? "",
-                                    message: Text(
-                                      state.messageItems[index + 2].message,
-                                      style: theme.textTheme.titleMedium,
-                                    ),
-                                    messageBackgroundColor: AppColors
-                                        .mainColorLight[80]!
-                                        .withAlpha(126),
-                                  ),
-                                )
+                                      child: CustomChatMessageContainer(
+                                        flipX: true,
+                                        imagePath: userLoginInfo?.photo ?? "",
+                                        message: Text(
+                                          state.messageItems[index + 2].message,
+                                          style: theme.textTheme.titleMedium,
+                                        ),
+                                        messageBackgroundColor: AppColors
+                                            .mainColorLight[80]!
+                                            .withAlpha(126),
+                                      ),
+                                    )
                                     : AnimatedContainer(
-                                  duration: const Duration(seconds: 4),
-                                  child: CustomChatMessageContainer(
-                                    imagePath: AssetsPaths.geminiIcon,
-                                    message: Text(
-                                      state.messageItems[index + 2].message,
-                                      style: theme.textTheme.titleMedium,
-                                    ),
-                                    messageBackgroundColor: AppColors.black
-                                        .withAlpha(150),
-                                  ),
-                                );
+                                      duration: const Duration(seconds: 4),
+                                      child: CustomChatMessageContainer(
+                                        imagePath: AssetsPaths.geminiIcon,
+                                        message: Text(
+                                          state.messageItems[index + 2].message,
+                                          style: theme.textTheme.titleMedium,
+                                        ),
+                                        messageBackgroundColor: AppColors.black
+                                            .withAlpha(150),
+                                      ),
+                                    );
                               }
                             },
                             separatorBuilder: (context, index) {
@@ -301,34 +296,36 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                 builder: (context, hasText, child) {
                                   return ValueListenableBuilder(
                                     valueListenable:
-                                    smartCoachScreenViewModel
-                                        .takeAnotherMessageNotifier,
-                                    builder: (context,
-                                        takeAnotherMessage,
-                                        child,) {
+                                        smartCoachScreenViewModel
+                                            .takeAnotherMessageNotifier,
+                                    builder: (
+                                      context,
+                                      takeAnotherMessage,
+                                      child,
+                                    ) {
                                       return Row(
                                         children: [
                                           const Spacer(),
                                           IconButton(
                                             onPressed:
-                                            hasText && takeAnotherMessage
-                                                ? () {
-                                              smartCoachScreenViewModel
-                                                  .doIntent(
-                                                PromptAiToAnswerUser(
-                                                  message:
-                                                  textEditingController
-                                                      .text,
-                                                ),
-                                              );
-                                              textEditingController
-                                                  .clear();
-                                              FocusManager
-                                                  .instance
-                                                  .primaryFocus
-                                                  ?.unfocus();
-                                            }
-                                                : null,
+                                                hasText && takeAnotherMessage
+                                                    ? () {
+                                                      smartCoachScreenViewModel
+                                                          .doIntent(
+                                                            PromptAiToAnswerUser(
+                                                              message:
+                                                                  textEditingController
+                                                                      .text,
+                                                            ),
+                                                          );
+                                                      textEditingController
+                                                          .clear();
+                                                      FocusManager
+                                                          .instance
+                                                          .primaryFocus
+                                                          ?.unfocus();
+                                                    }
+                                                    : null,
                                             icon: const Icon(Icons.send),
                                           ),
                                         ],

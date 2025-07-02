@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -15,7 +13,6 @@ import 'package:super_fitness/modules/authentication/ui/forget_password/view_mod
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 import 'package:super_fitness/shared_layers/storage/implementation/flutter_secure_storage_service_imp.dart';
-
 import 'forget_password_cubit_test.mocks.dart';
 
 void main() {

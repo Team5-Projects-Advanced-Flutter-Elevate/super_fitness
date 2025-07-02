@@ -4,26 +4,29 @@ import 'package:equatable/equatable.dart';
 class ChatHistoryModel extends Equatable {
   final String? id;
   final String? title;
-  List<MessageItem> messages;
+  final List<MessageItem> messages;
+   int? createdAt; // Epoch timestamp
+  final bool? didChatEnded;
 
-  ChatHistoryModel({
-     this.id,
-     this.title,
+   ChatHistoryModel({
+    this.id,
+    this.title,
     required this.messages,
-  });
 
-  // Convert to Firestore format
-  Map<String, dynamic> toFirestore() {
+    this.didChatEnded,
+  }) : createdAt =  DateTime.now().millisecondsSinceEpoch;
+
+  Map<String, dynamic> toFireStore() {
     return {
       'id': id,
       'title': title,
       'messages': messages.map((msg) => msg.toFireStore()).toList(),
-      // Auto-set timestamp
+      'createdAt': createdAt,
+      'didChatEnded': didChatEnded,
     };
   }
 
-  // Create from Firestore document
-  factory ChatHistoryModel.fromFirestore(
+  factory ChatHistoryModel.fromFireStore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
@@ -33,22 +36,23 @@ class ChatHistoryModel extends Equatable {
       title: data['title'] ?? 'Untitled Chat',
       messages:
           (data['messages'] as List<dynamic>)
-              .map((msg) => MessageItem.fromFirestore(msg))
+              .map((msg) => MessageItem.fromFireStore(msg))
               .toList(),
+
+      didChatEnded: data['didChatEnded'],
     );
   }
 
   @override
-  List<Object?> get props => [id, title, messages];
+  List<Object?> get props => [id, title, messages, createdAt, didChatEnded];
 }
 
 class MessageItem extends Equatable {
   final MessageRoles role;
-   String message;
+  String message;
 
-   MessageItem({required this.role, required this.message});
+  MessageItem({required this.role, required this.message});
 
-  // Convert to Firestore format
   Map<String, dynamic> toFireStore() {
     return {
       'role': role.name, // Store enum as string
@@ -56,8 +60,7 @@ class MessageItem extends Equatable {
     };
   }
 
-  // Create from Firestore data
-  factory MessageItem.fromFirestore(Map<String, dynamic> data) {
+  factory MessageItem.fromFireStore(Map<String, dynamic> data) {
     return MessageItem(
       role: MessageRoles.values.byName(
         data['role'],

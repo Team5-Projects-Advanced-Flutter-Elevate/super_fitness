@@ -5,28 +5,26 @@ import '../models/chat_history_model.dart';
 class FirebaseChatService {
   final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
 
-  // Get user's chats collection with converter
   CollectionReference<ChatHistoryModel> _userChats(String userId) {
     return _fireStore
         .collection('Users')
         .doc(userId)
         .collection('SavedChats')
         .withConverter<ChatHistoryModel>(
-          fromFirestore: ChatHistoryModel.fromFirestore,
-          toFirestore: (chat, _) => chat.toFirestore(),
+          fromFirestore: ChatHistoryModel.fromFireStore,
+          toFirestore: (chat, _) => chat.toFireStore(),
         );
   }
 
-  // Create new chat
-  Future<String> createChat(String userId, String title) async {
+  Future<String> createChat(
+    String userId,
+    ChatHistoryModel chatHistoryModel,
+  ) async {
     final docRef = _userChats(userId).doc();
-    await docRef.set(
-      ChatHistoryModel(id: docRef.id, title: title, messages: []),
-    );
+    await docRef.set(chatHistoryModel);
     return docRef.id;
   }
 
-  // Add message to chat
   Future<void> addMessage({
     required String userId,
     required String chatId,
@@ -37,15 +35,27 @@ class FirebaseChatService {
     });
   }
 
-  // Get single chat
+  Future<void> addListOfMessages({
+    required String userId,
+    required String chatId,
+    required List<MessageItem> messages,
+  }) async {
+    await _userChats(userId).doc(chatId).update({
+      'messages': FieldValue.arrayUnion(
+        messages.map((m) => m.toFireStore()).toList(),
+      ),
+    });
+  }
+
   Future<ChatHistoryModel?> getChat(String userId, String chatId) async {
     final doc = await _userChats(userId).doc(chatId).get();
     return doc.data();
   }
 
-  // Get all user chats
-  Future<List<ChatHistoryModel>> getChats(String userId) async {
-    final snapshot = await _userChats(userId).get();
+  Future<List<ChatHistoryModel>> getAllChats(String userId) async {
+    final snapshot =
+        await _userChats(userId).orderBy('createdAt', descending: true).get();
+
     return snapshot.docs.map((doc) => doc.data()).toList();
   }
 }

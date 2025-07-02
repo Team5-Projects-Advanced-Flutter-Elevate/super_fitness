@@ -12,7 +12,6 @@ import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
-import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
@@ -20,6 +19,7 @@ import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
 import 'modules/authentication/domain/usecase/login/login_local.dart';
 import 'modules/smart_coach/data/ai_model_implementations/firebase_chat_service.dart';
+import 'modules/smart_coach/data/models/chat_history_model.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -79,57 +79,24 @@ void main() async {
       ),
     ),
   );
+  final FirebaseChatService chatService = FirebaseChatService();
+  const String testUserId = 'test_user_123';
+  // Step 1: Create a new chat
+  final ChatHistoryModel chatModel = ChatHistoryModel(
+    title: 'Test Chat Session',
+    messages: [
+      MessageItem(
+        role: MessageRoles.model,
+        message: 'Hello! I am your assistant first add.',
+      ),
+      MessageItem(
+        role: MessageRoles.user,
+        message: 'Hello! I am your assistant second add.',
+      ),
+    ],
 
-  // check firebase save chats
-  final chatService = FirebaseChatService();
-
-  // Create chat
-  final chatId = await chatService.createChat('user123', 'second Chat');
-
-  // Add user message
-  await chatService.addMessage(
-    userId: 'user123',
-    chatId: chatId,
-    message: MessageItem(role: MessageRoles.user, message: 'Hello AI!'),
+    didChatEnded: false,
   );
-
-  // Add AI response
-  await chatService.addMessage(
-    userId: 'user123',
-    chatId: chatId,
-    message: MessageItem(
-      role: MessageRoles.model,
-      message: 'Hello! How can I help?',
-    ),
-  );
-  await chatService.addMessage(
-    userId: 'user123',
-    chatId: chatId,
-    message: MessageItem(
-      role: MessageRoles.user,
-      message: 'Hello AI! iam mohamed ',
-    ),
-  );
-
-  // Add AI response
-  await chatService.addMessage(
-    userId: 'user123',
-    chatId: chatId,
-    message: MessageItem(
-      role: MessageRoles.model,
-      message: 'Hello! How can I help? mohamed',
-    ),
-  );
-  // Retrieve chat
-  final chat = await chatService.getChat('user123', chatId);
-  print('Chat Title: ${chat?.title}');
-  chat?.messages.forEach((msg) {
-    print('${msg.role}: ${msg.message}');
-  });
-
-  // Get all chats
-  final allChats = await chatService.getChats('user123');
-  allChats.forEach((c) => print('Chat ${c.id}: ${c.title}'));
 }
 
 class MyApp extends StatefulWidget {

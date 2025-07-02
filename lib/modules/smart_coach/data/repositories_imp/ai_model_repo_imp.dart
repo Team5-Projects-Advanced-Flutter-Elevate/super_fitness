@@ -15,8 +15,9 @@ class AiModelRepoImp implements AiModelRepo {
   AiModelRepoImp(this._aiModelSource);
 
   @override
-  Future<AiModelResult> promptModel(
-      {required ChatHistoryModel chatHistoryModel}) async {
+  Future<AiModelResult> promptModel({
+    required ChatHistoryModel chatHistoryModel,
+  }) async {
     // TODO: cache chat history
     final StreamController<GenerateContentResponse> controller =
         StreamController();

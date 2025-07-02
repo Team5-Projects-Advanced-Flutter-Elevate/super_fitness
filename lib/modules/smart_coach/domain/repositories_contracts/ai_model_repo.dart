@@ -2,6 +2,7 @@ import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model
 import 'package:super_fitness/modules/smart_coach/domain/result/ai_model_result.dart';
 
 abstract interface class AiModelRepo {
-  Future<AiModelResult> promptModel(
-      {required ChatHistoryModel chatHistoryModel});
+  Future<AiModelResult> promptModel({
+    required ChatHistoryModel chatHistoryModel,
+  });
 }

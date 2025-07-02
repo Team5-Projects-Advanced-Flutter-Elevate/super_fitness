@@ -12,12 +12,14 @@ import 'package:super_fitness/core/routing/generate_route.dart';
 import 'package:super_fitness/core/themes/app_themes.dart';
 import 'package:super_fitness/core/utilities/single_data_per_application/single_data_per_application_provider.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
+import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
 import 'modules/authentication/domain/usecase/login/login_local.dart';
+import 'modules/smart_coach/data/ai_model_implementations/firebase_chat_service.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -35,7 +37,7 @@ void main() async {
     // 2. Safety Net provider
     // 3. Play Integrity provider
     androidProvider:
-    kReleaseMode ? AndroidProvider.playIntegrity : AndroidProvider.debug,
+        kReleaseMode ? AndroidProvider.playIntegrity : AndroidProvider.debug,
     // Default provider for iOS/macOS is the Device Check provider. You can use the "AppleProvider" enum to choose
     // your preferred provider. Choose from:
     // 1. Debug provider
@@ -43,7 +45,7 @@ void main() async {
     // 3. App Attest provider
     // 4. App Attest provider with fallback to Device Check provider (App Attest provider is only available on iOS 14.0+, macOS 14.0+)
     appleProvider:
-    kReleaseMode ? AppleProvider.deviceCheck : AppleProvider.debug,
+        kReleaseMode ? AppleProvider.deviceCheck : AppleProvider.debug,
   );
   await configureDependencies();
 
@@ -77,6 +79,57 @@ void main() async {
       ),
     ),
   );
+
+  // check firebase save chats
+  final chatService = FirebaseChatService();
+
+  // Create chat
+  final chatId = await chatService.createChat('user123', 'second Chat');
+
+  // Add user message
+  await chatService.addMessage(
+    userId: 'user123',
+    chatId: chatId,
+    message: MessageItem(role: MessageRoles.user, message: 'Hello AI!'),
+  );
+
+  // Add AI response
+  await chatService.addMessage(
+    userId: 'user123',
+    chatId: chatId,
+    message: MessageItem(
+      role: MessageRoles.model,
+      message: 'Hello! How can I help?',
+    ),
+  );
+  await chatService.addMessage(
+    userId: 'user123',
+    chatId: chatId,
+    message: MessageItem(
+      role: MessageRoles.user,
+      message: 'Hello AI! iam mohamed ',
+    ),
+  );
+
+  // Add AI response
+  await chatService.addMessage(
+    userId: 'user123',
+    chatId: chatId,
+    message: MessageItem(
+      role: MessageRoles.model,
+      message: 'Hello! How can I help? mohamed',
+    ),
+  );
+  // Retrieve chat
+  final chat = await chatService.getChat('user123', chatId);
+  print('Chat Title: ${chat?.title}');
+  chat?.messages.forEach((msg) {
+    print('${msg.role}: ${msg.message}');
+  });
+
+  // Get all chats
+  final allChats = await chatService.getChats('user123');
+  allChats.forEach((c) => print('Chat ${c.id}: ${c.title}'));
 }
 
 class MyApp extends StatefulWidget {

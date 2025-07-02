@@ -24,13 +24,16 @@ class AiModelSourceImp implements AiModelSource {
         case MessageRoles.user:
           prompt.add(Content.text(messageItem.message));
           totalTokens += (messageItem.message.length / 4).ceil();
+          break;
         case MessageRoles.model:
           prompt.add(Content.model([TextPart(messageItem.message)]));
           totalTokens += (messageItem.message.length / 4).ceil();
+          break;
       }
     }
     final StreamController<GenerateContentResponse> controller =
         StreamController();
+    // We used the completer here to make teh stream awaits until onDone is called
     final Completer<void> doneCompleter = Completer<void>();
     var response = _generativeModel.generateContentStream(prompt);
     response.listen(
@@ -47,7 +50,7 @@ class AiModelSourceImp implements AiModelSource {
       },
       onError: (error) {
         controller.addError(error);
-        doneCompleter.completeError(error);
+        doneCompleter.complete();
       },
       cancelOnError: true,
     );

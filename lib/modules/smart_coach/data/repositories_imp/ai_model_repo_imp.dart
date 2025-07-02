@@ -25,7 +25,6 @@ class AiModelRepoImp implements AiModelRepo {
     var aiModelResult = await _aiModelSource.promptModel(
       chatHistoryModel: chatHistoryModel,
     );
-
     aiModelResult.responseStream.listen(
       (chunk) {
         stringBuffer.write(chunk.text);

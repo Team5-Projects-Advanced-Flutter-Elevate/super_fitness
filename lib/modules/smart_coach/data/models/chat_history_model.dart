@@ -5,19 +5,19 @@ class ChatHistoryModel extends Equatable {
   // ignore_for_file: must_be_immutable
 
   String? id;
-  String? title;
+  String title;
   List<MessageItem> messages;
   int? createdAt; // Epoch timestamp
   int? lastUpdateAt; // Epoch timestamp
-  bool? didChatEnded;
+  bool didChatEnded;
 
   ChatHistoryModel({
     this.id,
-    this.title,
+    this.title = "",
     required this.messages,
     this.createdAt,
     this.lastUpdateAt,
-    this.didChatEnded,
+    this.didChatEnded = false,
   });
 
   Map<String, dynamic> toFireStore() {
@@ -38,12 +38,12 @@ class ChatHistoryModel extends Equatable {
     final data = snapshot.data()!;
     return ChatHistoryModel(
       id: snapshot.id,
-      title: data['title'] ?? 'Untitled Chat',
+        title: data['title'] ?? '',
       messages:
           (data['messages'] as List<dynamic>)
               .map((msg) => MessageItem.fromFireStore(msg))
               .toList(),
-      didChatEnded: data['didChatEnded'],
+        didChatEnded: data['didChatEnded'] ?? false,
         createdAt: data['createdAt'],
         lastUpdateAt: data['lastUpdateAt']
     );

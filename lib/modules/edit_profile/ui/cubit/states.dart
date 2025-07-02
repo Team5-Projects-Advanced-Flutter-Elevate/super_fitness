@@ -121,10 +121,10 @@ class ProfileState extends Equatable {
     this.password = '',
     this.profilePhotoLink,
     this.error,
-    this.gender='',
-    this.weight='',
-    this.goal='',
-    this.level='',
+    this.gender = '',
+    this.weight = '',
+    this.goal = '',
+    this.level = '',
     this.initialData, // ✅
   });
 

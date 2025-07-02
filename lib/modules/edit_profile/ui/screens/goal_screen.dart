@@ -43,15 +43,15 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
       ),
       child: Scaffold(
         appBar: AppBar(
-        centerTitle: true,
-        forceMaterialTransparency: true,
-        automaticallyImplyLeading: false,
-        titleSpacing: 0.0,
-        title: Image.asset(
-          AssetsPaths.fitnessAppIcon,
-          width: screenWidth * 0.2,
+          centerTitle: true,
+          forceMaterialTransparency: true,
+          automaticallyImplyLeading: false,
+          titleSpacing: 0.0,
+          title: Image.asset(
+            AssetsPaths.fitnessAppIcon,
+            width: screenWidth * 0.2,
+          ),
         ),
-      ),
 
         body: SingleChildScrollView(
           child: Column(
@@ -65,13 +65,16 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: "${appLocalizations.whatIsYourGoal.toUpperCase()}\n",
+                        text:
+                            "${appLocalizations.whatIsYourGoal.toUpperCase()}\n",
                         style: theme.textTheme.titleLarge!.copyWith(
                           fontWeight: FontWeight.w800,
                         ),
                       ),
                       TextSpan(
-                        text: appLocalizations.thisHelpsUsCreateYourPersonalizedPlan,
+                        text:
+                            appLocalizations
+                                .thisHelpsUsCreateYourPersonalizedPlan,
                         style: theme.textTheme.titleMedium,
                       ),
                     ],
@@ -85,7 +88,10 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
                   child: Container(
                     width: screenWidth,
                     color: AppColors.black.withAlpha(30),
-                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
+                      horizontal: 16,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -100,7 +106,9 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
                                 vertical: 8,
                                 horizontal: 24,
                               ),
-                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12,
+                              ),
                               decoration: BoxDecoration(
                                 border: Border.all(color: AppColors.white),
                                 borderRadius: BorderRadius.circular(20),
@@ -110,9 +118,8 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
                                 children: [
                                   Text(
                                     goals[index],
-                                    style: theme.textTheme.labelMedium?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                    style: theme.textTheme.labelMedium
+                                        ?.copyWith(fontWeight: FontWeight.w700),
                                   ),
                                   const Spacer(),
                                   Radio<String>(
@@ -131,13 +138,14 @@ class _GoalScreenState extends BaseStatefulWidgetState<GoalScreen> {
                         ),
                         SizedBox(height: screenHeight * 0.03),
                         FilledButton(
-                          onPressed: selectedGoal == null
-                              ? null
-                              : () {
-                            widget.onSelected?.call(selectedGoal!);
+                          onPressed:
+                              selectedGoal == null
+                                  ? null
+                                  : () {
+                                    widget.onSelected?.call(selectedGoal!);
 
-                           Navigator.pop(context);
-                          },
+                                    Navigator.pop(context);
+                                  },
                           child: Text(appLocalizations.done),
                         ),
                       ],

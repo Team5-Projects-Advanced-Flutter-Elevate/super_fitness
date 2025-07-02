@@ -21,4 +21,7 @@ class ApisEndpoints {
 
   static const String changePasswordEndPoint = '/api/v1/auth/change-password';
   static const String getProfileData = '/api/v1/auth/profile-data';
+  static const String getLoggedData = '/api/v1/auth/profile-data';
+  static const String editProfile = '/api/v1/auth/editProfile';
+  static const String uploadImage = '/api/v1/auth/upload-photo';
 }

@@ -15,6 +15,4 @@ abstract class GetDataApiClient {
 
   @PUT(ApisEndpoints.editProfile)
   Future<EditMyInfo> editInfo(@Body() Map<String, dynamic> body);
-
-
 }

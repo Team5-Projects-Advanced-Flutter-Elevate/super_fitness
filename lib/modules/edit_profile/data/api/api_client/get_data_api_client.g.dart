@@ -17,7 +17,7 @@ class _GetDataApiClient implements GetDataApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<GetData> getLoggedDriverData() async {

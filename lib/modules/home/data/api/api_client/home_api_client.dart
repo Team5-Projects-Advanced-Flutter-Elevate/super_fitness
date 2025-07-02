@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:super_fitness/core/apis/apis_endpoints/apis_endpoints.dart';
-import 'package:super_fitness/modules/home/data/models/change_password/change_password_response_dto.dart';
 import 'package:super_fitness/modules/home/data/models/workouts/get_all_muscles_group_response.dart';
 import 'package:super_fitness/modules/home/data/models/workouts/muscle_group_workouts.dart';
 import 'package:super_fitness/modules/home/data/models/random_exercises/random_exercises_response_dto.dart';

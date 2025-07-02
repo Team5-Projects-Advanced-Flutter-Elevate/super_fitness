@@ -156,6 +156,8 @@ import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_us
     as _i1011;
 import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
     as _i415;
+import '../../modules/home/ui/pages/ai_chat_page/view_model/ai_chat_page_view_model.dart'
+    as _i693;
 import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
     as _i102;
 import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
@@ -446,6 +448,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
+    );
+    gh.factory<_i693.AiChatPageViewModel>(
+      () => _i693.AiChatPageViewModel(gh<_i507.GetAllChatsUseCase>()),
     );
     gh.factory<_i415.GetMusclesGroupUseCase>(
       () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),

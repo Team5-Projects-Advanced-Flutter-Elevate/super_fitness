@@ -9,7 +9,7 @@ part of 'profile_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ProfileApiClient implements ProfileApiClient {
-  _ProfileApiClient(this._dio,);
+  _ProfileApiClient(this._dio);
 
   final Dio _dio;
 

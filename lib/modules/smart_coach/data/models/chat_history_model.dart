@@ -38,20 +38,26 @@ class ChatHistoryModel extends Equatable {
     final data = snapshot.data()!;
     return ChatHistoryModel(
       id: snapshot.id,
-        title: data['title'] ?? '',
+      title: data['title'] ?? '',
       messages:
           (data['messages'] as List<dynamic>)
               .map((msg) => MessageItem.fromFireStore(msg))
               .toList(),
-        didChatEnded: data['didChatEnded'] ?? false,
-        createdAt: data['createdAt'],
-        lastUpdateAt: data['lastUpdateAt']
+      didChatEnded: data['didChatEnded'] ?? false,
+      createdAt: data['createdAt'],
+      lastUpdateAt: data['lastUpdateAt'],
     );
   }
 
   @override
-  List<Object?> get props =>
-      [id, title, messages, createdAt, lastUpdateAt, didChatEnded];
+  List<Object?> get props => [
+    id,
+    title,
+    messages,
+    createdAt,
+    lastUpdateAt,
+    didChatEnded,
+  ];
 
   @override
   String toString() =>

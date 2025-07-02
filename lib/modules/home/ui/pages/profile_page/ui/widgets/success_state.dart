@@ -71,7 +71,12 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                       ProfileItem(
                         title: appLocalizations.changePassword,
                         leadingIcon: AssetsPaths.changePasswordIcon,
-                        onTrailingTap: () {},
+                        onTrailingTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            DefinedRoutes.changePasswordRoute,
+                          );
+                        },
                       ),
                       const Divider(color: Color(0xFF2D2D2D)),
                       ProfileItem(

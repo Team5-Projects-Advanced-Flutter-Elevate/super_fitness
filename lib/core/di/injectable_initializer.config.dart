@@ -245,10 +245,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
+    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -287,21 +287,23 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
     gh.factory<_i544.ChangePasswordRemoteDataSourceContract>(
-      () => _i712.ChangePasswordRemoteDataSourceImpl(gh<_i293.HomeApiClient>()),
+      () => _i712.ChangePasswordRemoteDataSourceImpl(
+        gh<_i145.ProfileApiClient>(),
+      ),
     );
     gh.factory<_i208.FoodDetailsDataSource>(
       () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
-    );
-    gh.factory<_i58.ChangePasswordRepoContract>(
-      () => _i427.ChangePasswordRepoImpl(
-        gh<_i544.ChangePasswordRemoteDataSourceContract>(),
-      ),
     );
     gh.factory<_i65.ProfileDatasource>(
       () => _i510.ProfileDatasourceImpl(gh<_i145.ProfileApiClient>()),
     );
     gh.factory<_i1041.ProfileRepo>(
       () => _i253.ProfileRepoImpl(gh<_i65.ProfileDatasource>()),
+    );
+    gh.factory<_i58.ChangePasswordRepoContract>(
+      () => _i427.ChangePasswordRepoImpl(
+        gh<_i544.ChangePasswordRemoteDataSourceContract>(),
+      ),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(

@@ -2,19 +2,19 @@ import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_executor/api_executor.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
-import 'package:super_fitness/modules/home/data/api/api_client/home_api_client.dart';
 import 'package:super_fitness/modules/home/data/data_sources_contracts/change_password/change_password_remote_data_source_contract.dart';
 import 'package:super_fitness/modules/home/data/models/change_password/change_password_request_dto.dart';
 import 'package:super_fitness/modules/home/data/models/change_password/change_password_response_dto.dart';
 import 'package:super_fitness/modules/home/domain/entities/change_password/change_password_response_entity.dart';
+import 'package:super_fitness/modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
 @Injectable(as: ChangePasswordRemoteDataSourceContract)
 class ChangePasswordRemoteDataSourceImpl
     implements ChangePasswordRemoteDataSourceContract {
-  final HomeApiClient _homeApiClient;
+  final ProfileApiClient _profileApiClient;
 
-  ChangePasswordRemoteDataSourceImpl(this._homeApiClient);
+  ChangePasswordRemoteDataSourceImpl(this._profileApiClient);
 
   @override
   Future<ApiResult<ChangePasswordResponseEntity>> changePassword(
@@ -22,7 +22,7 @@ class ChangePasswordRemoteDataSourceImpl
     String newPassword,
   ) async {
     var result = await ApiExecutor.executeApi(() async {
-      var response = await _homeApiClient.changePassword(
+      var response = await _profileApiClient.changePassword(
         ChangePasswordRequestDto(
           password: password,
           newPassword: newPassword,

@@ -163,16 +163,38 @@ import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
 import '../../modules/smart_coach/data/ai_model_contracts/ai_model_source.dart'
     as _i684;
+import '../../modules/smart_coach/data/ai_model_contracts/chat_fire_store_data_source.dart'
+    as _i617;
 import '../../modules/smart_coach/data/ai_model_implementations/ai_model_source_imp.dart'
     as _i296;
+import '../../modules/smart_coach/data/ai_model_implementations/chat_fire_store_data_source_impl.dart'
+    as _i125;
 import '../../modules/smart_coach/data/model_provider/model_provider.dart'
     as _i17;
 import '../../modules/smart_coach/data/repositories_imp/ai_model_repo_imp.dart'
     as _i742;
+import '../../modules/smart_coach/data/repositories_imp/chat_fire_store_repo_imp.dart'
+    as _i433;
 import '../../modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart'
     as _i384;
+import '../../modules/smart_coach/domain/repositories_contracts/chat_fire_store_repo.dart'
+    as _i627;
+import '../../modules/smart_coach/domain/use_cases/add_list_of_messages_use_case.dart'
+    as _i887;
+import '../../modules/smart_coach/domain/use_cases/add_message_use_case.dart'
+    as _i642;
+import '../../modules/smart_coach/domain/use_cases/create_chat_use_case.dart'
+    as _i869;
+import '../../modules/smart_coach/domain/use_cases/end_chat_use_case.dart'
+    as _i624;
+import '../../modules/smart_coach/domain/use_cases/get_all_chats_use_case.dart'
+    as _i507;
+import '../../modules/smart_coach/domain/use_cases/get_chat_use_case.dart'
+    as _i607;
 import '../../modules/smart_coach/domain/use_cases/prompt_model_use_case.dart'
     as _i831;
+import '../../modules/smart_coach/domain/use_cases/update_chat_time_use_case.dart'
+    as _i487;
 import '../../modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart'
     as _i533;
 import '../../shared_layers/localization/generated/app_localizations.dart'
@@ -258,6 +280,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i684.AiModelSource>(
       () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
     );
+    gh.factory<_i617.ChatFireStoreDataSource>(
+      () => _i125.FirebaseChatDataSource(),
+    );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
     );
@@ -312,6 +337,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i627.ChatFireStoreRepo>(
+      () => _i433.ChatFireStoreRepoImp(gh<_i617.ChatFireStoreDataSource>()),
+    );
     gh.singleton<_i273.LocalizationManager>(
       () => _i273.LocalizationManager(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -354,6 +382,27 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i887.AddListOfMessagesUseCase>(
+      () => _i887.AddListOfMessagesUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i642.AddMessageUseCase>(
+      () => _i642.AddMessageUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i869.CreateChatUseCase>(
+      () => _i869.CreateChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i624.EndChatUseCase>(
+      () => _i624.EndChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i507.GetAllChatsUseCase>(
+      () => _i507.GetAllChatsUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i607.GetChatUseCase>(
+      () => _i607.GetChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i487.UpdateChatTimeUseCase>(
+      () => _i487.UpdateChatTimeUseCase(gh<_i627.ChatFireStoreRepo>()),
     );
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),

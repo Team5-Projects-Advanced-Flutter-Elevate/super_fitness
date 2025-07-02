@@ -15,7 +15,11 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   SmartCoachScreenViewModel(this._promptModelUseCase)
     : super(const SmartCoachScreenState());
 
-  final ChatHistoryModel chatHistoryModel = ChatHistoryModel(messages: []);
+  final ChatHistoryModel chatHistoryModel = ChatHistoryModel(
+    messages: [],
+    id: '',
+    title: '',
+  );
 
   var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
   ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);

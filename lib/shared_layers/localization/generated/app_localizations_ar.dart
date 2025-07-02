@@ -54,8 +54,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get userNameLength => 'يجب أن يكون اسم المستخدم بين 3 و16 حرفًا.';
 
   @override
-  String get userNameRules =>
-      'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
+  String get userNameRules => 'يمكن أن يحتوي اسم المستخدم على أحرف وأرقام وشرطات سفلية فقط.';
 
   @override
   String get pleaseEnterFirstName => 'يرجى إدخال الاسم الأول.';
@@ -76,15 +75,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pleaseEnterPhoneNumber => 'يرجى إدخال رقم هاتفك.';
 
   @override
-  String get phoneNumberRules =>
-      'يجب أن يبدأ الرقم بأحد البادئات التالية:\n010، 011، 012، أو 015\nويتبعها 8 أرقام.';
+  String get phoneNumberRules => 'يجب أن يبدأ الرقم بأحد البادئات التالية:\n010، 011، 012، أو 015\nويتبعها 8 أرقام.';
 
   @override
   String get pleaseEnterPassword => 'يرجى إدخال كلمة المرور.';
 
   @override
-  String get passwordLength =>
-      'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
+  String get passwordLength => 'يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل.';
 
   @override
   String get uppercaseRulePassword => 'حرف كبير واحد على الأقل.';
@@ -96,15 +93,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get digitRulePassword => 'يجب أن تحتوي على رقم واحد على الأقل.';
 
   @override
-  String get specialCharactersRulePassword =>
-      'يجب تضمين رمز خاص واحد على الأقل (مثال: #?!@\$%^&*-).';
+  String get specialCharactersRulePassword => 'يجب تضمين رمز خاص واحد على الأقل (مثال: #?!@\$%^&*-).';
 
   @override
   String get pleaseConfirmPassword => 'يرجى تأكيد كلمة المرور.';
 
   @override
-  String get namesLengthRule =>
-      'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
+  String get namesLengthRule => 'يجب أن تكون الأسماء مكونة من 3 أحرف على الأقل.';
 
   @override
   String get noMatch => 'غير متطابق!';
@@ -131,8 +126,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get removedImage => 'تمت إزالة الصورة';
 
   @override
-  String get forgetPasswordDescription =>
-      'يرجى إدخال بريدك الإلكتروني المرتبط بحسابك';
+  String get forgetPasswordDescription => 'يرجى إدخال بريدك الإلكتروني المرتبط بحسابك';
 
   @override
   String get confirm => 'تأكيد';
@@ -144,8 +138,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get otpScreenTitle => 'التحقق من البريد الإلكتروني';
 
   @override
-  String get otpScreenDescription =>
-      'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
+  String get otpScreenDescription => 'يرجى إدخال الرمز الذي تم إرساله إلى بريدك الإلكتروني';
 
   @override
   String get didNotReceiveOtp => 'لم تستلم الرمز؟';
@@ -160,8 +153,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get codeNotValid => 'الرمز غير صالح';
 
   @override
-  String get resetPasswordScreenDescription =>
-      'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
+  String get resetPasswordScreenDescription => 'يجب ألا تكون كلمة المرور فارغة ويجب أن تحتوي على 6 أحرف على الأقل مع حرف كبير ورقم واحد على الأقل';
 
   @override
   String get resetPasswordScreenTitle => 'إعادة تعيين كلمة المرور';
@@ -215,12 +207,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get doItNow => 'افعلها الآن';
 
   @override
-  String get loremIpsumDolorSitAmetConsectetureuUrna =>
-      'لوريم إيبسوم دولور سيت أميت. يو أورنا';
+  String get loremIpsumDolorSitAmetConsectetureuUrna => 'لوريم إيبسوم دولور سيت أميت. يو أورنا';
 
   @override
-  String get utGravidaQuisIdPretiumPurusMaurisMassa =>
-      'يوت جرافيدا كويز إد بريتيوم بورس. موريس ماسا';
+  String get utGravidaQuisIdPretiumPurusMaurisMassa => 'يوت جرافيدا كويز إد بريتيوم بورس. موريس ماسا';
 
   @override
   String get pleaseEnterValidRecipient => 'يرجى إدخال مستلم صالح';
@@ -301,8 +291,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get whatIsYourWeight => 'ما هو وزنك؟';
 
   @override
-  String get thisHelpsUsCreateYourPersonalizedPlan =>
-      'يساعدنا ذلك على إنشاء خطة مخصصة لك';
+  String get thisHelpsUsCreateYourPersonalizedPlan => 'يساعدنا ذلك على إنشاء خطة مخصصة لك';
 
   @override
   String get whatIsYourHeight => 'ما هو طولك؟';

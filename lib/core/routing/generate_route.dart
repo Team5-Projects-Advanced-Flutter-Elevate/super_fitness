@@ -8,6 +8,7 @@ import 'package:super_fitness/modules/exercise/ui/screen/video_player.dart';
 import 'package:super_fitness/modules/food/ui/food_recommendation_screen.dart';
 import 'package:super_fitness/modules/food/ui/view_model/params/food_recommendation_screen_params.dart';
 import 'package:super_fitness/modules/home/ui/home_screen.dart';
+import 'package:super_fitness/modules/home/ui/pages/profile_page/change_password_page.dart';
 import 'package:super_fitness/modules/layout/chat/chat_screen.dart';
 import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
@@ -79,6 +80,10 @@ abstract class GenerateRoute {
             builder:
                 (context) =>
                     FoodDetailsScreen(arguments: args as FoodDetailsArguments),
+          );
+        case DefinedRoutes.changePasswordRoute:
+          return MaterialPageRoute(
+            builder: (context) => const ChangePasswordScreen(),
           );
         default:
           return _errorRoute();

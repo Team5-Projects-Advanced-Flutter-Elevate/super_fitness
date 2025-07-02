@@ -155,4 +155,15 @@
   "yourGoal": "هدفك",
   "yourActivityLevel": "مستوى نشاطك",
   "update": "تحديث"
+  "unknown": "غير معروف",
+  "editProfile": "تعديل الملف الشخصي",
+  "changePassword": "تغيير كلمة المرور",
+  "selectLanguage": "اختر اللغة",
+  "security": "الأمان",
+  "privacyPolicy": "سياسة الخصوصية",
+  "help": "مساعدة",
+  "logout": "تسجيل الخروج",
+  "english": "العربية",
+  "areYouSureLogout": "هل انت متاكد من تسجيل الخروج؟",
+  "logoutCancel": "الغاء"
 }

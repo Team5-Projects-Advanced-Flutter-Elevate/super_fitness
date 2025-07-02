@@ -7,7 +7,7 @@ import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/modules/home/ui/pages/ai_chat_page/ai_chat_page.dart';
 import 'package:super_fitness/modules/home/ui/pages/home_page/home_page.dart';
-import 'package:super_fitness/modules/home/ui/pages/profile_page/profile_page.dart';
+import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/profile_page.dart';
 import 'package:super_fitness/modules/home/ui/pages/workouts_page/workouts_page.dart';
 import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 

@@ -1670,6 +1670,113 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get editProfile =>
+      (super.noSuchMethod(
+            Invocation.getter(#editProfile),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#editProfile),
+            ),
+          )
+          as String);
+
+  @override
+  String get changePassword =>
+      (super.noSuchMethod(
+            Invocation.getter(#changePassword),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#changePassword),
+            ),
+          )
+          as String);
+
+  @override
+  String get selectLanguage =>
+      (super.noSuchMethod(
+            Invocation.getter(#selectLanguage),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#selectLanguage),
+            ),
+          )
+          as String);
+
+  @override
+  String get security =>
+      (super.noSuchMethod(
+            Invocation.getter(#security),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#security),
+            ),
+          )
+          as String);
+
+  @override
+  String get privacyPolicy =>
+      (super.noSuchMethod(
+            Invocation.getter(#privacyPolicy),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#privacyPolicy),
+            ),
+          )
+          as String);
+
+  @override
+  String get help =>
+      (super.noSuchMethod(
+            Invocation.getter(#help),
+            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#help)),
+          )
+          as String);
+
+  @override
+  String get logout =>
+      (super.noSuchMethod(
+            Invocation.getter(#logout),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#logout),
+            ),
+          )
+          as String);
+
+  @override
+  String get english =>
+      (super.noSuchMethod(
+            Invocation.getter(#english),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#english),
+            ),
+          )
+          as String);
+
+  @override
+  String get areYouSureLogout =>
+      (super.noSuchMethod(
+            Invocation.getter(#areYouSureLogout),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#areYouSureLogout),
+            ),
+          )
+          as String);
+
+  @override
+  String get logoutCancel =>
+      (super.noSuchMethod(
+            Invocation.getter(#logoutCancel),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#logoutCancel),
+            ),
+          )
+          as String);
+
+  @override
   String hiUser(Object? userName) =>
       (super.noSuchMethod(
             Invocation.method(#hiUser, [userName]),

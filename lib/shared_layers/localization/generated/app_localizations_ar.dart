@@ -464,4 +464,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unknown => 'غير معروف';
+
+  @override
+  String get editProfile => 'تعديل الملف الشخصي';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get selectLanguage => 'اختر اللغة';
+
+  @override
+  String get security => 'الأمان';
+
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get help => 'مساعدة';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get english => 'العربية';
+
+  @override
+  String get areYouSureLogout => 'هل انت متاكد من تسجيل الخروج؟';
+
+  @override
+  String get logoutCancel => 'الغاء';
 }

@@ -167,6 +167,22 @@ import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.
     as _i415;
 import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
     as _i102;
+import '../../modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart'
+    as _i145;
+import '../../modules/home/ui/pages/profile_page/data/api/api_provider/profile_api_provider.dart'
+    as _i355;
+import '../../modules/home/ui/pages/profile_page/data/datasource_contract/profile_datasource.dart'
+    as _i65;
+import '../../modules/home/ui/pages/profile_page/data/datasource_impl/profile_datasource_impl.dart'
+    as _i510;
+import '../../modules/home/ui/pages/profile_page/data/repo_impl/profile_repo_impl.dart'
+    as _i253;
+import '../../modules/home/ui/pages/profile_page/domain/repo_contract/profile_repo.dart'
+    as _i1041;
+import '../../modules/home/ui/pages/profile_page/domain/use_cases/get_profile_data.dart'
+    as _i521;
+import '../../modules/home/ui/pages/profile_page/ui/view_model/profile_cubit.dart'
+    as _i936;
 import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit.dart'
     as _i72;
 import '../../modules/home/ui/view_model/change_password/change_password_view_model.dart'
@@ -210,6 +226,7 @@ extension GetItInjectableX on _i174.GetIt {
     final foodApiClientProvider = _$FoodApiClientProvider();
     final foodDetailsApiClientProvider = _$FoodDetailsApiClientProvider();
     final homeApiClientProvider = _$HomeApiClientProvider();
+    final profileApiClientProvider = _$ProfileApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
     await gh.factoryAsync<_i361.Dio>(
@@ -228,10 +245,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i116.GoogleSignIn>(
       () => googleSignInObject.providerObject(),
     );
+    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -247,6 +264,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i293.HomeApiClient>(
       () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i145.ProfileApiClient>(
+      () => profileApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
@@ -276,6 +296,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i427.ChangePasswordRepoImpl(
         gh<_i544.ChangePasswordRemoteDataSourceContract>(),
       ),
+    );
+    gh.factory<_i65.ProfileDatasource>(
+      () => _i510.ProfileDatasourceImpl(gh<_i145.ProfileApiClient>()),
+    );
+    gh.factory<_i1041.ProfileRepo>(
+      () => _i253.ProfileRepoImpl(gh<_i65.ProfileDatasource>()),
     );
     gh.factory<_i449.FirebaseAuthDataSource>(
       () => _i1026.FirebaseAuthDataSourceImp(
@@ -340,6 +366,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i442.FoodRepoContract>(
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
+    );
+    gh.factory<_i521.GetProfileDataUseCase>(
+      () => _i521.GetProfileDataUseCase(gh<_i1041.ProfileRepo>()),
     );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
@@ -445,6 +474,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i751.FilterMealsByCategoryNameUseCase>(),
       ),
     );
+    gh.factory<_i936.ProfileCubit>(
+      () => _i936.ProfileCubit(
+        gh<_i521.GetProfileDataUseCase>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
+      ),
+    );
     gh.factory<_i396.LoginViewModel>(
       () => _i396.LoginViewModel(
         gh<_i192.LoginUseCase>(),
@@ -479,6 +514,8 @@ class _$FoodDetailsApiClientProvider
     extends _i762.FoodDetailsApiClientProvider {}
 
 class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
+
+class _$ProfileApiClientProvider extends _i355.ProfileApiClientProvider {}
 
 class _$LocaleInitializer extends _i631.LocaleInitializer {}
 

@@ -147,5 +147,15 @@
   "upcomingWorkouts": "التمارين القادمة",
   "seeAll": "عرض الكل",
   "recommendationForYou": "توصيات لك",
-  "unknown": "غير معروف"
+  "unknown": "غير معروف",
+  "editProfile": "تعديل الملف الشخصي",
+  "changePassword": "تغيير كلمة المرور",
+  "selectLanguage": "اختر اللغة",
+  "security": "الأمان",
+  "privacyPolicy": "سياسة الخصوصية",
+  "help": "مساعدة",
+  "logout": "تسجيل الخروج",
+  "english": "العربية",
+  "areYouSureLogout": "هل انت متاكد من تسجيل الخروج؟",
+  "logoutCancel": "الغاء"
 }

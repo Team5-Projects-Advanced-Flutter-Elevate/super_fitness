@@ -15,7 +15,7 @@ class _HomeApiClient implements HomeApiClient {
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+   ParseErrorLogger? errorLogger;
 
   @override
   Future<RandomExercisesResponseDto> getRandomExercises({

@@ -146,8 +146,6 @@
   "upcomingWorkouts": "Upcoming Workouts",
   "seeAll": "See All",
   "recommendationForYou": "Recommendation For You",
-  "unknown": "Unknown",
-  "editProfile": "Edit Profile",
   "changePassword": "Change Password",
   "selectLanguage": "Select Language",
   "security": "Security",
@@ -156,7 +154,7 @@
   "logout": "Logout",
   "english": "English",
   "areYouSureLogout": "Are you sure you want to logout?",
-  "logoutCancel": "Cancel"
+  "logoutCancel": "Cancel",
   "unknown": "Unknown",
   "editProfile": "Edit profile",
   "updatedSuccessfully": "Updated Successfully",

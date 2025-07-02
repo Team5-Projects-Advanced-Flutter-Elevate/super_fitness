@@ -142,7 +142,7 @@ class _EditProfileScreenState
                     ),
                   ),
                 ),
-                title: Text(appLocalizations.explore),
+                title: Text(appLocalizations.editProfile),
               ),
               body: SingleChildScrollView(
                 physics: const AlwaysScrollableScrollPhysics(),

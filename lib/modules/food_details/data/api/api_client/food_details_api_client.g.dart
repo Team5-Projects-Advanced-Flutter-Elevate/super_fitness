@@ -17,7 +17,7 @@ class _FoodDetailsApiClient implements FoodDetailsApiClient {
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+   ParseErrorLogger? errorLogger;
 
   @override
   Future<FoodDetailsModel> getFoodDetails(String id) async {

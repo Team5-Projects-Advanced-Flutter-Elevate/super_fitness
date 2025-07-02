@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
+import 'package:super_fitness/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/profile_item.dart';
 
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
@@ -65,7 +66,9 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                       ProfileItem(
                         title: appLocalizations.editProfile,
                         leadingIcon: AssetsPaths.profileIcon,
-                        onTrailingTap: () {},
+                        onTrailingTap: () {
+                          Navigator.push(context,MaterialPageRoute(builder: (context) => const EditProfileScreen(),));
+                        },
                       ),
                       const Divider(color: Color(0xFF2D2D2D)),
                       ProfileItem(

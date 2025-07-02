@@ -2,19 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class ChatHistoryModel extends Equatable {
-    String? id;
+  // ignore_for_file: must_be_immutable
+
+  String? id;
   final String? title;
   final List<MessageItem> messages;
-   int? createdAt; // Epoch timestamp
+  int? createdAt; // Epoch timestamp
+  int? lastUpdateAt; // Epoch timestamp
   final bool? didChatEnded;
 
-   ChatHistoryModel({
+  ChatHistoryModel({
     this.id,
     this.title,
     required this.messages,
-
+    this.createdAt,
+    this.lastUpdateAt,
     this.didChatEnded,
-  }) : createdAt =  DateTime.now().millisecondsSinceEpoch;
+  });
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -22,6 +26,7 @@ class ChatHistoryModel extends Equatable {
       'title': title,
       'messages': messages.map((msg) => msg.toFireStore()).toList(),
       'createdAt': createdAt,
+      'lastUpdateAt': lastUpdateAt,
       'didChatEnded': didChatEnded,
     };
   }
@@ -38,8 +43,9 @@ class ChatHistoryModel extends Equatable {
           (data['messages'] as List<dynamic>)
               .map((msg) => MessageItem.fromFireStore(msg))
               .toList(),
-
       didChatEnded: data['didChatEnded'],
+        createdAt: data['createdAt'],
+        lastUpdateAt: data['lastUpdateAt']
     );
   }
 

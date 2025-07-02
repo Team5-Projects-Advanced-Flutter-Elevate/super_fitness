@@ -98,7 +98,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
       final snapshot =
           await _userChats(
             userId,
-          ).orderBy(FireBaseConstants.createdAt, descending: true).get();
+          ).orderBy(FireBaseConstants.lastUpdateAt, descending: true).get();
       return snapshot.docs.map((doc) => doc.data()).toList();
     });
 
@@ -123,7 +123,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
   Future<ApiResult<void>> updateChatTime(String userId, String chatId) async {
     return await ApiExecutor.executeApi(() async {
       await _userChats(userId).doc(chatId).update({
-        FireBaseConstants.createdAt: DateTime.now().millisecondsSinceEpoch,
+        FireBaseConstants.lastUpdateAt: DateTime.now().millisecondsSinceEpoch,
       });
     });
   }

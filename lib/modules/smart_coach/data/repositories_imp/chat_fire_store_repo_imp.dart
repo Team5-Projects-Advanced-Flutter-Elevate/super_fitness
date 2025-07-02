@@ -48,20 +48,20 @@ class ChatFireStoreRepoImp implements ChatFireStoreRepo {
   }
 
   @override
-  Future<ApiResult<List<ChatHistoryModel>>> getAllChats(String userId) {
-    // TODO: implement getAllChats
-    throw UnimplementedError();
+  Future<ApiResult<List<ChatHistoryModel>>> getAllChats(String userId) async {
+    return await _chatFireStoreDataSource.getAllChats(userId);
   }
 
   @override
-  Future<ApiResult<ChatHistoryModel?>> getChat(String userId, String chatId) {
-    // TODO: implement getChat
-    throw UnimplementedError();
+  Future<ApiResult<ChatHistoryModel?>> getChat(
+    String userId,
+    String chatId,
+  ) async {
+    return await _chatFireStoreDataSource.getChat(userId, chatId);
   }
 
   @override
-  Future<ApiResult<void>> updateChatTime(String userId, String chatId) {
-    // TODO: implement updateChatTime
-    throw UnimplementedError();
+  Future<void> updateChatTime(String userId, String chatId) async {
+    await _chatFireStoreDataSource.updateChatTime(userId, chatId);
   }
 }

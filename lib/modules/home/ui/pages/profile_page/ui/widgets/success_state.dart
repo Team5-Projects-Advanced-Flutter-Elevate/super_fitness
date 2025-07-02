@@ -67,7 +67,12 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                         title: appLocalizations.editProfile,
                         leadingIcon: AssetsPaths.profileIcon,
                         onTrailingTap: () {
-                          Navigator.push(context,MaterialPageRoute(builder: (context) => const EditProfileScreen(),));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const EditProfileScreen(),
+                            ),
+                          );
                         },
                       ),
                       const Divider(color: Color(0xFF2D2D2D)),

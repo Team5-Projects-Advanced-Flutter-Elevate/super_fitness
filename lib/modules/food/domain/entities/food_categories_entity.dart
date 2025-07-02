@@ -1,15 +1,23 @@
-class FoodCategoryEntity {
-  String? idCategory;
-  String? strCategory;
-  String? strCategoryThumb;
-  String? strCategoryDescription;
+import 'package:equatable/equatable.dart';
 
-  FoodCategoryEntity({
+class FoodCategoryEntity extends Equatable {
+  final String? idCategory;
+  final String? strCategory;
+  final String? strCategoryThumb;
+  final String? strCategoryDescription;
+
+  const FoodCategoryEntity({
     this.idCategory,
     this.strCategory,
     this.strCategoryThumb,
     this.strCategoryDescription,
   });
 
-  // ... existing fromJson and toJson methods ...
+  @override
+  List<Object?> get props => [
+    idCategory,
+    strCategory,
+    strCategoryThumb,
+    strCategoryDescription,
+  ];
 }

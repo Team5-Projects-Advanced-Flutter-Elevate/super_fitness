@@ -309,6 +309,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i229.EditInfoOnlineDataSource>(
       () => _i93.EditInfoOnlineDataSourceImpl(gh<_i984.GetDataApiClient>()),
     );
+    gh.factory<_i1066.RandomExercisesRemoteDataSource>(
+      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
+    );
     gh.factory<_i754.UploadImageOnlineDataSource>(
       () => _i626.UploadImageOnlineDataSourceImpl(
         gh<_i737.UploadImageApiClient>(),
@@ -316,9 +319,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
-    );
-    gh.factory<_i1066.RandomExerciseRemoteDataSource>(
-      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i34.FoodDataSourceContract>(
       () => _i47.FoodDataSourceImp(gh<_i642.FoodApiClient>()),
@@ -386,6 +386,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i352.RandomExercisesRepo>(
+      () => _i16.RandomExercisesRepoImp(
+        gh<_i1066.RandomExercisesRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i382.GetLoggedDriverDataRepo>(
       () => _i452.LoggedDriverDataRepoImp(
         gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
@@ -399,11 +404,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i270.FoodDetailsRepo>(
       () => _i946.FoodDetailsRepoImpl(gh<_i208.FoodDetailsDataSource>()),
-    );
-    gh.factory<_i352.RandomExercisesRepo>(
-      () => _i16.RandomExercisesRepoImp(
-        gh<_i1066.RandomExerciseRemoteDataSource>(),
-      ),
     );
     gh.factory<_i51.UploadImageRepo>(
       () => _i42.UploadImageRepoImpl(gh<_i754.UploadImageOnlineDataSource>()),

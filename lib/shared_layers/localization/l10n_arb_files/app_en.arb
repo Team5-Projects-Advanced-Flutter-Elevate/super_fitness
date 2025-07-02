@@ -8,6 +8,8 @@
   "unknownError": "Something Went Wrong \uD83E\uDD14",
   "badCertificate": "The certificate provided by the server is not valid \uD83D\uDCD1",
   "somethingWentWrong": "Something Went Wrong \uD83E\uDD14",
+  "badRequest": "Bad request format \uD83D\uDC4E",
+  "couldNotFindSource": "Couldn't find the source \uD83D\uDE31",
   "validationFunctions____________": "$$$ Comment $$$",
   "pleaseEnterName": "Please enter your name.",
   "pleaseEnterUserName": "Please enter user name.",
@@ -157,9 +159,9 @@
   "messageGemini": "Message Gemini",
   "tellingGeminiToBeSmartFitnessCoach": "You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.",
   "tellingGeminiToWelcomeUser": "Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
-  "tellingGeminiToWelcomeUserNamed": "Welcome user named {userName} briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations",
+  "tellingGeminiToWelcomeUserWithInfo": "Welcome user briefly by his name. Just a few sentences. The user info is as follows: {userInfo} (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.",
   "tellingGeminiToGiveChatTitle": "Give a short, 10-20 characters (not more) title for this message: {firstMessage}, don't give me options just choose the best one.",
-  "conversationIsCloseToLimit": "Conversation is about to reach its limit",
-  "conversationEnded": "Conversation Ended"
+  "conversationIsCloseToLimit": "Conversation is about to reach its limit ⚠\uFE0F",
+  "conversationEnded": "Conversation Ended ❌"
 
 }

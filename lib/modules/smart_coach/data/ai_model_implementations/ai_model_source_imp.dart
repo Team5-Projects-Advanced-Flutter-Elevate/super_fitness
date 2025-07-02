@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:firebase_ai/firebase_ai.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
@@ -13,7 +14,9 @@ class AiModelSourceImp implements AiModelSource {
   AiModelSourceImp(this._generativeModel);
 
   @override
-  AiModelResult promptModel({required ChatHistoryModel chatHistoryModel}) {
+  Future<AiModelResult> promptModel({
+    required ChatHistoryModel chatHistoryModel,
+  }) async {
     List<Content> prompt = [];
     int totalTokens = 0;
     for (var messageItem in chatHistoryModel.messages) {
@@ -28,6 +31,7 @@ class AiModelSourceImp implements AiModelSource {
     }
     final StreamController<GenerateContentResponse> controller =
         StreamController();
+    final Completer<void> doneCompleter = Completer<void>();
     var response = _generativeModel.generateContentStream(prompt);
     response.listen(
       (chunk) {
@@ -39,10 +43,15 @@ class AiModelSourceImp implements AiModelSource {
       onDone: () {
         debugPrint("$totalTokens ================");
         controller.close();
+        doneCompleter.complete();
       },
-      onError: controller.addError,
+      onError: (error) {
+        controller.addError(error);
+        doneCompleter.completeError(error);
+      },
       cancelOnError: true,
     );
+    await doneCompleter.future;
     return AiModelResult(
       numberOfToken: totalTokens,
       responseStream: controller.stream,

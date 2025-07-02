@@ -52,21 +52,21 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
           ),
           const SizedBox(width: 8),
           Flexible(
-            child: ClipRect(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  margin: const EdgeInsets.only(bottom: 4, top: 8),
-                  decoration: BoxDecoration(
-                    color: messageBackgroundColor,
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 4, top: 8),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(color: messageBackgroundColor),
+                    child: Transform.flip(flipX: flipX, child: message),
                   ),
-                  child: Transform.flip(flipX: flipX, child: message),
                 ),
               ),
             ),

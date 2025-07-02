@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -184,14 +185,35 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                       onTap: () {
                         FocusManager.instance.primaryFocus?.unfocus();
                       },
-                      child: BlocBuilder<
+                      child: BlocConsumer<
                         SmartCoachScreenViewModel,
                         SmartCoachScreenState
                       >(
+                        listenWhen: (previous, current) {
+                          if (current.promptAiModelStatus == Status.error) {
+                            return true;
+                          }
+                          return false;
+                        },
+                        listener: (context, state) {
+                          if (state.promptAiModelStatus == Status.error) {
+                            displaySnackBar(
+                              contentType: ContentType.failure,
+                              title: appLocalizations.error,
+                              message: getIt.get<ApiErrorHandler>().handle(
+                                state.promptAiModelError!,
+                              ),
+                              durationInSeconds: 5,
+                            );
+                          }
+                        },
                         builder: (context, state) {
                           return ListView.separated(
                             shrinkWrap: true,
                             itemCount: state.messageItems.length - 2,
+                            controller:
+                                smartCoachScreenViewModel
+                                    .listViewOfChatsController,
                             itemBuilder: (context, index) {
                               if (state.promptAiModelStatus == Status.loading &&
                                   index + 2 == state.messageItems.length - 1) {
@@ -218,14 +240,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                       .withAlpha(150),
                                 );
                               } else {
-                                if (state.promptAiModelStatus == Status.error) {
-                                  displaySnackBar(
-                                    contentType: ContentType.failure,
-                                    title: getIt.get<ApiErrorHandler>().handle(
-                                      state.promptAiModelError!,
-                                    ),
-                                  );
-                                }
                                 return state.messageItems[index + 2].role ==
                                         MessageRoles.user
                                     ? Center(

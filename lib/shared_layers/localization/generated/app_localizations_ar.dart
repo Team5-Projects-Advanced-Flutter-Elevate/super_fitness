@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -34,6 +35,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get somethingWentWrong => 'حدث خطأ ما 🤔';
+
+  @override
+  String get badRequest => 'تنسيق الطلب غير صحيح 👎';
+
+  @override
+  String get couldNotFindSource => 'لم يتم العثور على المصدر 😱';
 
   @override
   String get validationFunctions____________ => '\$\$\$ تعليق \$\$\$';
@@ -498,8 +505,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
 
   @override
-  String tellingGeminiToWelcomeUserNamed(Object userName) {
-    return 'رحّب بالمستخدم الذي اسمه $userName بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo) {
+    return 'رحّب بالمستخدم باختصار باستخدام اسمه. فقط بضع جمل. معلومات المستخدم كما يلي: $userInfo (تجاهل أي معلومات غير معروفة إن وجدت). احتفظ بهذه المعلومات فقط إذا سأل المستخدم عن شيء متعلق بها. في كل رد، اجعل الإجابة بسيطة وواضحة ومختصرة—بدون شروحات طويلة.';
   }
 
   @override
@@ -509,8 +516,8 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get conversationIsCloseToLimit =>
-      'المحادثة على وشك الوصول إلى الحد الأقصى';
+      'المحادثة على وشك الوصول إلى الحد الأقصى ⚠️';
 
   @override
-  String get conversationEnded => 'انتهت المحادثة';
+  String get conversationEnded => 'انتهت المحادثة ❌';
 }

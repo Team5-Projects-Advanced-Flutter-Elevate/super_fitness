@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -35,6 +36,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get somethingWentWrong => 'Something Went Wrong 🤔';
+
+  @override
+  String get badRequest => 'Bad request format 👎';
+
+  @override
+  String get couldNotFindSource => 'Couldn\'t find the source 😱';
 
   @override
   String get validationFunctions____________ => '\$\$\$ Comment \$\$\$';
@@ -498,8 +505,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations';
 
   @override
-  String tellingGeminiToWelcomeUserNamed(Object userName) {
-    return 'Welcome user named $userName briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations';
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo) {
+    return 'Welcome user briefly by his name. Just a few sentences. The user info is as follows: $userInfo (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.';
   }
 
   @override
@@ -509,8 +516,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get conversationIsCloseToLimit =>
-      'Conversation is about to reach its limit';
+      'Conversation is about to reach its limit ⚠️';
 
   @override
-  String get conversationEnded => 'Conversation Ended';
+  String get conversationEnded => 'Conversation Ended ❌';
 }

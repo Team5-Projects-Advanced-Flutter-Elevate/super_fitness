@@ -63,7 +63,7 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<
+      AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <
+      LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// No description provided for @errorMessages________.
@@ -151,6 +151,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
   String get somethingWentWrong;
+
+  /// No description provided for @badRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request format 👎'**
+  String get badRequest;
+
+  /// No description provided for @couldNotFindSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t find the source 😱'**
+  String get couldNotFindSource;
 
   /// No description provided for @validationFunctions____________.
   ///
@@ -1046,11 +1058,11 @@ abstract class AppLocalizations {
   /// **'Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations'**
   String get tellingGeminiToWelcomeUser;
 
-  /// No description provided for @tellingGeminiToWelcomeUserNamed.
+  /// No description provided for @tellingGeminiToWelcomeUserWithInfo.
   ///
   /// In en, this message translates to:
-  /// **'Welcome user named {userName} briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations'**
-  String tellingGeminiToWelcomeUserNamed(Object userName);
+  /// **'Welcome user briefly by his name. Just a few sentences. The user info is as follows: {userInfo} (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.'**
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo);
 
   /// No description provided for @tellingGeminiToGiveChatTitle.
   ///
@@ -1061,13 +1073,13 @@ abstract class AppLocalizations {
   /// No description provided for @conversationIsCloseToLimit.
   ///
   /// In en, this message translates to:
-  /// **'Conversation is about to reach its limit'**
+  /// **'Conversation is about to reach its limit ⚠️'**
   String get conversationIsCloseToLimit;
 
   /// No description provided for @conversationEnded.
   ///
   /// In en, this message translates to:
-  /// **'Conversation Ended'**
+  /// **'Conversation Ended ❌'**
   String get conversationEnded;
 }
 
@@ -1101,6 +1113,6 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+        'that was used.'
   );
 }

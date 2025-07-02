@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
 class ChatHistoryModel extends Equatable {
-  final String? id;
+    String? id;
   final String? title;
   final List<MessageItem> messages;
    int? createdAt; // Epoch timestamp

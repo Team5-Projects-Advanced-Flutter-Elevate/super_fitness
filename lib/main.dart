@@ -18,8 +18,6 @@ import 'core/di/injectable_initializer.dart';
 import 'core/validation/validation_functions.dart';
 import 'firebase_options.dart';
 import 'modules/authentication/domain/usecase/login/login_local.dart';
-import 'modules/smart_coach/data/ai_model_implementations/firebase_chat_service.dart';
-import 'modules/smart_coach/data/models/chat_history_model.dart';
 import 'shared_layers/localization/generated/app_localizations.dart';
 
 GlobalKey<NavigatorState> globalNavigatorKey = GlobalKey<NavigatorState>();
@@ -78,24 +76,6 @@ void main() async {
         },
       ),
     ),
-  );
-  final FirebaseChatService chatService = FirebaseChatService();
-  const String testUserId = 'test_user_123';
-  // Step 1: Create a new chat
-  final ChatHistoryModel chatModel = ChatHistoryModel(
-    title: 'Test Chat Session',
-    messages: [
-      MessageItem(
-        role: MessageRoles.model,
-        message: 'Hello! I am your assistant first add.',
-      ),
-      MessageItem(
-        role: MessageRoles.user,
-        message: 'Hello! I am your assistant second add.',
-      ),
-    ],
-
-    didChatEnded: false,
   );
 }
 

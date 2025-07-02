@@ -1659,28 +1659,6 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
-  String get unknown =>
-      (super.noSuchMethod(
-            Invocation.getter(#unknown),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#unknown),
-            ),
-          )
-          as String);
-
-  @override
-  String get editProfile =>
-      (super.noSuchMethod(
-            Invocation.getter(#editProfile),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#editProfile),
-            ),
-          )
-          as String);
-
-  @override
   String get changePassword =>
       (super.noSuchMethod(
             Invocation.getter(#changePassword),
@@ -1772,6 +1750,94 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.getter(#logoutCancel),
+            ),
+          )
+          as String);
+
+  @override
+  String get unknown =>
+      (super.noSuchMethod(
+            Invocation.getter(#unknown),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#unknown),
+            ),
+          )
+          as String);
+
+  @override
+  String get editProfile =>
+      (super.noSuchMethod(
+            Invocation.getter(#editProfile),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#editProfile),
+            ),
+          )
+          as String);
+
+  @override
+  String get updatedSuccessfully =>
+      (super.noSuchMethod(
+            Invocation.getter(#updatedSuccessfully),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#updatedSuccessfully),
+            ),
+          )
+          as String);
+
+  @override
+  String get yourWeight =>
+      (super.noSuchMethod(
+            Invocation.getter(#yourWeight),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#yourWeight),
+            ),
+          )
+          as String);
+
+  @override
+  String get tapToEdit =>
+      (super.noSuchMethod(
+            Invocation.getter(#tapToEdit),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#tapToEdit),
+            ),
+          )
+          as String);
+
+  @override
+  String get yourGoal =>
+      (super.noSuchMethod(
+            Invocation.getter(#yourGoal),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#yourGoal),
+            ),
+          )
+          as String);
+
+  @override
+  String get yourActivityLevel =>
+      (super.noSuchMethod(
+            Invocation.getter(#yourActivityLevel),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#yourActivityLevel),
+            ),
+          )
+          as String);
+
+  @override
+  String get update =>
+      (super.noSuchMethod(
+            Invocation.getter(#update),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#update),
             ),
           )
           as String);

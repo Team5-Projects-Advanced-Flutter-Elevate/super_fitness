@@ -87,6 +87,31 @@ import '../../modules/authentication/ui/login/cubit/login/view_model.dart'
     as _i396;
 import '../../modules/authentication/ui/register/view_model/register_view_model.dart'
     as _i610;
+import '../../modules/edit_profile/data/api/api_client/get_data_api_client.dart'
+    as _i984;
+import '../../modules/edit_profile/data/api/api_client/upload_image_api_client.dart'
+    as _i737;
+import '../../modules/edit_profile/data/api/api_client_provider/get_data_api_client_provider.dart'
+    as _i1073;
+import '../../modules/edit_profile/data/datasource/edit_info.dart' as _i229;
+import '../../modules/edit_profile/data/datasource/get_data.dart' as _i890;
+import '../../modules/edit_profile/data/datasource/upload_image.dart' as _i754;
+import '../../modules/edit_profile/data/datasource_impl/edit_info.dart' as _i93;
+import '../../modules/edit_profile/data/datasource_impl/get_data.dart' as _i458;
+import '../../modules/edit_profile/data/datasource_impl/upload_image.dart'
+    as _i626;
+import '../../modules/edit_profile/data/repo_impl/edit_info.dart' as _i213;
+import '../../modules/edit_profile/data/repo_impl/get_data.dart' as _i452;
+import '../../modules/edit_profile/data/repo_impl/image_upload.dart' as _i42;
+import '../../modules/edit_profile/domain/repo/edit_data.dart' as _i272;
+import '../../modules/edit_profile/domain/repo/get_data_repo.dart' as _i382;
+import '../../modules/edit_profile/domain/repo/upload_image.dart' as _i51;
+import '../../modules/edit_profile/domain/usecase/edit_info_usecase.dart'
+    as _i797;
+import '../../modules/edit_profile/domain/usecase/get_data_usecase.dart'
+    as _i736;
+import '../../modules/edit_profile/domain/usecase/upload_image.dart' as _i875;
+import '../../modules/edit_profile/ui/cubit/view_model.dart' as _i552;
 import '../../modules/exercise/data/api/api_client/exercise_api_client.dart'
     as _i14;
 import '../../modules/exercise/data/api/api_client_provider/auth_api_client_provider.dart'
@@ -222,6 +247,7 @@ extension GetItInjectableX on _i174.GetIt {
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
     final authApiClientProvider = _$AuthApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
     final foodDetailsApiClientProvider = _$FoodDetailsApiClientProvider();
@@ -253,6 +279,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i737.UploadImageApiClient>(
+      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i14.ExerciseApiClient>(
       () => exerciseApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
@@ -274,6 +306,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i138.GoogleSignInHandler>(
       () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
+    gh.factory<_i229.EditInfoOnlineDataSource>(
+      () => _i93.EditInfoOnlineDataSourceImpl(gh<_i984.GetDataApiClient>()),
+    );
+    gh.factory<_i754.UploadImageOnlineDataSource>(
+      () => _i626.UploadImageOnlineDataSourceImpl(
+        gh<_i737.UploadImageApiClient>(),
+      ),
+    );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
     );
@@ -283,6 +323,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i34.FoodDataSourceContract>(
       () => _i47.FoodDataSourceImp(gh<_i642.FoodApiClient>()),
     );
+    gh.factory<_i890.GetLoggedDriverDataOnlineDataSource>(
+      () => _i458.GetLoggedDriverDataOnlineDataSourceImpl(
+        gh<_i984.GetDataApiClient>(),
+      ),
+    );
     gh.singleton<_i629.SecureStorageService<dynamic>>(
       () => _i701.SecureStorageServiceImp(gh<_i558.FlutterSecureStorage>()),
     );
@@ -290,6 +335,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i712.ChangePasswordRemoteDataSourceImpl(
         gh<_i145.ProfileApiClient>(),
       ),
+    );
+    gh.factory<_i272.EditInfoRepo>(
+      () => _i213.EditInfoRepoImpl(gh<_i229.EditInfoOnlineDataSource>()),
+    );
+    gh.factory<_i797.EditInfoUseCase>(
+      () => _i797.EditInfoUseCase(gh<_i272.EditInfoRepo>()),
     );
     gh.factory<_i208.FoodDetailsDataSource>(
       () => _i432.FoodDetailsDataSourceImpl(gh<_i847.FoodDetailsApiClient>()),
@@ -335,6 +386,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i382.GetLoggedDriverDataRepo>(
+      () => _i452.LoggedDriverDataRepoImp(
+        gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
+      ),
+    );
     gh.singleton<_i273.LocalizationManager>(
       () => _i273.LocalizationManager(
         gh<_i629.SecureStorageService<dynamic>>(),
@@ -348,6 +404,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i16.RandomExercisesRepoImp(
         gh<_i1066.RandomExerciseRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i51.UploadImageRepo>(
+      () => _i42.UploadImageRepoImpl(gh<_i754.UploadImageOnlineDataSource>()),
     );
     await gh.factoryAsync<_i543.AppLocalizations>(
       () => appLocalizationsProvider.provideAppLocalizations(
@@ -371,6 +430,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i521.GetProfileDataUseCase>(
       () => _i521.GetProfileDataUseCase(gh<_i1041.ProfileRepo>()),
+    );
+    gh.factory<_i875.UploadImageUseCase>(
+      () => _i875.UploadImageUseCase(gh<_i51.UploadImageRepo>()),
     );
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
@@ -400,6 +462,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i460.ChangePasswordUseCase>(
       () => _i460.ChangePasswordUseCase(gh<_i58.ChangePasswordRepoContract>()),
+    );
+    gh.factory<_i736.GetUserDataUseCase>(
+      () => _i736.GetUserDataUseCase(gh<_i382.GetLoggedDriverDataRepo>()),
     );
     gh.factory<_i370.ExerciseViewModel>(
       () => _i370.ExerciseViewModel(gh<_i111.ExerciseUseCase>()),
@@ -470,6 +535,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i9.ResetCodeUseCase>(),
       ),
     );
+    gh.factory<_i552.EditProfileViewModel>(
+      () => _i552.EditProfileViewModel(
+        gh<_i736.GetUserDataUseCase>(),
+        gh<_i797.EditInfoUseCase>(),
+        gh<_i875.UploadImageUseCase>(),
+      ),
+    );
     gh.factory<_i624.FoodViewModel>(
       () => _i624.FoodViewModel(
         gh<_i1035.GetFoodCategoriesUseCase>(),
@@ -507,6 +579,8 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 

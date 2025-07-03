@@ -12,11 +12,5 @@ class RandomExercisesRequestEntity extends Equatable {
   final num? limit;
 
   @override
-  List<Object?> get props =>
-      [
-        targetMuscleGroupId,
-        difficultyLevelId,
-        limit,
-      ];
+  List<Object?> get props => [targetMuscleGroupId, difficultyLevelId, limit];
 }
-

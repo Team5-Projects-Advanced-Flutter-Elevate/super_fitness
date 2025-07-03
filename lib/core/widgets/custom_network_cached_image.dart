@@ -33,6 +33,7 @@ class CustomNetworkCachedImage extends BaseStatelessWidget {
         imageUrl: imageUrl,
         width: width,
         fit: fit,
+        height: height,
         placeholder: (context, url) {
           return Shimmer(
             duration: const Duration(seconds: 1),

@@ -10,9 +10,9 @@ import 'package:super_fitness/modules/home/domain/entities/random_exercises/rand
 import 'package:super_fitness/modules/home/domain/entities/random_exercises/random_exercises_response_entity.dart';
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart';
 
-@Injectable(as: RandomExerciseRemoteDataSource)
+@Injectable(as: RandomExercisesRemoteDataSource)
 class RandomExercisesRemoteDataSourceImp
-    implements RandomExerciseRemoteDataSource {
+    implements RandomExercisesRemoteDataSource {
   final HomeApiClient _homeApiClient;
 
   RandomExercisesRemoteDataSourceImp(this._homeApiClient);

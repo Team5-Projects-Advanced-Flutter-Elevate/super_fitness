@@ -171,6 +171,7 @@ abstract class AppThemes {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: AppColors.white,
+
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         textStyle: GoogleFonts.balooThambi2(
           fontSize: 16,

@@ -21,7 +21,7 @@ void main() {
     late RandomExercisesRemoteDataSource randomExercisesRemoteDataSource;
     late HomeApiClient homeApiClient;
     late LocalizationManager localizationManager;
-    final RandomExercisesRequestEntity randomExercisesRequestEntity =
+    const RandomExercisesRequestEntity randomExercisesRequestEntity =
         RandomExercisesRequestEntity(
           limit: 10,
           targetMuscleGroupId: "67c79f3526895f87ce0aa96d",

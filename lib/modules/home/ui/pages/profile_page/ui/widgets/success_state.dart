@@ -7,8 +7,10 @@ import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/prof
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../../../core/colors/app_colors.dart';
 import '../../../../../../../core/constants/assets_paths/assets_paths.dart';
+import '../../../../../../../core/di/injectable_initializer.dart';
 import '../../../../../../../core/widgets/custom_network_cached_image.dart';
 import '../../../../../../../shared_layers/localization/enums/languages_enum.dart';
+import '../../../../../../../shared_layers/localization/l10n_manager/localization_manager.dart';
 import '../view_model/profile_cubit.dart';
 
 class SuccessState extends StatefulWidget {
@@ -22,7 +24,15 @@ class SuccessState extends StatefulWidget {
 }
 
 class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
-  bool isEnglish = true;
+  late bool isEnglish;
+
+  @override
+  void initState() {
+    super.initState();
+    isEnglish =
+        getIt<LocalizationManager>().currentLocale ==
+        LanguagesEnum.en.getLanguageCode();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -109,6 +109,9 @@ dependencies:
   youtube_player_flutter: ^9.1.1
   shimmer_animation: ^2.2.2
   get: ^4.7.2
+  firebase_ai: ^2.2.0
+  firebase_app_check: ^0.3.2+8
+  loading_animation_widget: ^1.3.0
 
 
 

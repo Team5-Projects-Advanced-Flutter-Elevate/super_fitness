@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_ai/firebase_ai.dart' as _i187;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
@@ -190,6 +191,8 @@ import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_us
     as _i1011;
 import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
     as _i415;
+import '../../modules/home/ui/pages/ai_chat_page/view_model/ai_chat_page_view_model.dart'
+    as _i693;
 import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
     as _i102;
 import '../../modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart'
@@ -213,6 +216,42 @@ import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit
 import '../../modules/home/ui/view_model/change_password/change_password_view_model.dart'
     as _i1041;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
+import '../../modules/smart_coach/data/ai_model_contracts/ai_model_source.dart'
+    as _i684;
+import '../../modules/smart_coach/data/ai_model_contracts/chat_fire_store_data_source.dart'
+    as _i617;
+import '../../modules/smart_coach/data/ai_model_implementations/ai_model_source_imp.dart'
+    as _i296;
+import '../../modules/smart_coach/data/ai_model_implementations/chat_fire_store_data_source_impl.dart'
+    as _i125;
+import '../../modules/smart_coach/data/model_provider/model_provider.dart'
+    as _i17;
+import '../../modules/smart_coach/data/repositories_imp/ai_model_repo_imp.dart'
+    as _i742;
+import '../../modules/smart_coach/data/repositories_imp/chat_fire_store_repo_imp.dart'
+    as _i433;
+import '../../modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart'
+    as _i384;
+import '../../modules/smart_coach/domain/repositories_contracts/chat_fire_store_repo.dart'
+    as _i627;
+import '../../modules/smart_coach/domain/use_cases/add_list_of_messages_use_case.dart'
+    as _i887;
+import '../../modules/smart_coach/domain/use_cases/add_message_use_case.dart'
+    as _i642;
+import '../../modules/smart_coach/domain/use_cases/create_chat_use_case.dart'
+    as _i869;
+import '../../modules/smart_coach/domain/use_cases/end_chat_use_case.dart'
+    as _i624;
+import '../../modules/smart_coach/domain/use_cases/get_all_chats_use_case.dart'
+    as _i507;
+import '../../modules/smart_coach/domain/use_cases/get_chat_use_case.dart'
+    as _i607;
+import '../../modules/smart_coach/domain/use_cases/prompt_model_use_case.dart'
+    as _i831;
+import '../../modules/smart_coach/domain/use_cases/update_chat_time_use_case.dart'
+    as _i487;
+import '../../modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart'
+    as _i533;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -246,12 +285,13 @@ extension GetItInjectableX on _i174.GetIt {
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
+    final geminiModelProvider = _$GeminiModelProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
-    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
     final foodApiClientProvider = _$FoodApiClientProvider();
     final foodDetailsApiClientProvider = _$FoodDetailsApiClientProvider();
     final homeApiClientProvider = _$HomeApiClientProvider();
+    final getDataApiClientProvider = _$GetDataApiClientProvider();
     final profileApiClientProvider = _$ProfileApiClientProvider();
     final localeInitializer = _$LocaleInitializer();
     final appLocalizationsProvider = _$AppLocalizationsProvider();
@@ -275,15 +315,12 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i459.SingleDataPerApplicationProvider(),
     );
     gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
+    gh.lazySingleton<_i187.GenerativeModel>(
+      () => geminiModelProvider.provide(),
+    );
     gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
-    );
-    gh.lazySingleton<_i737.UploadImageApiClient>(
-      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
-    );
-    gh.lazySingleton<_i984.GetDataApiClient>(
-      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i14.ExerciseApiClient>(
       () => exerciseApiClientProvider.provideApiClient(gh<_i361.Dio>()),
@@ -297,8 +334,20 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i293.HomeApiClient>(
       () => homeApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i737.UploadImageApiClient>(
+      () => _i737.UploadImageApiClient(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i984.GetDataApiClient>(
+      () => getDataApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i145.ProfileApiClient>(
       () => profileApiClientProvider.provideApiClient(gh<_i361.Dio>()),
+    );
+    gh.factory<_i684.AiModelSource>(
+      () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
+    );
+    gh.factory<_i617.ChatFireStoreDataSource>(
+      () => _i125.FirebaseChatDataSource(),
     );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
@@ -351,6 +400,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1041.ProfileRepo>(
       () => _i253.ProfileRepoImpl(gh<_i65.ProfileDatasource>()),
     );
+    gh.factory<_i384.AiModelRepo>(
+      () => _i742.AiModelRepoImp(gh<_i684.AiModelSource>()),
+    );
     gh.factory<_i58.ChangePasswordRepoContract>(
       () => _i427.ChangePasswordRepoImpl(
         gh<_i544.ChangePasswordRemoteDataSourceContract>(),
@@ -391,6 +443,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1066.RandomExercisesRemoteDataSource>(),
       ),
     );
+    gh.factory<_i627.ChatFireStoreRepo>(
+      () => _i433.ChatFireStoreRepoImp(gh<_i617.ChatFireStoreDataSource>()),
+    );
     gh.factory<_i382.GetLoggedDriverDataRepo>(
       () => _i452.LoggedDriverDataRepoImp(
         gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
@@ -428,6 +483,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i442.FoodRepoContract>(
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
     );
+    gh.factory<_i831.PromptModelUseCase>(
+      () => _i831.PromptModelUseCase(gh<_i384.AiModelRepo>()),
+    );
     gh.factory<_i521.GetProfileDataUseCase>(
       () => _i521.GetProfileDataUseCase(gh<_i1041.ProfileRepo>()),
     );
@@ -439,6 +497,37 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i396.FirebaseAuthRepo>(
       () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    );
+    gh.factory<_i887.AddListOfMessagesUseCase>(
+      () => _i887.AddListOfMessagesUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i642.AddMessageUseCase>(
+      () => _i642.AddMessageUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i869.CreateChatUseCase>(
+      () => _i869.CreateChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i624.EndChatUseCase>(
+      () => _i624.EndChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i507.GetAllChatsUseCase>(
+      () => _i507.GetAllChatsUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i607.GetChatUseCase>(
+      () => _i607.GetChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i487.UpdateChatTimeUseCase>(
+      () => _i487.UpdateChatTimeUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i533.SmartCoachScreenViewModel>(
+      () => _i533.SmartCoachScreenViewModel(
+        gh<_i831.PromptModelUseCase>(),
+        gh<_i507.GetAllChatsUseCase>(),
+        gh<_i869.CreateChatUseCase>(),
+        gh<_i887.AddListOfMessagesUseCase>(),
+        gh<_i487.UpdateChatTimeUseCase>(),
+        gh<_i624.EndChatUseCase>(),
+      ),
     );
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
@@ -485,6 +574,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
+    );
+    gh.factory<_i693.AiChatPageViewModel>(
+      () => _i693.AiChatPageViewModel(gh<_i507.GetAllChatsUseCase>()),
     );
     gh.factory<_i415.GetMusclesGroupUseCase>(
       () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
@@ -578,9 +670,9 @@ class _$StoragesInitializer extends _i241.StoragesInitializer {}
 
 class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
 
-class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
+class _$GeminiModelProvider extends _i17.GeminiModelProvider {}
 
-class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
+class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 
 class _$ExerciseApiClientProvider extends _i356.ExerciseApiClientProvider {}
 
@@ -590,6 +682,8 @@ class _$FoodDetailsApiClientProvider
     extends _i762.FoodDetailsApiClientProvider {}
 
 class _$HomeApiClientProvider extends _i939.HomeApiClientProvider {}
+
+class _$GetDataApiClientProvider extends _i1073.GetDataApiClientProvider {}
 
 class _$ProfileApiClientProvider extends _i355.ProfileApiClientProvider {}
 

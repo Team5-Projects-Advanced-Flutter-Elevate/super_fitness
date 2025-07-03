@@ -191,6 +191,28 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
+  String get badRequest =>
+      (super.noSuchMethod(
+            Invocation.getter(#badRequest),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#badRequest),
+            ),
+          )
+          as String);
+
+  @override
+  String get couldNotFindSource =>
+      (super.noSuchMethod(
+            Invocation.getter(#couldNotFindSource),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#couldNotFindSource),
+            ),
+          )
+          as String);
+
+  @override
   String get validationFunctions____________ =>
       (super.noSuchMethod(
             Invocation.getter(#validationFunctions____________),
@@ -1659,102 +1681,6 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
-  String get changePassword =>
-      (super.noSuchMethod(
-            Invocation.getter(#changePassword),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#changePassword),
-            ),
-          )
-          as String);
-
-  @override
-  String get selectLanguage =>
-      (super.noSuchMethod(
-            Invocation.getter(#selectLanguage),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#selectLanguage),
-            ),
-          )
-          as String);
-
-  @override
-  String get security =>
-      (super.noSuchMethod(
-            Invocation.getter(#security),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#security),
-            ),
-          )
-          as String);
-
-  @override
-  String get privacyPolicy =>
-      (super.noSuchMethod(
-            Invocation.getter(#privacyPolicy),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#privacyPolicy),
-            ),
-          )
-          as String);
-
-  @override
-  String get help =>
-      (super.noSuchMethod(
-            Invocation.getter(#help),
-            returnValue: _i4.dummyValue<String>(this, Invocation.getter(#help)),
-          )
-          as String);
-
-  @override
-  String get logout =>
-      (super.noSuchMethod(
-            Invocation.getter(#logout),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#logout),
-            ),
-          )
-          as String);
-
-  @override
-  String get english =>
-      (super.noSuchMethod(
-            Invocation.getter(#english),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#english),
-            ),
-          )
-          as String);
-
-  @override
-  String get areYouSureLogout =>
-      (super.noSuchMethod(
-            Invocation.getter(#areYouSureLogout),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#areYouSureLogout),
-            ),
-          )
-          as String);
-
-  @override
-  String get logoutCancel =>
-      (super.noSuchMethod(
-            Invocation.getter(#logoutCancel),
-            returnValue: _i4.dummyValue<String>(
-              this,
-              Invocation.getter(#logoutCancel),
-            ),
-          )
-          as String);
-
-  @override
   String get unknown =>
       (super.noSuchMethod(
             Invocation.getter(#unknown),
@@ -1766,78 +1692,133 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
           as String);
 
   @override
-  String get editProfile =>
+  String get aiChatFeature____________ =>
       (super.noSuchMethod(
-            Invocation.getter(#editProfile),
+            Invocation.getter(#aiChatFeature____________),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#editProfile),
+              Invocation.getter(#aiChatFeature____________),
             ),
           )
           as String);
 
   @override
-  String get updatedSuccessfully =>
+  String get iAmYourSmartCoach =>
       (super.noSuchMethod(
-            Invocation.getter(#updatedSuccessfully),
+            Invocation.getter(#iAmYourSmartCoach),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#updatedSuccessfully),
+              Invocation.getter(#iAmYourSmartCoach),
             ),
           )
           as String);
 
   @override
-  String get yourWeight =>
+  String get previousConversations =>
       (super.noSuchMethod(
-            Invocation.getter(#yourWeight),
+            Invocation.getter(#previousConversations),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#yourWeight),
+              Invocation.getter(#previousConversations),
             ),
           )
           as String);
 
   @override
-  String get tapToEdit =>
+  String get howCanIAssistYouToday =>
       (super.noSuchMethod(
-            Invocation.getter(#tapToEdit),
+            Invocation.getter(#howCanIAssistYouToday),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#tapToEdit),
+              Invocation.getter(#howCanIAssistYouToday),
             ),
           )
           as String);
 
   @override
-  String get yourGoal =>
+  String get getStarted =>
       (super.noSuchMethod(
-            Invocation.getter(#yourGoal),
+            Invocation.getter(#getStarted),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#yourGoal),
+              Invocation.getter(#getStarted),
             ),
           )
           as String);
 
   @override
-  String get yourActivityLevel =>
+  String get smartCoach =>
       (super.noSuchMethod(
-            Invocation.getter(#yourActivityLevel),
+            Invocation.getter(#smartCoach),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#yourActivityLevel),
+              Invocation.getter(#smartCoach),
             ),
           )
           as String);
 
   @override
-  String get update =>
+  String get untitledChat =>
       (super.noSuchMethod(
-            Invocation.getter(#update),
+            Invocation.getter(#untitledChat),
             returnValue: _i4.dummyValue<String>(
               this,
-              Invocation.getter(#update),
+              Invocation.getter(#untitledChat),
+            ),
+          )
+          as String);
+
+  @override
+  String get messageGemini =>
+      (super.noSuchMethod(
+            Invocation.getter(#messageGemini),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#messageGemini),
+            ),
+          )
+          as String);
+
+  @override
+  String get tellingGeminiToBeSmartFitnessCoach =>
+      (super.noSuchMethod(
+            Invocation.getter(#tellingGeminiToBeSmartFitnessCoach),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#tellingGeminiToBeSmartFitnessCoach),
+            ),
+          )
+          as String);
+
+  @override
+  String get tellingGeminiToWelcomeUser =>
+      (super.noSuchMethod(
+            Invocation.getter(#tellingGeminiToWelcomeUser),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#tellingGeminiToWelcomeUser),
+            ),
+          )
+          as String);
+
+  @override
+  String get conversationIsCloseToLimit =>
+      (super.noSuchMethod(
+            Invocation.getter(#conversationIsCloseToLimit),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#conversationIsCloseToLimit),
+            ),
+          )
+          as String);
+
+  @override
+  String get conversationEnded =>
+      (super.noSuchMethod(
+            Invocation.getter(#conversationEnded),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.getter(#conversationEnded),
             ),
           )
           as String);
@@ -1849,6 +1830,30 @@ class MockAppLocalizations extends _i1.Mock implements _i3.AppLocalizations {
             returnValue: _i4.dummyValue<String>(
               this,
               Invocation.method(#hiUser, [userName]),
+            ),
+          )
+          as String);
+
+  @override
+  String tellingGeminiToWelcomeUserWithInfo(Object? userInfo) =>
+      (super.noSuchMethod(
+            Invocation.method(#tellingGeminiToWelcomeUserWithInfo, [userInfo]),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.method(#tellingGeminiToWelcomeUserWithInfo, [
+                userInfo,
+              ]),
+            ),
+          )
+          as String);
+
+  @override
+  String tellingGeminiToGiveChatTitle(Object? firstMessage) =>
+      (super.noSuchMethod(
+            Invocation.method(#tellingGeminiToGiveChatTitle, [firstMessage]),
+            returnValue: _i4.dummyValue<String>(
+              this,
+              Invocation.method(#tellingGeminiToGiveChatTitle, [firstMessage]),
             ),
           )
           as String);

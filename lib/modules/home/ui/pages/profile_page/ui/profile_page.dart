@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
-import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/view_model/profile_cubit.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/success_state.dart';

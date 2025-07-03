@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -458,7 +459,55 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recommendationForYou => 'Recommendation For You';
 
   @override
+  String get changePassword => 'Change Password';
+
+  @override
+  String get selectLanguage => 'Select Language';
+
+  @override
+  String get security => 'Security';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get help => 'Help';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get areYouSureLogout => 'Are you sure you want to logout?';
+
+  @override
+  String get logoutCancel => 'Cancel';
+
+  @override
   String get unknown => 'Unknown';
+
+  @override
+  String get editProfile => 'Edit profile';
+
+  @override
+  String get updatedSuccessfully => 'Updated Successfully';
+
+  @override
+  String get yourWeight => 'Your Weight';
+
+  @override
+  String get tapToEdit => '(tap to edit)';
+
+  @override
+  String get yourGoal => 'Your Goal';
+
+  @override
+  String get yourActivityLevel => 'Your activity level';
+
+  @override
+  String get update => 'Update';
 
   @override
   String get aiChatFeature____________ => '\$\$\$ Comment \$\$\$';

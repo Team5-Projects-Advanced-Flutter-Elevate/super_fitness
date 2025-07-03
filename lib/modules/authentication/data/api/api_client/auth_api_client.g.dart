@@ -11,13 +11,14 @@ part of 'auth_api_client.dart';
 class _AuthApiClient implements AuthApiClient {
   _AuthApiClient(this._dio) {
     baseUrl ??= 'https://fitness.elevateegy.com';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<ForgetPasswordResponse?> forgetPassword(

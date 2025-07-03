@@ -24,7 +24,7 @@ class WorkoutDatasourceImpl implements WorkoutDatasource {
       case Success<GetMusclesGroupResponse>():
         return Success(data: result.data.toEntity().musclesGroup);
       case Error<GetMusclesGroupResponse>():
-        return Error(error: result);
+        return Error(error: result.error);
     }
   }
 

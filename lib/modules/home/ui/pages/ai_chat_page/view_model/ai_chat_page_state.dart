@@ -4,16 +4,16 @@ import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model
 enum Status { idle, loading, success, error }
 
 class AiChatPageState extends Equatable {
-  final Status gatAllChatsStatus;
+  final Status getAllChatsStatus;
   final List<ChatHistoryModel>? chats;
-  final Object? gatAllChatsError;
+  final Object? getAllChatsError;
 
   const AiChatPageState({
-    this.gatAllChatsStatus = Status.idle,
+    this.getAllChatsStatus = Status.idle,
     this.chats,
-    this.gatAllChatsError,
+    this.getAllChatsError,
   });
 
   @override
-  List<Object?> get props => [gatAllChatsStatus, chats, gatAllChatsError];
+  List<Object?> get props => [getAllChatsStatus, chats, getAllChatsError];
 }

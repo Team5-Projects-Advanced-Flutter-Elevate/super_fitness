@@ -1,25 +1,41 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:super_fitness/core/apis/api_result/api_result.dart';
+import 'package:super_fitness/core/constants/fire_base_constants.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
+import 'package:super_fitness/modules/smart_coach/domain/use_cases/add_list_of_messages_use_case.dart';
+import 'package:super_fitness/modules/smart_coach/domain/use_cases/create_chat_use_case.dart';
+import 'package:super_fitness/modules/smart_coach/domain/use_cases/end_chat_use_case.dart';
+import 'package:super_fitness/modules/smart_coach/domain/use_cases/get_all_chats_use_case.dart';
 import 'package:super_fitness/modules/smart_coach/domain/use_cases/prompt_model_use_case.dart';
+import 'package:super_fitness/modules/smart_coach/domain/use_cases/update_chat_time_use_case.dart';
 import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_state.dart';
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 
 @injectable
 class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   final PromptModelUseCase _promptModelUseCase;
+  final GetAllChatsUseCase _getAllChatsUseCase;
+  final CreateChatUseCase _createChatUseCase;
+  final AddListOfMessagesUseCase _addListOfMessagesUseCase;
+  final UpdateChatTimeUseCase _updateChatTimeUseCase;
+  final EndChatUseCase _endChatUseCase;
 
-  SmartCoachScreenViewModel(this._promptModelUseCase)
-    : super(const SmartCoachScreenState());
+  SmartCoachScreenViewModel(
+    this._promptModelUseCase,
+    this._getAllChatsUseCase,
+    this._createChatUseCase,
+    this._addListOfMessagesUseCase,
+    this._updateChatTimeUseCase,
+    this._endChatUseCase,
+  ) : super(const SmartCoachScreenState());
 
-  final ChatHistoryModel chatHistoryModel = ChatHistoryModel(
-    messages: [],
-    id: '',
-    title: '',
-  );
+  ChatHistoryModel chatHistoryModel = ChatHistoryModel(messages: []);
 
   var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
   ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);
@@ -27,6 +43,8 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   ValueNotifier<String> tokenNotifier = ValueNotifier("");
   ValueNotifier<bool> chatEndedNotifier = ValueNotifier(false);
   final ScrollController listViewOfChatsController = ScrollController();
+  bool makeAiChatPageReloadPreviousConversations = false;
+  bool makeThisScreenReloadPreviousConversations = false;
 
   void doIntent(SmartCoachScreenIntent intent) {
     switch (intent) {
@@ -39,16 +57,23 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       case PromptAiToAnswerUser():
         _promptAiModelToAnswerUser(intent.message);
         break;
+      case GetAllChats():
+        _getAllChats();
+        break;
     }
   }
 
   void _initViewModel({required ChatHistoryModel chatHistoryModel}) {
-    conversationTitleNotifier.value = chatHistoryModel.title;
-    chatEndedNotifier.value = chatHistoryModel.didChatEnded;
+    this.chatHistoryModel = chatHistoryModel;
+    conversationTitleNotifier.value =
+        (chatHistoryModel.title == FirebaseConstants.untitledChat)
+            ? ""
+            : this.chatHistoryModel.title;
+    chatEndedNotifier.value = this.chatHistoryModel.didChatEnded;
     emit(
       SmartCoachScreenState(
         promptAiModelStatus: Status.success,
-        messageItems: chatHistoryModel.messages,
+        messageItems: this.chatHistoryModel.messages,
       ),
     );
     takeAnotherMessageNotifier.value = true;
@@ -124,8 +149,9 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     );
   }
 
-  void _getTitleFromUserFirstMessage(String firstMessage) async {
+  Future<void> _getTitleFromUserFirstMessage(String firstMessage) async {
     AppLocalizations appLocalizations = getIt.get<AppLocalizations>();
+    final Completer<void> doneCompleter = Completer<void>();
     var useCaseResult = await _promptModelUseCase.call(
       chatHistoryModel: ChatHistoryModel(
         messages: [
@@ -146,12 +172,15 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       cancelOnError: true,
       onError: (error) {
         conversationTitleNotifier.value = "";
+        doneCompleter.complete();
       },
       onDone: () {
         chatHistoryModel.title = titleStringBuffer.toString();
         conversationTitleNotifier.value = titleStringBuffer.toString();
+        doneCompleter.complete();
       },
     );
+    await doneCompleter.future;
   }
 
   void _promptAiModelToAnswerUser(String message) async {
@@ -178,7 +207,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       ),
     );
     if (conversationTitleNotifier.value.isEmpty) {
-      _getTitleFromUserFirstMessage(message);
+      await _getTitleFromUserFirstMessage(message);
     }
     var useCaseResult = await _promptModelUseCase.call(
       chatHistoryModel: chatHistoryModel,
@@ -213,20 +242,30 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
             promptAiModelError: error,
           ),
         );
-        _scrollToTheEndOfTheListAfterAddingAMessage();
         takeAnotherMessageNotifier.value = true;
         chatHistoryModel.messages.add(state.messageItems.last);
         _scrollToTheEndOfTheListAfterAddingAMessage();
+        if (chatHistoryModel.id == null) {
+          _createNewChat();
+        } else {
+          _onNewMessages();
+        }
       },
       cancelOnError: true,
       onDone: () {
         takeAnotherMessageNotifier.value = true;
         chatHistoryModel.messages.add(state.messageItems.last);
+        if (chatHistoryModel.id == null) {
+          _createNewChat();
+        } else {
+          _onNewMessages();
+        }
       },
     );
   }
 
-  void _handleNumberOfTokensReached(int tokens) {
+  void _handleNumberOfTokensReached(int tokens) async {
+    var userInfo = getIt.get<UserProvider>().userLoginInfo!.user;
     AppLocalizations appLocalizations = getIt.get<AppLocalizations>();
     if (tokens > 2000 && tokens < 3000) {
       tokenNotifier.value = appLocalizations.conversationIsCloseToLimit;
@@ -234,6 +273,10 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       tokenNotifier.value = appLocalizations.conversationEnded;
       chatHistoryModel.didChatEnded = true;
       chatEndedNotifier.value = true;
+      await _endChatUseCase.call(
+        userId: userInfo!.id!,
+        chatId: chatHistoryModel.id!,
+      );
     }
   }
 
@@ -260,6 +303,59 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       "goal": userInfo?.goal ?? appLocalizations.unknown,
     }.toString();
   }
+
+  // Firestore Use Cases:
+  void _getAllChats() async {
+    emit(state.copyWith(getAllChatsStatus: Status.loading));
+    var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
+    var useCaseResult = await _getAllChatsUseCase.call(userInfo?.id ?? "");
+    switch (useCaseResult) {
+      case Success<List<ChatHistoryModel>>():
+        emit(
+          state.copyWith(
+            getAllChatsStatus: Status.success,
+            previousChats: useCaseResult.data,
+          ),
+        );
+      case Error<List<ChatHistoryModel>>():
+        emit(
+          state.copyWith(
+            getAllChatsStatus: Status.error,
+            getAllChatsError: useCaseResult.error,
+          ),
+        );
+    }
+  }
+
+  void _createNewChat() async {
+    var userInfo = getIt.get<UserProvider>().userLoginInfo!.user;
+    chatHistoryModel.createdAt = DateTime.now().millisecondsSinceEpoch;
+    chatHistoryModel.lastUpdateAt = chatHistoryModel.createdAt;
+    await _createChatUseCase.call(
+      userId: userInfo!.id!,
+      chatHistoryModel: chatHistoryModel,
+    );
+    debugPrint("###### ${chatHistoryModel.id}");
+    makeAiChatPageReloadPreviousConversations = true;
+    makeThisScreenReloadPreviousConversations = true;
+  }
+
+  void _onNewMessages() async {
+    var userInfo = getIt.get<UserProvider>().userLoginInfo!.user;
+    await _addListOfMessagesUseCase.call(
+      userId: userInfo!.id!,
+      chatId: chatHistoryModel.id!,
+      messages: chatHistoryModel.messages.sublist(
+        chatHistoryModel.messages.length - 2,
+      ),
+    );
+    await _updateChatTimeUseCase.call(
+      userId: userInfo.id!,
+      chatId: chatHistoryModel.id!,
+    );
+    makeAiChatPageReloadPreviousConversations = true;
+    makeThisScreenReloadPreviousConversations = true;
+  }
 }
 
 sealed class SmartCoachScreenIntent {}
@@ -278,7 +374,23 @@ class InitViewModel extends SmartCoachScreenIntent {
   InitViewModel({required this.chatHistoryModel});
 }
 
+class GetAllChats extends SmartCoachScreenIntent {}
+
 /*
+
+  String userId = '';
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    fireStore
+        .collection(FirebaseConstants.userCollection)
+        .doc(userId)
+        .collection(FirebaseConstants.chatCollection)
+        .snapshots()
+        .listen((snapshot) {
+          for (var doc in snapshot.docs){
+            doc.metadata.hasPendingWrites;
+          }
+    });
+
 
     // Provide a prompt that contains text
     final prompt = [

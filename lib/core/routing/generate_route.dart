@@ -13,6 +13,7 @@ import 'package:super_fitness/modules/layout/layout_screen.dart';
 import 'package:super_fitness/modules/layout/profile/profile_screen.dart';
 import 'package:super_fitness/modules/layout/workout/workout_screen.dart';
 import 'package:super_fitness/modules/onboarding/ui/screen/onboarding_screen.dart';
+import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/modules/smart_coach/ui/smart_coach_screen.dart';
 import 'package:super_fitness/modules/upcoming_screen/ui/upcoming_feature_screen.dart';
 
@@ -82,8 +83,11 @@ abstract class GenerateRoute {
                     FoodDetailsScreen(arguments: args as FoodDetailsArguments),
           );
         case DefinedRoutes.smartCoachScreenRoute:
-          return MaterialPageRoute(
-            builder: (context) => const SmartCoachScreen(),
+          return MaterialPageRoute<bool>(
+            builder:
+                (context) => SmartCoachScreen(
+                  chatHistoryModel: args as ChatHistoryModel?,
+                ),
           );
         default:
           return _errorRoute();

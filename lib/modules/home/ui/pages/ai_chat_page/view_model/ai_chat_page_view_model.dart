@@ -24,21 +24,22 @@ class AiChatPageViewModel extends Cubit<AiChatPageState> {
   }
 
   void _getAllChats() async {
+    emit(const AiChatPageState(getAllChatsStatus: Status.loading));
     var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
     var useCaseResult = await _getAllChatsUseCase.call(userInfo?.id ?? "");
     switch (useCaseResult) {
       case Success<List<ChatHistoryModel>>():
         emit(
           AiChatPageState(
-            gatAllChatsStatus: Status.success,
+            getAllChatsStatus: Status.success,
             chats: useCaseResult.data,
           ),
         );
       case Error<List<ChatHistoryModel>>():
         emit(
           AiChatPageState(
-            gatAllChatsStatus: Status.error,
-            gatAllChatsError: useCaseResult.error,
+            getAllChatsStatus: Status.error,
+            getAllChatsError: useCaseResult.error,
           ),
         );
     }

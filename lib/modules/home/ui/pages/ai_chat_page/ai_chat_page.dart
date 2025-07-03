@@ -8,6 +8,7 @@ import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
+import 'package:super_fitness/core/widgets/error_state_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/home/ui/pages/ai_chat_page/view_model/ai_chat_page_state.dart';
@@ -27,6 +28,8 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final AiChatPageViewModel aiChatPageViewModel =
       getIt.get<AiChatPageViewModel>();
+
+  bool reloadChats = false;
 
   @override
   void didChangeDependencies() {
@@ -67,6 +70,10 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
             IconButton(
               onPressed: () {
                 scaffoldKey.currentState!.openEndDrawer();
+                if (reloadChats) {
+                  aiChatPageViewModel.doIntent(GetAllChats());
+                  reloadChats = false;
+                }
               },
               icon: ImageIcon(
                 const AssetImage(AssetsPaths.threeLinesIcon),
@@ -79,83 +86,86 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
         endDrawer: ClipRRect(
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: BlocBuilder<AiChatPageViewModel, AiChatPageState>(
-              builder: (context, state) {
-                switch (state.gatAllChatsStatus) {
-                  case Status.idle:
-                    return const SizedBox();
-                  case Status.loading:
-                    return const LoadingStateWidget();
-                  case Status.success:
-                    var chats = state.chats ?? [];
-                    return Drawer(
-                      width: screenWidth * 0.7,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              appLocalizations.previousConversations,
-                              textAlign: TextAlign.end,
-                              style: theme.textTheme.titleMedium!.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            Expanded(
-                              child:
-                                  chats.isEmpty
-                                      ? Center(
-                                        child: Text(
-                                          appLocalizations.noData,
-                                          style: theme.textTheme.titleMedium,
-                                        ),
-                                      )
-                                      : ListView.separated(
-                                        itemCount: chats.length,
-                                        itemBuilder: (context, index) {
-                                          return ListTile(
-                                            minTileHeight: 35,
-                                            minVerticalPadding: 0,
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                context,
-                                                DefinedRoutes
-                                                    .smartCoachScreenRoute,
-                                                arguments: chats[index],
-                                              );
-                                            },
-                                            leading: const Icon(
-                                              Icons.arrow_back_ios,
-                                              size: 20,
-                                            ),
-                                            contentPadding: EdgeInsets.zero,
-                                            title: Text(
-                                              chats[index].title,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.end,
-                                              style: theme.textTheme.titleSmall,
-                                            ),
-                                          );
-                                        },
-                                        separatorBuilder: (context, index) {
-                                          return Divider(
-                                            color: AppColors.black[70],
-                                          );
-                                        },
-                                      ),
-                            ),
-                          ],
-                        ),
+            child: Drawer(
+              width: screenWidth * 0.7,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      appLocalizations.previousConversations,
+                      textAlign: TextAlign.end,
+                      style: theme.textTheme.titleMedium!.copyWith(
+                        fontWeight: FontWeight.w700,
                       ),
-                    );
-                  case Status.error:
-                    // TODO: Handle this case.
-                    throw UnimplementedError();
-                }
-              },
+                    ),
+                    const SizedBox(height: 24),
+                    Expanded(
+                      child: BlocBuilder<AiChatPageViewModel, AiChatPageState>(
+                        builder: (context, state) {
+                          switch (state.getAllChatsStatus) {
+                            case Status.idle:
+                              return const SizedBox();
+                            case Status.loading:
+                              return const LoadingStateWidget();
+                            case Status.success:
+                              var chats = state.chats ?? [];
+                              return chats.isEmpty
+                                  ? Center(
+                                    child: Text(
+                                      appLocalizations.noData,
+                                      style: theme.textTheme.titleMedium,
+                                    ),
+                                  )
+                                  : ListView.separated(
+                                    itemCount: chats.length,
+                                    itemBuilder: (context, index) {
+                                      return ListTile(
+                                        minTileHeight: 35,
+                                        minVerticalPadding: 0,
+                                        onTap: () {
+                                          scaffoldKey.currentState!
+                                              .closeEndDrawer();
+                                          Navigator.pushNamed<bool>(
+                                            context,
+                                            DefinedRoutes.smartCoachScreenRoute,
+                                            arguments: chats[index],
+                                          ).then((value) {
+                                            reloadChats = value ?? false;
+                                          });
+                                        },
+                                        leading: const Icon(
+                                          Icons.arrow_back_ios,
+                                          size: 20,
+                                        ),
+                                        contentPadding: EdgeInsets.zero,
+                                        title: Text(
+                                          chats[index].title,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.end,
+                                          style: theme.textTheme.titleSmall,
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (context, index) {
+                                      return Divider(
+                                        color: AppColors.black[70],
+                                      );
+                                    },
+                                  );
+                            case Status.error:
+                              return ErrorStateWidget(
+                                error: state.getAllChatsError!,
+                              );
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
@@ -192,10 +202,12 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                         const SizedBox(height: 8),
                         FilledButton(
                           onPressed: () {
-                            Navigator.pushNamed(
+                            Navigator.pushNamed<bool>(
                               context,
                               DefinedRoutes.smartCoachScreenRoute,
-                            );
+                            ).then((value) {
+                              reloadChats = value ?? false;
+                            });
                           },
                           child: Text(appLocalizations.getStarted),
                         ),

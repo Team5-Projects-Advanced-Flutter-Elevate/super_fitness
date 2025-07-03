@@ -406,6 +406,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i487.UpdateChatTimeUseCase>(
       () => _i487.UpdateChatTimeUseCase(gh<_i627.ChatFireStoreRepo>()),
     );
+    gh.factory<_i533.SmartCoachScreenViewModel>(
+      () => _i533.SmartCoachScreenViewModel(
+        gh<_i831.PromptModelUseCase>(),
+        gh<_i507.GetAllChatsUseCase>(),
+        gh<_i869.CreateChatUseCase>(),
+        gh<_i887.AddListOfMessagesUseCase>(),
+        gh<_i487.UpdateChatTimeUseCase>(),
+        gh<_i624.EndChatUseCase>(),
+      ),
+    );
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
     );
@@ -432,9 +442,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i630.StoreLoginLocalRepo>(
       () =>
           _i849.StoreLoginLocalRepoImpl(gh<_i393.StoreLoginLocalDataSource>()),
-    );
-    gh.factory<_i533.SmartCoachScreenViewModel>(
-      () => _i533.SmartCoachScreenViewModel(gh<_i831.PromptModelUseCase>()),
     );
     gh.factory<_i851.SignInWithGoogleAccountUseCase>(
       () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),

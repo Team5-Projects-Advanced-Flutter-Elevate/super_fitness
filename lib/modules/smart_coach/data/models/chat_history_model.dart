@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:super_fitness/core/constants/fire_base_constants.dart';
 
 class ChatHistoryModel extends Equatable {
   // ignore_for_file: must_be_immutable
@@ -13,7 +14,7 @@ class ChatHistoryModel extends Equatable {
 
   ChatHistoryModel({
     this.id,
-    this.title = "",
+    this.title = FirebaseConstants.untitledChat,
     required this.messages,
     this.createdAt,
     this.lastUpdateAt,

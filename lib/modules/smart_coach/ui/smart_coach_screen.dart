@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -10,7 +11,10 @@ import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
+import 'package:super_fitness/core/widgets/error_state_widget.dart';
+import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart';
 import 'package:super_fitness/modules/smart_coach/data/models/chat_history_model.dart';
 import 'package:super_fitness/modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart';
@@ -47,12 +51,22 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
     } else {
       smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
     }
+    smartCoachScreenViewModel.doIntent(GetAllChats());
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
     });
     textEditingController.addListener(() {
       hasText.value = textEditingController.text.trim().isNotEmpty;
     });
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+    Navigator.pop(
+      context,
+      smartCoachScreenViewModel.makeAiChatPageReloadPreviousConversations,
+    );
+    return true;
   }
 
   @override
@@ -87,6 +101,12 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
               actions: [
                 IconButton(
                   onPressed: () {
+                    if (smartCoachScreenViewModel
+                        .makeThisScreenReloadPreviousConversations) {
+                      smartCoachScreenViewModel.doIntent(GetAllChats());
+                      smartCoachScreenViewModel
+                          .makeThisScreenReloadPreviousConversations = false;
+                    }
                     scaffoldKey.currentState!.openEndDrawer();
                   },
                   icon: ImageIcon(
@@ -102,7 +122,11 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   backgroundColor: AppColors.mainColorLight,
                 ),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(
+                    context,
+                    smartCoachScreenViewModel
+                        .makeAiChatPageReloadPreviousConversations,
+                  );
                 },
                 icon: Transform.flip(
                   flipX: !localizationManager.isEnglish,
@@ -129,29 +153,72 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                         ),
                         const SizedBox(height: 24),
                         Expanded(
-                          child: ListView.separated(
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                minTileHeight: 35,
-                                minVerticalPadding: 0,
-                                onTap: () {},
-                                leading: const Icon(
-                                  Icons.arrow_back_ios,
-                                  size: 20,
-                                ),
-                                contentPadding: EdgeInsets.zero,
-                                title: Text(
-                                  "Lorem ipsum dolor sit amet",
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.end,
-                                  style: theme.textTheme.titleSmall,
-                                ),
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return Divider(color: AppColors.black[70]);
+                          child: BlocBuilder<
+                            SmartCoachScreenViewModel,
+                            SmartCoachScreenState
+                          >(
+                            builder: (context, state) {
+                              switch (state.getAllChatsStatus) {
+                                case Status.idle:
+                                  return const SizedBox();
+                                case Status.loading:
+                                  return const LoadingStateWidget();
+                                case Status.success:
+                                  var chats = state.previousChats;
+                                  return chats.isEmpty
+                                      ? Center(
+                                        child: Text(
+                                          appLocalizations.noData,
+                                          style: theme.textTheme.titleMedium,
+                                        ),
+                                      )
+                                      : ListView.separated(
+                                        itemCount: chats.length,
+                                        itemBuilder: (context, index) {
+                                          return ListTile(
+                                            minTileHeight: 35,
+                                            minVerticalPadding: 0,
+                                            onTap: () {
+                                              if (chats[index].id ==
+                                                  smartCoachScreenViewModel
+                                                      .chatHistoryModel
+                                                      .id) {
+                                                scaffoldKey.currentState!
+                                                    .closeEndDrawer();
+                                              } else {
+                                                Navigator.pushReplacementNamed(
+                                                  context,
+                                                  DefinedRoutes
+                                                      .smartCoachScreenRoute,
+                                                  arguments: chats[index],
+                                                );
+                                              }
+                                            },
+                                            leading: const Icon(
+                                              Icons.arrow_back_ios,
+                                              size: 20,
+                                            ),
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              chats[index].title,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                              textAlign: TextAlign.end,
+                                              style: theme.textTheme.titleSmall,
+                                            ),
+                                          );
+                                        },
+                                        separatorBuilder: (context, index) {
+                                          return Divider(
+                                            color: AppColors.black[70],
+                                          );
+                                        },
+                                      );
+                                case Status.error:
+                                  return ErrorStateWidget(
+                                    error: state.getAllChatsError!,
+                                  );
+                              }
                             },
                           ),
                         ),
@@ -397,5 +464,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
     super.dispose();
     textFieldFocusNode.dispose();
     textEditingController.dispose();
+    BackButtonInterceptor.remove(myInterceptor);
   }
 }

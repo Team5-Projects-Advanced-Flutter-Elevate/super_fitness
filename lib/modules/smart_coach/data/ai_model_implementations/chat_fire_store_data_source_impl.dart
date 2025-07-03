@@ -14,9 +14,9 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
   CollectionReference<ChatHistoryModel> _userChats(String userId) {
     final FirebaseFirestore fireStore = FirebaseFirestore.instance;
     return fireStore
-        .collection(FireBaseConstants.userCollection)
+        .collection(FirebaseConstants.userCollection)
         .doc(userId)
-        .collection(FireBaseConstants.chatCollection)
+        .collection(FirebaseConstants.chatCollection)
         .withConverter<ChatHistoryModel>(
           fromFirestore: ChatHistoryModel.fromFireStore,
           toFirestore: (chat, _) => chat.toFireStore(),
@@ -51,7 +51,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
   }) async {
     await ApiExecutor.executeApi(() async {
       await _userChats(userId).doc(chatId).update({
-        FireBaseConstants.messages: FieldValue.arrayUnion([
+        FirebaseConstants.messages: FieldValue.arrayUnion([
           message.toFireStore(),
         ]),
       });
@@ -66,7 +66,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
   }) async {
     await ApiExecutor.executeApi(() async {
       await _userChats(userId).doc(chatId).update({
-        FireBaseConstants.messages: FieldValue.arrayUnion(
+        FirebaseConstants.messages: FieldValue.arrayUnion(
           messages.map((m) => m.toFireStore()).toList(),
         ),
       });
@@ -97,7 +97,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
       final snapshot =
           await _userChats(
             userId,
-          ).orderBy(FireBaseConstants.lastUpdateAt, descending: true).get();
+          ).orderBy(FirebaseConstants.lastUpdateAt, descending: true).get();
       return snapshot.docs.map((doc) => doc.data()).toList();
     });
 
@@ -114,7 +114,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
     await ApiExecutor.executeApi(() async {
       await _userChats(
         userId,
-      ).doc(chatId).update({FireBaseConstants.didChatEnded: true});
+      ).doc(chatId).update({FirebaseConstants.didChatEnded: true});
     });
   }
 
@@ -122,7 +122,7 @@ class FirebaseChatDataSource implements ChatFireStoreDataSource {
   Future<ApiResult<void>> updateChatTime(String userId, String chatId) async {
     return await ApiExecutor.executeApi(() async {
       await _userChats(userId).doc(chatId).update({
-        FireBaseConstants.lastUpdateAt: DateTime.now().millisecondsSinceEpoch,
+        FirebaseConstants.lastUpdateAt: DateTime.now().millisecondsSinceEpoch,
       });
     });
   }

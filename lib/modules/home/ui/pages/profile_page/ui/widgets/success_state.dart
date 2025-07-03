@@ -171,7 +171,10 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                   borderRadius: BorderRadius.circular(20),
                   color: AppColors.black.withAlpha(150),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
                 child: Column(
                   children: [
                     Text(

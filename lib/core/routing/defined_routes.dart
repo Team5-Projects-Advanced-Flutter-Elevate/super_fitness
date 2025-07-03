@@ -17,4 +17,5 @@ abstract class DefinedRoutes {
   static const String playerScreenRoute = "playerScreenRoute";
   static const String foodDetails = 'foodDetails';
   static const String foodRecommendation = 'foodRecommendation';
+  static const String changePasswordRoute = 'changePasswordScreen';
 }

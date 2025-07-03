@@ -64,6 +64,8 @@ class _HomePageState extends BaseStatefulWidgetState<HomePage> {
           actionsPadding: const EdgeInsets.symmetric(horizontal: 8),
           actions: [
             Container(
+              width: 45,
+              height: 45,
               decoration: const BoxDecoration(shape: BoxShape.circle),
               child: CustomNetworkCachedImage(
                 imageUrl: userInfo?.photo ?? "",

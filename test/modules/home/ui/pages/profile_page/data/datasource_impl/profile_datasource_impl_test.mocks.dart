@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:super_fitness/modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart'
+import 'package:super_fitness/modules/home/data/models/change_password/change_password_response_dto.dart'
     as _i3;
+import 'package:super_fitness/modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart'
+    as _i4;
 import 'package:super_fitness/modules/home/ui/pages/profile_page/data/models/profile_response.dart'
     as _i2;
 
@@ -31,21 +33,43 @@ class _FakeProfileResponse_0 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
+class _FakeChangePasswordResponseDto_1 extends _i1.SmartFake
+    implements _i3.ChangePasswordResponseDto {
+  _FakeChangePasswordResponseDto_1(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
 /// A class which mocks [ProfileApiClient].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockProfileApiClient extends _i1.Mock implements _i3.ProfileApiClient {
+class MockProfileApiClient extends _i1.Mock implements _i4.ProfileApiClient {
   MockProfileApiClient() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.ProfileResponse> getProfile() =>
+  _i5.Future<_i2.ProfileResponse> getProfile() =>
       (super.noSuchMethod(
             Invocation.method(#getProfile, []),
-            returnValue: _i4.Future<_i2.ProfileResponse>.value(
+            returnValue: _i5.Future<_i2.ProfileResponse>.value(
               _FakeProfileResponse_0(this, Invocation.method(#getProfile, [])),
             ),
           )
-          as _i4.Future<_i2.ProfileResponse>);
+          as _i5.Future<_i2.ProfileResponse>);
+
+  @override
+  _i5.Future<_i3.ChangePasswordResponseDto> changePassword(
+    Map<String, dynamic>? body,
+    String? languageCode,
+  ) =>
+      (super.noSuchMethod(
+            Invocation.method(#changePassword, [body, languageCode]),
+            returnValue: _i5.Future<_i3.ChangePasswordResponseDto>.value(
+              _FakeChangePasswordResponseDto_1(
+                this,
+                Invocation.method(#changePassword, [body, languageCode]),
+              ),
+            ),
+          )
+          as _i5.Future<_i3.ChangePasswordResponseDto>);
 }

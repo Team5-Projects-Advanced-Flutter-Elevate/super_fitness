@@ -184,7 +184,7 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                       spacing: 30,
                       children: [
                         Expanded(
-                          child: O(
+                          child: OutlinedButton(
                             onPressed: () => Navigator.pop(context),
                             child: Text(appLocalizations.logoutCancel),
                           ),

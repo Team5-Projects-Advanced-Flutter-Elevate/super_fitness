@@ -15,25 +15,41 @@ void main() {
     late ExerciseOnlineDataSource exerciseOnlineDataSource;
     setUp(() {
       exerciseOnlineDataSource = MockExerciseOnlineDataSource();
-      exerciseRepoImpl = ExerciseRepoImpl(
-        exerciseOnlineDataSource,
-      );
+      exerciseRepoImpl = ExerciseRepoImpl(exerciseOnlineDataSource);
     });
     test(
       'when exercise it should call getExerciseList from datasource',
       () async {
         var result = Success<GetExerciseEntity>(
-          data: const GetExerciseEntity(message: 'success', currentPage: 1, totalPages: 1, totalExercises: 1, exercises: []),
+          data: const GetExerciseEntity(
+            message: 'success',
+            currentPage: 1,
+            totalPages: 1,
+            totalExercises: 1,
+            exercises: [],
+          ),
         );
 
-        provideDummy<ApiResult<GetExerciseEntity>>(Success(data: const GetExerciseEntity(message: 'success', currentPage: 1, totalPages: 1, totalExercises: 1, exercises: [])));
+        provideDummy<ApiResult<GetExerciseEntity>>(
+          Success(
+            data: const GetExerciseEntity(
+              message: 'success',
+              currentPage: 1,
+              totalPages: 1,
+              totalExercises: 1,
+              exercises: [],
+            ),
+          ),
+        );
         var muscleId = '123456';
         var levelId = '123456';
         when(
           exerciseOnlineDataSource.getExerciseList(muscleId, levelId),
         ).thenAnswer((_) async => result);
         var actual = await exerciseRepoImpl.getExerciseList(muscleId, levelId);
-        verify(exerciseOnlineDataSource.getExerciseList(muscleId, levelId)).called(1);
+        verify(
+          exerciseOnlineDataSource.getExerciseList(muscleId, levelId),
+        ).called(1);
         expect(actual, equals(result));
       },
     );

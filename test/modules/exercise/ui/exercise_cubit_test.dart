@@ -13,7 +13,17 @@ import 'exercise_cubit_test.mocks.dart';
 @GenerateMocks([ExerciseUseCase])
 void main() {
   setUpAll(() {
-    provideDummy<ApiResult<GetExerciseEntity>>(Success(data: const GetExerciseEntity(message: 'success', currentPage: 1, totalPages: 1, totalExercises: 1, exercises: [])));
+    provideDummy<ApiResult<GetExerciseEntity>>(
+      Success(
+        data: const GetExerciseEntity(
+          message: 'success',
+          currentPage: 1,
+          totalPages: 1,
+          totalExercises: 1,
+          exercises: [],
+        ),
+      ),
+    );
   });
   TestWidgetsFlutterBinding.ensureInitialized();
   group('ExerciseViewModel', () {
@@ -23,7 +33,7 @@ void main() {
     setUp(() {
       mockExerciseUseCase = MockExerciseUseCase();
 
-      when(mockExerciseUseCase.call('1','1')).thenAnswer(
+      when(mockExerciseUseCase.call('1', '1')).thenAnswer(
         (_) async => Success<GetExerciseEntity>(
           data: const GetExerciseEntity(
             message: 'Success',
@@ -34,9 +44,7 @@ void main() {
           ),
         ),
       );
-      when(
-        mockExerciseUseCase.call('1', '1'),
-      ).thenAnswer(
+      when(mockExerciseUseCase.call('1', '1')).thenAnswer(
         (_) async => Success<GetExerciseEntity>(
           data: const GetExerciseEntity(
             message: 'Success',
@@ -47,7 +55,7 @@ void main() {
           ),
         ),
       );
-      when(mockExerciseUseCase.call('1','1')).thenAnswer(
+      when(mockExerciseUseCase.call('1', '1')).thenAnswer(
         (_) async => Success<GetExerciseEntity>(
           data: const GetExerciseEntity(
             message: 'Success',
@@ -59,83 +67,83 @@ void main() {
         ),
       );
 
-      exerciseViewModel = ExerciseViewModel(
-        mockExerciseUseCase,
-      );
+      exerciseViewModel = ExerciseViewModel(mockExerciseUseCase);
     });
 
     blocTest<ExerciseViewModel, ExerciseState>(
-  'emits loading then success state when exercise use case returns success',
-  build: () {
-    when(mockExerciseUseCase.call('1', '1')).thenAnswer(
-      (_) async => Success<GetExerciseEntity>(
-        data: const GetExerciseEntity(
-          message: 'Success',
-          currentPage: 1,
-          totalPages: 1,
-          totalExercises: 1,
-          exercises: [],
-        ),
-      ),
+      'emits loading then success state when exercise use case returns success',
+      build: () {
+        when(mockExerciseUseCase.call('1', '1')).thenAnswer(
+          (_) async => Success<GetExerciseEntity>(
+            data: const GetExerciseEntity(
+              message: 'Success',
+              currentPage: 1,
+              totalPages: 1,
+              totalExercises: 1,
+              exercises: [],
+            ),
+          ),
+        );
+        return exerciseViewModel;
+      },
+      act: (cubit) => cubit.doIntent(Exercise('1', '1')),
+      expect:
+          () => [
+            const ExerciseState(
+              status: Status.loading,
+              exercises: [],
+              thumbnailUrl: [],
+              thumbnailStatus: Status.idle,
+              selectedLevelId: '',
+              selectedShortLink: '',
+              selectedThumbnailUrl: '',
+              error: null,
+            ),
+            const ExerciseState(
+              status: Status.success,
+              exercises: [],
+              thumbnailUrl: [],
+              thumbnailStatus: Status.idle,
+              selectedLevelId: '',
+              selectedShortLink: '',
+              selectedThumbnailUrl: '',
+              error: null,
+            ),
+          ],
     );
-    return exerciseViewModel;
-  },
-  act: (cubit) => cubit.doIntent(Exercise('1', '1')),
-  expect: () => [
-    const ExerciseState(
-      status: Status.loading,
-      exercises: [],
-      thumbnailUrl: [],
-      thumbnailStatus: Status.idle,
-      selectedLevelId: '',
-      selectedShortLink: '',
-      selectedThumbnailUrl: '',
-      error: null,
-    ),
-    const ExerciseState(
-      status: Status.success,
-      exercises: [],
-      thumbnailUrl: [],
-      thumbnailStatus: Status.idle,
-      selectedLevelId: '',
-      selectedShortLink: '',
-      selectedThumbnailUrl: '',
-      error: null,
-    ),
-  ],
-);
 
-blocTest<ExerciseViewModel, ExerciseState>(
-  'emits error state when use case returns error',
-  build: () {
-    when(mockExerciseUseCase.call('1', '1')).thenAnswer(
-      (_) async => Error<GetExerciseEntity>(error: 'Error message'),
+    blocTest<ExerciseViewModel, ExerciseState>(
+      'emits error state when use case returns error',
+      build: () {
+        when(mockExerciseUseCase.call('1', '1')).thenAnswer(
+          (_) async => Error<GetExerciseEntity>(error: 'Error message'),
+        );
+        return exerciseViewModel;
+      },
+      act: (cubit) => cubit.doIntent(Exercise('1', '1')),
+      expect:
+          () => [
+            const ExerciseState(
+              status: Status.loading,
+              exercises: [],
+              thumbnailUrl: [],
+              thumbnailStatus: Status.idle,
+              selectedLevelId: '',
+              selectedShortLink: '',
+              selectedThumbnailUrl: '',
+              error: null,
+            ),
+            const ExerciseState(
+              status: Status.error,
+              exercises: [],
+              thumbnailUrl: [],
+              thumbnailStatus: Status.idle,
+              selectedLevelId: '',
+              selectedShortLink: '',
+              selectedThumbnailUrl: '',
+              error: 'Error message',
+            ),
+          ],
     );
-    return exerciseViewModel;
-  },
-  act: (cubit) => cubit.doIntent(Exercise('1', '1')),
-  expect: () => [
-    const ExerciseState(
-      status: Status.loading,
-      exercises: [],
-      thumbnailUrl: [],
-      thumbnailStatus: Status.idle,
-      selectedLevelId: '',
-      selectedShortLink: '',
-      selectedThumbnailUrl: '',
-      error: null,
-    ),
-    const ExerciseState(
-      status: Status.error,
-      exercises: [],
-      thumbnailUrl: [],
-      thumbnailStatus: Status.idle,
-      selectedLevelId: '',
-      selectedShortLink: '',
-      selectedThumbnailUrl: '',
-      error: 'Error message',
-    ),
-  ],
-);
   });
 }

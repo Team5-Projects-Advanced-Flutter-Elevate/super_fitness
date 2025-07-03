@@ -21,10 +21,26 @@ void main() {
       'when call exercise password function it should call getExerciseList from repo',
       () async {
         var result = Success<GetExerciseEntity>(
-          data: const GetExerciseEntity(message: 'success', currentPage: 1, totalPages: 1, totalExercises: 1, exercises: []),
+          data: const GetExerciseEntity(
+            message: 'success',
+            currentPage: 1,
+            totalPages: 1,
+            totalExercises: 1,
+            exercises: [],
+          ),
         );
 
-        provideDummy<ApiResult<GetExerciseEntity>>(Success(data: const GetExerciseEntity(message: 'success', currentPage: 1, totalPages: 1, totalExercises: 1, exercises: [])));
+        provideDummy<ApiResult<GetExerciseEntity>>(
+          Success(
+            data: const GetExerciseEntity(
+              message: 'success',
+              currentPage: 1,
+              totalPages: 1,
+              totalExercises: 1,
+              exercises: [],
+            ),
+          ),
+        );
         var muscleId = '123456';
         var levelId = '123456';
         when(

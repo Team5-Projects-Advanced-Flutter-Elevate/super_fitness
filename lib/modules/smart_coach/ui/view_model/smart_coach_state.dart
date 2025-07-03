@@ -26,7 +26,7 @@ class SmartCoachScreenState extends Equatable {
     messageItems,
     previousChats,
     promptAiModelError,
-    getAllChatsError
+    getAllChatsError,
   ];
 
   SmartCoachScreenState copyWith({
@@ -35,15 +35,15 @@ class SmartCoachScreenState extends Equatable {
     List<MessageItem>? messageItems,
     List<ChatHistoryModel>? previousChats,
     Object? promptAiModelError,
-    Object? getAllChatsError
+    Object? getAllChatsError,
   }) {
     return SmartCoachScreenState(
       promptAiModelStatus: promptAiModelStatus ?? this.promptAiModelStatus,
-        getAllChatsStatus: getAllChatsStatus ?? this.getAllChatsStatus,
+      getAllChatsStatus: getAllChatsStatus ?? this.getAllChatsStatus,
       messageItems: messageItems ?? this.messageItems,
-        previousChats: previousChats ?? this.previousChats,
+      previousChats: previousChats ?? this.previousChats,
       promptAiModelError: promptAiModelError ?? this.promptAiModelError,
-        getAllChatsError: getAllChatsError ?? this.getAllChatsError
+      getAllChatsError: getAllChatsError ?? this.getAllChatsError,
     );
   }
 }

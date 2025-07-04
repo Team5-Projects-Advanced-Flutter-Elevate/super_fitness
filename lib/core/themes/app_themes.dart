@@ -5,13 +5,14 @@ import 'package:super_fitness/core/colors/app_colors.dart';
 abstract class AppThemes {
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
+
     scaffoldBackgroundColor: AppColors.transparent,
     appBarTheme: AppBarTheme(
       backgroundColor: AppColors.transparent,
       surfaceTintColor: AppColors.transparent,
       titleSpacing: 0,
       titleTextStyle: GoogleFonts.balooThambi2(
-        fontSize: 20,
+        fontSize: 24,
         color: AppColors.white,
         fontWeight: FontWeight.w700,
       ),
@@ -170,6 +171,7 @@ abstract class AppThemes {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: AppColors.white,
+
         padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
         textStyle: GoogleFonts.balooThambi2(
           fontSize: 16,
@@ -191,6 +193,12 @@ abstract class AppThemes {
         ),
       ),
     ),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(
+        foregroundColor: AppColors.white,
+        disabledForegroundColor: AppColors.black[40],
+      ),
+    ),
     radioTheme: RadioThemeData(
       fillColor: WidgetStateProperty.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
@@ -199,6 +207,47 @@ abstract class AppThemes {
           return AppColors.white;
         }
       }),
+    ),
+
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      unselectedItemColor: AppColors.white,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
+      showUnselectedLabels: false,
+      selectedItemColor: AppColors.mainColorDark,
+      selectedLabelStyle: GoogleFonts.balooThambi2(
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: AppColors.mainColorDark,
+      ),
+    ),
+    tabBarTheme: TabBarThemeData(
+      dividerColor: AppColors.transparent,
+      dividerHeight: 0,
+      overlayColor: WidgetStateColor.transparent,
+      indicator: BoxDecoration(
+        shape: BoxShape.rectangle,
+        color: AppColors.mainColorDark,
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+      ),
+      labelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.white,
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: GoogleFonts.balooThambi2(
+        color: AppColors.black[20],
+        fontWeight: FontWeight.w700,
+      ),
+      labelPadding: const EdgeInsets.symmetric(horizontal: 16),
+      indicatorSize: TabBarIndicatorSize.label,
+    ),
+
+    drawerTheme: DrawerThemeData(
+      elevation: 0,
+      backgroundColor: AppColors.black.withAlpha(200),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: AppColors.transparent,
     ),
     // switchTheme: SwitchThemeData(
     //   trackColor: WidgetStateProperty.resolveWith((states) {

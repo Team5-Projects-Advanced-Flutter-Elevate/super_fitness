@@ -1,56 +1,22 @@
-import 'package:super_fitness/shared_layers/localization/enums/languages_enum.dart';
+import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
 
 abstract class Activities {
-  List<String> activities = [
-    "Rookie",
-    "Beginner",
-    "Intermediate",
-    "Advanced",
-    "True Beast",
-  ];
-
   static String getActivityLevel({
     required String activity,
-    required String currentLocale,
+    required AppLocalizations appLocalizations,
   }) {
-    if (currentLocale == LanguagesEnum.en.getLanguageCode()) {
-      return getActivityLevelEnLocale(activity);
+    if (activity == appLocalizations.rookie) {
+      return "level1";
+    } else if (activity == appLocalizations.beginner) {
+      return "level2";
+    } else if (activity == appLocalizations.intermediate) {
+      return "level3";
+    } else if (activity == appLocalizations.advanced) {
+      return "level4";
+    } else if (activity == appLocalizations.trueBeast) {
+      return "level5";
     } else {
-      return getActivityLevelArLocale(activity);
-    }
-  }
-
-  static String getActivityLevelEnLocale(String activity) {
-    switch (activity) {
-      case "Rookie":
-        return "level1";
-      case "Beginner":
-        return "level2";
-      case "Intermediate":
-        return "level3";
-      case "Advanced":
-        return "level4";
-      case "True Beast":
-        return "level5";
-      default:
-        return "Invalid Activity";
-    }
-  }
-
-  static String getActivityLevelArLocale(String activity) {
-    switch (activity) {
-      case "Rookie":
-        return "level1";
-      case "Beginner":
-        return "level2";
-      case "Intermediate":
-        return "level3";
-      case "Advanced":
-        return "level4";
-      case "True Beast":
-        return "level5";
-      default:
-        return "Invalid Activity";
+      return "Invalid Activity";
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -12,8 +13,10 @@ import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/utilities/image_picker.dart';
+import '../../../../core/utilities/user_provider/user_provider.dart';
 import '../../../../core/widgets/error_state_widget.dart';
 import '../../../../core/widgets/loading_state_widget.dart';
+import '../../../authentication/domain/entities/login/login_data_response_entity.dart';
 import '../cubit/states.dart';
 import '../cubit/view_model.dart';
 import 'activity_screen.dart';
@@ -126,7 +129,6 @@ class _EditProfileScreenState
                 forceMaterialTransparency: true,
                 automaticallyImplyLeading: false,
                 titleSpacing: 0.0,
-
                 leading: InkWell(
                   onTap: () {
                     Navigator.pop(context);
@@ -285,7 +287,6 @@ class _EditProfileScreenState
                                 style: theme.textTheme.titleLarge,
                               ),
                             ),
-
                             WidgetSpan(
                               child: Text(
                                 appLocalizations.tapToEdit,

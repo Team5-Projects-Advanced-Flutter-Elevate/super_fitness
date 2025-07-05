@@ -24,21 +24,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
   final HomeViewModel homeViewModel = getIt.get<HomeViewModel>();
-  late List<Widget> pages;
-  final ProfileCubit profileCubit = getIt.get<ProfileCubit>();
+  List<Widget> pages = [
+    const HomePage(),
+    const AiChatPage(),
+    const WorkoutsPage(),
+    const ProfilePage(),
+  ];
 
   @override
   void initState() {
     super.initState();
-    pages = [
-      const HomePage(),
-      const AiChatPage(),
-      const WorkoutsPage(),
-      BlocProvider(
-        create: (context) => profileCubit,
-        child: const ProfilePage(),
-      ),
-    ];
   }
 
   @override

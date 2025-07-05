@@ -7,6 +7,14 @@ class LoginEntity extends Equatable {
 
   const LoginEntity({this.message, this.user, this.token});
 
+  LoginEntity copyWith({String? message, UserEntity? user, String? token}) {
+    return LoginEntity(
+      message: message ?? this.message,
+      user: user ?? this.user,
+      token: token ?? this.token,
+    );
+  }
+
   @override
   List<Object?> get props => [message, user, token];
 }
@@ -41,7 +49,39 @@ class UserEntity extends Equatable {
     this.createdAt,
   });
 
+  UserEntity copyWith({
+    String? id,
+    String? firstName,
+    String? lastName,
+    String? email,
+    String? gender,
+    num? age,
+    num? weight,
+    num? height,
+    String? activityLevel,
+    String? goal,
+    String? photo,
+    DateTime? createdAt,
+  }) {
+    return UserEntity(
+      id: id ?? this.id,
+      firstName: firstName ?? this.firstName,
+      lastName: lastName ?? this.lastName,
+      email: email ?? this.email,
+      gender: gender ?? this.gender,
+      age: age ?? this.age,
+      weight: weight ?? this.weight,
+      height: height ?? this.height,
+      activityLevel: activityLevel ?? this.activityLevel,
+      goal: goal ?? this.goal,
+      photo: photo ?? this.photo,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
+
   String get fullName => '$firstName $lastName';
+
+  bool get hasNetworkImage => photo != null && photo!.startsWith('http');
 
   @override
   List<Object?> get props => [

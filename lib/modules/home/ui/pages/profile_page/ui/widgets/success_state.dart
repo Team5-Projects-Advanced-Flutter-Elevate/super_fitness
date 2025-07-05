@@ -1,22 +1,23 @@
+import 'dart:developer';
+import 'dart:io';
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
+import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
+import 'package:super_fitness/core/widgets/custom_network_cached_image.dart';
 import 'package:super_fitness/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/profile_item.dart';
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../../../core/colors/app_colors.dart';
 import '../../../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../../../core/di/injectable_initializer.dart';
-import '../../../../../../../core/widgets/custom_network_cached_image.dart';
 import '../../../../../../../shared_layers/localization/enums/languages_enum.dart';
 import '../../../../../../../shared_layers/localization/l10n_manager/localization_manager.dart';
-import '../view_model/profile_cubit.dart';
+import '../../../../../../authentication/domain/usecase/login/login_local.dart';
 
 class SuccessState extends StatefulWidget {
-  const SuccessState({super.key, required this.state, required this.cubit});
-
-  final ProfileState state;
-  final ProfileCubit cubit;
+  const SuccessState({super.key});
 
   @override
   State<SuccessState> createState() => _SuccessStateState();
@@ -24,6 +25,7 @@ class SuccessState extends StatefulWidget {
 
 class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
   late bool isEnglish;
+  UserProvider userProvider = getIt<UserProvider>();
 
   @override
   void initState() {
@@ -37,25 +39,37 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
-          flex: 4,
-          child: Column(
-            children: [
-              CustomNetworkCachedImage(
-                height: 100,
-                width: 100,
-                radius: 100,
-                fit: BoxFit.cover,
-                imageUrl: widget.state.userEntity?.photo ?? '',
+        Consumer<UserProvider>(
+          builder: (context, value, child) {
+            return Expanded(
+              flex: 4,
+              child: Column(
+                children: [
+                  userProvider.userLoginInfo!.user!.hasNetworkImage
+                      ? CustomNetworkCachedImage(
+                        height: 100,
+                        width: 100,
+                        radius: 100,
+                        fit: BoxFit.cover,
+                        imageUrl: userProvider.userLoginInfo?.user?.photo ?? '',
+                      )
+                      : CircleAvatar(
+                        backgroundColor: AppColors.black,
+                        radius: 60,
+                        backgroundImage: FileImage(
+                          File(userProvider.userLoginInfo?.user?.photo ?? ''),
+                        ),
+                      ),
+                  const SizedBox(height: 4),
+                  Text(
+                    userProvider.userLoginInfo?.user?.fullName ?? '',
+                    style: theme.textTheme.titleLarge?.copyWith(fontSize: 20),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                widget.state.userEntity?.fullName ?? '',
-                style: theme.textTheme.titleLarge?.copyWith(fontSize: 20),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+            );
+          },
         ),
         Expanded(
           flex: 7,
@@ -81,9 +95,7 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                             MaterialPageRoute(
                               builder: (context) => const EditProfileScreen(),
                             ),
-                          ).then((val) {
-                            widget.cubit.doIntent(GetProfileDataIntent());
-                          });
+                          );
                         },
                       ),
                       const Divider(color: Color(0xFF2D2D2D)),
@@ -195,7 +207,7 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                         Expanded(
                           child: FilledButton(
                             onPressed: () {
-                              widget.cubit.doIntent(LogoutIntent());
+                              getIt<StoreLoginLocalUseCase>().clear();
                               Navigator.pushReplacementNamed(
                                 context,
                                 DefinedRoutes.loginScreenRoute,

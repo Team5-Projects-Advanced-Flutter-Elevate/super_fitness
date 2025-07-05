@@ -603,6 +603,7 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i610.RegisterViewModel(
         gh<_i782.RegisterUserCase>(),
         gh<_i560.GoogleSignInHandler>(),
+        gh<_i817.FacebookSignInHandler>(),
       ),
     );
     gh.factory<_i624.FoodViewModel>(

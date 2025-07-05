@@ -31,7 +31,7 @@ class LoginViewModel extends Cubit<LoginState> {
         _login(intent.email, intent.password);
         break;
       case GoogleLogin():
-        //_googleLogin();
+        _googleLogin();
         break;
 
       case GetData():
@@ -62,24 +62,15 @@ class LoginViewModel extends Cubit<LoginState> {
     }
   }
 
-  // void _googleLogin() async {
-  //   emit(const LoginState(loginStatus: Status.loading));
-  //   var googleUserAccount = await _googleSignInHandler.getUserGoogleAccount();
-  //
-  //   if (googleUserAccount == null) {
-  //     emit(const LoginState(loginStatus: Status.idle));
-  //     return;
-  //   }
-  //   var googleLogin = await _signInWithGoogleAccountUseCase.call(
-  //     googleUserAccount,
-  //   );
-  //   switch (googleLogin) {
-  //     case Success<UserCredential>():
-  //       emit(const LoginState(loginStatus: Status.success));
-  //     case Error<UserCredential>():
-  //       emit(LoginState(loginStatus: Status.error, error: googleLogin.error));
-  //   }
-  // }
+  void _googleLogin() async {
+    emit(const LoginState(loginStatus: Status.loading));
+    var googleUserAccount = await _googleSignInHandler.getUserGoogleAccount();
+
+    if (googleUserAccount == null) {
+      emit(const LoginState(loginStatus: Status.idle));
+      return;
+    }
+  }
 
   Future<void> _storeData(LoginEntity userData) async {
     await _loginLocalUseCase.call(userData);

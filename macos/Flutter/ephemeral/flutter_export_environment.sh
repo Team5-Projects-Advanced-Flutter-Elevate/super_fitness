@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=D:\development\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Elevate Projects\super_fitness"
+export "FLUTTER_ROOT=/media/Volume4/Linux_sdks/flutter_3.29.3"
+export "FLUTTER_APPLICATION_PATH=/media/Volume4/StudioProjects/super_fitness"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

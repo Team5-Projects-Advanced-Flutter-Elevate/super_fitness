@@ -9,16 +9,15 @@ part of 'get_data_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _GetDataApiClient implements GetDataApiClient {
-  _GetDataApiClient(this._dio) {
+  _GetDataApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://fitness.elevateegy.com';
-    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  late final ParseErrorLogger? errorLogger;
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<GetData> getLoggedDriverData() async {

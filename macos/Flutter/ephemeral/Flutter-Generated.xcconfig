@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=D:\development\flutter
-FLUTTER_APPLICATION_PATH=D:\Elevate Projects\super_fitness
+FLUTTER_ROOT=/media/Volume4/Linux_sdks/flutter_3.29.3
+FLUTTER_APPLICATION_PATH=/media/Volume4/StudioProjects/super_fitness
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0

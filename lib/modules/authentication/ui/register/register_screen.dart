@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
+import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_view_model.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -242,7 +244,8 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                               builder: (context, isObscure, child) {
                                 return TextFormField(
                                   controller:
-                                      registerViewModel.confirmController,
+                                      registerViewModel
+                                          .confirmPasswordController,
                                   focusNode:
                                       registerViewModel.confirmPasswordNode,
                                   validator: (inputText) {
@@ -319,7 +322,11 @@ class _RegisterScreenState extends BaseStatefulWidgetState<RegisterScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    getIt
+                                        .get<FacebookSignInHandler>()
+                                        .getUserFacebookAccount();
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     shape: const CircleBorder(),
                                     fixedSize: const Size(10, 20),

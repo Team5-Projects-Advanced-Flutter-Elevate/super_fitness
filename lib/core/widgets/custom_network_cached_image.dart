@@ -13,6 +13,8 @@ class CustomNetworkCachedImage extends BaseStatelessWidget {
 
   final BoxFit fit;
 
+  final IconData? errorIcon;
+
   const CustomNetworkCachedImage({
     super.key,
     required this.imageUrl,
@@ -20,6 +22,7 @@ class CustomNetworkCachedImage extends BaseStatelessWidget {
     this.fit = BoxFit.cover,
     this.width,
     this.height,
+    this.errorIcon,
   });
 
   @override
@@ -61,7 +64,7 @@ class CustomNetworkCachedImage extends BaseStatelessWidget {
               height: height,
               color: AppColors.black.withAlpha(130),
               child: Icon(
-                Icons.error_outline,
+                errorIcon ?? Icons.error_outline,
                 color: AppColors.mainColorLight,
                 size: 30,
               ),

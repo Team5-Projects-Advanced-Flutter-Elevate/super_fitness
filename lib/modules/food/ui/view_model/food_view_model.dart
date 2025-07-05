@@ -41,7 +41,6 @@ class FoodViewModel extends Cubit<FoodState> {
           state.copyWith(
             loadFoodCategoriesState: LoadFoodCategoriesState.success,
             foodCategoriesList: result.data,
-            selectedCategory: result.data.first.strCategory,
           ),
         );
         emit(
@@ -62,6 +61,7 @@ class FoodViewModel extends Cubit<FoodState> {
   Future<void> _filterMealsByCategory({
     required String selectedCategoryName,
   }) async {
+    if (selectedCategoryName == state.selectedCategory) return;
     emit(
       state.copyWith(
         filterFoodState: FilterFoodState.loading,

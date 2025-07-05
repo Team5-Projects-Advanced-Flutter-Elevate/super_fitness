@@ -76,7 +76,8 @@ class _FoodRecommendationScreenState
                         LoadFoodCategoriesState.success) {
                       viewModel.onIntent(
                         FilterMealsByCategoryIntent(
-                          selectedCategoryName: state.selectedCategory!,
+                          selectedCategoryName:  state
+                              .foodCategoriesList![0].strCategory!,
                         ),
                       );
                     } else if (state.loadFoodCategoriesState ==

@@ -10,18 +10,24 @@ import 'get_food_categories_use_case_test.mocks.dart';
 
 @GenerateMocks([FoodRepoContract])
 void main() {
-  test('test get food category use case', () async {
-    var foodRepoContract = MockFoodRepoContract();
-    GetFoodCategoriesUseCase useCase = GetFoodCategoriesUseCase(
-      foodRepoContract,
-    );
-    var result = Success<List<FoodCategoryEntity>>(
-      data: [FoodCategoryEntity()],
-    );
-    provideDummy<ApiResult<List<FoodCategoryEntity>>>(result);
-    when(foodRepoContract.getFoodCategories()).thenAnswer((_) async => result);
-    var actual = await useCase.call();
-    verify(foodRepoContract.getFoodCategories()).called(1);
-    expect(actual, equals(result));
+  group('test get food categories use case', () {
+    late FoodRepoContract foodRepoContract;
+    late GetFoodCategoriesUseCase useCase;
+    setUp(() {
+      foodRepoContract = MockFoodRepoContract();
+      useCase = GetFoodCategoriesUseCase(foodRepoContract);
+    });
+    test('test get food categories use case', () async {
+      var result = Success<List<FoodCategoryEntity>>(
+        data: [FoodCategoryEntity(), FoodCategoryEntity()],
+      );
+      provideDummy<ApiResult<List<FoodCategoryEntity>>>(result);
+      when(
+        foodRepoContract.getFoodCategories(),
+      ).thenAnswer((_) async => result);
+      var actual = await useCase.call();
+      verify(foodRepoContract.getFoodCategories()).called(1);
+      expect(actual, equals(result));
+    });
   });
 }

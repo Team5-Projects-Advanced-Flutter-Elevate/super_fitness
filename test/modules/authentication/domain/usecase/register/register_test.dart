@@ -19,38 +19,46 @@ void main() {
       registerRepo = MockRegisterRepo();
       registerUserCase = RegisterUserCase(registerRepo);
     });
-    test('when call register function it should call register from repo', () async {
+    test(
+      'when call register function it should call register from repo',
+      () async {
+        var result = Success<RegisterResponseEntity>(
+          data: RegisterResponseEntity(),
+        );
 
-      var result = Success<RegisterResponseEntity>(data: RegisterResponseEntity());
+        provideDummy<ApiResult<RegisterResponseEntity>>(result);
 
-  provideDummy<ApiResult<RegisterResponseEntity>>(result);
-
-  var email = 'mahmoud.mohamed.gamal44@gmail.com';
-  var password = 'Mahmoud@123';
-  var firstName = 'Elevate';
-  var lastName = 'Tech';
-  var gender = 'male';
-  var height = 170;
-  var weight = 70;
-  var age = 70;
-  var goal = 'Gain weight';
-  var activityLevel = 'level1';
-  final request = RegisterRequestEntity(
-  email: email,
-  password: password,
-  firstName: firstName,
-  lastName: lastName,
-  gender: gender,
-  height: height,
-  weight: weight,
-  age: age,
-  goal: goal,
-  activityLevel: activityLevel,
-);
-      when(registerRepo.register(registerRequestEntity: request)).thenAnswer((_) async => result);
-      var actual = await registerUserCase.call(registerRequestEntity: request);
-      verify(registerRepo.register(registerRequestEntity: request)).called(1);
-      expect(actual, equals(result));
-    });
+        var email = 'mahmoud.mohamed.gamal44@gmail.com';
+        var password = 'Mahmoud@123';
+        var firstName = 'Elevate';
+        var lastName = 'Tech';
+        var gender = 'male';
+        var height = 170;
+        var weight = 70;
+        var age = 70;
+        var goal = 'Gain weight';
+        var activityLevel = 'level1';
+        final request = RegisterRequestEntity(
+          email: email,
+          password: password,
+          firstName: firstName,
+          lastName: lastName,
+          gender: gender,
+          height: height,
+          weight: weight,
+          age: age,
+          goal: goal,
+          activityLevel: activityLevel,
+        );
+        when(
+          registerRepo.register(registerRequestEntity: request),
+        ).thenAnswer((_) async => result);
+        var actual = await registerUserCase.call(
+          registerRequestEntity: request,
+        );
+        verify(registerRepo.register(registerRequestEntity: request)).called(1);
+        expect(actual, equals(result));
+      },
+    );
   });
 }

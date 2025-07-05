@@ -19,47 +19,49 @@ void main() {
       registerRepoImp = RegisterRepoImp(registerRemoteDataSource);
     });
     test('when register it should call register from datasource', () async {
-  var result = Success<RegisterResponseEntity>(data: RegisterResponseEntity());
+      var result = Success<RegisterResponseEntity>(
+        data: RegisterResponseEntity(),
+      );
 
-  provideDummy<ApiResult<RegisterResponseEntity>>(result);
+      provideDummy<ApiResult<RegisterResponseEntity>>(result);
 
-  var email = 'mahmoud.mohamed.gamal44@gmail.com';
-  var password = 'Mahmoud@123';
-  var firstName = 'Elevate';
-  var lastName = 'Tech';
-  var gender = 'male';
-  var height = 170;
-  var weight = 70;
-  var age = 70;
-  var goal = 'Gain weight';
-  var activityLevel = 'level1';
+      var email = 'mahmoud.mohamed.gamal44@gmail.com';
+      var password = 'Mahmoud@123';
+      var firstName = 'Elevate';
+      var lastName = 'Tech';
+      var gender = 'male';
+      var height = 170;
+      var weight = 70;
+      var age = 70;
+      var goal = 'Gain weight';
+      var activityLevel = 'level1';
 
-  final request = RegisterRequestEntity(
-  email: email,
-  password: password,
-  firstName: firstName,
-  lastName: lastName,
-  gender: gender,
-  height: height,
-  weight: weight,
-  age: age,
-  goal: goal,
-  activityLevel: activityLevel,
-);
+      final request = RegisterRequestEntity(
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        height: height,
+        weight: weight,
+        age: age,
+        goal: goal,
+        activityLevel: activityLevel,
+      );
 
-when(
-  registerRemoteDataSource.register(
-    registerRequestEntity: request,
-  ),
-).thenAnswer((_) async => result);
+      when(
+        registerRemoteDataSource.register(registerRequestEntity: request),
+      ).thenAnswer((_) async => result);
 
-final actual = await registerRepoImp.register(registerRequestEntity: request);
+      final actual = await registerRepoImp.register(
+        registerRequestEntity: request,
+      );
 
-verify(
-  registerRemoteDataSource.register(registerRequestEntity: request),
-).called(1);
+      verify(
+        registerRemoteDataSource.register(registerRequestEntity: request),
+      ).called(1);
 
-expect(actual, equals(result));
-});
+      expect(actual, equals(result));
+    });
   });
 }

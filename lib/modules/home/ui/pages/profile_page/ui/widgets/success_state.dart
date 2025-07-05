@@ -207,9 +207,10 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                           child: FilledButton(
                             onPressed: () {
                               getIt<StoreLoginLocalUseCase>().clear();
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 DefinedRoutes.loginScreenRoute,
+                                (route) => false,
                               );
                             },
                             child: Text(appLocalizations.confirm),

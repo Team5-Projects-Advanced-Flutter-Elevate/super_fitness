@@ -8,6 +8,8 @@
   "unknownError": "حدث خطأ ما 🤔",
   "badCertificate": "الشهادة المقدمة من الخادم غير صالحة 📑",
   "somethingWentWrong": "حدث خطأ ما 🤔",
+  "badRequest": "تنسيق الطلب غير صحيح 👎",
+  "couldNotFindSource": "لم يتم العثور على المصدر 😱",
   "validationFunctions____________": "$$$ تعليق $$$",
   "pleaseEnterName": "يرجى إدخال اسمك.",
   "pleaseEnterUserName": "يرجى إدخال اسم المستخدم.",
@@ -163,5 +165,20 @@
   "logout": "تسجيل الخروج",
   "english": "العربية",
   "areYouSureLogout": "هل انت متاكد من تسجيل الخروج؟",
-  "logoutCancel": "الغاء"
+  "logoutCancel": "الغاء",
+  "aiChatFeature____________": "$$$ تعليق $$$",
+  "iAmYourSmartCoach": "أنا مدربك الذكي",
+  "previousConversations": "المحادثات السابقة",
+  "howCanIAssistYouToday": "كيف يمكنني مساعدتك\nاليوم؟",
+  "getStarted": "ابدأ الآن",
+  "smartCoach": "مدرب ذكي",
+  "untitledChat": "دردشة بدون عنوان",
+  "messageGemini": "أرسل رسالة إلى Gemini",
+  "tellingGeminiToBeSmartFitnessCoach": "أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.",
+  "tellingGeminiToWelcomeUser": "رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.",
+  "tellingGeminiToWelcomeUserWithInfo": "رحّب بالمستخدم باختصار باستخدام اسمه. فقط بضع جمل. معلومات المستخدم كما يلي: {userInfo} (تجاهل أي معلومات غير معروفة إن وجدت). احتفظ بهذه المعلومات فقط إذا سأل المستخدم عن شيء متعلق بها. في كل رد، اجعل الإجابة بسيطة وواضحة ومختصرة—بدون شروحات طويلة.",
+  "tellingGeminiToGiveChatTitle": "قدّم عنوانًا قصيرًا من 10 إلى 20 حرفًا لهذه الرسالة: {firstMessage}، لا تعطِ خيارات، فقط اختر الأفضل.",
+  "conversationIsCloseToLimit": "المحادثة على وشك الوصول إلى الحد الأقصى ⚠️",
+  "conversationEnded": "انتهت المحادثة ❌"
+
 }

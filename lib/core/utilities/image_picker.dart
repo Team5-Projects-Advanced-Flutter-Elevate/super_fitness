@@ -96,31 +96,39 @@ class ImagePickerService {
       context: context,
       builder:
           (context) => SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  leading: Icon(
-                    Icons.camera_alt,
-                    color: AppColors.mainColorDark,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.black,
+                borderRadius: const BorderRadius.vertical(
+                  top: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    leading: Icon(
+                      Icons.camera_alt,
+                      color: AppColors.mainColorDark,
+                    ),
+                    title: const Text('Take Photo'),
+                    onTap: () async {
+                      Navigator.pop(context);
+                      final image = await pickImage(ImageSource.camera);
+                      if (image != null) onImageSelected(image);
+                    },
                   ),
-                  title: const Text('Take Photo'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                    final image = await pickImage(ImageSource.camera);
-                    if (image != null) onImageSelected(image);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.photo_library),
-                  title: const Text('Choose from Gallery'),
-                  onTap: () async {
-                    Navigator.pop(context);
-                    final image = await pickImage(ImageSource.gallery);
-                    if (image != null) onImageSelected(image);
-                  },
-                ),
-              ],
+                  ListTile(
+                    leading: const Icon(Icons.photo_library),
+                    title: const Text('Choose from Gallery'),
+                    onTap: () async {
+                      Navigator.pop(context);
+                      final image = await pickImage(ImageSource.gallery);
+                      if (image != null) onImageSelected(image);
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
     );

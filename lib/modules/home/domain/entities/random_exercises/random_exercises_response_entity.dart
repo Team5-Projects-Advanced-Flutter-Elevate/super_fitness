@@ -1,17 +1,22 @@
-class RandomExercisesResponseEntity {
-  RandomExercisesResponseEntity({
+import 'package:equatable/equatable.dart';
+
+class RandomExercisesResponseEntity extends Equatable {
+  const RandomExercisesResponseEntity({
     this.message,
     this.totalExercises,
     this.exercises,
   });
 
-  late final String? message;
-  late final num? totalExercises;
-  late final List<ExerciseEntity>? exercises;
+  final String? message;
+  final num? totalExercises;
+  final List<ExerciseEntity>? exercises;
+
+  @override
+  List<Object?> get props => [message, totalExercises, exercises];
 }
 
-class ExerciseEntity {
-  ExerciseEntity({
+class ExerciseEntity extends Equatable {
+  const ExerciseEntity({
     this.id,
     this.exercise,
     this.shortYoutubeDemonstration,
@@ -41,31 +46,62 @@ class ExerciseEntity {
     this.inDepthYoutubeExplanationLink,
   });
 
-  late final String? id;
-  late final String? exercise;
-  late final String? shortYoutubeDemonstration;
-  late final String? inDepthYoutubeExplanation;
-  late final String? difficultyLevel;
-  late final String? targetMuscleGroup;
-  late final String? primeMoverMuscle;
-  late final String? primaryEquipment;
-  late final num? primaryItems;
-  late final num? secondaryItems;
-  late final String? posture;
-  late final String? singleOrDoubleArm;
-  late final String? continuousOrAlternatingArms;
-  late final String? grip;
-  late final String? loadPositionEnding;
-  late final String? continuousOrAlternatingLegs;
-  late final String? footElevation;
-  late final String? combinationExercises;
-  late final String? movementPattern1;
-  late final String? planeOfMotion1;
-  late final String? bodyRegion;
-  late final String? forceType;
-  late final String? mechanics;
-  late final String? laterality;
-  late final String? primaryExerciseClassification;
-  late final String? shortYoutubeDemonstrationLink;
-  late final String? inDepthYoutubeExplanationLink;
+  final String? id;
+  final String? exercise;
+  final String? shortYoutubeDemonstration;
+  final String? inDepthYoutubeExplanation;
+  final String? difficultyLevel;
+  final String? targetMuscleGroup;
+  final String? primeMoverMuscle;
+  final String? primaryEquipment;
+  final num? primaryItems;
+  final num? secondaryItems;
+  final String? posture;
+  final String? singleOrDoubleArm;
+  final String? continuousOrAlternatingArms;
+  final String? grip;
+  final String? loadPositionEnding;
+  final String? continuousOrAlternatingLegs;
+  final String? footElevation;
+  final String? combinationExercises;
+  final String? movementPattern1;
+  final String? planeOfMotion1;
+  final String? bodyRegion;
+  final String? forceType;
+  final String? mechanics;
+  final String? laterality;
+  final String? primaryExerciseClassification;
+  final String? shortYoutubeDemonstrationLink;
+  final String? inDepthYoutubeExplanationLink;
+
+  @override
+  List<Object?> get props => [
+    id,
+    exercise,
+    shortYoutubeDemonstration,
+    inDepthYoutubeExplanation,
+    difficultyLevel,
+    targetMuscleGroup,
+    primeMoverMuscle,
+    primaryEquipment,
+    primaryItems,
+    secondaryItems,
+    posture,
+    singleOrDoubleArm,
+    continuousOrAlternatingArms,
+    grip,
+    loadPositionEnding,
+    continuousOrAlternatingLegs,
+    footElevation,
+    combinationExercises,
+    movementPattern1,
+    planeOfMotion1,
+    bodyRegion,
+    forceType,
+    mechanics,
+    laterality,
+    primaryExerciseClassification,
+    shortYoutubeDemonstrationLink,
+    inDepthYoutubeExplanationLink,
+  ];
 }

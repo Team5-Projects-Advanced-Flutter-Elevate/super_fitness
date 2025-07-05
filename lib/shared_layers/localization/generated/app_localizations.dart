@@ -63,7 +63,7 @@ import 'app_localizations_en.dart';
 /// property.
 abstract class AppLocalizations {
   AppLocalizations(String locale)
-    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -71,8 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<
+      AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,18 +84,18 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <
+      LocalizationsDelegate<dynamic>>[
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+  ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
-    Locale('en'),
+    Locale('en')
   ];
 
   /// No description provided for @errorMessages________.
@@ -151,6 +151,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something Went Wrong 🤔'**
   String get somethingWentWrong;
+
+  /// No description provided for @badRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request format 👎'**
+  String get badRequest;
+
+  /// No description provided for @couldNotFindSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t find the source 😱'**
+  String get couldNotFindSource;
 
   /// No description provided for @validationFunctions____________.
   ///
@@ -1081,6 +1093,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Update'**
   String get update;
+
+  /// No description provided for @aiChatFeature____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get aiChatFeature____________;
+
+  /// No description provided for @iAmYourSmartCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'I Am Your Smart Coach'**
+  String get iAmYourSmartCoach;
+
+  /// No description provided for @previousConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Conversations'**
+  String get previousConversations;
+
+  /// No description provided for @howCanIAssistYouToday.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Assist You\nToday ?'**
+  String get howCanIAssistYouToday;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @smartCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Coach'**
+  String get smartCoach;
+
+  /// No description provided for @untitledChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled Chat'**
+  String get untitledChat;
+
+  /// No description provided for @messageGemini.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Gemini'**
+  String get messageGemini;
+
+  /// No description provided for @tellingGeminiToBeSmartFitnessCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.'**
+  String get tellingGeminiToBeSmartFitnessCoach;
+
+  /// No description provided for @tellingGeminiToWelcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations'**
+  String get tellingGeminiToWelcomeUser;
+
+  /// No description provided for @tellingGeminiToWelcomeUserWithInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome user briefly by his name. Just a few sentences. The user info is as follows: {userInfo} (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.'**
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo);
+
+  /// No description provided for @tellingGeminiToGiveChatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a short, 10-20 characters (not more) title for this message: {firstMessage}, don\'t give me options just choose the best one.'**
+  String tellingGeminiToGiveChatTitle(Object firstMessage);
+
+  /// No description provided for @conversationIsCloseToLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversation is about to reach its limit ⚠️'**
+  String get conversationIsCloseToLimit;
+
+  /// No description provided for @conversationEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversation Ended ❌'**
+  String get conversationEnded;
 }
 
 class _AppLocalizationsDelegate
@@ -1113,6 +1209,6 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
     'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.',
+        'that was used.'
   );
 }

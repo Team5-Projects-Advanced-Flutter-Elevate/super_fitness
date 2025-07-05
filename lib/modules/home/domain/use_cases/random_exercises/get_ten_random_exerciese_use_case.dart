@@ -12,7 +12,7 @@ class GetTenRandomExerciseUseCase {
 
   Future<ApiResult<RandomExercisesResponseEntity>> call() {
     return _randomExercisesRepo.getRandomExercises(
-      exercisesRequestEntity: RandomExercisesRequestEntity(
+      exercisesRequestEntity: const RandomExercisesRequestEntity(
         limit: 10,
         targetMuscleGroupId: "67c79f3526895f87ce0aa96d",
         difficultyLevelId: "67c797e226895f87ce0aa94b",

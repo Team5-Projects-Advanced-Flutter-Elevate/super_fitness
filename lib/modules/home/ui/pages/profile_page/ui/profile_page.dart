@@ -10,7 +10,6 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends BaseStatefulWidgetState<ProfilePage> {
-
   @override
   void initState() {
     super.initState();
@@ -21,7 +20,7 @@ class _ProfilePageState extends BaseStatefulWidgetState<ProfilePage> {
     return Scaffold(
       appBar: AppBar(title: Text(appLocalizations.profile), centerTitle: true),
       body: const Padding(
-        padding:  EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
         child: SuccessState(),
       ),
     );

@@ -29,15 +29,18 @@ void main() {
       ValidateFunctions(appLocalizations),
     );
     getIt.registerSingleton<ApiErrorHandler>(ApiErrorHandler(appLocalizations));
-    getIt.registerFactory<CompleteRegisterCubit>(
-      () => CompleteRegisterCubit(),
-    );
+    getIt.registerFactory<CompleteRegisterCubit>(() => CompleteRegisterCubit());
   });
   Widget buildWidget() => MaterialApp(
     home: BlocProvider<RegisterViewModel>(
-    create: (_) => RegisterViewModel(MockRegisterUserCase(), MockSignUpWithGoogleAccountUseCase(), MockGoogleSignInHandler()),
-    child: const RegisterScreen(),
-  ),
+      create:
+          (_) => RegisterViewModel(
+            MockRegisterUserCase(),
+            MockSignUpWithGoogleAccountUseCase(),
+            MockGoogleSignInHandler(),
+          ),
+      child: const RegisterScreen(),
+    ),
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
     localeResolutionCallback: (locale, supportedLocales) {
@@ -48,30 +51,22 @@ void main() {
   group('RegisterScreen', () {
     group('Register', () {
       testWidgets('Check if image is rendered', (tester) async {
-        await tester.pumpWidget(
-          buildWidget(),
-        );
+        await tester.pumpWidget(buildWidget());
         await tester.pump();
         expect(find.byType(Image), findsAtLeast(1));
       });
       testWidgets('Check if Text is rendered', (tester) async {
-        await tester.pumpWidget(
-          buildWidget(),
-        );
+        await tester.pumpWidget(buildWidget());
         await tester.pump();
         expect(find.byType(Text), findsAtLeast(1));
       });
       testWidgets('Check if TextFormField is rendered', (tester) async {
-        await tester.pumpWidget(
-          buildWidget(),
-        );
+        await tester.pumpWidget(buildWidget());
         await tester.pump();
         expect(find.byType(TextFormField), findsAtLeast(1));
       });
       testWidgets('Check if FilledButton is rendered', (tester) async {
-        await tester.pumpWidget(
-          buildWidget(),
-        );
+        await tester.pumpWidget(buildWidget());
         await tester.pump();
         expect(find.byType(FilledButton), findsAtLeast(1));
       });

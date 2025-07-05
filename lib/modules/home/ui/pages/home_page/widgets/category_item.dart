@@ -26,7 +26,8 @@ class CategoryItem extends BaseStatelessWidget {
           const SizedBox(height: 4),
           Text(
             title,
-
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: inherit.theme.textTheme.labelMedium,
             textAlign: TextAlign.center,
           ),

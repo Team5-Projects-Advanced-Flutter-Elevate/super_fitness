@@ -5,7 +5,6 @@ import 'package:super_fitness/modules/edit_profile/ui/cubit/states.dart';
 import '../../../../core/apis/api_result/api_result.dart';
 import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/utilities/user_provider/user_provider.dart';
-import '../../../authentication/domain/entities/login/login_data_response_entity.dart';
 import '../../../authentication/domain/usecase/login/login_local.dart';
 import '../../domain/entity/edit_info.dart';
 import '../../domain/entity/get_data_entity.dart';

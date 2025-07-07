@@ -29,7 +29,7 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Transform.flip(
-            flipX: inherit.localizationManager.isEnglish ? flipX : false,
+            flipX: flipX,
             child: Container(
               width: 40,
               height: 40,

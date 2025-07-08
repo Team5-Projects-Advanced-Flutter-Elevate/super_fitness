@@ -1,28 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
 
 import '../../../../../../core/apis/api_result/api_result.dart';
-import '../../../../../../core/utilities/google_sign_in/google_sign_in_handler.dart';
 import '../../../../domain/entities/login/login_data_response_entity.dart';
-import '../../../../domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart';
 import '../../../../domain/usecase/login/login.dart';
 import '../../state.dart';
 
 @injectable
 class LoginViewModel extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
-  final SignInWithGoogleAccountUseCase _signInWithGoogleAccountUseCase;
   final GoogleSignInHandler _googleSignInHandler;
   final StoreLoginLocalUseCase _loginLocalUseCase;
 
   LoginViewModel(
     this._loginUseCase,
-    this._signInWithGoogleAccountUseCase,
     this._googleSignInHandler,
     this._loginLocalUseCase,
   ) : super(const LoginState());
@@ -73,15 +69,6 @@ class LoginViewModel extends Cubit<LoginState> {
     if (googleUserAccount == null) {
       emit(const LoginState(loginStatus: Status.idle));
       return;
-    }
-    var googleLogin = await _signInWithGoogleAccountUseCase.call(
-      googleUserAccount,
-    );
-    switch (googleLogin) {
-      case Success<UserCredential>():
-        emit(const LoginState(loginStatus: Status.success));
-      case Error<UserCredential>():
-        emit(LoginState(loginStatus: Status.error, error: googleLogin.error));
     }
   }
 

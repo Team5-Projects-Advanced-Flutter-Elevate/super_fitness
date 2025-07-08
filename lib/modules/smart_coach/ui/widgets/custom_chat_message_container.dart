@@ -28,37 +28,47 @@ class CustomChatMessageContainer extends BaseStatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: AppColors.black,
+          Transform.flip(
+            flipX: flipX,
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.black,
+              ),
+              padding: const EdgeInsets.all(4),
+              child:
+                  imagePath.trim().isEmpty
+                      ? const Icon(Icons.person)
+                      : imagePath.contains("http")
+                      ? CustomNetworkCachedImage(
+                        imageUrl: imagePath,
+                        width: 36,
+                        height: 36,
+                        errorIcon: Icons.person,
+                      )
+                      : imagePath.contains(".svg")
+                      ? SvgPicture.asset(imagePath)
+                      : Image.asset(imagePath),
             ),
-            padding: const EdgeInsets.all(4),
-            child:
-                imagePath.trim().isEmpty
-                    ? const Icon(Icons.person)
-                    : imagePath.contains("http")
-                    ? CustomNetworkCachedImage(
-                      imageUrl: imagePath,
-                      width: 36,
-                      height: 36,
-                      errorIcon: Icons.person,
-                    )
-                    : imagePath.contains(".svg")
-                    ? SvgPicture.asset(imagePath)
-                    : Image.asset(imagePath),
           ),
           const SizedBox(width: 8),
           Flexible(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 4, top: 8),
               child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: const Radius.circular(20),
+                  bottomRight: const Radius.circular(20),
+                  topRight:
+                      inherit.localizationManager.isEnglish
+                          ? const Radius.circular(20)
+                          : Radius.zero,
+                  topLeft:
+                      !inherit.localizationManager.isEnglish
+                          ? const Radius.circular(20)
+                          : Radius.zero,
                 ),
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaY: 10, sigmaX: 10),

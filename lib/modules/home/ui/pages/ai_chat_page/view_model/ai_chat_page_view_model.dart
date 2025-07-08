@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
@@ -43,6 +45,14 @@ class AiChatPageViewModel extends Cubit<AiChatPageState> {
           ),
         );
     }
+  }
+
+  TextDirection? determineTextDirectionBasedOnFirstLetter(String firstChar) {
+    if (firstChar.isEmpty) return null;
+    final isRtl = RegExp(
+      r'^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]',
+    ).hasMatch(firstChar);
+    return isRtl ? TextDirection.rtl : TextDirection.ltr;
   }
 }
 

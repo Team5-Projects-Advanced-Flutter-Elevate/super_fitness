@@ -533,12 +533,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get messageGemini => 'أرسل رسالة إلى Gemini';
 
   @override
-  String get tellingGeminiToBeSmartFitnessCoach =>
-      'أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.';
+  String get tellingGeminiToBeSmartFitnessCoach => 'أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.';
 
   @override
-  String get tellingGeminiToWelcomeUser =>
-      'رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
+  String get tellingGeminiToWelcomeUser => 'رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
 
   @override
   String tellingGeminiToWelcomeUserWithInfo(Object userInfo) {
@@ -551,8 +549,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get conversationIsCloseToLimit =>
-      'المحادثة على وشك الوصول إلى الحد الأقصى ⚠️';
+  String get conversationIsCloseToLimit => 'المحادثة على وشك الوصول إلى الحد الأقصى ⚠️';
 
   @override
   String get conversationEnded => 'انتهت المحادثة ❌';

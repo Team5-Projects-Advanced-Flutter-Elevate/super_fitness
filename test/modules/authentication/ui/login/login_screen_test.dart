@@ -4,9 +4,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
-import 'package:super_fitness/core/utilities/google_sign_in/google_sign_in_handler.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/core/validation/validation_functions.dart';
-import 'package:super_fitness/modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
 import 'package:super_fitness/modules/authentication/ui/login/cubit/login/view_model.dart';
@@ -18,7 +17,6 @@ import 'login_screen_test.mocks.dart';
 
 @GenerateMocks([
   LoginUseCase,
-  SignInWithGoogleAccountUseCase,
   StoreLoginLocalUseCase,
   GoogleSignInHandler,
   LocalizationManager,
@@ -28,7 +26,6 @@ import 'login_screen_test.mocks.dart';
 void main() {
   group('test login screen items', () {
     late MockLoginUseCase mockLoginUseCase;
-    late MockSignInWithGoogleAccountUseCase mockGoogleUseCase;
     late MockStoreLoginLocalUseCase mockStoreLoginLocalUseCase;
     late MockGoogleSignInHandler mockGoogleSignInHandler;
     late MockAppLocalizations mockAppLocalizations;
@@ -37,7 +34,6 @@ void main() {
 
     setUpAll(() async {
       mockLoginUseCase = MockLoginUseCase();
-      mockGoogleUseCase = MockSignInWithGoogleAccountUseCase();
       mockStoreLoginLocalUseCase = MockStoreLoginLocalUseCase();
       mockGoogleSignInHandler = MockGoogleSignInHandler();
       mockLocalizationManager = MockLocalizationManager();
@@ -55,7 +51,6 @@ void main() {
       getIt.registerFactory<LoginViewModel>(
         () => LoginViewModel(
           mockLoginUseCase,
-          mockGoogleUseCase,
           mockGoogleSignInHandler,
           mockStoreLoginLocalUseCase,
         ),
@@ -105,14 +100,6 @@ void main() {
 
 
 
-    // testWidgets('check if welcome text exists', (widgetTester) async {
-    //   when(mockAppLocalizations.welcomeBack).thenReturn("Welcome Back");
-    //
-    //   await widgetTester.pumpWidget(build());
-    //
-    //   var text = find.textContaining("Welcome Back");
-    //   expect(text, findsOneWidget);
-    // });
 
 
 

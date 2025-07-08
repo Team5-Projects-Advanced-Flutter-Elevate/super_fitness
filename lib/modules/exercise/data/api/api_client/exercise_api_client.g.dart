@@ -9,16 +9,15 @@ part of 'exercise_api_client.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations
 
 class _ExerciseApiClient implements ExerciseApiClient {
-  _ExerciseApiClient(this._dio) {
+  _ExerciseApiClient(this._dio, {this.baseUrl, this.errorLogger}) {
     baseUrl ??= 'https://fitness.elevateegy.com';
-    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-  late final ParseErrorLogger? errorLogger;
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<GetExerciseModel> exercise({

@@ -4,29 +4,26 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:ui' as _i13;
+import 'dart:ui' as _i11;
 
-import 'package:firebase_auth/firebase_auth.dart' as _i8;
 import 'package:google_sign_in/google_sign_in.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:super_fitness/core/apis/api_result/api_result.dart' as _i4;
-import 'package:super_fitness/core/utilities/google_sign_in/google_sign_in_handler.dart'
-    as _i11;
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart'
+    as _i8;
 import 'package:super_fitness/core/validation/validation_functions.dart'
-    as _i15;
+    as _i13;
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart'
     as _i5;
-import 'package:super_fitness/modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart'
-    as _i7;
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login.dart'
     as _i2;
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart'
-    as _i10;
+    as _i7;
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart'
-    as _i14;
-import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart'
     as _i12;
+import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart'
+    as _i10;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -67,36 +64,11 @@ class MockLoginUseCase extends _i1.Mock implements _i2.LoginUseCase {
           as _i3.Future<_i4.ApiResult<_i5.LoginEntity>>);
 }
 
-/// A class which mocks [SignInWithGoogleAccountUseCase].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockSignInWithGoogleAccountUseCase extends _i1.Mock
-    implements _i7.SignInWithGoogleAccountUseCase {
-  MockSignInWithGoogleAccountUseCase() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i3.Future<_i4.ApiResult<_i8.UserCredential>> call(
-    _i9.GoogleSignInAccount? googleUserAccount,
-  ) =>
-      (super.noSuchMethod(
-            Invocation.method(#call, [googleUserAccount]),
-            returnValue: _i3.Future<_i4.ApiResult<_i8.UserCredential>>.value(
-              _i6.dummyValue<_i4.ApiResult<_i8.UserCredential>>(
-                this,
-                Invocation.method(#call, [googleUserAccount]),
-              ),
-            ),
-          )
-          as _i3.Future<_i4.ApiResult<_i8.UserCredential>>);
-}
-
 /// A class which mocks [StoreLoginLocalUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockStoreLoginLocalUseCase extends _i1.Mock
-    implements _i10.StoreLoginLocalUseCase {
+    implements _i7.StoreLoginLocalUseCase {
   MockStoreLoginLocalUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -132,7 +104,7 @@ class MockStoreLoginLocalUseCase extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGoogleSignInHandler extends _i1.Mock
-    implements _i11.GoogleSignInHandler {
+    implements _i8.GoogleSignInHandler {
   MockGoogleSignInHandler() {
     _i1.throwOnMissingStub(this);
   }
@@ -150,7 +122,7 @@ class MockGoogleSignInHandler extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocalizationManager extends _i1.Mock
-    implements _i12.LocalizationManager {
+    implements _i10.LocalizationManager {
   MockLocalizationManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -200,13 +172,13 @@ class MockLocalizationManager extends _i1.Mock
           as _i3.Future<String?>);
 
   @override
-  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i11.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#addListener, [listener]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i11.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#removeListener, [listener]),
     returnValueForMissingStub: null,
   );
@@ -227,7 +199,7 @@ class MockLocalizationManager extends _i1.Mock
 /// A class which mocks [AppLocalizations].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalizations extends _i1.Mock implements _i14.AppLocalizations {
+class MockAppLocalizations extends _i1.Mock implements _i12.AppLocalizations {
   MockAppLocalizations() {
     _i1.throwOnMissingStub(this);
   }
@@ -338,6 +310,28 @@ class MockAppLocalizations extends _i1.Mock implements _i14.AppLocalizations {
             returnValue: _i6.dummyValue<String>(
               this,
               Invocation.getter(#somethingWentWrong),
+            ),
+          )
+          as String);
+
+  @override
+  String get badRequest =>
+      (super.noSuchMethod(
+            Invocation.getter(#badRequest),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#badRequest),
+            ),
+          )
+          as String);
+
+  @override
+  String get couldNotFindSource =>
+      (super.noSuchMethod(
+            Invocation.getter(#couldNotFindSource),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#couldNotFindSource),
             ),
           )
           as String);
@@ -1995,6 +1989,138 @@ class MockAppLocalizations extends _i1.Mock implements _i14.AppLocalizations {
           as String);
 
   @override
+  String get aiChatFeature____________ =>
+      (super.noSuchMethod(
+            Invocation.getter(#aiChatFeature____________),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#aiChatFeature____________),
+            ),
+          )
+          as String);
+
+  @override
+  String get iAmYourSmartCoach =>
+      (super.noSuchMethod(
+            Invocation.getter(#iAmYourSmartCoach),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#iAmYourSmartCoach),
+            ),
+          )
+          as String);
+
+  @override
+  String get previousConversations =>
+      (super.noSuchMethod(
+            Invocation.getter(#previousConversations),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#previousConversations),
+            ),
+          )
+          as String);
+
+  @override
+  String get howCanIAssistYouToday =>
+      (super.noSuchMethod(
+            Invocation.getter(#howCanIAssistYouToday),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#howCanIAssistYouToday),
+            ),
+          )
+          as String);
+
+  @override
+  String get getStarted =>
+      (super.noSuchMethod(
+            Invocation.getter(#getStarted),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#getStarted),
+            ),
+          )
+          as String);
+
+  @override
+  String get smartCoach =>
+      (super.noSuchMethod(
+            Invocation.getter(#smartCoach),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#smartCoach),
+            ),
+          )
+          as String);
+
+  @override
+  String get untitledChat =>
+      (super.noSuchMethod(
+            Invocation.getter(#untitledChat),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#untitledChat),
+            ),
+          )
+          as String);
+
+  @override
+  String get messageGemini =>
+      (super.noSuchMethod(
+            Invocation.getter(#messageGemini),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#messageGemini),
+            ),
+          )
+          as String);
+
+  @override
+  String get tellingGeminiToBeSmartFitnessCoach =>
+      (super.noSuchMethod(
+            Invocation.getter(#tellingGeminiToBeSmartFitnessCoach),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#tellingGeminiToBeSmartFitnessCoach),
+            ),
+          )
+          as String);
+
+  @override
+  String get tellingGeminiToWelcomeUser =>
+      (super.noSuchMethod(
+            Invocation.getter(#tellingGeminiToWelcomeUser),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#tellingGeminiToWelcomeUser),
+            ),
+          )
+          as String);
+
+  @override
+  String get conversationIsCloseToLimit =>
+      (super.noSuchMethod(
+            Invocation.getter(#conversationIsCloseToLimit),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#conversationIsCloseToLimit),
+            ),
+          )
+          as String);
+
+  @override
+  String get conversationEnded =>
+      (super.noSuchMethod(
+            Invocation.getter(#conversationEnded),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.getter(#conversationEnded),
+            ),
+          )
+          as String);
+
+  @override
   String hiUser(Object? userName) =>
       (super.noSuchMethod(
             Invocation.method(#hiUser, [userName]),
@@ -2004,18 +2130,42 @@ class MockAppLocalizations extends _i1.Mock implements _i14.AppLocalizations {
             ),
           )
           as String);
+
+  @override
+  String tellingGeminiToWelcomeUserWithInfo(Object? userInfo) =>
+      (super.noSuchMethod(
+            Invocation.method(#tellingGeminiToWelcomeUserWithInfo, [userInfo]),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.method(#tellingGeminiToWelcomeUserWithInfo, [
+                userInfo,
+              ]),
+            ),
+          )
+          as String);
+
+  @override
+  String tellingGeminiToGiveChatTitle(Object? firstMessage) =>
+      (super.noSuchMethod(
+            Invocation.method(#tellingGeminiToGiveChatTitle, [firstMessage]),
+            returnValue: _i6.dummyValue<String>(
+              this,
+              Invocation.method(#tellingGeminiToGiveChatTitle, [firstMessage]),
+            ),
+          )
+          as String);
 }
 
 /// A class which mocks [ValidateFunctions].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockValidateFunctions extends _i1.Mock implements _i15.ValidateFunctions {
+class MockValidateFunctions extends _i1.Mock implements _i13.ValidateFunctions {
   MockValidateFunctions() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set appLocalizations(_i14.AppLocalizations? appLocalizations) =>
+  set appLocalizations(_i12.AppLocalizations? appLocalizations) =>
       super.noSuchMethod(
         Invocation.setter(#appLocalizations, appLocalizations),
         returnValueForMissingStub: null,

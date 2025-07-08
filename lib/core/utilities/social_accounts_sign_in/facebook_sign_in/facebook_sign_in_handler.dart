@@ -26,13 +26,15 @@ class FacebookSignInHandler {
         debugPrint("Facebook login failed: ${loginResult.status}");
         return Error(
           error: SocialLoginException(
-              "Facebook login failed: ${loginResult.status}"),
+            "Facebook login failed: ${loginResult.status}",
+          ),
         );
       }
     } catch (e) {
       debugPrint("Error during Facebook login: $e");
       return Error(
-          error: SocialLoginException("Error during Facebook login: $e"));
+        error: SocialLoginException("Error during Facebook login: $e"),
+      );
     }
   }
 }

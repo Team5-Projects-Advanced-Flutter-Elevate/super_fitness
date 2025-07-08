@@ -145,8 +145,9 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                                     : () {
                                       // call callback if provided
                                       widget.onSelected?.call(
-                                        'level${selectedIndex! + 1}',
+                                        selectedActivity!,
                                       );
+                                      print('sssss${selectedActivity}');
                                       Navigator.pop(context);
                                     },
                             child: Text(appLocalizations.done),

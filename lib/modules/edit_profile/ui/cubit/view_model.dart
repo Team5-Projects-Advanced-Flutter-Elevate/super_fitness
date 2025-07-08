@@ -67,10 +67,10 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           email: data?.email ?? '',
           password: 'Mmmmm@123', // Default for UI placeholder only
           profilePhotoLink: data?.photo,
-          gender: data?.gender,
-          goal: data?.goal,
-          weight: data?.weight.toString(),
-          level: data?.activityLevel,
+          gender: data?.gender??'',
+          goal: data?.goal??'',
+          weight: data?.weight.toString()??'',
+          level: levelsKey('${data?.activityLevel}')
         );
 
         // Save a snapshot of initial data for dirty-checking
@@ -87,6 +87,36 @@ class EditProfileViewModel extends Cubit<ProfileState> {
         break;
     }
   }
+
+  String levelsKey (String level){
+    if(level=='level1'){
+      return 'Rookie';
+    }else if(level=='level2'){
+      return'Beginner';
+    }else if(level=='level3'){
+      return'Intermediate';
+    }else if(level=='level4'){
+      return'Advanced';
+    }else{
+      return'trueBeast';
+    }
+
+  }
+
+  String levelId(String levelName) {
+    if (levelName == 'Rookie') {
+      return 'level1';
+    } else if (levelName == 'Beginner') {
+      return 'level2';
+    } else if (levelName == 'Intermediate') {
+      return 'level3';
+    } else if (levelName == 'Advanced') {
+      return 'level4';
+    } else {
+      return 'level5';
+    }
+  }
+
 
   void _uploadProfileImage(File imageFile) async {
     emit(state.copyWith(uploadImageStatus: EditProfileStatus.loading));
@@ -127,7 +157,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
       email,
       goal,
       weight,
-      level,
+      levelId('$level'),
     );
 
     switch (result) {
@@ -143,7 +173,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           profilePhotoLink: data?.photo,
           goal: data?.goal ?? '',
           weight: data?.weight.toString() ?? '',
-          level: data?.activityLevel ?? '',
+          level: levelsKey('${data?.activityLevel}')
         );
 
         // After successful update, reset initial snapshot

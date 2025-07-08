@@ -133,45 +133,28 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                         horizontal: screenWidth * 0.05,
                         vertical: screenHeight * 0.02,
                       ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            (onboardingPages(context)[_currentPage]
-                                    as OnboardingCard)
-                                .title,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: MediaQuery.of(
-                                context,
-                              ).textScaler.scale(25),
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: screenHeight * 0.01),
-                          FittedBox(
-                            child: Text(
-                              appLocalizations
-                                  .loremIpsumDolorSitAmetConsectetureuUrna,
+                      child: SingleChildScrollView(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              (onboardingPages(context)[_currentPage]
+                                      as OnboardingCard)
+                                  .title,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: MediaQuery.of(
                                   context,
-                                ).textScaler.scale(16),
-                                fontWeight: FontWeight.w400,
+                                ).textScaler.scale(25),
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          FittedBox(
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
+                            SizedBox(height: screenHeight * 0.01),
+                            FittedBox(
                               child: Text(
                                 appLocalizations
-                                    .utGravidaQuisIdPretiumPurusMaurisMassa,
+                                    .loremIpsumDolorSitAmetConsectetureuUrna,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   color: Colors.white,
@@ -182,112 +165,131 @@ class _OnboardingScreenState extends BaseStatefulWidgetState<OnboardingScreen> {
                                 ),
                               ),
                             ),
-                          ),
-                          SizedBox(height: screenHeight * 0.02),
-                          SmoothPageIndicator(
-                            controller: _pageController,
-                            effect: const ExpandingDotsEffect(
-                              dotHeight: 8,
-                              dotWidth: 8,
-                              dotColor: Color(0xffD9D9D9),
-                              activeDotColor: Colors.deepOrange,
+                            FittedBox(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
+                                child: Text(
+                                  appLocalizations
+                                      .utGravidaQuisIdPretiumPurusMaurisMassa,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: MediaQuery.of(
+                                      context,
+                                    ).textScaler.scale(16),
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
                             ),
-                            count: onboardingPages(context).length,
-                            onDotClicked: (index) {
-                              _pageController.animateToPage(
-                                index,
-                                duration: Durations.long1,
-                                curve: Curves.linear,
-                              );
-                            },
-                          ),
-                          SizedBox(height: screenHeight * 0.02),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: screenWidth * 0.05,
+                            SizedBox(height: screenHeight * 0.02),
+                            SmoothPageIndicator(
+                              controller: _pageController,
+                              effect: const ExpandingDotsEffect(
+                                dotHeight: 8,
+                                dotWidth: 8,
+                                dotColor: Color(0xffD9D9D9),
+                                activeDotColor: Colors.deepOrange,
+                              ),
+                              count: onboardingPages(context).length,
+                              onDotClicked: (index) {
+                                _pageController.animateToPage(
+                                  index,
+                                  duration: Durations.long1,
+                                  curve: Curves.linear,
+                                );
+                              },
                             ),
-                            child:
-                                _currentPage == 0
-                                    ? MaterialButton(
-                                      shape: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(30),
+                            SizedBox(height: screenHeight * 0.02),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: screenWidth * 0.05,
+                              ),
+                              child:
+                                  _currentPage == 0
+                                      ? MaterialButton(
+                                        shape: const OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                          borderSide: BorderSide.none,
                                         ),
-                                        borderSide: BorderSide.none,
+                                        color: Colors.deepOrange,
+                                        minWidth: screenWidth,
+                                        height: screenHeight * 0.05,
+                                        onPressed: _handleNextPress,
+                                        child: Text(
+                                          appLocalizations.next,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      )
+                                      : Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          MaterialButton(
+                                            shape: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(30),
+                                              ),
+                                              borderSide: BorderSide(
+                                                color: Colors.deepOrange,
+                                              ),
+                                            ),
+                                            color: Colors.transparent,
+                                            minWidth: screenWidth * 0.23,
+                                            height: 44,
+                                            onPressed: _handleBackPress,
+                                            child: Text(
+                                              appLocalizations.back,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: MediaQuery.of(
+                                                  context,
+                                                ).textScaler.scale(16),
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          MaterialButton(
+                                            shape: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(30),
+                                              ),
+                                              borderSide: BorderSide.none,
+                                            ),
+                                            color: Colors.deepOrange,
+                                            minWidth: screenWidth * 0.23,
+                                            height: 44,
+                                            onPressed: _handleNextPress,
+                                            child: Text(
+                                              _currentPage ==
+                                                      onboardingPages(
+                                                            context,
+                                                          ).length -
+                                                          1
+                                                  ? appLocalizations.doIt
+                                                  : appLocalizations.next,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: MediaQuery.of(
+                                                  context,
+                                                ).textScaler.scale(16),
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      color: Colors.deepOrange,
-                                      minWidth: screenWidth,
-                                      height: screenHeight * 0.05,
-                                      onPressed: _handleNextPress,
-                                      child: Text(
-                                        appLocalizations.next,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    )
-                                    : Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        MaterialButton(
-                                          shape: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(30),
-                                            ),
-                                            borderSide: BorderSide(
-                                              color: Colors.deepOrange,
-                                            ),
-                                          ),
-                                          color: Colors.transparent,
-                                          minWidth: screenWidth * 0.23,
-                                          height: 44,
-                                          onPressed: _handleBackPress,
-                                          child: Text(
-                                            appLocalizations.back,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: MediaQuery.of(
-                                                context,
-                                              ).textScaler.scale(16),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        MaterialButton(
-                                          shape: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(30),
-                                            ),
-                                            borderSide: BorderSide.none,
-                                          ),
-                                          color: Colors.deepOrange,
-                                          minWidth: screenWidth * 0.23,
-                                          height: 44,
-                                          onPressed: _handleNextPress,
-                                          child: Text(
-                                            _currentPage ==
-                                                    onboardingPages(
-                                                          context,
-                                                        ).length -
-                                                        1
-                                                ? appLocalizations.doIt
-                                                : appLocalizations.next,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: MediaQuery.of(
-                                                context,
-                                              ).textScaler.scale(16),
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                          ),
-                        ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

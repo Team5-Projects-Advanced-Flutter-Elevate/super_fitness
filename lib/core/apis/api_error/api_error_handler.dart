@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/utilities/custom_exceptions/firebase_auth_register_exception.dart';
 import 'package:super_fitness/core/utilities/custom_exceptions/firebase_auth_sign_in_exception.dart';
+import 'package:super_fitness/core/utilities/custom_exceptions/social_login_exception.dart';
 
 import '../../../../shared_layers/localization/generated/app_localizations.dart';
 import 'api_error_model.dart';
@@ -27,6 +28,8 @@ class ApiErrorHandler {
           return _appLocalizations.couldNotFindSource;
         case FormatException():
           return _appLocalizations.badRequest;
+        case SocialLoginException():
+          return error.message ?? _appLocalizations.somethingWentWrong;
         case DioException():
           switch (error.type) {
             case DioExceptionType.connectionTimeout:

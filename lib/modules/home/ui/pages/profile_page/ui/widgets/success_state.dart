@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/edit_profile/ui/screens/edit_profile_screen.dart';
@@ -7,8 +8,10 @@ import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/prof
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../../../core/colors/app_colors.dart';
 import '../../../../../../../core/constants/assets_paths/assets_paths.dart';
+import '../../../../../../../core/di/injectable_initializer.dart';
 import '../../../../../../../core/widgets/custom_network_cached_image.dart';
 import '../../../../../../../shared_layers/localization/enums/languages_enum.dart';
+import '../../../../../../../shared_layers/localization/l10n_manager/localization_manager.dart';
 import '../view_model/profile_cubit.dart';
 
 class SuccessState extends StatefulWidget {
@@ -22,7 +25,15 @@ class SuccessState extends StatefulWidget {
 }
 
 class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
-  bool isEnglish = true;
+  late bool isEnglish;
+
+  @override
+  void initState() {
+    super.initState();
+    isEnglish =
+        getIt<LocalizationManager>().currentLocale ==
+        LanguagesEnum.en.getLanguageCode();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +83,9 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                             MaterialPageRoute(
                               builder: (context) => const EditProfileScreen(),
                             ),
-                          );
+                          ).then((val) {
+                            widget.cubit.doIntent(GetProfileDataIntent());
+                          });
                         },
                       ),
                       const Divider(color: Color(0xFF2D2D2D)),
@@ -149,25 +162,57 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
     showDialog(
       context: context,
       builder:
-          (context) => AlertDialog(
-            title: Text(appLocalizations.logout),
-            content: Text(appLocalizations.areYouSureLogout),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text(appLocalizations.logoutCancel),
+          (context) => Center(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+              child: Container(
+                width: screenWidth,
+                height: screenHeight * 0.2,
+                margin: const EdgeInsets.symmetric(horizontal: 32),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: AppColors.black.withAlpha(150),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 16,
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      appLocalizations.areYouSureLogout,
+                      style: theme.textTheme.titleLarge?.copyWith(fontSize: 20),
+                      textAlign: TextAlign.center,
+                    ),
+                    const Spacer(),
+                    Row(
+                      spacing: 30,
+                      children: [
+                        Expanded(
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(appLocalizations.logoutCancel),
+                          ),
+                        ),
+                        Expanded(
+                          child: FilledButton(
+                            onPressed: () {
+                              widget.cubit.doIntent(LogoutIntent());
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                DefinedRoutes.loginScreenRoute,
+                                (route) => false,
+                              );
+                            },
+                            child: Text(appLocalizations.confirm),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              TextButton(
-                onPressed: () {
-                  widget.cubit.doIntent(LogoutIntent());
-                  Navigator.pushReplacementNamed(
-                    context,
-                    DefinedRoutes.loginScreenRoute,
-                  );
-                },
-                child: Text(appLocalizations.confirm),
-              ),
-            ],
+            ),
           ),
     );
   }

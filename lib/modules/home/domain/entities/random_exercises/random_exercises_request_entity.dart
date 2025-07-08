@@ -1,11 +1,16 @@
-class RandomExercisesRequestEntity {
-  RandomExercisesRequestEntity({
+import 'package:equatable/equatable.dart';
+
+class RandomExercisesRequestEntity extends Equatable {
+  const RandomExercisesRequestEntity({
     this.targetMuscleGroupId,
     this.difficultyLevelId,
     this.limit,
   });
 
-  late final String? targetMuscleGroupId;
-  late final String? difficultyLevelId;
-  late final num? limit;
+  final String? targetMuscleGroupId;
+  final String? difficultyLevelId;
+  final num? limit;
+
+  @override
+  List<Object?> get props => [targetMuscleGroupId, difficultyLevelId, limit];
 }

@@ -44,7 +44,12 @@ class HomePageViewModel extends Cubit<HomePageState> {
   }
 
   void _getRandomExercises() async {
-    emit(const HomePageState(randomExercisesStatus: Status.loading));
+    emit(
+      state.copyWith(
+        randomExercisesStatus: Status.loading,
+        randomExercisesError: null,
+      ),
+    );
     final singleDataProvider = getIt.get<SingleDataPerApplicationProvider>();
     if (singleDataProvider.randomExercisesResponse != null &&
         singleDataProvider.exercisesVideosThumbnailsUrls != null) {
@@ -128,7 +133,7 @@ class HomePageViewModel extends Cubit<HomePageState> {
         emit(
           state.copyWith(
             foodCategoriesStatus: Status.error,
-            foodCategoriesError: state.randomExercisesError,
+            foodCategoriesError: useCaseResult.error,
           ),
         );
     }

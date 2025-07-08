@@ -10,6 +10,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_ai/firebase_ai.dart' as _i187;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
@@ -19,12 +20,6 @@ import '../../modules/authentication/data/api/api_client/auth_api_client.dart'
     as _i343;
 import '../../modules/authentication/data/api/api_client_provider/auth_api_client_provider.dart'
     as _i1019;
-import '../../modules/authentication/data/collections/users/user_collection.dart'
-    as _i550;
-import '../../modules/authentication/data/collections/users/users_collection_imp.dart'
-    as _i431;
-import '../../modules/authentication/data/data_sources_contracts/firebase_auth/firebase_auth_data_source.dart'
-    as _i449;
 import '../../modules/authentication/data/data_sources_contracts/forget_password/forget_password_remote_data_source.dart'
     as _i150;
 import '../../modules/authentication/data/data_sources_contracts/login/login.dart'
@@ -33,8 +28,6 @@ import '../../modules/authentication/data/data_sources_contracts/login/login_loc
     as _i393;
 import '../../modules/authentication/data/data_sources_contracts/register/register_remote_data_source.dart'
     as _i735;
-import '../../modules/authentication/data/data_sources_imp/firebase_auth/firebase_auth_data_source_imp.dart'
-    as _i1026;
 import '../../modules/authentication/data/data_sources_imp/forget_password/forget_password_remote_data_source_imp.dart'
     as _i191;
 import '../../modules/authentication/data/data_sources_imp/login/login.dart'
@@ -43,10 +36,6 @@ import '../../modules/authentication/data/data_sources_imp/login/login_local.dar
     as _i537;
 import '../../modules/authentication/data/data_sources_imp/register/register_remote_data_source_imp.dart'
     as _i132;
-import '../../modules/authentication/data/firebase_auth_api/google_auth_api.dart'
-    as _i525;
-import '../../modules/authentication/data/repositories_imp/firebase_auth/firebase_auth_repo_imp.dart'
-    as _i121;
 import '../../modules/authentication/data/repositories_imp/forget_password/forget_password_repo_imp.dart'
     as _i956;
 import '../../modules/authentication/data/repositories_imp/login/login_local.dart'
@@ -58,16 +47,10 @@ import '../../modules/authentication/data/repositories_imp/register/register_rep
 import '../../modules/authentication/domain/repo/login/login.dart' as _i239;
 import '../../modules/authentication/domain/repo/login/login_local.dart'
     as _i630;
-import '../../modules/authentication/domain/repositories_contracts/firebase_auth/firebase_auth_repo.dart'
-    as _i396;
 import '../../modules/authentication/domain/repositories_contracts/forget_password/forget_password_repo.dart'
     as _i1013;
 import '../../modules/authentication/domain/repositories_contracts/register/register_repo.dart'
     as _i496;
-import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_in/sign_in_with_google_account.dart'
-    as _i851;
-import '../../modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart'
-    as _i210;
 import '../../modules/authentication/domain/use_cases/forget_password/forget_password_use_case.dart'
     as _i823;
 import '../../modules/authentication/domain/use_cases/forget_password/reset_code_use_case.dart'
@@ -190,6 +173,8 @@ import '../../modules/home/domain/use_cases/workouts/get_muscle_group_workout_us
     as _i1011;
 import '../../modules/home/domain/use_cases/workouts/get_muscles_group_use_case.dart'
     as _i415;
+import '../../modules/home/ui/pages/ai_chat_page/view_model/ai_chat_page_view_model.dart'
+    as _i693;
 import '../../modules/home/ui/pages/home_page/view_model/home_page_view_model.dart'
     as _i102;
 import '../../modules/home/ui/pages/profile_page/data/api/api_client/profile_api_client.dart'
@@ -213,6 +198,42 @@ import '../../modules/home/ui/pages/workouts_page/view_model/workouts_page_cubit
 import '../../modules/home/ui/view_model/change_password/change_password_view_model.dart'
     as _i1041;
 import '../../modules/home/ui/view_model/home_view_model.dart' as _i540;
+import '../../modules/smart_coach/data/ai_model_contracts/ai_model_source.dart'
+    as _i684;
+import '../../modules/smart_coach/data/ai_model_contracts/chat_fire_store_data_source.dart'
+    as _i617;
+import '../../modules/smart_coach/data/ai_model_implementations/ai_model_source_imp.dart'
+    as _i296;
+import '../../modules/smart_coach/data/ai_model_implementations/chat_fire_store_data_source_impl.dart'
+    as _i125;
+import '../../modules/smart_coach/data/model_provider/model_provider.dart'
+    as _i17;
+import '../../modules/smart_coach/data/repositories_imp/ai_model_repo_imp.dart'
+    as _i742;
+import '../../modules/smart_coach/data/repositories_imp/chat_fire_store_repo_imp.dart'
+    as _i433;
+import '../../modules/smart_coach/domain/repositories_contracts/ai_model_repo.dart'
+    as _i384;
+import '../../modules/smart_coach/domain/repositories_contracts/chat_fire_store_repo.dart'
+    as _i627;
+import '../../modules/smart_coach/domain/use_cases/add_list_of_messages_use_case.dart'
+    as _i887;
+import '../../modules/smart_coach/domain/use_cases/add_message_use_case.dart'
+    as _i642;
+import '../../modules/smart_coach/domain/use_cases/create_chat_use_case.dart'
+    as _i869;
+import '../../modules/smart_coach/domain/use_cases/end_chat_use_case.dart'
+    as _i624;
+import '../../modules/smart_coach/domain/use_cases/get_all_chats_use_case.dart'
+    as _i507;
+import '../../modules/smart_coach/domain/use_cases/get_chat_use_case.dart'
+    as _i607;
+import '../../modules/smart_coach/domain/use_cases/prompt_model_use_case.dart'
+    as _i831;
+import '../../modules/smart_coach/domain/use_cases/update_chat_time_use_case.dart'
+    as _i487;
+import '../../modules/smart_coach/ui/view_model/smart_coach_screen_view_model.dart'
+    as _i533;
 import '../../shared_layers/localization/generated/app_localizations.dart'
     as _i543;
 import '../../shared_layers/localization/initializer/locale_initializer.dart'
@@ -229,10 +250,14 @@ import '../apis/api_error/api_error_handler.dart' as _i439;
 import '../utilities/app_localizations/app_localizations_provider.dart'
     as _i363;
 import '../utilities/dio/dio_service/dio_service.dart' as _i738;
-import '../utilities/google_sign_in/google_sign_in_handler.dart' as _i138;
-import '../utilities/google_sign_in/google_sign_in_object.dart' as _i780;
 import '../utilities/single_data_per_application/single_data_per_application_provider.dart'
     as _i459;
+import '../utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart'
+    as _i817;
+import '../utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart'
+    as _i560;
+import '../utilities/social_accounts_sign_in/google_sign_in/google_sign_in_object.dart'
+    as _i646;
 import '../utilities/user_provider/user_provider.dart' as _i911;
 import '../validation/validation_functions.dart' as _i166;
 
@@ -246,6 +271,7 @@ extension GetItInjectableX on _i174.GetIt {
     final dioService = _$DioService();
     final storagesInitializer = _$StoragesInitializer();
     final googleSignInObject = _$GoogleSignInObject();
+    final geminiModelProvider = _$GeminiModelProvider();
     final authApiClientProvider = _$AuthApiClientProvider();
     final getDataApiClientProvider = _$GetDataApiClientProvider();
     final exerciseApiClientProvider = _$ExerciseApiClientProvider();
@@ -259,6 +285,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => dioService.provideDio(),
       preResolve: true,
     );
+    gh.factory<_i817.FacebookSignInHandler>(
+      () => _i817.FacebookSignInHandler(),
+    );
     gh.factory<_i778.CompleteRegisterCubit>(
       () => _i778.CompleteRegisterCubit(),
     );
@@ -268,14 +297,15 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i911.UserProvider>(() => _i911.UserProvider());
-    gh.lazySingleton<_i116.GoogleSignIn>(
-      () => googleSignInObject.providerObject(),
-    );
     gh.lazySingleton<_i459.SingleDataPerApplicationProvider>(
       () => _i459.SingleDataPerApplicationProvider(),
     );
-    gh.lazySingleton<_i525.GoogleAuthApi>(() => _i525.GoogleAuthApi());
-    gh.factory<_i550.UsersCollection>(() => _i431.UsersCollectionImp());
+    gh.lazySingleton<_i116.GoogleSignIn>(
+      () => googleSignInObject.providerObject(),
+    );
+    gh.lazySingleton<_i187.GenerativeModel>(
+      () => geminiModelProvider.provide(),
+    );
     gh.lazySingleton<_i343.AuthApiClient>(
       () => authApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
@@ -300,14 +330,23 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i145.ProfileApiClient>(
       () => profileApiClientProvider.provideApiClient(gh<_i361.Dio>()),
     );
+    gh.factory<_i684.AiModelSource>(
+      () => _i296.AiModelSourceImp(gh<_i187.GenerativeModel>()),
+    );
+    gh.factory<_i617.ChatFireStoreDataSource>(
+      () => _i125.FirebaseChatDataSource(),
+    );
     gh.factory<_i442.ExerciseOnlineDataSource>(
       () => _i146.ExerciseOnlineDataSourceImpl(gh<_i14.ExerciseApiClient>()),
     );
-    gh.factory<_i138.GoogleSignInHandler>(
-      () => _i138.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
+    gh.factory<_i560.GoogleSignInHandler>(
+      () => _i560.GoogleSignInHandler(gh<_i116.GoogleSignIn>()),
     );
     gh.factory<_i229.EditInfoOnlineDataSource>(
       () => _i93.EditInfoOnlineDataSourceImpl(gh<_i984.GetDataApiClient>()),
+    );
+    gh.factory<_i1066.RandomExercisesRemoteDataSource>(
+      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i754.UploadImageOnlineDataSource>(
       () => _i626.UploadImageOnlineDataSourceImpl(
@@ -316,9 +355,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i150.ForgetPasswordRemoteDataSource>(
       () => _i191.ForgetPasswordRemoteDataSourceImpl(gh<_i343.AuthApiClient>()),
-    );
-    gh.factory<_i1066.RandomExerciseRemoteDataSource>(
-      () => _i705.RandomExercisesRemoteDataSourceImp(gh<_i293.HomeApiClient>()),
     );
     gh.factory<_i34.FoodDataSourceContract>(
       () => _i47.FoodDataSourceImp(gh<_i642.FoodApiClient>()),
@@ -351,15 +387,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i1041.ProfileRepo>(
       () => _i253.ProfileRepoImpl(gh<_i65.ProfileDatasource>()),
     );
+    gh.factory<_i384.AiModelRepo>(
+      () => _i742.AiModelRepoImp(gh<_i684.AiModelSource>()),
+    );
     gh.factory<_i58.ChangePasswordRepoContract>(
       () => _i427.ChangePasswordRepoImpl(
         gh<_i544.ChangePasswordRemoteDataSourceContract>(),
-      ),
-    );
-    gh.factory<_i449.FirebaseAuthDataSource>(
-      () => _i1026.FirebaseAuthDataSourceImp(
-        gh<_i525.GoogleAuthApi>(),
-        gh<_i550.UsersCollection>(),
       ),
     );
     gh.factory<_i960.ExerciseRepo>(
@@ -386,6 +419,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i735.RegisterRemoteDataSource>(
       () => _i132.RegisterRemoteDataSourceImp(gh<_i343.AuthApiClient>()),
     );
+    gh.factory<_i352.RandomExercisesRepo>(
+      () => _i16.RandomExercisesRepoImp(
+        gh<_i1066.RandomExercisesRemoteDataSource>(),
+      ),
+    );
+    gh.factory<_i627.ChatFireStoreRepo>(
+      () => _i433.ChatFireStoreRepoImp(gh<_i617.ChatFireStoreDataSource>()),
+    );
     gh.factory<_i382.GetLoggedDriverDataRepo>(
       () => _i452.LoggedDriverDataRepoImp(
         gh<_i890.GetLoggedDriverDataOnlineDataSource>(),
@@ -399,11 +440,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i270.FoodDetailsRepo>(
       () => _i946.FoodDetailsRepoImpl(gh<_i208.FoodDetailsDataSource>()),
-    );
-    gh.factory<_i352.RandomExercisesRepo>(
-      () => _i16.RandomExercisesRepoImp(
-        gh<_i1066.RandomExerciseRemoteDataSource>(),
-      ),
     );
     gh.factory<_i51.UploadImageRepo>(
       () => _i42.UploadImageRepoImpl(gh<_i754.UploadImageOnlineDataSource>()),
@@ -428,6 +464,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i442.FoodRepoContract>(
       () => _i71.FoodRepoImp(gh<_i34.FoodDataSourceContract>()),
     );
+    gh.factory<_i831.PromptModelUseCase>(
+      () => _i831.PromptModelUseCase(gh<_i384.AiModelRepo>()),
+    );
     gh.factory<_i521.GetProfileDataUseCase>(
       () => _i521.GetProfileDataUseCase(gh<_i1041.ProfileRepo>()),
     );
@@ -437,8 +476,36 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i496.RegisterRepo>(
       () => _i193.RegisterRepoImp(gh<_i735.RegisterRemoteDataSource>()),
     );
-    gh.factory<_i396.FirebaseAuthRepo>(
-      () => _i121.FirebaseAuthRepoImp(gh<_i449.FirebaseAuthDataSource>()),
+    gh.factory<_i887.AddListOfMessagesUseCase>(
+      () => _i887.AddListOfMessagesUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i642.AddMessageUseCase>(
+      () => _i642.AddMessageUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i869.CreateChatUseCase>(
+      () => _i869.CreateChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i624.EndChatUseCase>(
+      () => _i624.EndChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i507.GetAllChatsUseCase>(
+      () => _i507.GetAllChatsUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i607.GetChatUseCase>(
+      () => _i607.GetChatUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i487.UpdateChatTimeUseCase>(
+      () => _i487.UpdateChatTimeUseCase(gh<_i627.ChatFireStoreRepo>()),
+    );
+    gh.factory<_i533.SmartCoachScreenViewModel>(
+      () => _i533.SmartCoachScreenViewModel(
+        gh<_i831.PromptModelUseCase>(),
+        gh<_i507.GetAllChatsUseCase>(),
+        gh<_i869.CreateChatUseCase>(),
+        gh<_i887.AddListOfMessagesUseCase>(),
+        gh<_i487.UpdateChatTimeUseCase>(),
+        gh<_i624.EndChatUseCase>(),
+      ),
     );
     gh.factory<_i812.GetFoodDetailsUseCase>(
       () => _i812.GetFoodDetailsUseCase(gh<_i270.FoodDetailsRepo>()),
@@ -473,18 +540,15 @@ extension GetItInjectableX on _i174.GetIt {
       () =>
           _i849.StoreLoginLocalRepoImpl(gh<_i393.StoreLoginLocalDataSource>()),
     );
-    gh.factory<_i851.SignInWithGoogleAccountUseCase>(
-      () => _i851.SignInWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
-    );
-    gh.factory<_i210.SignUpWithGoogleAccountUseCase>(
-      () => _i210.SignUpWithGoogleAccountUseCase(gh<_i396.FirebaseAuthRepo>()),
-    );
     gh.factory<_i751.FilterMealsByCategoryNameUseCase>(
       () =>
           _i751.FilterMealsByCategoryNameUseCase(gh<_i442.FoodRepoContract>()),
     );
     gh.factory<_i1035.GetFoodCategoriesUseCase>(
       () => _i1035.GetFoodCategoriesUseCase(gh<_i442.FoodRepoContract>()),
+    );
+    gh.factory<_i693.AiChatPageViewModel>(
+      () => _i693.AiChatPageViewModel(gh<_i507.GetAllChatsUseCase>()),
     );
     gh.factory<_i415.GetMusclesGroupUseCase>(
       () => _i415.GetMusclesGroupUseCase(gh<_i464.WorkoutRepo>()),
@@ -515,13 +579,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
       ),
     );
-    gh.factory<_i610.RegisterViewModel>(
-      () => _i610.RegisterViewModel(
-        gh<_i782.RegisterUserCase>(),
-        gh<_i210.SignUpWithGoogleAccountUseCase>(),
-        gh<_i138.GoogleSignInHandler>(),
-      ),
-    );
     gh.factory<_i597.FoodDetailsCubit>(
       () => _i597.FoodDetailsCubit(gh<_i812.GetFoodDetailsUseCase>()),
     );
@@ -542,6 +599,13 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i875.UploadImageUseCase>(),
       ),
     );
+    gh.factory<_i610.RegisterViewModel>(
+      () => _i610.RegisterViewModel(
+        gh<_i782.RegisterUserCase>(),
+        gh<_i560.GoogleSignInHandler>(),
+        gh<_i817.FacebookSignInHandler>(),
+      ),
+    );
     gh.factory<_i624.FoodViewModel>(
       () => _i624.FoodViewModel(
         gh<_i1035.GetFoodCategoriesUseCase>(),
@@ -554,18 +618,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
-    gh.factory<_i396.LoginViewModel>(
-      () => _i396.LoginViewModel(
-        gh<_i192.LoginUseCase>(),
-        gh<_i851.SignInWithGoogleAccountUseCase>(),
-        gh<_i138.GoogleSignInHandler>(),
-        gh<_i966.StoreLoginLocalUseCase>(),
-      ),
-    );
     gh.factory<_i72.WorkoutsPageCubit>(
       () => _i72.WorkoutsPageCubit(
         gh<_i415.GetMusclesGroupUseCase>(),
         gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
+      ),
+    );
+    gh.factory<_i396.LoginViewModel>(
+      () => _i396.LoginViewModel(
+        gh<_i192.LoginUseCase>(),
+        gh<_i560.GoogleSignInHandler>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
     return this;
@@ -576,7 +639,9 @@ class _$DioService extends _i738.DioService {}
 
 class _$StoragesInitializer extends _i241.StoragesInitializer {}
 
-class _$GoogleSignInObject extends _i780.GoogleSignInObject {}
+class _$GoogleSignInObject extends _i646.GoogleSignInObject {}
+
+class _$GeminiModelProvider extends _i17.GeminiModelProvider {}
 
 class _$AuthApiClientProvider extends _i1019.AuthApiClientProvider {}
 

@@ -149,6 +149,18 @@ abstract class AppLocalizations {
   /// **'Something Went Wrong 🤔'**
   String get somethingWentWrong;
 
+  /// No description provided for @badRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'Bad request format 👎'**
+  String get badRequest;
+
+  /// No description provided for @couldNotFindSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t find the source 😱'**
+  String get couldNotFindSource;
+
   /// No description provided for @validationFunctions____________.
   ///
   /// In en, this message translates to:
@@ -1078,6 +1090,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Update'**
   String get update;
+
+  /// No description provided for @aiChatFeature____________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ Comment \$\$\$'**
+  String get aiChatFeature____________;
+
+  /// No description provided for @iAmYourSmartCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'I Am Your Smart Coach'**
+  String get iAmYourSmartCoach;
+
+  /// No description provided for @previousConversations.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous Conversations'**
+  String get previousConversations;
+
+  /// No description provided for @howCanIAssistYouToday.
+  ///
+  /// In en, this message translates to:
+  /// **'How Can I Assist You\nToday ?'**
+  String get howCanIAssistYouToday;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @smartCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Coach'**
+  String get smartCoach;
+
+  /// No description provided for @untitledChat.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled Chat'**
+  String get untitledChat;
+
+  /// No description provided for @messageGemini.
+  ///
+  /// In en, this message translates to:
+  /// **'Message Gemini'**
+  String get messageGemini;
+
+  /// No description provided for @tellingGeminiToBeSmartFitnessCoach.
+  ///
+  /// In en, this message translates to:
+  /// **'You are a smart fitness coach. Help the user with gym workouts, nutrition, and motivation.'**
+  String get tellingGeminiToBeSmartFitnessCoach;
+
+  /// No description provided for @tellingGeminiToWelcomeUser.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome user briefly Just a few sentences. For every response, keep the answer simple, clear, and concise—no long explanations'**
+  String get tellingGeminiToWelcomeUser;
+
+  /// No description provided for @tellingGeminiToWelcomeUserWithInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome user briefly by his name. Just a few sentences. The user info is as follows: {userInfo} (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.'**
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo);
+
+  /// No description provided for @tellingGeminiToGiveChatTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a short, 10-20 characters (not more) title for this message: {firstMessage}, don\'t give me options just choose the best one.'**
+  String tellingGeminiToGiveChatTitle(Object firstMessage);
+
+  /// No description provided for @conversationIsCloseToLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversation is about to reach its limit ⚠️'**
+  String get conversationIsCloseToLimit;
+
+  /// No description provided for @conversationEnded.
+  ///
+  /// In en, this message translates to:
+  /// **'Conversation Ended ❌'**
+  String get conversationEnded;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,20 +1,19 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/apis/api_result/api_result.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/obfuscation/password/obfuscated_password.dart';
 import 'package:super_fitness/core/utilities/activities/activities.dart';
 import 'package:super_fitness/core/utilities/goals/goals.dart';
-import 'package:super_fitness/core/utilities/google_sign_in/google_sign_in_handler.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_response_model.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/request/register_request_entity.dart';
 import 'package:super_fitness/modules/authentication/domain/entities/register/response/register_response_entity.dart';
-import 'package:super_fitness/modules/authentication/domain/use_cases/firebase_auth/google/sign_up/sign_up_with_google_account.dart';
 import 'package:super_fitness/modules/authentication/domain/use_cases/register/register_use_case.dart';
 import 'package:super_fitness/modules/authentication/ui/register/view_model/register_state.dart';
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart';
-
-import '../../../data/models/user/user_dto.dart';
 
 enum RegisterMethod {
   initial,
@@ -27,21 +26,20 @@ enum RegisterMethod {
 @injectable
 class RegisterViewModel extends Cubit<RegisterState> {
   final RegisterUserCase _registerUserCase;
-  final SignUpWithGoogleAccountUseCase _signUpWithGoogleAccountUseCase;
-
   final GoogleSignInHandler _googleSignInHandler;
+  final FacebookSignInHandler _facebookSignInHandler;
 
   RegisterViewModel(
     this._registerUserCase,
-    this._signUpWithGoogleAccountUseCase,
     this._googleSignInHandler,
+    this._facebookSignInHandler,
   ) : super(const RegisterState());
 
   TextEditingController firstNameController = TextEditingController(),
       lastNameController = TextEditingController(),
       emailController = TextEditingController(),
       passwordController = TextEditingController(),
-      confirmController = TextEditingController();
+      confirmPasswordController = TextEditingController();
 
   FocusNode firstNameNode = FocusNode(),
       lastNameNode = FocusNode(),
@@ -55,31 +53,19 @@ class RegisterViewModel extends Cubit<RegisterState> {
 
   RegisterMethod currentRegisterMethod = RegisterMethod.initial;
 
+  SocialAccountInfo? _socialAccountInfo;
+
   void doIntent(RegisterIntent intent) {
     switch (intent) {
       case RegisterUser():
-        _register(restOfRegisterRequest: intent.restOfRegisterRequest);
+        _apiRegister(restOfRegisterRequest: intent.restOfRegisterRequest);
         break;
       case OnAnyRegisterButtonClick():
         _onAnyRegisterButtonClick();
         break;
-    }
-  }
-
-  void _register({required RestOfRegisterRequest restOfRegisterRequest}) {
-    switch (currentRegisterMethod) {
-      case RegisterMethod.initial:
+      case ClearControllers():
+        _clearControllers();
         break;
-      case RegisterMethod.apiRegister:
-        _apiRegister(restOfRegisterRequest: restOfRegisterRequest);
-      case RegisterMethod.googleRegister:
-        _googleRegister(restOfRegisterRequest: restOfRegisterRequest);
-      case RegisterMethod.facebookRegister:
-        // TODO: Handle this case.
-        throw UnimplementedError();
-      case RegisterMethod.appleRegister:
-        // TODO: Handle this case.
-        throw UnimplementedError();
     }
   }
 
@@ -88,13 +74,27 @@ class RegisterViewModel extends Cubit<RegisterState> {
   }) async {
     FocusManager.instance.primaryFocus?.unfocus();
     emit(const RegisterState(registerStatus: Status.loading));
+    var isSocialAccount = (currentRegisterMethod != RegisterMethod.apiRegister);
     var useCaseResult = await _registerUserCase.call(
       registerRequestEntity: RegisterRequestEntity(
-        firstName: firstNameController.text,
-        lastName: lastNameController.text,
-        email: emailController.text,
-        password: passwordController.text,
-        rePassword: confirmController.text,
+        firstName:
+            isSocialAccount
+                ? _socialAccountInfo?.firstName
+                : firstNameController.text,
+        lastName:
+            isSocialAccount
+                ? _socialAccountInfo?.lastName
+                : lastNameController.text,
+        email:
+            isSocialAccount ? _socialAccountInfo?.email : emailController.text,
+        password:
+            isSocialAccount
+                ? _socialAccountInfo?.password
+                : passwordController.text,
+        rePassword:
+            isSocialAccount
+                ? _socialAccountInfo?.confirmPassword
+                : confirmPasswordController.text,
         gender: restOfRegisterRequest.gender,
         age: restOfRegisterRequest.age,
         weight: restOfRegisterRequest.weight,
@@ -122,60 +122,81 @@ class RegisterViewModel extends Cubit<RegisterState> {
     }
   }
 
-  void _googleRegister({
-    required RestOfRegisterRequest restOfRegisterRequest,
-  }) async {
+  Future<bool> _googleRegister() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    emit(const RegisterState(registerStatus: Status.loading));
-    var googleUserAccount = await _googleSignInHandler.getUserGoogleAccount();
-    if (googleUserAccount == null) {
-      emit(const RegisterState(registerStatus: Status.idle));
-      return;
+    var userGoogleAccount = await _googleSignInHandler.getUserGoogleAccount();
+    if (userGoogleAccount != null) {
+      var names = userGoogleAccount.displayName?.split(' ') ?? [];
+      _socialAccountInfo = SocialAccountInfo(
+        firstName: names.isNotEmpty ? names.first : "Unknown",
+        lastName: names.length > 1 ? names.last : " ",
+        email: userGoogleAccount.email,
+        password: ObfuscatedPassword.getObfuscatedPassword(),
+        confirmPassword: ObfuscatedPassword.getObfuscatedPassword(),
+      );
+      return true;
     }
-    List<String> names = [];
-    names = googleUserAccount.displayName?.split(' ') ?? [];
-    var useCaseResult = await _signUpWithGoogleAccountUseCase.call(
-      googleUserAccount,
-      UserDto(
-        id: googleUserAccount.id,
-        firstName: names.length > 2 ? names[0] : "",
-        lastName: names.length > 2 ? names[1] : "",
-        email: googleUserAccount.email,
-        gender: restOfRegisterRequest.gender,
-        age: restOfRegisterRequest.age,
-        weight: restOfRegisterRequest.weight,
-        height: restOfRegisterRequest.height,
-        goal: Goals.getGoal(
-          chosenGoal: restOfRegisterRequest.goal,
-          appLocalizations: getIt.get<AppLocalizations>(),
-        ),
-        activityLevel: Activities.getActivityLevel(
-          activity: restOfRegisterRequest.activityLevel,
-          appLocalizations: getIt.get<AppLocalizations>(),
-        ),
-      ),
-    );
-    switch (useCaseResult) {
-      case Success<UserCredential>():
-        emit(state.copyWith(registerStatus: Status.success));
-      case Error<UserCredential>():
+    return false;
+  }
+
+  Future<bool> _facebookRegister() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    var userFacebookResult =
+        await _facebookSignInHandler.getUserFacebookAccount();
+    switch (userFacebookResult) {
+      case Success<FacebookResponseModel>():
+        var data = userFacebookResult.data;
+        var names = data.name?.split(' ') ?? [];
+        _socialAccountInfo = SocialAccountInfo(
+          firstName: names.isNotEmpty ? names.first : "Unknown",
+          lastName: names.length > 1 ? names.last : " ",
+          email: data.email ?? "",
+          password: ObfuscatedPassword.getObfuscatedPassword(),
+          confirmPassword: ObfuscatedPassword.getObfuscatedPassword(),
+        );
+        return true;
+      case Error<FacebookResponseModel>():
         emit(
           state.copyWith(
-            registerStatus: Status.error,
-            error: useCaseResult.error,
+            socialRegisterStatus: Status.error,
+            socialRegisterError: userFacebookResult.error,
           ),
         );
     }
+    return false;
   }
 
-  void _onAnyRegisterButtonClick() {
+  void _onAnyRegisterButtonClick() async {
     FocusManager.instance.primaryFocus?.unfocus();
-    if (formKey.currentState!.validate() &&
-        currentRegisterMethod == RegisterMethod.apiRegister) {
+    if (currentRegisterMethod == RegisterMethod.apiRegister &&
+        formKey.currentState!.validate()) {
       pageViewController.jumpToPage(1);
-    } else if (currentRegisterMethod != RegisterMethod.apiRegister) {
-      pageViewController.jumpToPage(1);
+    } else {
+      bool result;
+      switch (currentRegisterMethod) {
+        case RegisterMethod.initial:
+        case RegisterMethod.apiRegister:
+          return;
+        case RegisterMethod.googleRegister:
+          result = await _googleRegister();
+        case RegisterMethod.facebookRegister:
+          result = await _facebookRegister();
+        case RegisterMethod.appleRegister:
+          // TODO: Handle this case.
+          throw UnimplementedError();
+      }
+      if (result) {
+        pageViewController.jumpToPage(1);
+      }
     }
+  }
+
+  void _clearControllers() {
+    firstNameController.clear();
+    lastNameController.clear();
+    emailController.clear();
+    passwordController.clear();
+    confirmPasswordController.clear();
   }
 }
 
@@ -188,6 +209,8 @@ class RegisterUser extends RegisterIntent {
 }
 
 class OnAnyRegisterButtonClick extends RegisterIntent {}
+
+class ClearControllers extends RegisterIntent {}
 
 class RestOfRegisterRequest {
   String gender;
@@ -204,5 +227,17 @@ class RestOfRegisterRequest {
     required this.height,
     required this.goal,
     required this.activityLevel,
+  });
+}
+
+class SocialAccountInfo {
+  String firstName, lastName, email, password, confirmPassword;
+
+  SocialAccountInfo({
+    required this.firstName,
+    required this.lastName,
+    required this.email,
+    required this.password,
+    required this.confirmPassword,
   });
 }

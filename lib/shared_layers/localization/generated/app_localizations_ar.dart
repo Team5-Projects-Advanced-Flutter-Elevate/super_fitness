@@ -36,6 +36,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get somethingWentWrong => 'حدث خطأ ما 🤔';
 
   @override
+  String get badRequest => 'تنسيق الطلب غير صحيح 👎';
+
+  @override
+  String get couldNotFindSource => 'لم يتم العثور على المصدر 😱';
+
+  @override
   String get validationFunctions____________ => '\$\$\$ تعليق \$\$\$';
 
   @override
@@ -501,4 +507,53 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get update => 'تحديث';
+
+  @override
+  String get aiChatFeature____________ => '\$\$\$ تعليق \$\$\$';
+
+  @override
+  String get iAmYourSmartCoach => 'أنا مدربك الذكي';
+
+  @override
+  String get previousConversations => 'المحادثات السابقة';
+
+  @override
+  String get howCanIAssistYouToday => 'كيف يمكنني مساعدتك\nاليوم؟';
+
+  @override
+  String get getStarted => 'ابدأ الآن';
+
+  @override
+  String get smartCoach => 'مدرب ذكي';
+
+  @override
+  String get untitledChat => 'دردشة بدون عنوان';
+
+  @override
+  String get messageGemini => 'أرسل رسالة إلى Gemini';
+
+  @override
+  String get tellingGeminiToBeSmartFitnessCoach =>
+      'أنت مدرب لياقة ذكي. ساعد المستخدم في التمارين الرياضية، التغذية، والتحفيز.';
+
+  @override
+  String get tellingGeminiToWelcomeUser =>
+      'رحّب بالمستخدم بإيجاز في بضع جمل فقط. اجعل كل رد بسيطًا وواضحًا وموجزًا — دون شروحات طويلة.';
+
+  @override
+  String tellingGeminiToWelcomeUserWithInfo(Object userInfo) {
+    return 'رحّب بالمستخدم باختصار باستخدام اسمه. فقط بضع جمل. معلومات المستخدم كما يلي: $userInfo (تجاهل أي معلومات غير معروفة إن وجدت). احتفظ بهذه المعلومات فقط إذا سأل المستخدم عن شيء متعلق بها. في كل رد، اجعل الإجابة بسيطة وواضحة ومختصرة—بدون شروحات طويلة.';
+  }
+
+  @override
+  String tellingGeminiToGiveChatTitle(Object firstMessage) {
+    return 'قدّم عنوانًا قصيرًا من 10 إلى 20 حرفًا لهذه الرسالة: $firstMessage، لا تعطِ خيارات، فقط اختر الأفضل.';
+  }
+
+  @override
+  String get conversationIsCloseToLimit =>
+      'المحادثة على وشك الوصول إلى الحد الأقصى ⚠️';
+
+  @override
+  String get conversationEnded => 'انتهت المحادثة ❌';
 }

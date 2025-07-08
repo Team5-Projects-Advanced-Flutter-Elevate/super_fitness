@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/utilities/custom_exceptions/firebase_auth_register_exception.dart';
 import 'package:super_fitness/core/utilities/custom_exceptions/firebase_auth_sign_in_exception.dart';
+import 'package:super_fitness/core/utilities/custom_exceptions/social_login_exception.dart';
+
 import '../../../../shared_layers/localization/generated/app_localizations.dart';
 import 'api_error_model.dart';
 
@@ -16,25 +20,38 @@ class ApiErrorHandler {
   ApiErrorHandler(this._appLocalizations);
 
   String handle(Object error) {
-    if (error is DioException) {
-      switch (error.type) {
-        case DioExceptionType.connectionTimeout:
-          return _appLocalizations.connectionTimeout;
-        case DioExceptionType.sendTimeout:
-          return _appLocalizations.sendTimeout;
-        case DioExceptionType.receiveTimeout:
-          return _appLocalizations.receiveTimeout;
-        case DioExceptionType.badResponse:
-          return ApiErrorModel.fromJson(error.response?.data).error ??
-              _appLocalizations.somethingWentWrong;
-        case DioExceptionType.cancel:
-          return _appLocalizations.cancel;
-        case DioExceptionType.connectionError:
+    if (error is Exception) {
+      switch (error) {
+        case SocketException():
           return _appLocalizations.connectionError;
-        case DioExceptionType.unknown:
-          return _appLocalizations.unknownError;
-        case DioExceptionType.badCertificate:
-          return _appLocalizations.badCertificate;
+        case HttpException():
+          return _appLocalizations.couldNotFindSource;
+        case FormatException():
+          return _appLocalizations.badRequest;
+        case SocialLoginException():
+          return error.message ?? _appLocalizations.somethingWentWrong;
+        case DioException():
+          switch (error.type) {
+            case DioExceptionType.connectionTimeout:
+              return _appLocalizations.connectionTimeout;
+            case DioExceptionType.sendTimeout:
+              return _appLocalizations.sendTimeout;
+            case DioExceptionType.receiveTimeout:
+              return _appLocalizations.receiveTimeout;
+            case DioExceptionType.badResponse:
+              return ApiErrorModel.fromJson(error.response?.data).error ??
+                  _appLocalizations.somethingWentWrong;
+            case DioExceptionType.cancel:
+              return _appLocalizations.cancel;
+            case DioExceptionType.connectionError:
+              return _appLocalizations.connectionError;
+            case DioExceptionType.unknown:
+              return _appLocalizations.unknownError;
+            case DioExceptionType.badCertificate:
+              return _appLocalizations.badCertificate;
+          }
+        default:
+          return _appLocalizations.somethingWentWrong;
       }
     } else if (error is FirebaseAuthRegisterException) {
       return error.toString();

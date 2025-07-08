@@ -7,7 +7,7 @@ import 'package:super_fitness/modules/home/domain/repositories_contracts/random_
 
 @Injectable(as: RandomExercisesRepo)
 class RandomExercisesRepoImp implements RandomExercisesRepo {
-  final RandomExerciseRemoteDataSource _randomExerciseRemoteDataSource;
+  final RandomExercisesRemoteDataSource _randomExerciseRemoteDataSource;
 
   RandomExercisesRepoImp(this._randomExerciseRemoteDataSource);
 

@@ -121,31 +121,45 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                                   : ListView.separated(
                                     itemCount: chats.length,
                                     itemBuilder: (context, index) {
-                                      return ListTile(
-                                        minTileHeight: 35,
-                                        minVerticalPadding: 0,
-                                        onTap: () {
-                                          scaffoldKey.currentState!
-                                              .closeEndDrawer();
-                                          Navigator.pushNamed<bool>(
-                                            context,
-                                            DefinedRoutes.smartCoachScreenRoute,
-                                            arguments: chats[index],
-                                          ).then((value) {
-                                            reloadChats = value ?? false;
-                                          });
-                                        },
-                                        leading: const Icon(
-                                          Icons.arrow_back_ios,
-                                          size: 20,
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                          bottom:
+                                              (index == chats.length - 1)
+                                                  ? screenHeight * 0.15
+                                                  : 0,
                                         ),
-                                        contentPadding: EdgeInsets.zero,
-                                        title: Text(
-                                          chats[index].title,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.end,
-                                          style: theme.textTheme.titleSmall,
+                                        child: ListTile(
+                                          minTileHeight: 35,
+                                          minVerticalPadding: 0,
+                                          onTap: () {
+                                            scaffoldKey.currentState!
+                                                .closeEndDrawer();
+                                            Navigator.pushNamed<bool>(
+                                              context,
+                                              DefinedRoutes
+                                                  .smartCoachScreenRoute,
+                                              arguments: chats[index],
+                                            ).then((value) {
+                                              reloadChats = value ?? false;
+                                            });
+                                          },
+                                          leading: const Icon(
+                                            Icons.arrow_back_ios,
+                                            size: 20,
+                                          ),
+                                          contentPadding: EdgeInsets.zero,
+                                          title: Text(
+                                            chats[index].title,
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            textDirection: aiChatPageViewModel
+                                                .determineTextDirectionBasedOnFirstLetter(
+                                                  chats[index].title.isNotEmpty
+                                                      ? chats[index].title[0]
+                                                      : "",
+                                                ),
+                                            style: theme.textTheme.titleSmall,
+                                          ),
                                         ),
                                       );
                                     },

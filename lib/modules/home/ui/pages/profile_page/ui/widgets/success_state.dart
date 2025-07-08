@@ -1,8 +1,10 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/modules/edit_profile/ui/screens/edit_profile_screen.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/widgets/profile_item.dart';
+
 import '../../../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../../../core/colors/app_colors.dart';
 import '../../../../../../../core/constants/assets_paths/assets_paths.dart';
@@ -196,9 +198,10 @@ class _SuccessStateState extends BaseStatefulWidgetState<SuccessState> {
                           child: FilledButton(
                             onPressed: () {
                               widget.cubit.doIntent(LogoutIntent());
-                              Navigator.pushReplacementNamed(
+                              Navigator.pushNamedAndRemoveUntil(
                                 context,
                                 DefinedRoutes.loginScreenRoute,
+                                (route) => false,
                               );
                             },
                             child: Text(appLocalizations.confirm),

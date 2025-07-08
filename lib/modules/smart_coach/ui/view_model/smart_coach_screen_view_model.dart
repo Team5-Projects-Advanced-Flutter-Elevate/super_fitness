@@ -38,6 +38,11 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
   ChatHistoryModel chatHistoryModel = ChatHistoryModel(messages: []);
 
   var userInfo = getIt.get<UserProvider>().userLoginInfo?.user;
+
+  final TextEditingController textFieldController = TextEditingController();
+  ValueNotifier<TextDirection?> textFieldTextDirectionNotifier = ValueNotifier(
+    null,
+  );
   ValueNotifier<bool> takeAnotherMessageNotifier = ValueNotifier(false);
   ValueNotifier<String> conversationTitleNotifier = ValueNotifier("");
   ValueNotifier<String> tokenNotifier = ValueNotifier("");
@@ -59,6 +64,9 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
         break;
       case GetAllChats():
         _getAllChats();
+        break;
+      case UpdateTextFieldTextDirection():
+        _updateTextDirection();
         break;
     }
   }
@@ -356,6 +364,28 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
     makeAiChatPageReloadPreviousConversations = true;
     makeThisScreenReloadPreviousConversations = true;
   }
+
+  // Text Field of Messages:
+  void _updateTextDirection() {
+    final text = textFieldController.text;
+    if (text.isEmpty) {
+      textFieldTextDirectionNotifier.value = null;
+      return;
+    }
+
+    final firstChar = text.characters.first;
+
+    textFieldTextDirectionNotifier
+        .value = determineTextDirectionBasedOnFirstLetter(firstChar);
+  }
+
+  TextDirection? determineTextDirectionBasedOnFirstLetter(String firstChar) {
+    if (firstChar.isEmpty) return null;
+    final isRtl = RegExp(
+      r'^[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]',
+    ).hasMatch(firstChar);
+    return isRtl ? TextDirection.rtl : TextDirection.ltr;
+  }
 }
 
 sealed class SmartCoachScreenIntent {}
@@ -375,6 +405,8 @@ class InitViewModel extends SmartCoachScreenIntent {
 }
 
 class GetAllChats extends SmartCoachScreenIntent {}
+
+class UpdateTextFieldTextDirection extends SmartCoachScreenIntent {}
 
 /*
 

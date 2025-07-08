@@ -34,7 +34,6 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   late UserEntity? userLoginInfo;
   final FocusNode textFieldFocusNode = FocusNode();
-  final TextEditingController textEditingController = TextEditingController();
   ValueNotifier<bool> hasFocusNotifier = ValueNotifier(false);
   ValueNotifier<bool> hasText = ValueNotifier(false);
 
@@ -55,8 +54,10 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
     });
-    textEditingController.addListener(() {
-      hasText.value = textEditingController.text.trim().isNotEmpty;
+    smartCoachScreenViewModel.textFieldController.addListener(() {
+      hasText.value =
+          smartCoachScreenViewModel.textFieldController.text.trim().isNotEmpty;
+      smartCoachScreenViewModel.doIntent(UpdateTextFieldTextDirection());
     });
     BackButtonInterceptor.add(myInterceptor);
   }
@@ -203,7 +204,16 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                               chats[index].title,
                                               maxLines: 1,
                                               overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.end,
+                                              textDirection:
+                                                  smartCoachScreenViewModel
+                                                      .determineTextDirectionBasedOnFirstLetter(
+                                                        chats[index]
+                                                                .title
+                                                                .isNotEmpty
+                                                            ? chats[index]
+                                                                .title[0]
+                                                            : "",
+                                                      ),
                                               style: theme.textTheme.titleSmall,
                                             ),
                                           );
@@ -307,6 +317,19 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                       .withAlpha(150),
                                 );
                               } else {
+                                String firstChar =
+                                    state
+                                            .messageItems[index + 2]
+                                            .message
+                                            .isNotEmpty
+                                        ? state
+                                            .messageItems[index + 2]
+                                            .message[0]
+                                        : "";
+                                var textDirection = smartCoachScreenViewModel
+                                    .determineTextDirectionBasedOnFirstLetter(
+                                      firstChar,
+                                    );
                                 return state.messageItems[index + 2].role ==
                                         MessageRoles.user
                                     ? Center(
@@ -315,6 +338,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                         imagePath: userLoginInfo?.photo ?? "",
                                         message: Text(
                                           state.messageItems[index + 2].message,
+                                          textDirection: textDirection,
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         messageBackgroundColor: AppColors
@@ -328,6 +352,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                         imagePath: AssetsPaths.geminiIcon,
                                         message: Text(
                                           state.messageItems[index + 2].message,
+                                          textDirection: textDirection,
                                           style: theme.textTheme.titleMedium,
                                         ),
                                         messageBackgroundColor: AppColors.black
@@ -379,23 +404,33 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(20),
-                                    child: TextField(
-                                      enabled: !didChatEnd,
-                                      controller: textEditingController,
-                                      maxLines: 5,
-                                      minLines: 1,
-                                      focusNode: textFieldFocusNode,
-                                      decoration: InputDecoration(
-                                        hoverColor: Colors.transparent,
-                                        border: InputBorder.none,
-                                        hintText:
-                                            appLocalizations.messageGemini,
-                                        enabledBorder: InputBorder.none,
-                                        focusedBorder: InputBorder.none,
-                                        disabledBorder: InputBorder.none,
-                                        fillColor: AppColors.black,
-                                        filled: true,
-                                      ),
+                                    child: ValueListenableBuilder(
+                                      valueListenable:
+                                          smartCoachScreenViewModel
+                                              .textFieldTextDirectionNotifier,
+                                      builder: (context, direction, child) {
+                                        return TextField(
+                                          enabled: !didChatEnd,
+                                          controller:
+                                              smartCoachScreenViewModel
+                                                  .textFieldController,
+                                          textDirection: direction,
+                                          maxLines: 5,
+                                          minLines: 1,
+                                          focusNode: textFieldFocusNode,
+                                          decoration: InputDecoration(
+                                            hoverColor: Colors.transparent,
+                                            border: InputBorder.none,
+                                            hintText:
+                                                appLocalizations.messageGemini,
+                                            enabledBorder: InputBorder.none,
+                                            focusedBorder: InputBorder.none,
+                                            disabledBorder: InputBorder.none,
+                                            fillColor: AppColors.black,
+                                            filled: true,
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ),
                                   ValueListenableBuilder(
@@ -418,15 +453,16 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                                                     hasText &&
                                                             takeAnotherMessage
                                                         ? () {
+                                                          smartCoachScreenViewModel.doIntent(
+                                                            PromptAiToAnswerUser(
+                                                              message:
+                                                                  smartCoachScreenViewModel
+                                                                      .textFieldController
+                                                                      .text,
+                                                            ),
+                                                          );
                                                           smartCoachScreenViewModel
-                                                              .doIntent(
-                                                                PromptAiToAnswerUser(
-                                                                  message:
-                                                                      textEditingController
-                                                                          .text,
-                                                                ),
-                                                              );
-                                                          textEditingController
+                                                              .textFieldController
                                                               .clear();
                                                           FocusManager
                                                               .instance
@@ -463,7 +499,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   void dispose() {
     super.dispose();
     textFieldFocusNode.dispose();
-    textEditingController.dispose();
+    smartCoachScreenViewModel.textFieldController.dispose();
     BackButtonInterceptor.remove(myInterceptor);
   }
 }

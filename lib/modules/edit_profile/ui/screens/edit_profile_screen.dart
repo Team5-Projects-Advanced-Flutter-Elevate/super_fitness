@@ -225,7 +225,8 @@ class _EditProfileScreenState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            '${state.firstName}${state.lastName}',
+                            '${state.firstName} ${state.lastName}',
+                            textAlign: TextAlign.center,
                             style: theme.textTheme.titleLarge,
                           ),
                         ],

@@ -1,5 +1,7 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
 import '../../../../../core/di/injectable_initializer.dart';
@@ -147,7 +149,6 @@ class _ActivityScreenState extends BaseStatefulWidgetState<ActivityScreen> {
                                       widget.onSelected?.call(
                                         selectedActivity!,
                                       );
-                                      print('sssss${selectedActivity}');
                                       Navigator.pop(context);
                                     },
                             child: Text(appLocalizations.done),

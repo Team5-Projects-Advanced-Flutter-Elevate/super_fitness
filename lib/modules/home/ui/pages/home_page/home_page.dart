@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -67,11 +69,16 @@ class _HomePageState extends BaseStatefulWidgetState<HomePage> {
               width: 45,
               height: 45,
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: CustomNetworkCachedImage(
-                imageUrl: userInfo?.photo ?? "",
-                width: 45,
-                height: 45,
-              ),
+              child:
+                  userInfo!.hasNetworkImage
+                      ? CustomNetworkCachedImage(
+                        imageUrl: userInfo?.photo ?? "",
+                        width: 45,
+                        height: 45,
+                      )
+                      : CircleAvatar(
+                        backgroundImage: FileImage(File(userInfo?.photo ?? '')),
+                      ),
             ),
           ],
         ),

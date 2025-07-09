@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:super_fitness/core/bases/base_stateful_widget_state.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
@@ -9,7 +8,6 @@ import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/modules/home/ui/pages/ai_chat_page/ai_chat_page.dart';
 import 'package:super_fitness/modules/home/ui/pages/home_page/home_page.dart';
 import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/profile_page.dart';
-import 'package:super_fitness/modules/home/ui/pages/profile_page/ui/view_model/profile_cubit.dart';
 import 'package:super_fitness/modules/home/ui/pages/workouts_page/workouts_page.dart';
 import 'package:super_fitness/modules/home/ui/view_model/home_view_model.dart';
 
@@ -24,21 +22,16 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends BaseStatefulWidgetState<HomeScreen> {
   final HomeViewModel homeViewModel = getIt.get<HomeViewModel>();
-  late List<Widget> pages;
-  final ProfileCubit profileCubit = getIt.get<ProfileCubit>();
+  List<Widget> pages = [
+    const HomePage(),
+    const AiChatPage(),
+    const WorkoutsPage(),
+    const ProfilePage(),
+  ];
 
   @override
   void initState() {
     super.initState();
-    pages = [
-      const HomePage(),
-      const AiChatPage(),
-      const WorkoutsPage(),
-      BlocProvider(
-        create: (context) => profileCubit,
-        child: const ProfilePage(),
-      ),
-    ];
   }
 
   @override

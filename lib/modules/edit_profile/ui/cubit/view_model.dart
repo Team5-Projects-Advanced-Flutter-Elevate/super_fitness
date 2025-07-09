@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/modules/edit_profile/ui/cubit/states.dart';
-
 import '../../../../core/apis/api_result/api_result.dart';
 import '../../../../core/di/injectable_initializer.dart';
 import '../../../../core/utilities/user_provider/user_provider.dart';
-import '../../../authentication/domain/entities/login/login_data_response_entity.dart';
+import '../../../authentication/domain/usecase/login/login_local.dart';
 import '../../domain/entity/edit_info.dart';
 import '../../domain/entity/get_data_entity.dart';
 import '../../domain/entity/upload_image_response_entity.dart';
@@ -65,7 +64,8 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           firstName: data?.firstName ?? '',
           lastName: data?.lastName ?? '',
           email: data?.email ?? '',
-          password: 'Mmmmm@123', // Default for UI placeholder only
+          password: 'Mmmmm@123',
+          // Default for UI placeholder only
           profilePhotoLink: data?.photo,
           gender: data?.gender??'',
           goal: data?.goal??'',
@@ -128,6 +128,14 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           profilePhotoLink: imageFile.path,
         );
         emit(updatedState.copyWith(initialData: updatedState));
+        final loginInfo = getIt<UserProvider>().userLoginInfo!.copyWith(
+          user: getIt<UserProvider>().userLoginInfo?.user!.copyWith(
+            photo: imageFile.path,
+          ),
+        );
+        getIt.get<StoreLoginLocalUseCase>().call(loginInfo);
+        getIt.get<UserProvider>().changeUserLoginInfo(loginInfo);
+
         break;
 
       case Error<UploadImageResponseEntity?>():
@@ -169,7 +177,8 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           firstName: data?.firstName ?? '',
           lastName: data?.lastName ?? '',
           email: data?.email ?? '',
-          password: 'Mmmmm@123', // UI-only placeholder
+          password: 'Mmmmm@123',
+          // UI-only placeholder
           profilePhotoLink: data?.photo,
           goal: data?.goal ?? '',
           weight: data?.weight.toString() ?? '',
@@ -179,22 +188,18 @@ class EditProfileViewModel extends Cubit<ProfileState> {
         // After successful update, reset initial snapshot
         emit(updatedState.copyWith(initialData: updatedState));
 
-        getIt<UserProvider>().changeUserLoginInfo(
-          LoginEntity(
-            user: UserEntity(
-              id: data?.id,
-              firstName: data?.firstName,
-              lastName: data?.lastName,
-              email: data?.email,
-              photo: data?.photo,
-              goal: data?.goal ?? '',
-              weight: data?.weight,
-              activityLevel: data?.activityLevel ?? '',
-            ),
-
-            // add other fields from your LoginEntity
+        final loginInfo = getIt<UserProvider>().userLoginInfo!.copyWith(
+          user: getIt<UserProvider>().userLoginInfo?.user!.copyWith(
+            firstName: data?.firstName ?? '',
+            lastName: data?.lastName ?? '',
+            email: data?.email ?? '',
+            goal: data?.goal ?? '',
+            weight: data?.weight,
+            activityLevel: data?.activityLevel ?? '',
           ),
         );
+        getIt.get<StoreLoginLocalUseCase>().call(loginInfo);
+        getIt.get<UserProvider>().changeUserLoginInfo(loginInfo);
         break;
 
       case Error<EditMyInfoEntity?>():
@@ -220,6 +225,7 @@ class EditInfo extends EditIntent {
   final String? goal;
   final String? weight;
   final String? level;
+
   EditInfo(
     this.firstName,
     this.lastName,

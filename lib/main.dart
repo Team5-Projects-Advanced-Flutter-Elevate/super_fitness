@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -48,6 +50,7 @@ void main() async {
   await configureDependencies();
 
   var userLoginInfo = await getIt.get<StoreLoginLocalUseCase>().getLocalData();
+  log(userLoginInfo.toString());
   getIt.get<UserProvider>().changeUserLoginInfo(userLoginInfo);
 
   // Pass all uncaught "fatal" errors from the framework to Crashlytics

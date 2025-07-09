@@ -92,22 +92,26 @@ void main() {
       );
 
       // default mocks
-      when(mockGetUserDataUseCase.call())
-          .thenAnswer((_) async => Success<GetDataEntity>(data: getDataEntity));
+      when(
+        mockGetUserDataUseCase.call(),
+      ).thenAnswer((_) async => Success<GetDataEntity>(data: getDataEntity));
 
-      when(mockEditInfoUseCase.call(any, any, any, any, any, any))
-          .thenAnswer((_) async => Success<EditMyInfoEntity>(data: editMyInfoEntity));
+      when(mockEditInfoUseCase.call(any, any, any, any, any, any)).thenAnswer(
+        (_) async => Success<EditMyInfoEntity>(data: editMyInfoEntity),
+      );
 
       File imageFile = File(r'C:\Users\pc_nu\Downloads\test.png');
-      when(mockUploadImageUseCase.execute(imageFile: imageFile))
-          .thenAnswer((_) async => Success<UploadImageResponseEntity>(data: uploadImageResponseEntity));
+      when(mockUploadImageUseCase.execute(imageFile: imageFile)).thenAnswer(
+        (_) async =>
+            Success<UploadImageResponseEntity>(data: uploadImageResponseEntity),
+      );
 
       // register dependencies in getIt
       getIt.registerSingleton<LocalizationManager>(mockLocalizationManager);
       getIt.registerSingleton<AppLocalizations>(mockAppLocalizations);
       getIt.registerSingleton<ValidateFunctions>(mockValidateFunctions);
       getIt.registerFactory<EditProfileViewModel>(
-            () => EditProfileViewModel(
+        () => EditProfileViewModel(
           mockGetUserDataUseCase,
           mockEditInfoUseCase,
           mockUploadImageUseCase,
@@ -124,7 +128,9 @@ void main() {
       );
     }
 
-    testWidgets('should render update button with correct text', (tester) async {
+    testWidgets('should render update button with correct text', (
+      tester,
+    ) async {
       when(mockAppLocalizations.editProfile).thenReturn("Edit Profile");
       when(mockAppLocalizations.update).thenReturn("Update");
       when(mockAppLocalizations.yourWeight).thenReturn("Your Weight");
@@ -132,7 +138,9 @@ void main() {
       when(mockAppLocalizations.yourActivityLevel).thenReturn("Your Activity");
       when(mockAppLocalizations.tapToEdit).thenReturn("Tap to Edit");
       when(mockAppLocalizations.success).thenReturn("Success");
-      when(mockAppLocalizations.updatedSuccessfully).thenReturn("Updated Successfully");
+      when(
+        mockAppLocalizations.updatedSuccessfully,
+      ).thenReturn("Updated Successfully");
 
       await tester.pumpWidget(build());
       await tester.pumpAndSettle();

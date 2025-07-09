@@ -15,7 +15,7 @@ class _ProfileApiClient implements ProfileApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<ProfileResponse> getProfile() async {

@@ -17,7 +17,7 @@ class _ExerciseApiClient implements ExerciseApiClient {
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  ParseErrorLogger? errorLogger;
 
   @override
   Future<GetExerciseModel> exercise({

@@ -25,16 +25,16 @@ class AiChatPage extends StatefulWidget {
 
 class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
   late UserEntity? userLoginInfo;
+  late UserProvider userProvider;
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   final AiChatPageViewModel aiChatPageViewModel =
       getIt.get<AiChatPageViewModel>();
 
-  bool reloadChats = false;
-
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    userLoginInfo = Provider.of<UserProvider>(context).userLoginInfo?.user;
+    userProvider = Provider.of<UserProvider>(context);
+    userLoginInfo = userProvider.userLoginInfo?.user;
     aiChatPageViewModel.doIntent(GetAllChats());
   }
 
@@ -70,9 +70,9 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
             IconButton(
               onPressed: () {
                 scaffoldKey.currentState!.openEndDrawer();
-                if (reloadChats) {
+                if (userProvider.reloadPreviousChatsOfAiChatPage) {
                   aiChatPageViewModel.doIntent(GetAllChats());
-                  reloadChats = false;
+                  userProvider.changeReloadPreviousChats(false);
                 }
               },
               icon: ImageIcon(
@@ -139,9 +139,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                                               DefinedRoutes
                                                   .smartCoachScreenRoute,
                                               arguments: chats[index],
-                                            ).then((value) {
-                                              reloadChats = value ?? false;
-                                            });
+                                            );
                                           },
                                           leading: const Icon(
                                             Icons.arrow_back_ios,
@@ -219,9 +217,7 @@ class _AiChatPageState extends BaseStatefulWidgetState<AiChatPage> {
                             Navigator.pushNamed<bool>(
                               context,
                               DefinedRoutes.smartCoachScreenRoute,
-                            ).then((value) {
-                              reloadChats = value ?? false;
-                            });
+                            );
                           },
                           child: Text(appLocalizations.getStarted),
                         ),

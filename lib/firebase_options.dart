@@ -63,6 +63,11 @@ class DefaultFirebaseOptions {
     messagingSenderId: '711027980590',
     projectId: 'super-fitness-app-2ac08',
     storageBucket: 'super-fitness-app-2ac08.firebasestorage.app',
+    androidClientId:
+        '711027980590-2m99ad0n39d412ge20dhlrsckl7g0lio.apps.googleusercontent.com',
+    iosClientId:
+        '711027980590-pmv5g77pn9nhrrq9k4fa1g4oenfu28bh.apps.googleusercontent.com',
     iosBundleId: 'com.main369.superFitness',
   );
+
 }

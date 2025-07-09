@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/obfuscation/password/obfuscated_password.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_response_model.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart';
 import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/core/utilities/user_provider/user_provider.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart';
@@ -15,11 +18,13 @@ import '../../state.dart';
 class LoginViewModel extends Cubit<LoginState> {
   final LoginUseCase _loginUseCase;
   final GoogleSignInHandler _googleSignInHandler;
+  final FacebookSignInHandler _facebookSignInHandler;
   final StoreLoginLocalUseCase _loginLocalUseCase;
 
   LoginViewModel(
     this._loginUseCase,
     this._googleSignInHandler,
+    this._facebookSignInHandler,
     this._loginLocalUseCase,
   ) : super(const LoginState());
 
@@ -40,6 +45,9 @@ class LoginViewModel extends Cubit<LoginState> {
 
       case ClearData():
         _clearData();
+        break;
+      case FacebookLogin():
+        _facebookLogin();
         break;
     }
   }
@@ -63,12 +71,33 @@ class LoginViewModel extends Cubit<LoginState> {
   }
 
   void _googleLogin() async {
-    emit(const LoginState(loginStatus: Status.loading));
     var googleUserAccount = await _googleSignInHandler.getUserGoogleAccount();
-
     if (googleUserAccount == null) {
-      emit(const LoginState(loginStatus: Status.idle));
       return;
+    }
+    _login(googleUserAccount.email, ObfuscatedPassword.getObfuscatedPassword());
+  }
+
+  void _facebookLogin() async {
+    var facebookUserAccount =
+        await _facebookSignInHandler.getUserFacebookAccount();
+    switch (facebookUserAccount) {
+      case Success<FacebookResponseModel>():
+        if (facebookUserAccount.data.email == null) {
+          return;
+        }
+        _login(
+          facebookUserAccount.data.email!,
+          ObfuscatedPassword.getObfuscatedPassword(),
+        );
+
+      case Error<FacebookResponseModel>():
+        emit(
+          LoginState(
+            loginStatus: Status.error,
+            error: facebookUserAccount.error,
+          ),
+        );
     }
   }
 
@@ -108,6 +137,8 @@ class Login extends LoginIntent {
 }
 
 class GoogleLogin extends LoginIntent {}
+
+class FacebookLogin extends LoginIntent {}
 
 class GetData extends LoginIntent {}
 

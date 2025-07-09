@@ -62,7 +62,7 @@ class SmartCoachScreenViewModel extends Cubit<SmartCoachScreenState> {
       case PromptAiToAnswerUser():
         _promptAiModelToAnswerUser(intent.message);
         break;
-      case GetAllChats():
+      case GetAllChatsIntent():
         _getAllChats();
         break;
       case UpdateTextFieldTextDirection():
@@ -404,7 +404,7 @@ class InitViewModel extends SmartCoachScreenIntent {
   InitViewModel({required this.chatHistoryModel});
 }
 
-class GetAllChats extends SmartCoachScreenIntent {}
+class GetAllChatsIntent extends SmartCoachScreenIntent {}
 
 class UpdateTextFieldTextDirection extends SmartCoachScreenIntent {}
 

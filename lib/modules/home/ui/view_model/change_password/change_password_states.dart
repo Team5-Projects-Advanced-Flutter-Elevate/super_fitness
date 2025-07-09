@@ -5,7 +5,7 @@ enum ChangePasswordStatus { initial, loading, success, error }
 class ChangePasswordState extends Equatable {
   final ChangePasswordStatus changePasswordStatus;
   final String password;
-  final String? error;
+  final Object? error;
 
   final ChangePasswordState? initialData;
 
@@ -20,7 +20,7 @@ class ChangePasswordState extends Equatable {
     ChangePasswordStatus? changePasswordStatus,
     String? password,
     String? profilePhotoLink,
-    String? error,
+    Object? error,
     ChangePasswordState? initialData, // ✅
   }) {
     return ChangePasswordState(

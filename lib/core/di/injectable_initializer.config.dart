@@ -592,6 +592,14 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i9.ResetCodeUseCase>(),
       ),
     );
+    gh.factory<_i396.LoginViewModel>(
+      () => _i396.LoginViewModel(
+        gh<_i192.LoginUseCase>(),
+        gh<_i560.GoogleSignInHandler>(),
+        gh<_i817.FacebookSignInHandler>(),
+        gh<_i966.StoreLoginLocalUseCase>(),
+      ),
+    );
     gh.factory<_i552.EditProfileViewModel>(
       () => _i552.EditProfileViewModel(
         gh<_i736.GetUserDataUseCase>(),
@@ -622,13 +630,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i72.WorkoutsPageCubit(
         gh<_i415.GetMusclesGroupUseCase>(),
         gh<_i1011.GetMuscleGroupWorkoutUseCase>(),
-      ),
-    );
-    gh.factory<_i396.LoginViewModel>(
-      () => _i396.LoginViewModel(
-        gh<_i192.LoginUseCase>(),
-        gh<_i560.GoogleSignInHandler>(),
-        gh<_i966.StoreLoginLocalUseCase>(),
       ),
     );
     return this;

@@ -11,13 +11,14 @@ part of 'food_details_api_client.dart';
 class _FoodDetailsApiClient implements FoodDetailsApiClient {
   _FoodDetailsApiClient(this._dio) {
     baseUrl ??= 'https://www.themealdb.com';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<FoodDetailsModel> getFoodDetails(String id) async {

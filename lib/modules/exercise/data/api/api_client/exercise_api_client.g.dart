@@ -11,13 +11,14 @@ part of 'exercise_api_client.dart';
 class _ExerciseApiClient implements ExerciseApiClient {
   _ExerciseApiClient(this._dio) {
     baseUrl ??= 'https://fitness.elevateegy.com';
+    errorLogger = null;
   }
 
   final Dio _dio;
 
   String? baseUrl;
 
-   ParseErrorLogger? errorLogger;
+  late final ParseErrorLogger? errorLogger;
 
   @override
   Future<GetExerciseModel> exercise({

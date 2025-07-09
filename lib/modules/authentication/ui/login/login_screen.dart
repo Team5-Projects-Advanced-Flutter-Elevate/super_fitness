@@ -50,8 +50,8 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                 case Status.success:
                   displaySnackBar(
                     contentType: ContentType.success,
-                    title: 'Success',
-                    message: 'Login Successfully',
+                    title: appLocalizations.success,
+                    message: appLocalizations.loginSuccessfully,
                   );
                   Navigator.pushNamedAndRemoveUntil(
                     context,
@@ -62,7 +62,7 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                 case Status.error:
                   displaySnackBar(
                     contentType: ContentType.failure,
-                    title: 'Error',
+                    title: appLocalizations.error,
                     message: getIt.get<ApiErrorHandler>().handle(state.error!),
                     durationInSeconds: 6,
                   );
@@ -294,7 +294,11 @@ class _LoginScreenState extends BaseStatefulWidgetState<LoginScreen> {
                                                   MainAxisAlignment.center,
                                               children: [
                                                 ElevatedButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    loginViewModel.doIntent(
+                                                      FacebookLogin(),
+                                                    );
+                                                  },
                                                   style:
                                                       ElevatedButton.styleFrom(
                                                         shape:

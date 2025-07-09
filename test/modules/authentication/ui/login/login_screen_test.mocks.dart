@@ -4,16 +4,20 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
-import 'dart:ui' as _i11;
+import 'dart:ui' as _i13;
 
 import 'package:google_sign_in/google_sign_in.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i6;
 import 'package:super_fitness/core/apis/api_result/api_result.dart' as _i4;
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_response_model.dart'
+    as _i11;
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart'
+    as _i10;
 import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart'
     as _i8;
 import 'package:super_fitness/core/validation/validation_functions.dart'
-    as _i13;
+    as _i15;
 import 'package:super_fitness/modules/authentication/domain/entities/login/login_data_response_entity.dart'
     as _i5;
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login.dart'
@@ -21,9 +25,9 @@ import 'package:super_fitness/modules/authentication/domain/usecase/login/login.
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login_local.dart'
     as _i7;
 import 'package:super_fitness/shared_layers/localization/generated/app_localizations.dart'
-    as _i12;
+    as _i14;
 import 'package:super_fitness/shared_layers/localization/l10n_manager/localization_manager.dart'
-    as _i10;
+    as _i12;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -118,11 +122,36 @@ class MockGoogleSignInHandler extends _i1.Mock
           as _i3.Future<_i9.GoogleSignInAccount?>);
 }
 
+/// A class which mocks [FacebookSignInHandler].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockFacebookSignInHandler extends _i1.Mock
+    implements _i10.FacebookSignInHandler {
+  MockFacebookSignInHandler() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.Future<_i4.ApiResult<_i11.FacebookResponseModel>>
+  getUserFacebookAccount() =>
+      (super.noSuchMethod(
+            Invocation.method(#getUserFacebookAccount, []),
+            returnValue:
+                _i3.Future<_i4.ApiResult<_i11.FacebookResponseModel>>.value(
+                  _i6.dummyValue<_i4.ApiResult<_i11.FacebookResponseModel>>(
+                    this,
+                    Invocation.method(#getUserFacebookAccount, []),
+                  ),
+                ),
+          )
+          as _i3.Future<_i4.ApiResult<_i11.FacebookResponseModel>>);
+}
+
 /// A class which mocks [LocalizationManager].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocalizationManager extends _i1.Mock
-    implements _i10.LocalizationManager {
+    implements _i12.LocalizationManager {
   MockLocalizationManager() {
     _i1.throwOnMissingStub(this);
   }
@@ -172,13 +201,13 @@ class MockLocalizationManager extends _i1.Mock
           as _i3.Future<String?>);
 
   @override
-  void addListener(_i11.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i13.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#addListener, [listener]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void removeListener(_i11.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i13.VoidCallback? listener) => super.noSuchMethod(
     Invocation.method(#removeListener, [listener]),
     returnValueForMissingStub: null,
   );
@@ -199,7 +228,7 @@ class MockLocalizationManager extends _i1.Mock
 /// A class which mocks [AppLocalizations].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAppLocalizations extends _i1.Mock implements _i12.AppLocalizations {
+class MockAppLocalizations extends _i1.Mock implements _i14.AppLocalizations {
   MockAppLocalizations() {
     _i1.throwOnMissingStub(this);
   }
@@ -2159,13 +2188,13 @@ class MockAppLocalizations extends _i1.Mock implements _i12.AppLocalizations {
 /// A class which mocks [ValidateFunctions].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockValidateFunctions extends _i1.Mock implements _i13.ValidateFunctions {
+class MockValidateFunctions extends _i1.Mock implements _i15.ValidateFunctions {
   MockValidateFunctions() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  set appLocalizations(_i12.AppLocalizations? appLocalizations) =>
+  set appLocalizations(_i14.AppLocalizations? appLocalizations) =>
       super.noSuchMethod(
         Invocation.setter(#appLocalizations, appLocalizations),
         returnValueForMissingStub: null,

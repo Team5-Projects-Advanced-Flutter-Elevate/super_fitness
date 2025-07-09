@@ -68,13 +68,12 @@ class ExerciseHeaderSection extends StatelessWidget {
               Positioned(
                 top: 40,
                 left: 16,
-                child: CircleAvatar(
-                  backgroundColor: AppColors.mainColorLight,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const ImageIcon(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const CircleAvatar(
+                    child: ImageIcon(
                       AssetImage(AssetsPaths.backIcon),
                       size: 15,
                     ),

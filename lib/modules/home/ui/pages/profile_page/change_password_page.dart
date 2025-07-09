@@ -1,12 +1,15 @@
 import 'dart:ui';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_fitness/core/apis/api_error/api_error_handler.dart';
 import 'package:super_fitness/core/colors/app_colors.dart';
 import 'package:super_fitness/core/routing/defined_routes.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/home/ui/view_model/change_password/change_password_states.dart';
 import 'package:super_fitness/modules/home/ui/view_model/change_password/change_password_view_model.dart';
+
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/constants/assets_paths/assets_paths.dart';
 import '../../../../../core/di/injectable_initializer.dart';
@@ -127,7 +130,9 @@ class _ChangePasswordScreenState
                         displaySnackBar(
                           contentType: ContentType.failure,
                           title: appLocalizations.error,
-                          message: state.error,
+                          message: getIt.get<ApiErrorHandler>().handle(
+                            state.error!,
+                          ),
                         );
                       }
                     },

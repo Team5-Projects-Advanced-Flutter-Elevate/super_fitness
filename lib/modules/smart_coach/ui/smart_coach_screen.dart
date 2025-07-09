@@ -33,6 +33,7 @@ class SmartCoachScreen extends StatefulWidget {
 class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
   late UserEntity? userLoginInfo;
+  late UserProvider userProvider;
   final FocusNode textFieldFocusNode = FocusNode();
   ValueNotifier<bool> hasFocusNotifier = ValueNotifier(false);
   ValueNotifier<bool> hasText = ValueNotifier(false);
@@ -50,7 +51,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
     } else {
       smartCoachScreenViewModel.doIntent(PromptAiToWelcomeUser());
     }
-    smartCoachScreenViewModel.doIntent(GetAllChats());
+    smartCoachScreenViewModel.doIntent(GetAllChatsIntent());
     textFieldFocusNode.addListener(() {
       hasFocusNotifier.value = textFieldFocusNode.hasFocus;
     });
@@ -63,17 +64,18 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
   }
 
   bool myInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-    Navigator.pop(
-      context,
+    userProvider.changeReloadPreviousChats(
       smartCoachScreenViewModel.makeAiChatPageReloadPreviousConversations,
     );
+    Navigator.pop(context);
     return true;
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    userLoginInfo = Provider.of<UserProvider>(context).userLoginInfo?.user;
+    userProvider = Provider.of<UserProvider>(context);
+    userLoginInfo = userProvider.userLoginInfo?.user;
   }
 
   @override
@@ -104,7 +106,7 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   onPressed: () {
                     if (smartCoachScreenViewModel
                         .makeThisScreenReloadPreviousConversations) {
-                      smartCoachScreenViewModel.doIntent(GetAllChats());
+                      smartCoachScreenViewModel.doIntent(GetAllChatsIntent());
                       smartCoachScreenViewModel
                           .makeThisScreenReloadPreviousConversations = false;
                     }
@@ -123,11 +125,11 @@ class _SmartCoachScreenState extends BaseStatefulWidgetState<SmartCoachScreen> {
                   backgroundColor: AppColors.mainColorLight,
                 ),
                 onPressed: () {
-                  Navigator.pop(
-                    context,
+                  userProvider.changeReloadPreviousChats(
                     smartCoachScreenViewModel
                         .makeAiChatPageReloadPreviousConversations,
                   );
+                  Navigator.pop(context);
                 },
                 icon: Transform.flip(
                   flipX: !localizationManager.isEnglish,

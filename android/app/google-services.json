@@ -12,7 +12,20 @@
           "package_name": "com.main369.super_fitness"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "711027980590-2m99ad0n39d412ge20dhlrsckl7g0lio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.main369.super_fitness",
+            "certificate_hash": "21402508ce38311e28523f45ca79fec1cb6d79f2"
+          }
+        },
+        {
+          "client_id": "711027980590-tfdtnt3acd9r02te4rrrv4pmnr9c8bfa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAtukJ7MLI5FJiV8fOD2us4lEs_5dpZRhg"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711027980590-tfdtnt3acd9r02te4rrrv4pmnr9c8bfa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "711027980590-pmv5g77pn9nhrrq9k4fa1g4oenfu28bh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.main369.superFitness"
+              }
+            }
+          ]
         }
       }
     }

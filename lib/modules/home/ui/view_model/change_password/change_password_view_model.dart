@@ -32,11 +32,11 @@ class ChangePasswordViewModel extends Cubit<ChangePasswordState> {
         emit(updatedState.copyWith(initialData: updatedState));
         break;
 
-      case Error<ChangePasswordResponseEntity?>():
+      case Error<ChangePasswordResponseEntity>():
         emit(
           state.copyWith(
             changePasswordStatus: ChangePasswordStatus.error,
-            error: result.toString(),
+            error: result.error,
           ),
         );
         break;

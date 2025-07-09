@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:super_fitness/core/constants/assets_paths/assets_paths.dart';
 import 'package:super_fitness/core/di/injectable_initializer.dart';
+import 'package:super_fitness/core/utilities/social_accounts_sign_in/facebook_sign_in/facebook_sign_in_handler.dart';
 import 'package:super_fitness/core/utilities/social_accounts_sign_in/google_sign_in/google_sign_in_handler.dart';
 import 'package:super_fitness/core/validation/validation_functions.dart';
 import 'package:super_fitness/modules/authentication/domain/usecase/login/login.dart';
@@ -19,6 +20,7 @@ import 'login_screen_test.mocks.dart';
   LoginUseCase,
   StoreLoginLocalUseCase,
   GoogleSignInHandler,
+  FacebookSignInHandler,
   LocalizationManager,
   AppLocalizations,
   ValidateFunctions,
@@ -28,6 +30,7 @@ void main() {
     late MockLoginUseCase mockLoginUseCase;
     late MockStoreLoginLocalUseCase mockStoreLoginLocalUseCase;
     late MockGoogleSignInHandler mockGoogleSignInHandler;
+    late FacebookSignInHandler mockFacebookSignInHandler;
     late MockAppLocalizations mockAppLocalizations;
     late MockLocalizationManager mockLocalizationManager;
     late MockValidateFunctions mockValidateFunctions;
@@ -36,6 +39,7 @@ void main() {
       mockLoginUseCase = MockLoginUseCase();
       mockStoreLoginLocalUseCase = MockStoreLoginLocalUseCase();
       mockGoogleSignInHandler = MockGoogleSignInHandler();
+      mockFacebookSignInHandler = MockFacebookSignInHandler();
       mockLocalizationManager = MockLocalizationManager();
       mockAppLocalizations = MockAppLocalizations();
       mockValidateFunctions = MockValidateFunctions();
@@ -52,6 +56,7 @@ void main() {
         () => LoginViewModel(
           mockLoginUseCase,
           mockGoogleSignInHandler,
+          mockFacebookSignInHandler,
           mockStoreLoginLocalUseCase,
         ),
       );

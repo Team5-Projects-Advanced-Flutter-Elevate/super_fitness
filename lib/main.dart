@@ -73,7 +73,7 @@ void main() async {
         ChangeNotifierProvider(create: (context) => getIt.get<UserProvider>()),
       ],
       child: DevicePreview(
-        enabled: false,
+        enabled: true,
         builder: (context) {
           return const MyApp();
         },

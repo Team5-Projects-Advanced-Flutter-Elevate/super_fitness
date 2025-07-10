@@ -75,8 +75,8 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
                     itemCount: 5,
                     step: 1,
                     axis: Axis.horizontal,
-                    itemHeight: 70,
-                    itemWidth: 70,
+                    itemHeight: screenHeight * 0.08,
+                    itemWidth: screenWidth * 0.18,
                     selectedTextStyle: theme.textTheme.titleLarge?.copyWith(
                       color: AppColors.mainColorLight,
                       fontWeight: FontWeight.w800,

@@ -1174,6 +1174,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Conversation Ended ❌'**
   String get conversationEnded;
+
+  /// No description provided for @exercises________.
+  ///
+  /// In en, this message translates to:
+  /// **'\$\$\$ comment \$\$\$'**
+  String get exercises________;
+
+  /// No description provided for @noVideoProvided.
+  ///
+  /// In en, this message translates to:
+  /// **'No video Provided'**
+  String get noVideoProvided;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

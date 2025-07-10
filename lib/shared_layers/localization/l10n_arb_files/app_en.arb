@@ -178,6 +178,8 @@
   "tellingGeminiToWelcomeUserWithInfo": "Welcome user briefly by his name. Just a few sentences. The user info is as follows: {userInfo} (ignore Unknown info if exists). Just keep this info if user asks a question related to them. For every response, keep the answer simple, clear, and concise—no long explanations.",
   "tellingGeminiToGiveChatTitle": "Give a short, 10-20 characters (not more) title for this message: {firstMessage}, don't give me options just choose the best one.",
   "conversationIsCloseToLimit": "Conversation is about to reach its limit ⚠\uFE0F",
-  "conversationEnded": "Conversation Ended ❌"
+  "conversationEnded": "Conversation Ended ❌",
+  "exercises________": "$$$ comment $$$",
+  "noVideoProvided": "No video Provided"
 
 }

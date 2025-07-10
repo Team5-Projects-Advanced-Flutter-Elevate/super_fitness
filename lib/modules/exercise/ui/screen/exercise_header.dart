@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:super_fitness/core/bases/base_statless_widget.dart';
 import 'package:super_fitness/core/widgets/loading_state_widget.dart';
 import 'package:super_fitness/modules/exercise/ui/cubit/state.dart';
 import 'package:super_fitness/modules/exercise/ui/screen/video_player.dart';
@@ -8,13 +9,13 @@ import '../../../../core/colors/app_colors.dart';
 import '../../../../core/constants/assets_paths/assets_paths.dart';
 import '../cubit/view_model.dart';
 
-class ExerciseHeaderSection extends StatelessWidget {
+class ExerciseHeaderSection extends BaseStatelessWidget {
   final ExerciseViewModel viewModel;
 
   const ExerciseHeaderSection({super.key, required this.viewModel});
 
   @override
-  Widget build(BuildContext context) {
+  Widget customBuild(BuildContext context, inherit) {
     return BlocBuilder<ExerciseViewModel, ExerciseState>(
       builder: (context, state) {
         return SizedBox(
@@ -33,10 +34,9 @@ class ExerciseHeaderSection extends StatelessWidget {
                     } else if (state.status == Status.success) {
                       if (state.selectedShortLink!.isNotEmpty) {
                         return PlayerScreen(url: '${state.selectedShortLink}');
-                      } else if (state
-                              .exercises[0]
-                              .shortYoutubeDemonstrationLink !=
-                          null) {
+                      } else if (state.exercises.isNotEmpty &&
+                          state.exercises[0].shortYoutubeDemonstrationLink !=
+                              null) {
                         return PlayerScreen(
                           url:
                               '${state.exercises[0].shortYoutubeDemonstrationLink}',
@@ -92,7 +92,8 @@ class ExerciseHeaderSection extends StatelessWidget {
                       builder: (BuildContext context) {
                         if (state.status == Status.success) {
                           return Text(
-                            state.exercises[0].targetMuscleGroup != null
+                            state.exercises.isNotEmpty &&
+                                    state.exercises[0].targetMuscleGroup != null
                                 ? '${state.exercises[0].targetMuscleGroup}'
                                 : '',
                             style: const TextStyle(
@@ -102,9 +103,9 @@ class ExerciseHeaderSection extends StatelessWidget {
                             ),
                           );
                         } else if (state.status == Status.error) {
-                          return const Text(
-                            'No video Provided',
-                            style: TextStyle(
+                          return Text(
+                            inherit.appLocalizations.noVideoProvided,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 26,
                               fontWeight: FontWeight.bold,

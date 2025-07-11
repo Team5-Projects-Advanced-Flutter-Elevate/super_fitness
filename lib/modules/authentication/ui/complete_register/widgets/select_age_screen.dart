@@ -83,11 +83,12 @@ class _SelectAgeScreenState extends BaseStatefulWidgetState<SelectAgeScreen> {
                           axis: Axis.horizontal,
                           itemHeight: screenHeight * 0.08,
                           itemWidth: itemWidth,
-                          selectedTextStyle: theme.textTheme.titleLarge?.copyWith(
-                            color: AppColors.mainColorLight,
-                            fontWeight: FontWeight.w800,
-                            fontSize: itemWidth * 0.4,
-                          ),
+                          selectedTextStyle: theme.textTheme.titleLarge
+                              ?.copyWith(
+                                color: AppColors.mainColorLight,
+                                fontWeight: FontWeight.w800,
+                                fontSize: itemWidth * 0.4,
+                              ),
                           textStyle: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w800,
                             fontSize: itemWidth * 0.28,

@@ -22,19 +22,23 @@ void main() {
     });
     test(
       'when upload image it should call uploadProfileImage from datasource',
-          () async {
+      () async {
         File imageFile = File(r'C:\Users\pc_nu\Downloads\test.png');
 
         var result = Success<UploadImageResponseEntity>(
-            data: UploadImageResponseEntity());
+          data: UploadImageResponseEntity(),
+        );
 
         provideDummy<ApiResult<UploadImageResponseEntity?>>(result);
         when(
-            uploadImageOnlineDataSource.uploadProfileImage(imageFile: imageFile)
+          uploadImageOnlineDataSource.uploadProfileImage(imageFile: imageFile),
         ).thenAnswer((_) async => result);
-        var actual = await uploadImageRepoImpl.uploadProfileImage(imageFile: imageFile);
-        verify(uploadImageOnlineDataSource.uploadProfileImage(imageFile: imageFile)).called(
-            1);
+        var actual = await uploadImageRepoImpl.uploadProfileImage(
+          imageFile: imageFile,
+        );
+        verify(
+          uploadImageOnlineDataSource.uploadProfileImage(imageFile: imageFile),
+        ).called(1);
         expect(actual, equals(result));
       },
     );

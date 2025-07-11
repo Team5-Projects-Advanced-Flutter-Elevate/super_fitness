@@ -67,10 +67,10 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           password: 'Mmmmm@123',
           // Default for UI placeholder only
           profilePhotoLink: data?.photo,
-          gender: data?.gender??'',
-          goal: data?.goal??'',
-          weight: data?.weight.toString()??'',
-          level: levelsKey('${data?.activityLevel}')
+          gender: data?.gender ?? '',
+          goal: data?.goal ?? '',
+          weight: data?.weight.toString() ?? '',
+          level: levelsKey('${data?.activityLevel}'),
         );
 
         // Save a snapshot of initial data for dirty-checking
@@ -88,19 +88,18 @@ class EditProfileViewModel extends Cubit<ProfileState> {
     }
   }
 
-  String levelsKey (String level){
-    if(level=='level1'){
+  String levelsKey(String level) {
+    if (level == 'level1') {
       return 'Rookie';
-    }else if(level=='level2'){
-      return'Beginner';
-    }else if(level=='level3'){
-      return'Intermediate';
-    }else if(level=='level4'){
-      return'Advanced';
-    }else{
-      return'trueBeast';
+    } else if (level == 'level2') {
+      return 'Beginner';
+    } else if (level == 'level3') {
+      return 'Intermediate';
+    } else if (level == 'level4') {
+      return 'Advanced';
+    } else {
+      return 'trueBeast';
     }
-
   }
 
   String levelId(String levelName) {
@@ -116,7 +115,6 @@ class EditProfileViewModel extends Cubit<ProfileState> {
       return 'level5';
     }
   }
-
 
   void _uploadProfileImage(File imageFile) async {
     emit(state.copyWith(uploadImageStatus: EditProfileStatus.loading));
@@ -182,7 +180,7 @@ class EditProfileViewModel extends Cubit<ProfileState> {
           profilePhotoLink: data?.photo,
           goal: data?.goal ?? '',
           weight: data?.weight.toString() ?? '',
-          level: levelsKey('${data?.activityLevel}')
+          level: levelsKey('${data?.activityLevel}'),
         );
 
         // After successful update, reset initial snapshot

@@ -120,45 +120,43 @@ class _SelectedActivityScreenState
                   SizedBox(height: screenHeight * 0.03),
                   BlocBuilder<RegisterViewModel, RegisterState>(
                     builder: (context, state) {
-                      return FilledButton(
-                        onPressed:
-                            selectedActivity == null
-                                ? null
-                                : () {
-                                  cubit.updateStatus(
-                                    cubit.state.status,
-                                    activity: selectedActivity,
-                                  );
+                      return state.registerStatus == Status.loading
+                          ? const LoadingStateWidget()
+                          : FilledButton(
+                            onPressed:
+                                selectedActivity == null
+                                    ? null
+                                    : () {
+                                      cubit.updateStatus(
+                                        cubit.state.status,
+                                        activity: selectedActivity,
+                                      );
 
-                                  log(cubit.state.toString());
+                                      log(cubit.state.toString());
 
-                                  BlocProvider.of<RegisterViewModel>(
-                                    context,
-                                  ).doIntent(
-                                    RegisterUser(
-                                      restOfRegisterRequest:
-                                          RestOfRegisterRequest(
-                                            gender:
-                                                cubit.state.isMale!
-                                                    ? Gender.male.getValue()
-                                                    : Gender.female.getValue(),
-                                            age: cubit.state.age,
-                                            weight: cubit.state.weight,
-                                            height: cubit.state.height,
-                                            goal: cubit.state.goal!,
-                                            activityLevel:
-                                                cubit.state.activity!,
-                                          ),
-                                    ),
-                                  );
-                                },
-                        child:
-                            state.registerStatus == Status.loading
-                                ? LoadingStateWidget(
-                                  progressIndicatorColor: AppColors.white,
-                                )
-                                : Text(appLocalizations.next),
-                      );
+                                      BlocProvider.of<RegisterViewModel>(
+                                        context,
+                                      ).doIntent(
+                                        RegisterUser(
+                                          restOfRegisterRequest:
+                                              RestOfRegisterRequest(
+                                                gender:
+                                                    cubit.state.isMale!
+                                                        ? Gender.male.getValue()
+                                                        : Gender.female
+                                                            .getValue(),
+                                                age: cubit.state.age,
+                                                weight: cubit.state.weight,
+                                                height: cubit.state.height,
+                                                goal: cubit.state.goal!,
+                                                activityLevel:
+                                                    cubit.state.activity!,
+                                              ),
+                                        ),
+                                      );
+                                    },
+                            child: Text(appLocalizations.next),
+                          );
                     },
                   ),
                 ],

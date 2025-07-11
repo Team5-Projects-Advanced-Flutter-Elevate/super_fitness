@@ -69,32 +69,42 @@ class _SelectHeightScreenState
                       ),
                     ),
                   ),
-                  NumberPicker(
-                    value: currentValue,
-                    minValue: 14,
-                    maxValue: 250,
-                    itemCount: 5,
-                    step: 1,
-                    axis: Axis.horizontal,
-                    itemHeight: screenHeight * 0.08,
-                    itemWidth: screenWidth * 0.18,
-                    selectedTextStyle: theme.textTheme.titleLarge?.copyWith(
-                      color: AppColors.mainColorLight,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 33,
+                  SizedBox(
+                    height: screenHeight * 0.1,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        final screenWidth = constraints.maxWidth;
+                        final screenHeight = constraints.maxHeight;
+                        const visibleItems = 5;
+                        final itemWidth = screenWidth / visibleItems;
+                        return NumberPicker(
+                          value: currentValue,
+                          minValue: 14,
+                          maxValue: 250,
+                          itemCount: visibleItems,
+                          step: 1,
+                          axis: Axis.horizontal,
+                          itemHeight: screenHeight * 0.08,
+                          itemWidth: itemWidth,
+                          selectedTextStyle: theme.textTheme.titleLarge
+                              ?.copyWith(
+                                color: AppColors.mainColorLight,
+                                fontWeight: FontWeight.w800,
+                                fontSize: itemWidth * 0.4,
+                              ),
+                          textStyle: theme.textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.w800,
+                            fontSize: itemWidth * 0.28,
+                          ),
+                          onChanged: (int value) {
+                            setState(() {
+                              currentValue = value;
+                            });
+                          },
+                        );
+                      },
                     ),
-                    textStyle: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 20,
-                    ),
-                    onChanged: (int value) {
-                      setState(() {
-                        currentValue = value;
-                      });
-                    },
                   ),
-
-                  SizedBox(height: screenHeight * 0.01),
                   Icon(
                     Icons.arrow_drop_up,
                     color: AppColors.mainColorLight,

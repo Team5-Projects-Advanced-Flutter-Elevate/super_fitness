@@ -1,10 +1,7 @@
-import 'dart:math';
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:numberpicker/numberpicker.dart';
-
 import '../../../../../core/bases/base_stateful_widget_state.dart';
 import '../../../../../core/colors/app_colors.dart';
 import '../view_model/complete_register_cubit.dart';

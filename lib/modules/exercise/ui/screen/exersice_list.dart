@@ -88,9 +88,9 @@ class ExerciseListWidget extends BaseStatelessWidget {
                 },
 
                 child: const Image(image: AssetImage(AssetsPaths.playBtn)),
-          ),
+              ),
+            );
+          },
         );
-      },
-    );
   }
 }

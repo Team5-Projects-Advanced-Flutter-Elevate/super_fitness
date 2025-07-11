@@ -69,5 +69,4 @@ class DefaultFirebaseOptions {
         '711027980590-pmv5g77pn9nhrrq9k4fa1g4oenfu28bh.apps.googleusercontent.com',
     iosBundleId: 'com.main369.superFitness',
   );
-
 }

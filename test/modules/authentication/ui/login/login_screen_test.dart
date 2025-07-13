@@ -46,7 +46,6 @@ void main() {
 
       when(mockAppLocalizations.welcomeBack).thenReturn("Welcome Back");
 
-
       getIt.registerSingleton<LocalizationManager>(mockLocalizationManager);
       getIt.registerSingleton<AppLocalizations>(mockAppLocalizations);
       getIt.registerSingleton<ValidateFunctions>(mockValidateFunctions);
@@ -73,26 +72,21 @@ void main() {
 
     testWidgets('check if image is render', (widgetTester) async {
       await widgetTester.pumpWidget(build());
-      var image =find.image(const AssetImage(AssetsPaths.fitnessAppIcon));
+      var image = find.image(const AssetImage(AssetsPaths.fitnessAppIcon));
       expect(image, findsOneWidget);
-
-
     });
-    
-    testWidgets('check if text field is render', (widgetTester)async {
+
+    testWidgets('check if text field is render', (widgetTester) async {
       await widgetTester.pumpWidget(build());
-      var textField=find.byType(TextFormField);
+      var textField = find.byType(TextFormField);
       expect(textField, findsNWidgets(2));
-
-    },);
-
+    });
 
     testWidgets('check if login button is rendered', (widgetTester) async {
       await widgetTester.pumpWidget(build());
 
       var button = find.byType(ElevatedButton);
       expect(button, findsWidgets);
-
     });
 
     testWidgets('check if google button is rendered', (widgetTester) async {
@@ -100,14 +94,6 @@ void main() {
 
       var googleIcon = find.image(const AssetImage(AssetsPaths.googleIcon));
       expect(googleIcon, findsOneWidget);
-
     });
-
-
-
-
-
-
-
   });
 }

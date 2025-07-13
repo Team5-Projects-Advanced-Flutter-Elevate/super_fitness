@@ -22,19 +22,21 @@ void main() {
     });
     test(
       'when call execute function it should call uploadProfileImage from repo',
-          () async {
-            File imageFile = File(r'C:\Users\pc_nu\Downloads\test.png');
+      () async {
+        File imageFile = File(r'C:\Users\pc_nu\Downloads\test.png');
 
-            var result = Success<UploadImageResponseEntity>(
-            data: UploadImageResponseEntity());
+        var result = Success<UploadImageResponseEntity>(
+          data: UploadImageResponseEntity(),
+        );
 
         provideDummy<ApiResult<UploadImageResponseEntity?>>(result);
         when(
-            uploadImageRepo.uploadProfileImage(imageFile: imageFile)
+          uploadImageRepo.uploadProfileImage(imageFile: imageFile),
         ).thenAnswer((_) async => result);
         var actual = await uploadImageUseCase.execute(imageFile: imageFile);
-        verify(uploadImageRepo.uploadProfileImage(imageFile: imageFile)).called(
-            1);
+        verify(
+          uploadImageRepo.uploadProfileImage(imageFile: imageFile),
+        ).called(1);
         expect(actual, equals(result));
       },
     );
